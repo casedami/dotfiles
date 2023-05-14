@@ -24,9 +24,9 @@ setopt hist_find_no_dups
 
 # aliases
 alias icd="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
-alias schl="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school"
-alias txtbk="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school/textbooks"
-alias hstry="rm .zsh_history .R_history .bash_history .python_history"
+alias school="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school"
+alias txtbook="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school/textbooks"
+alias hist="rm .zsh_history .Rhistory .bash_history .python_history"
 alias ls="ls -G"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
