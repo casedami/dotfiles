@@ -51,6 +51,7 @@ yabai -m rule --add  app="^(Finder|About This Mac|System Settings)$" manage=off
 yabai -m rule --add  app="^Anki$" manage=off
 yabai -m rule --add  app="^Clock$" manage=off
 yabai -m rule --add  app="^Reminders$" manage=off
+yabai -m rule --add  app="^Messages$" manage=off
 
 yabai -m config layout bsp
 
