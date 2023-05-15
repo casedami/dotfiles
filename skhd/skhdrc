@@ -48,5 +48,5 @@ ctrl + alt - p : yabai -m window --display 1; yabai -m display --focus 1
 
 # open apps
 cmd + alt + ctrl - b : open /Applications/Safari.app
-cmd + alt + ctrl - t : open /Applications/iTerm.app
+cmd + alt + ctrl - t : open /Applications/Alacritty.app
 
