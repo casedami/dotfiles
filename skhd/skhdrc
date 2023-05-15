@@ -47,6 +47,6 @@ ctrl + alt - n : yabai -m window --display next; yabai -m display --focus next
 ctrl + alt - p : yabai -m window --display 1; yabai -m display --focus 1
 
 # open apps
-cmd + alt + ctrl - b : open /Applications/Safari.app
-cmd + alt + ctrl - t : open /Applications/Alacritty.app
+shift + alt - b : open /Applications/Safari.app
+shift + alt - t : open /Applications/Alacritty.app
 
