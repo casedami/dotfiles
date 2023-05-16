@@ -54,4 +54,5 @@ cmd + shift - e : yabai -m window --display 1; yabai -m display --focus 1
 
 # open terminal
 shift + alt - t : open /Applications/Alacritty.app
+shift + alt - b : open /Applications/Safari.app
 
