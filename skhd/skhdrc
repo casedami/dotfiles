@@ -4,6 +4,10 @@ alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 
+# focus display
+alt - w : yabai -m display --focus west
+alt - e : yabai -m display --focus east
+
 # swap managed window
 shift + alt - h : yabai -m window --swap west
 shift + alt - j : yabai -m window --swap south
@@ -15,6 +19,8 @@ shift + alt + ctrl - h : yabai -m window --warp west
 shift + alt + ctrl - j : yabai -m window --warp south
 shift + alt + ctrl - k : yabai -m window --warp north
 shift + alt + ctrl - l : yabai -m window --warp east
+
+
 
 # rotate tree
 alt - r : yabai -m space --rotate 90
@@ -46,7 +52,6 @@ alt - tab : yabai -m space --focus recent
 ctrl + alt - n : yabai -m window --display next; yabai -m display --focus next
 ctrl + alt - p : yabai -m window --display 1; yabai -m display --focus 1
 
-# open apps
-# shift + alt - b : open /Applications/Firefox.app
+# open terminal
 shift + alt - t : open /Applications/Alacritty.app
 
