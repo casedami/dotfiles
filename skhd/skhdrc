@@ -49,8 +49,8 @@ shift + alt - n : osascript /Users/caseymiller/scripts/create_new_space.scpt
 alt - tab : yabai -m space --focus recent
 
 # send window to monitor and follow focus
-ctrl + alt - n : yabai -m window --display next; yabai -m display --focus next
-ctrl + alt - p : yabai -m window --display 1; yabai -m display --focus 1
+cmd + shift - w : yabai -m window --display next; yabai -m display --focus next
+cmd + shift - e : yabai -m window --display 1; yabai -m display --focus 1
 
 # open terminal
 shift + alt - t : open /Applications/Alacritty.app
