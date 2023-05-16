@@ -25,15 +25,13 @@ cursor:
     blinking: on
   unfocused_hollow_cursor: true
 
-custom_cursor_colors: true
-
 items:
   - colors:
       name: 3024 (dark)
       author: Chris Kempson
       primary:
         background: "#090300"
-        foreground: "#a5a2a2"
+        foreground: "#ffffff"
       cursor:
         text: "#ffffff"
         cursor: "#ffffff"
@@ -56,14 +54,17 @@ items:
         cyan: "#b5e4f4"
         white: "#ffffff"
   - theme: 3024.dark
+
+custom_cursor_colors: true
+
 colors:
   # Default colors
   primary:
     background: '0x0d1117'
-    foreground: '0xb3b1ad'
+    foreground: '0xffffff'
   cursor:
-    text: "#ffffff"
-    cursor: "#ffffff"
+    text: '0xffffff'
+    cursor: '0xffffff'
   # Normal colors
   normal:
     black: '0x484f58'
@@ -73,7 +74,7 @@ colors:
     blue: '0x58a6ff'
     magenta: '0xbc8cff'
     cyan: '0x39c5cf'
-    white: '0xb3b1ad'
+    white: '0xffffff'
 
   # Bright colors
   bright:
@@ -84,7 +85,7 @@ colors:
     blue: '0x79c0ff'
     magenta: '0xd2a8ff'
     cyan: '0x39c5cf'
-    white: '0xb3b1ad'
+    white: '0xffffff'
 
   indexed_colors:
     - { index: 16, color: '0xd18616' }
