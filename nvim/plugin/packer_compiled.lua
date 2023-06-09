@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/caseymiller/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/Users/caseymiller/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/caseymiller/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -113,11 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/caseymiller/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
-  },
-  ["github-nvim-theme"] = {
-    loaded = true,
-    path = "/Users/caseymiller/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
-    url = "https://github.com/projekt0n/github-nvim-theme"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,

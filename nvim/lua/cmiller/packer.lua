@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
       -- or                            , branch = '0.1.x',
       requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
+  use{ 'catppuccin/nvim', as = "catppuccin" }
   use('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
   use('nvim-tree/nvim-tree.lua')
   use('numToStr/Comment.nvim')

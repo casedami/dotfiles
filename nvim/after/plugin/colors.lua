@@ -1,5 +1,5 @@
 function setColor(color)
-	color = color or "github_dark_default"
+	color = color or "catppuccin"
 	vim.cmd.colorscheme(color)
 end
 
