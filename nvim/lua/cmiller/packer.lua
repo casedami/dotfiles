@@ -14,6 +14,12 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
   use('nvim-tree/nvim-tree.lua')
   use('numToStr/Comment.nvim')
+  use{ "jose-elias-alvarez/null-ls.nvim",
+	ft = {"python"},
+	opts = function()
+		return require "cmiller.null-ls"
+	end,
+  }
   use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -24,9 +30,17 @@ return require('packer').startup(function(use)
 	  branch = 'v1.x',
 	  requires = {
 		  -- LSP Support
-		  {'williamboman/mason.nvim'},           -- Required 
-		  {'williamboman/mason-lspconfig.nvim'}, -- Required
-		  {'neovim/nvim-lspconfig'},             -- Required
+		  {'williamboman/mason.nvim',				  -- Required 
+				opts = {
+					ensure_installed = {
+						"pyright",
+						"mypy",
+						"ruff",
+					},
+				},           
+		  },
+		  {'williamboman/mason-lspconfig.nvim'},	  -- Required
+		  {'neovim/nvim-lspconfig'},				  -- Required
 
 		  -- Autocompletion
 		  {'hrsh7th/nvim-cmp'},         -- Required
