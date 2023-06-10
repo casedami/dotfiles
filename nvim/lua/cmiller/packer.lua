@@ -11,9 +11,9 @@ return require('packer').startup(function(use)
       requires = { {'nvim-lua/plenary.nvim'} }
   }
   use{ 'catppuccin/nvim', as = "catppuccin" }
-  use('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
-  use('nvim-tree/nvim-tree.lua')
-  use('numToStr/Comment.nvim')
+  use{'nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'}}
+  use{'nvim-tree/nvim-tree.lua'}
+  use{'numToStr/Comment.nvim'}
   use{ "rcarriga/nvim-dap-ui",
     dependencies = "mfussenegger/nvim-dap",
     config = function()
@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
 			"mfussenegger/nvim-dap",
 			"rcarriga/nvim-dap-ui"
 		},
-		config = function(_, opts)
+		config = function()
 			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
 			require("dap-python").setup(path)
 		end,
@@ -50,13 +50,13 @@ return require('packer').startup(function(use)
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  use('nvim-tree/nvim-web-devicons')
+  use{'nvim-tree/nvim-web-devicons'}
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
 	  requires = {
 		  -- LSP Support
-		  {'williamboman/mason.nvim',				  -- Required 
+		  {'williamboman/mason.nvim',								-- Required 
 				opts = {
 					ensure_installed = {
 						"black",
@@ -64,23 +64,24 @@ return require('packer').startup(function(use)
 						"mypy",
 						"ruff",
 						"debugpy",
+						"lua-language-server",
 					},
-				},           
+				},
 		  },
-		  {'williamboman/mason-lspconfig.nvim'},	  -- Required
-		  {'neovim/nvim-lspconfig'},				  -- Required
+		  {'williamboman/mason-lspconfig.nvim'},					-- Required
+		  {'neovim/nvim-lspconfig'},								-- Required
 
 		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},         -- Required
-		  {'hrsh7th/cmp-nvim-lsp'},     -- Required
-		  {'hrsh7th/cmp-buffer'},       -- Required
-		  {'hrsh7th/cmp-path'},         -- Required
-		  {'saadparwaiz1/cmp_luasnip'}, -- Required
-		  {'hrsh7th/cmp-nvim-lua'},     -- Required
+		  {'hrsh7th/nvim-cmp'},										-- Required
+		  {'hrsh7th/cmp-nvim-lsp'},									-- Required
+		  {'hrsh7th/cmp-buffer'},									-- Required
+		  {'hrsh7th/cmp-path'},										-- Required
+		  {'saadparwaiz1/cmp_luasnip'},								-- Required
+		  {'hrsh7th/cmp-nvim-lua'},									-- Required
 
 		  -- Snippets
-		  {'L3MON4D3/LuaSnip'},             -- Required
-		  {'rafamadriz/friendly-snippets'}, -- Required
+		  {'L3MON4D3/LuaSnip'},										-- Required
+		  {'rafamadriz/friendly-snippets'},							-- Required
 	  }
   }
 end)
