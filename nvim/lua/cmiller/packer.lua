@@ -14,12 +14,41 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
   use('nvim-tree/nvim-tree.lua')
   use('numToStr/Comment.nvim')
+  use{ "rcarriga/nvim-dap-ui",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end
+  }
   use{ "jose-elias-alvarez/null-ls.nvim",
 	ft = {"python"},
 	opts = function()
 		return require "cmiller.null-ls"
 	end,
   }
+  use{ "mfussenegger/nvim-dap"}
+  use{ "mfussenegger/nvim-dap-python",
+		ft = "python",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui"
+		},
+		config = function(_, opts)
+			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+			require("dap-python").setup(path)
+		end,
+	}
   use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -37,6 +66,7 @@ return require('packer').startup(function(use)
 						"pyright",
 						"mypy",
 						"ruff",
+						"debugpy",
 					},
 				},           
 		  },
