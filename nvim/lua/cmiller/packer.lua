@@ -32,10 +32,7 @@ return require('packer').startup(function(use)
     end
   }
   use{ "jose-elias-alvarez/null-ls.nvim",
-	ft = {"python"},
-	opts = function()
-		return require "cmiller.null-ls"
-	end,
+	requires = { "nvim-lua/plenary.nvim" },
   }
   use{ "mfussenegger/nvim-dap"}
   use{ "mfussenegger/nvim-dap-python",
