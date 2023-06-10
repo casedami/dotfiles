@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
 		  {'williamboman/mason.nvim',				  -- Required 
 				opts = {
 					ensure_installed = {
+						"black",
 						"pyright",
 						"mypy",
 						"ruff",

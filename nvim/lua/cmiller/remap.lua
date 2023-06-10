@@ -23,3 +23,5 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- don't use Q
 vim.keymap.set("n", "Q", "<nop>")
 
+vim.keymap.set("n", "<leader>fm", ":! black % -q <cr>")
+
