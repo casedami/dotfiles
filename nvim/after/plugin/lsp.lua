@@ -1,3 +1,4 @@
+
 local lsp = require('lsp-zero').preset({
 	name = 'minimal',
 	set_lsp_keymaps = true,
@@ -16,15 +17,18 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	'n',
+	'<leader>di',
+	'<cmd>lua vim.diagnostic.open_float()<CR>',
+	{ noremap = true, silent = true }
+)
 
 vim.diagnostic.config({
-	virtual_text = {
-		-- source = "always",  -- Or "if_many"
-		prefix = '●', -- Could be '■', '▎', 'x'
-	},
+	virtual_text = false,
 	severity_sort = true,
 	float = {
 		source = "always",  -- Or "if_many"
 	},
 })
+
