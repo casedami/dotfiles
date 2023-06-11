@@ -34,14 +34,7 @@ vim.opt.regexpengine = 0
 vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 
--- status line
--- vim.opt.cmdheight = 1
--- vim.opt.statusline = " %f %=  %l:%c | %p%% | %Y "
--- vim.opt.showmode = true
-
 -- theme setup
 vim.cmd.colorscheme "catppuccin-mocha"
-
--- autocmd needed to change color of colorcolumn on startup
 vim.opt.colorcolumn = "80"
 
