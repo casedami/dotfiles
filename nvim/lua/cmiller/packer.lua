@@ -37,7 +37,6 @@ return require('packer').startup(function(use)
 					"pyright",
 					"mypy",
 					"ruff",
-					"debugpy",
 					"lua-language-server",
 				},
 			},

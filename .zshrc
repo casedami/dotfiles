@@ -9,9 +9,9 @@ fi
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
 # history
-HISTSIZE=5000
+HISTSIZE=500
 HISTFILE=~/.zsh_history
-SAVEHIST=5000
+SAVEHIST=500
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
@@ -24,14 +24,10 @@ setopt hist_find_no_dups
 # aliases
 alias icd="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
 alias school="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school"
-alias txtbook="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school/textbooks"
 alias hist="rm .zsh_history .Rhistory .bash_history .python_history"
 alias ls="ls -G"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
-
-# change color of directories for <ls> output
-export LSCOLORS=Exfxcxdxbxegedabagacad
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')

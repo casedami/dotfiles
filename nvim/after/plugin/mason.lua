@@ -10,11 +10,6 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
     ensure_installed = {
-		"black",
 		"pyright",
-		"mypy",
-		"ruff",
-		"debugpy",
-		"lua-language-server",
 	}
 })
