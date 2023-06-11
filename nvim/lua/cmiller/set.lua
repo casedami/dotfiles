@@ -36,5 +36,5 @@ vim.opt.updatetime = 50
 
 -- theme setup
 vim.cmd.colorscheme "catppuccin-mocha"
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "88"
 

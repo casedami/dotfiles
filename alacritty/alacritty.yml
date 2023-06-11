@@ -21,7 +21,7 @@ font:
 
 cursor:
   style:
-    shape: block
+    shape: underline
     blinking: on
   unfocused_hollow_cursor: true
 

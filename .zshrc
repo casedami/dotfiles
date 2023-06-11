@@ -25,9 +25,10 @@ setopt hist_find_no_dups
 alias icd="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
 alias school="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school"
 alias hist="rm .zsh_history .Rhistory .bash_history .python_history"
-alias ls="ls -G"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
+alias exa="exa --icons --group-directories-first -a"
+alias tree="exa --icons --group-directories-first -T --level=2"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
