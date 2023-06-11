@@ -40,7 +40,7 @@ vim.opt.updatetime = 50
 -- vim.opt.showmode = true
 
 -- theme setup
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "catppuccin-mocha"
 
 -- autocmd needed to change color of colorcolumn on startup
 vim.opt.colorcolumn = "80"
