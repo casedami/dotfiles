@@ -1,4 +1,5 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# 
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -29,6 +30,8 @@ alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
 alias exa="exa --icons --group-directories-first -a"
 alias tree="exa --icons --group-directories-first -T --level=2"
+alias cade="ssh u1337847@lab1-14.eng.utah.edu"
+alias transfer="sftp u1337847@lab1-14.eng.utah.edu"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
