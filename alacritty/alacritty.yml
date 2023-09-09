@@ -2,7 +2,7 @@ window:
   padding:
     x: 4
     y: 12
-  decorations: buttonless 
+  decorations: buttonless
   opacity: 1.0
 
 scrolling:

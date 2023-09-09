@@ -23,15 +23,14 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # aliases
-alias icd="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
-alias school="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/school"
 alias hist="rm .zsh_history .Rhistory .bash_history .python_history"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
 alias ls="exa --icons --group-directories-first -a"
 alias tree="exa --icons --group-directories-first -T --level=2"
-alias cade="ssh u1337847@lab1-14.eng.utah.edu"
-alias transfer="sftp u1337847@lab1-14.eng.utah.edu"
+alias cade="ssh u1337847@lab1-13.eng.utah.edu"
+alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
+alias vim="nvim"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
