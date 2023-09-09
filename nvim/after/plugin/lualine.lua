@@ -2,12 +2,9 @@ require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
-    section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = ' '},
     component_separators = { left = '', right = '' },
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
+    disabled_filetypes = { 'packer', 'NvimTree' },
     ignore_focus = {},
     always_divide_middle = true,
     globalstatus = false,
@@ -19,7 +16,7 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {{'branch', icon = '', padding = {left=2}}, 'diff', 'diagnostics'},
     lualine_c = {'%f'},
     lualine_x = {'filetype'},
     lualine_y = {'location'},
@@ -33,10 +30,9 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {
-      lualine_a = {'filename'}
+  winbar = {
+	  lualine_a = { { 'filename', icon = '', file_status = false, path = 0, use_mode_colors = false, separator = {right = ''}} },
   },
-  winbar = {},
   inactive_winbar = {},
   extensions = {}
 }

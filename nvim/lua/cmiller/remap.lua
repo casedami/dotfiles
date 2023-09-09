@@ -1,8 +1,8 @@
 
 -- set leader and show file explorer
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
-vim.keymap.set("n", "<C-f>", ":NvimTreeFocus<CR>")
+vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>", { silent = true })
+vim.keymap.set("n", "<C-f>", ":NvimTreeFocus<CR>", { silent = true })
 
 -- move selected lines up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -27,5 +27,5 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>fm", ":! black % -q <CR>")
 
 -- open python interpreter
-vim.keymap.set("n", "<leader>py", ":lua _PYTHON_TOGGLE_() <CR>")
+vim.keymap.set("n", "<leader>py", ":lua _PYTHON_TOGGLE_() <CR>", { silent = true })
 

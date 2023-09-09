@@ -6,7 +6,17 @@ local lsp = require('lsp-zero').preset({
 	suggest_lsp_servers = false,
 })
 
--- (Optional) Configure lua language server for neovim
+lsp.on_attach(function(client, bufnr)
+  local opts = {buffer = bufnr, remap = false}
+
+  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.rename() end, opts)
+end)
+
 lsp.nvim_workspace()
 
 lsp.setup()
@@ -16,13 +26,6 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
-vim.api.nvim_set_keymap(
-	'n',
-	'<leader>di',
-	'<cmd>lua vim.diagnostic.open_float()<CR>',
-	{ noremap = true, silent = true }
-)
 
 vim.diagnostic.config({
 	virtual_text = false,
