@@ -26,3 +26,6 @@ vim.keymap.set("n", "Q", "<nop>")
 -- manually reformat current python file
 vim.keymap.set("n", "<leader>fm", ":! black % -q <CR>")
 
+-- open python interpreter
+vim.keymap.set("n", "<leader>py", ":lua _PYTHON_TOGGLE_() <CR>")
+

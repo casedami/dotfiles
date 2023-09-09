@@ -17,15 +17,16 @@ use{ 'nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'} }
 use{ 'nvim-tree/nvim-tree.lua' }
 use{ 'numToStr/Comment.nvim' }
 use{ 'nvim-tree/nvim-web-devicons' }
+use{ "akinsho/toggleterm.nvim" }
 
 use{ 'jose-elias-alvarez/null-ls.nvim',
 requires = { 'nvim-lua/plenary.nvim' },
   }
 
-  use { 'nvim-lualine/lualine.nvim',
+use { 'nvim-lualine/lualine.nvim',
   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use { 'VonHeikemen/lsp-zero.nvim',
+}
+use { 'VonHeikemen/lsp-zero.nvim',
   branch = 'v1.x',
   requires = {
 	  -- LSP Support
