@@ -10,9 +10,9 @@ fi
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
 # history
-HISTSIZE=500
+HISTSIZE=30
 HISTFILE=~/.zsh_history
-SAVEHIST=500
+SAVEHIST=30
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
