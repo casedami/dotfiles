@@ -31,6 +31,7 @@ alias tree="exa --icons --group-directories-first -T --level=2"
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
 alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
 alias vim="nvim"
+alias ssh="TERM=xterm-256color $(which ssh)"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
