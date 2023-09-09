@@ -16,7 +16,7 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {{'branch', icon = '', padding = {left=2}}, 'diff', 'diagnostics'},
+    lualine_b = {{'branch', icon = '', padding = {left = 2}, color = {fg = '#f5e3b5'}, use_mode_colors = false}, 'diff', 'diagnostics'},
     lualine_c = {'%f'},
     lualine_x = {'filetype'},
     lualine_y = {'location'},
