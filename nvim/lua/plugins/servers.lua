@@ -6,6 +6,7 @@ return {
         vim.list_extend(opts.ensure_installed, { "c", "cpp", "python" })
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
           virtual_text = false,
+          float = { border = "rounded" },
         })
       end
     end,
@@ -15,6 +16,7 @@ return {
     opts = {
       diagnostics = {
         virtual_text = false,
+        float = { border = "rounded" },
       },
       servers = {
         pyright = {},
