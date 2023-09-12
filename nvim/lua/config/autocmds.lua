@@ -21,5 +21,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<space>fo", function()
       vim.lsp.buf.format({ async = true })
     end, opts)
+
+    -- Global border settings
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      float = { border = "rounded" },
+    })
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+      border = "rounded",
+    })
   end,
 })

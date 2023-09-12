@@ -4,10 +4,6 @@ return {
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
         vim.list_extend(opts.ensure_installed, { "c", "cpp", "python" })
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-          virtual_text = false,
-          float = { border = "rounded" },
-        })
       end
     end,
   },
@@ -64,25 +60,25 @@ return {
         },
       },
     },
-    {
-      "williamboman/mason.nvim",
-      opts = function(_, opts)
-        vim.list_extend(opts.ensure_installed, {
-          "pyright",
-          "black",
-          "clangd",
-          "clang-format",
-        })
-      end,
-    },
-    {
-      "jose-elias-alvarez/null-ls.nvim",
-      opts = function(_, opts)
-        local nls = require("null-ls")
-        opts.sources = vim.list_extend(opts.sources, {
-          nls.builtins.formatting.black,
-        })
-      end,
-    },
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "pyright",
+        "black",
+        "clangd",
+        "clang-format",
+      })
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources, {
+        nls.builtins.formatting.black,
+      })
+    end,
   },
 }
