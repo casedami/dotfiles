@@ -81,6 +81,9 @@ return {
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources, {
         nls.builtins.formatting.black,
+        nls.builtins.formatting.latexindent.with({
+          "-g",
+        }),
       })
     end,
   },
