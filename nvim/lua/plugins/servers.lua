@@ -8,6 +8,9 @@ return {
     end,
   },
   {
+    "lervag/vimtex",
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
