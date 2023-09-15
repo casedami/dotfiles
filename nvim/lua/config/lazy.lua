@@ -46,9 +46,3 @@ require("lazy").setup({
     },
   },
 })
-
-vim.g.tex_flavor = "latex"
-vim.g.vimtex_compiler_latexmk_engines = { ["_"] = "-xelatex" }
-vim.g.vimtex_view_method = "skim"
-vim.g.vimtex_indent_on_ampersands = 0
-vim.g.vimtex_latexmk_options = "-shell-escape"

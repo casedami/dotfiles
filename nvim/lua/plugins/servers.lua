@@ -19,6 +19,7 @@ return {
       },
       servers = {
         pyright = {},
+        ltex = {},
         clangd = {
           keys = {
             { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
@@ -72,6 +73,7 @@ return {
         "black",
         "clangd",
         "clang-format",
+        "ltex-ls",
       })
     end,
   },
@@ -81,9 +83,7 @@ return {
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources, {
         nls.builtins.formatting.black,
-        nls.builtins.formatting.latexindent.with({
-          "-g",
-        }),
+        nls.builtins.formatting.latexindent,
       })
     end,
   },
