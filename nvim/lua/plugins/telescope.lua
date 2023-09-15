@@ -30,6 +30,7 @@ return {
         "%.run.xml",
         "indent.log",
         "%.pdf",
+        "%.bak",
       },
     },
   },

@@ -1,1 +1,34 @@
-defaultIndent = "\t"
+defaultIndent: "  "
+
+noAdditionalIndent:
+  item: 1
+
+specialBeginEnd:
+  path:
+    begin: ’\\draw’
+    end: ’;’
+  specialBeforeCommand: 1
+
+lookForAlignDelims:
+  tabular: 1
+  tabularx: 1
+  longtable: 1
+  array: 1
+  matrix: 1
+  path:
+    delimiterRegEx: ’(edge|node\h*\{.+\})'
+
+maximumIndentation: "\t\t"
+
+condenseMultipleBlankLinesInto: 1
+
+modifyLineBreaks:
+  textWrapOptions:
+    columns: 79
+    multipleSpacesToSingle: 1
+    removeBlockLineBreaks: 1
+    when: before
+    comments:
+      wrap: 0
+    huge: overflow
+    separator: ""
