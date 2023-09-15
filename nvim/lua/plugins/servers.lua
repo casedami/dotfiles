@@ -19,7 +19,6 @@ return {
       },
       servers = {
         pyright = {},
-        ltex = {},
         clangd = {
           keys = {
             { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
@@ -73,7 +72,6 @@ return {
         "black",
         "clangd",
         "clang-format",
-        "ltex-ls",
       })
     end,
   },
