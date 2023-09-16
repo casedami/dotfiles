@@ -2,23 +2,30 @@ defaultIndent: "  "
 
 noAdditionalIndent:
   item: 1
+  draw: 1
+
+indentAfterItems:
+  tabular: 1
 
 specialBeginEnd:
-  path:
-    begin: ’\\draw’
-    end: ’;’
+  draw:
+    begin: \\draw
+    end: ;
   specialBeforeCommand: 1
 
 lookForAlignDelims:
-  tabular: 1
+  tabular: 
+    multiColumnGrouping: 1
   tabularx: 1
   longtable: 1
   array: 1
   matrix: 1
-  path:
-    delimiterRegEx: ’(edge|node\h*\{.+\})'
+  center:
+    alignFinalDoubleBackSlash: 1
+  draw:
+    delimiterRegEx: (edge|node\h*\{.+\})
 
-maximumIndentation: "\t\t"
+maximumIndentation: "      "
 
 condenseMultipleBlankLinesInto: 1
 

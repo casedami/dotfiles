@@ -84,7 +84,7 @@ return {
         nls.builtins.formatting.latexindent.with({
           args = {
             "-m",
-            "-l",
+            "-c=./generated/",
           },
         }),
       })
