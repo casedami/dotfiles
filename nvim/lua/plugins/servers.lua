@@ -19,6 +19,7 @@ return {
       },
       servers = {
         pyright = {},
+        latexindent = {},
         clangd = {
           keys = {
             { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
@@ -85,7 +86,7 @@ return {
         nls.builtins.formatting.latexindent.with({
           args = {
             "-m",
-            "-c=./generated/",
+            -- "-c=./generated/",
           },
         }),
       })

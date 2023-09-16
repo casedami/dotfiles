@@ -1,6 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 
 vim.opt.colorcolumn = "88"
+vim.opt.background = "dark"
 
 vim.opt.wildignore = {
   "*.aux",
