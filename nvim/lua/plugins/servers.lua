@@ -72,6 +72,7 @@ return {
         "black",
         "clangd",
         "clang-format",
+        "latexindent",
       })
     end,
   },
@@ -83,8 +84,8 @@ return {
         nls.builtins.formatting.black,
         nls.builtins.formatting.latexindent.with({
           args = {
-            "-m", -- Modify line breaks
-            "-c=./generated/", -- Change location of log file
+            "-m",
+            "-c=./generated/",
           },
         }),
       })

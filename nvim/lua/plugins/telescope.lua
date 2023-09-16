@@ -15,6 +15,8 @@ return {
         "%.fot",
         "%.cb",
         "%.cb2",
+        "%.nav",
+        "%.snm",
         "%.*%.lb",
         "__latex*",
         "%.fdb_latexmk",
