@@ -83,8 +83,8 @@ return {
         nls.builtins.formatting.black,
         nls.builtins.formatting.latexindent.with({
           args = {
-            "-m",
-            "-c=./generated/",
+            "-m", -- Modify line breaks
+            "-c=./generated/", -- Change location of log file
           },
         }),
       })
