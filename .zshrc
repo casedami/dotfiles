@@ -26,7 +26,7 @@ setopt hist_find_no_dups
 alias hist="rm .zsh_history .Rhistory .bash_history .python_history"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
-alias ls="exa --icons --group-directories-first -a"
+alias ls="exa --icons --group-directories-first"
 alias tree="exa --icons --group-directories-first -T --level=2"
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
 alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
