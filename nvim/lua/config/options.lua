@@ -36,6 +36,7 @@ vim.g.vimtex_view_skim_sync = 1
 vim.g.vimtex_view_skim_activate = 1
 vim.g.vimtex_indent_on = 1
 vim.g.vimtex_syntax_conceal_disable = 1
+vim.g.vimtex_quickfix_open_on_warning = 0
 vim.g.vimtex_compiler_latexmk_engines = { ["_"] = "-xelatex" }
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_compiler_latexmk = {
@@ -50,4 +51,3 @@ vim.g.vimtex_compiler_latexmk = {
     "-interaction=nonstopmode",
   },
 }
-vim.g.vimtex_quickfix_open_on_warning = 0

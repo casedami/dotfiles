@@ -23,7 +23,7 @@ lookForAlignDelims:
   center:
     alignFinalDoubleBackSlash: 1
   draw:
-    delimiterRegEx: (edge|node\h*\{.+\})
+    delimiterRegEx: (edge|node)
 
 maximumIndentation: "      "
 
