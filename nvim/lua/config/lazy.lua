@@ -47,4 +47,5 @@ require("lazy").setup({
   },
 })
 
+-- Load custom snippets
 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets/" })

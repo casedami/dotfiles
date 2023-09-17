@@ -86,10 +86,19 @@ return {
         nls.builtins.formatting.latexindent.with({
           args = {
             "-m",
+            -- ** BROKEN ** Change default location of indent.log file
             -- "-c=./generated/",
           },
         }),
       })
     end,
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+      update_events = { "TextChanged", "TextChangedI" },
+    },
   },
 }
