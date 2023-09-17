@@ -86,7 +86,7 @@ return {
         nls.builtins.formatting.latexindent.with({
           args = {
             "-m",
-            -- ** BROKEN ** Change default location of indent.log file
+            -- FIX: Change default location of indent.log file
             -- "-c=./generated/",
           },
         }),

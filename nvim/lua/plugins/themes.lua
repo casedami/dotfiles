@@ -37,11 +37,11 @@ return {
   },
   {
     "ayu-theme/ayu-vim",
+    lazy = true,
   },
   {
     "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     opts = {},
   },
   {
