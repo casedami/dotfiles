@@ -84,11 +84,7 @@ return {
       opts.sources = vim.list_extend(opts.sources, {
         nls.builtins.formatting.black,
         nls.builtins.formatting.latexindent.with({
-          args = {
-            "-m",
-            -- FIX: Change default location of indent.log file
-            -- "-c=./generated/",
-          },
+          args = { "-m" },
         }),
       })
     end,

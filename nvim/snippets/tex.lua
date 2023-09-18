@@ -1,13 +1,10 @@
 local ls = require("luasnip")
 local s = ls.snippet
-local t = ls.text_node
 local i = ls.insert_node
 local fmta = require("luasnip.extras.fmt").fmta
-local line_begin = require("luasnip.extras.expand_conditions").line_begin
 local rep = require("luasnip.extras").rep
 
 return {
-  -- GENERIC ENVIRONMENT
   s(
     "nenv",
     fmta(
@@ -58,6 +55,7 @@ return {
     {}
   ),
   s({ trig = "mm", dscr = "inline math" }, fmta("\\( <> \\)", { i(1) }), {}),
+  s({ trig = "ss", dscr = "quick math" }, fmta("$ <> $", { i(1) }), {}),
   s({ trig = "bf", dscr = "boldface" }, fmta("\\textbf{<>}", { i(1) }), {}),
   s({ trig = "if", dscr = "italics" }, fmta("\\textit{<>}", { i(1) }), {}),
   s({ trig = "setdef", dscr = "set definition" }, fmta("\\( \\{<>\\} \\)", { i(1) }), {}),
