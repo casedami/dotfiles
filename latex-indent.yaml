@@ -29,6 +29,9 @@ maximumIndentation: "      "
 
 condenseMultipleBlankLinesInto: 1
 
+oneSentencePerLine:
+  manipulateSentences: 1
+
 modifyLineBreaks:
   textWrapOptions:
     columns: 79
@@ -36,6 +39,7 @@ modifyLineBreaks:
     removeBlockLineBreaks: 1
     when: before
     comments:
-      wrap: 0
+      wrap: 1
+      inheritLeadingSpace: 1
     huge: overflow
     separator: ""
