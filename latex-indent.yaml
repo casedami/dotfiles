@@ -36,7 +36,7 @@ modifyLineBreaks:
     removeBlockLineBreaks: 1
     when: before
     comments:
-      wrap: 1
+      wrap: 0
     huge: overflow
     separator: ""
   oneSentencePerLine:

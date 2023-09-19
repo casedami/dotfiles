@@ -22,7 +22,11 @@ return {
         latexindent = {},
         clangd = {
           keys = {
-            { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+            {
+              "<leader>cR",
+              "<cmd>ClangdSwitchSourceHeader<cr>",
+              desc = "Switch Source/Header (C/C++)",
+            },
           },
           root_dir = function(fname)
             return require("lspconfig.util").root_pattern(
@@ -33,9 +37,10 @@ return {
               "meson.build",
               "meson_options.txt",
               "build.ninja"
-            )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-              fname
-            ) or require("lspconfig.util").find_git_ancestor(fname)
+            )(fname) or require("lspconfig.util").root_pattern(
+              "compile_commands.json",
+              "compile_flags.txt"
+            )(fname) or require("lspconfig.util").find_git_ancestor(fname)
           end,
           capabilities = {
             offsetEncoding = { "utf-16" },
@@ -57,8 +62,11 @@ return {
         },
         setup = {
           clangd = function(_, opts)
-            local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
-            require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts }))
+            local clangd_ext_opts =
+              require("lazyvim.util").opts("clangd_extensions.nvim")
+            require("clangd_extensions").setup(
+              vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts })
+            )
             return false
           end,
         },
@@ -84,7 +92,7 @@ return {
       opts.sources = vim.list_extend(opts.sources, {
         nls.builtins.formatting.black,
         nls.builtins.formatting.latexindent.with({
-          args = { "-m" },
+          args = { "-m", "-c=./generated/" },
         }),
       })
     end,

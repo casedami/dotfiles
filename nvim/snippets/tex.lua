@@ -58,5 +58,9 @@ return {
   s({ trig = "ss", dscr = "quick math" }, fmta("$ <> $", { i(1) }), {}),
   s({ trig = "bf", dscr = "boldface" }, fmta("\\textbf{<>}", { i(1) }), {}),
   s({ trig = "if", dscr = "italics" }, fmta("\\textit{<>}", { i(1) }), {}),
-  s({ trig = "setdef", dscr = "set definition" }, fmta("\\( \\{<>\\} \\)", { i(1) }), {}),
+  s(
+    { trig = "setdef", dscr = "set definition" },
+    fmta("\\( \\{<>\\} \\)", { i(1) }),
+    {}
+  ),
 }
