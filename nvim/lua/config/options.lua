@@ -3,33 +3,6 @@
 vim.opt.colorcolumn = "88"
 vim.opt.background = "dark"
 
-vim.opt.wildignore = {
-  "*.aux",
-  "*.lof",
-  "*.lot",
-  "*.fls",
-  "*.out",
-  "*.toc",
-  "*.fmt",
-  "*.fot",
-  "*.cb",
-  "*.cb2",
-  ".*.lb",
-  "__latex*",
-  "*.fdb_latexmk",
-  "*.synctex",
-  "*.synctex(busy)",
-  "*.synctex.gz",
-  "*.synctex.gz(busy)",
-  "*.pdfsync",
-  "*.bbl",
-  "*.bcf",
-  "*.blg",
-  "*.run.xml",
-  "indent.log",
-  "*.pdf",
-}
-
 -- Vimtex options
 vim.g.tex_flavor = "latex"
 vim.g.vimtex_view_method = "skim"
