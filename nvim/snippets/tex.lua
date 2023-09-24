@@ -56,7 +56,7 @@ return {
   ),
   s({ trig = "mm", dscr = "inline math" }, fmta("\\( <> \\)", { i(1) }), {}),
   s({ trig = "ff", dscr = "fraction" }, fmta("\\frac{<>}{<>}", { i(1), i(2) }), {}),
-  s({ trig = "ss", dscr = "quick math" }, fmta("$ <> $", { i(1) }), {}),
+  s({ trig = "ss", dscr = "quick math" }, fmta("$<>$", { i(1) }), {}),
   s({ trig = "bf", dscr = "boldface" }, fmta("\\textbf{<>}", { i(1) }), {}),
   s({ trig = "if", dscr = "italics" }, fmta("\\textit{<>}", { i(1) }), {}),
   s({ trig = "tt", dscr = "mono" }, fmta("\\texttt{<>}", { i(1) }), {}),

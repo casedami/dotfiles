@@ -16,8 +16,10 @@ specialBeginEnd:
 lookForAlignDelims:
   tabular: 
     multiColumnGrouping: 1
-  tabularx: 1
-  longtable: 1
+    alignFinalDoubleBackSlash: 1
+  align*:
+    delimiterRegEx: (&=)
+    alignFinalDoubleBackSlash: 1
   array: 1
   matrix: 1
   center:
