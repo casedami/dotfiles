@@ -33,6 +33,7 @@ alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
 alias vim="nvim"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias hw="cd ~/dev/tex/hw/"
+alias python="python3"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
