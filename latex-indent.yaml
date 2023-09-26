@@ -18,8 +18,10 @@ lookForAlignDelims:
     multiColumnGrouping: 1
     alignFinalDoubleBackSlash: 1
   align*:
-    delimiterRegEx: (&=)
+    delims: 1
+    spacesAfterAmpersand: 0
     alignFinalDoubleBackSlash: 1
+    justification: "right"
   array: 1
   matrix: 1
   center:
