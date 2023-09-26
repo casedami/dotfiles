@@ -10,3 +10,9 @@ vim.keymap.set(
   ":delm a-zA-Z0-9 | :wviminfo! <cr>",
   { desc = "Delete all marks", silent = true }
 )
+
+-- Auto center when moving up/down
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "Q", "<nop>")
