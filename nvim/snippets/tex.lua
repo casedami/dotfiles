@@ -60,9 +60,5 @@ return {
   s({ trig = "bf", dscr = "boldface" }, fmta("\\textbf{<>}", { i(1) }), {}),
   s({ trig = "if", dscr = "italics" }, fmta("\\textit{<>}", { i(1) }), {}),
   s({ trig = "tt", dscr = "mono" }, fmta("\\texttt{<>}", { i(1) }), {}),
-  s(
-    { trig = "setdef", dscr = "set definition" },
-    fmta("\\( \\{<>\\} \\)", { i(1) }),
-    {}
-  ),
+  s({ trig = "setdef", dscr = "set definition" }, fmta("\\{<>\\}", { i(1) }), {}),
 }

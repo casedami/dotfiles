@@ -19,6 +19,7 @@ return {
       },
       servers = {
         pyright = {},
+        black = {},
         latexindent = {},
         clangd = {
           keys = {
