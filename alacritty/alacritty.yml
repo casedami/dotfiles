@@ -3,7 +3,7 @@ window:
     x: 4
     y: 12
   decorations: buttonless
-  opacity: 1.0
+  opacity: 0.7
   option_as_alt: Both
 
 scrolling:
@@ -23,8 +23,9 @@ font:
 cursor:
   style:
     shape: block
-    blinking: on
+    blinking: always
   unfocused_hollow_cursor: true
+  blink_timeout: 0
 
 items:
   - colors:

@@ -33,6 +33,7 @@ return {
         "indent.log",
         "%.pdf",
         "%.bak",
+        "%.app",
       },
     },
   },

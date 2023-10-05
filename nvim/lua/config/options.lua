@@ -1,6 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 
-vim.wo.colorcolumn = "88"
+-- vim.wo.colorcolumn = "88"
+vim.opt.cursorlineopt = "number"
 vim.opt.background = "dark"
 
 -- Vimtex options
