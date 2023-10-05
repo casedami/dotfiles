@@ -8,4 +8,10 @@ return {
   { "echasnovski/mini.animate", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   { "folke/flash.nvim", enabled = false },
+  { "rafamadriz/friendly-snippets", enabled = false },
+  { "nvim-pack/nvim-spectre", enabled = false },
+  { "folke/trouble.nvim", enabled = false },
+  { "folke/neoconf.nvim", enabled = false },
+  { "echasnovski/mini.ai", enabled = false },
+  { "akinsho/bufferline.nvim", enabled = false },
 }
