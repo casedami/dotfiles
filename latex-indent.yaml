@@ -7,12 +7,6 @@ noAdditionalIndent:
 indentAfterItems:
   tabular: 1
 
-specialBeginEnd:
-  draw:
-    begin: \\draw
-    end: ;
-  specialBeforeCommand: 1
-
 lookForAlignDelims:
   tabular: 
     multiColumnGrouping: 1
@@ -26,8 +20,8 @@ lookForAlignDelims:
   matrix: 1
   center:
     alignFinalDoubleBackSlash: 1
-  draw:
-    delimiterRegEx: (edge|node)
+  tikzpicture:
+    delimiterRegEx: (edge|node \{.+\})
 
 maximumIndentation: "      "
 
@@ -43,5 +37,3 @@ modifyLineBreaks:
       wrap: 0
     huge: overflow
     separator: ""
-  oneSentencePerLine:
-    manipulateSentences: 1

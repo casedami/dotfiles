@@ -31,10 +31,10 @@ return {
         }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
+        { name = "luasnip", priority = 40 },
+        { name = "nvim_lsp", priority = 30 },
+        { name = "buffer", priority = 20 },
+        { name = "path", priority = 10 },
       }),
       formatting = {
         format = function(_, item)
