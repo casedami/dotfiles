@@ -4,7 +4,7 @@ return {
     lazy = true,
     name = "catppuccin",
     opts = {
-      transparent_background = true,
+      transparent_background = false,
       integrations = {
         alpha = true,
         cmp = true,
@@ -40,7 +40,7 @@ return {
     "folke/tokyonight.nvim",
     lazy = true,
     opts = {
-      transparent = true,
+      transparent = false,
       style = "night",
       styles = {
         -- Style to be applied to different syntax groups
@@ -51,7 +51,7 @@ return {
         variables = {},
         -- Background styles. Can be "dark", "transparent" or "normal"
         sidebars = "dark", -- style for sidebars, see below
-        floats = "transparent", -- style for floating windows
+        floats = "dark", -- style for floating windows
       },
     },
   },

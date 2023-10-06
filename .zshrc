@@ -34,6 +34,10 @@ alias vim="nvim"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias hw="cd ~/dev/tex/hw/"
 alias python="python3"
+alias gc="git commit"
+alias gs="git status"
+alias gl="git log"
+alias gp="git push"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
