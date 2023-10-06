@@ -31,7 +31,7 @@ return {
             "diff",
             "diagnostics",
           },
-          lualine_c = { { "%f", padding = { left = 2 } } },
+          lualine_c = { { "filename", path = 3, padding = { left = 2 } } },
           lualine_x = { "filetype" },
           lualine_y = { "location" },
           lualine_z = { "progress" },
