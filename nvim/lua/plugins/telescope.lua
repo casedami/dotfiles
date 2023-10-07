@@ -34,6 +34,7 @@ return {
         "%.pdf",
         "%.bak",
         "%.app",
+        "%.lock",
       },
     },
   },
