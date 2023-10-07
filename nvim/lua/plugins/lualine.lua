@@ -25,7 +25,7 @@ return {
               "branch",
               icon = "",
               padding = { left = 2 },
-              color = { fg = "#f5e3b5" },
+              color = { fg = "#ff9e64" },
               use_mode_colors = false,
             },
             "diff",

@@ -8,10 +8,7 @@ return {
       integrations = {
         alpha = true,
         cmp = true,
-        flash = true,
         gitsigns = true,
-        illuminate = true,
-        indent_blankline = { enabled = true },
         lsp_trouble = true,
         mason = true,
         mini = true,
@@ -24,9 +21,6 @@ return {
             information = { "undercurl" },
           },
         },
-        navic = { enabled = true, custom_bg = "lualine" },
-        neotest = true,
-        noice = true,
         notify = true,
         neotree = true,
         semantic_tokens = true,
@@ -36,40 +30,40 @@ return {
       },
     },
   },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = true,
-  --   opts = {
-  --     transparent = false,
-  --     style = "night",
-  --     styles = {
-  --       -- Style to be applied to different syntax groups
-  --       -- Value is any valid attr-list value for `:help nvim_set_hl`
-  --       comments = { italic = true },
-  --       keywords = { italic = true },
-  --       functions = {},
-  --       variables = {},
-  --       -- Background styles. Can be "dark", "transparent" or "normal"
-  --       sidebars = "dark", -- style for sidebars, see below
-  --       floats = "dark", -- style for floating windows
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  --   lazy = true,
-  --   opts = function()
-  --     require("nightfox").setup({
-  --       options = {
-  --         transparent = false,
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = {
+      transparent = false,
+      style = "night",
+      styles = {
+        -- Style to be applied to different syntax groups
+        -- Value is any valid attr-list value for `:help nvim_set_hl`
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = {},
+        variables = {},
+        -- Background styles. Can be "dark", "transparent" or "normal"
+        sidebars = "dark", -- style for sidebars, see below
+        floats = "dark", -- style for floating windows
+      },
+    },
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = true,
+    opts = function()
+      require("nightfox").setup({
+        options = {
+          transparent = false,
+        },
+      })
+    end,
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "tokyonight-night",
     },
   },
 }
