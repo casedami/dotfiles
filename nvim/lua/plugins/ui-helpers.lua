@@ -1,13 +1,16 @@
 return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  init = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 600
-  end,
-  opts = {
-    triggers_blacklist = {
-      n = { "v" },
+  {
+    "folke/which-key.nvim",
+    -- enabled = false,
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 800
+    end,
+    opts = {
+      triggers_blacklist = {
+        n = { "v" },
+      },
     },
   },
   {
