@@ -28,8 +28,14 @@ return {
               color = { fg = "#ff9e64" },
               use_mode_colors = false,
             },
-            "diff",
-            "diagnostics",
+            {
+              "diff",
+              padding = { left = 2, right = 1 },
+              diff_color = {
+                added = { fg = "#a9b1d6" },
+                removed = { fg = "#f7768e" },
+              },
+            },
           },
           lualine_c = { { "filename", path = 3, padding = { left = 2 } } },
           lualine_x = { "filetype" },
