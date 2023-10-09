@@ -13,4 +13,9 @@ return {
   { "folke/neoconf.nvim", enabled = false },
   { "echasnovski/mini.ai", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
+  { "hrsh7th/cmp-buffer", enabled = false },
+  { "RRethy/vim-illuminate", enabled = false },
+  { "folke/persistence.nvim", enabled = false },
+  { "echasnovski/mini.bufremove", enabled = false },
+  { "rcarriga/nvim-notify", enabled = false },
 }
