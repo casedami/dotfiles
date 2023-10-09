@@ -55,7 +55,6 @@ return {
       },
       servers = {
         pyright = {},
-        -- latexindent = {},
         clangd = {},
       },
     },

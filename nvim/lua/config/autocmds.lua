@@ -27,8 +27,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if ft == "markdown" then
       vim.keymap.set("n", "<localleader>ll", "<cmd>ObsidianOpen<cr>")
       vim.keymap.set("n", "<localleader>gd", "<cmd>ObsidianFollowLink<cr>")
-      vim.keymap.set("n", "<localleader>ff", "<cmd>ObsidianBacklinks")
-      vim.keymap.set("n", "<localleader>t", "<cmd>ObsidianTemplate")
+      vim.keymap.set("n", "<localleader>ff", "<cmd>ObsidianBacklinks<cr>")
+      vim.keymap.set("n", "<localleader>t", "<cmd>ObsidianTemplate<cr>")
+      vim.opt.spelllang = {}
     end
   end,
 })
