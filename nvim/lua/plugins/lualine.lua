@@ -11,7 +11,7 @@ return {
           disabled_filetypes = { "neo-tree" },
           ignore_focus = {},
           always_divide_middle = true,
-          globalstatus = false,
+          globalstatus = true,
           refresh = {
             statusline = 1000,
             tabline = 1000,
@@ -19,28 +19,26 @@ return {
           },
         },
         sections = {
-          lualine_a = { { "mode", icon = "" } },
-          lualine_b = {
-            {
-              "branch",
-              icon = "",
-              padding = { left = 2 },
-              color = { fg = "#ff9e64" },
-              use_mode_colors = false,
-            },
-            {
-              "diff",
-              padding = { left = 2, right = 1 },
-              diff_color = {
-                added = { fg = "#a9b1d6" },
-                removed = { fg = "#f7768e" },
-              },
-            },
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = {
+            { "filename", path = 3 },
+            { "branch", icon = "" },
+            { "diff" },
           },
-          lualine_c = { { "filename", path = 3, padding = { left = 2 } } },
-          lualine_x = { "filetype" },
-          lualine_y = { "location" },
-          lualine_z = { "progress" },
+          lualine_x = {
+            {
+              "filetype",
+              colored = false,
+              icon_only = true,
+            },
+            "location",
+            "progress",
+            "filesize",
+            "encoding",
+          },
+          lualine_y = {},
+          lualine_z = {},
         },
       })
     end,

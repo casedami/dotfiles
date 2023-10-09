@@ -31,23 +31,21 @@ return {
     },
   },
   {
-    "folke/tokyonight.nvim",
+    "rebelot/kanagawa.nvim",
     lazy = true,
-    opts = {
-      transparent = false,
-      style = "night",
-      styles = {
-        -- Style to be applied to different syntax groups
-        -- Value is any valid attr-list value for `:help nvim_set_hl`
-        comments = { italic = true },
-        keywords = { italic = true },
-        functions = {},
-        variables = {},
-        -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "dark", -- style for sidebars, see below
-        floats = "dark", -- style for floating windows
-      },
-    },
+    opts = function()
+      require("kanagawa").setup({
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "none",
+              },
+            },
+          },
+        },
+      })
+    end,
   },
   {
     "EdenEast/nightfox.nvim",
@@ -63,7 +61,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-night",
+      colorscheme = "kanagawa-wave",
     },
   },
 }

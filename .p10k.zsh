@@ -53,9 +53,9 @@
     dir                       # current directory
     vcs                       # git status
     # =========================[ Line #2 ]=========================
-    newline                   # \n
-    virtualenv                # python virtual environment
+    # newline                   # \n
     prompt_char               # prompt symbol
+    virtualenv                # python virtual environment
   )
 
   # Right prompt segments.
@@ -66,7 +66,7 @@
     # context                 # user@host
     # time                    # current time
     # =========================[ Line #2 ]=========================
-    newline                   # \n
+    # newline                   # \n
   )
 
   # Basic style options that define the overall prompt look.
@@ -81,11 +81,12 @@
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # Magenta prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$magenta
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$white
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=$red
   # Default prompt symbol.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
+  # typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
   # Prompt symbol in visual vi mode is the same as in command mode.
@@ -101,6 +102,8 @@
 
   # Blue current directory.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=$blue
+  # Only show current directory
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
 
   # Context format when root: user@host. The first part white, the rest grey.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$white}%n%f%F{$grey}@%m%f"
