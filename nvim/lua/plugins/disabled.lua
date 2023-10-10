@@ -15,7 +15,6 @@ return {
   { "akinsho/bufferline.nvim", enabled = false },
   { "hrsh7th/cmp-buffer", enabled = false },
   { "RRethy/vim-illuminate", enabled = false },
-  { "folke/persistence.nvim", enabled = false },
   { "echasnovski/mini.bufremove", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
   { "folke/which-key.nvim", enabled = false },
