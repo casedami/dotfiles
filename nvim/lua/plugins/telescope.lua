@@ -35,6 +35,7 @@ return {
         "%.bak",
         "%.app",
         "%.lock",
+        ".DS_Store",
       },
     },
   },
