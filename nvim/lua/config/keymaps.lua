@@ -6,8 +6,14 @@ vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true }
 
 vim.keymap.set(
   "n",
+  "<leader>ms",
+  "<cmd>marks<cr>",
+  { desc = "Show all marks", silent = true }
+)
+vim.keymap.set(
+  "n",
   "<leader>mm",
-  ":delm a-zA-Z0-9 | :wviminfo! <cr>",
+  "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo! <cr> | <cmd>echo 'Deleting all marks...'<cr>",
   { desc = "Delete all marks", silent = true }
 )
 
