@@ -1,0 +1,17 @@
+[user]
+	name = Casey Miller
+	email = cd.miller1230@gmail.com
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = auto
+[core]
+	editor = nvim
+	excludesfile = /Users/caseymiller/.config/git/.gitignore_global
+[diff]
+	tool = nvimdiff
+[alias]
+	glog = log --all --graph --decorate
+	glog1 = log --all --graph --decorate --oneline
+	log1 = log --oneline
