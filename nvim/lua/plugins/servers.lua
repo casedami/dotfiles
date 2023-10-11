@@ -5,7 +5,7 @@ return {
       if type(opts.ensure_installed) == "table" then
         vim.list_extend(
           opts.ensure_installed,
-          { "c", "cpp", "python", "markdown_inline" }
+          { "c", "cpp", "python", "markdown_inline", "swift" }
         )
       end
       opts.highlight = {
