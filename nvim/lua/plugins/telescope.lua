@@ -36,6 +36,7 @@ return {
         "%.app",
         "%.lock",
         ".DS_Store",
+        ".obsidian/*",
       },
     },
   },

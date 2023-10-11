@@ -26,7 +26,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = {
-      dir = "~/self/main",
+      dir = "~/self/uni",
       completion = {
         nvim_cmp = true,
         min_chars = 2,

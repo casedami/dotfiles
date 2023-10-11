@@ -13,6 +13,7 @@ return {
             },
           },
         },
+        transparent = false,
       })
     end,
   },
