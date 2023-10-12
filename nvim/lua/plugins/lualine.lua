@@ -23,7 +23,7 @@ return {
           lualine_b = {},
           lualine_c = {
             { "filename", path = 3 },
-            { "branch", icon = "" },
+            { "branch", icon = "", padding = { left = -1 } },
             { "diff" },
           },
           lualine_x = {

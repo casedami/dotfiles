@@ -24,7 +24,7 @@ font:
 cursor:
   style:
     shape: block
-    blinking: always
+    blinking: never
   unfocused_hollow_cursor: true
   # blink_timeout: 0
 

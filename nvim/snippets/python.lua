@@ -3,5 +3,5 @@ local s = ls.snippet
 local t = ls.text_node
 
 return {
-  s("sb", { t("#!/usr/bin/env python3") }),
+  s({ trig = "sb", dscr = "shebang" }, { t("#!/usr/bin/env python3") }),
 }
