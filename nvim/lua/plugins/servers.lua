@@ -73,19 +73,17 @@ return {
     end,
   },
   {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources, {
-        nls.builtins.formatting.black,
-        nls.builtins.formatting.prettier.with({
-          disabled_filetypes = { "javascript, typescript" },
-        }),
-        nls.builtins.formatting.latexindent.with({
-          args = { "-m", "-c=./generated/" },
-        }),
-      })
-    end,
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        fish = { "fish_indent" },
+        sh = { "shfmt" },
+        python = { "black" },
+        markdown = { "prettier" },
+        c = { "clangd-format" },
+      },
+    },
   },
   {
     "L3MON4D3/LuaSnip",

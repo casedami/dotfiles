@@ -1,7 +1,4 @@
-return {
-  "goolord/alpha-nvim",
-  opts = function(_, opts)
-    local logo = [[ 
+local logo = [[ 
          _             _            _      _          _        _         _   _       
         /\ \     _    /\ \         /\ \   /\ \    _ / /\      /\ \      /\_\/\_\ _   
        /  \ \   /\_\ /  \ \       /  \ \  \ \ \  /_/ / /      \ \ \    / / / / //\_\ 
@@ -13,9 +10,14 @@ return {
  / / /    / / // / /______  / / /___/ / /     \ \ \/ /___/ / /__ / / /    / / /      
 / / /    / / // / /_______\/ / /____\/ /       \ \  //\__\/_/___\\/_/    / / /       
 \/_/     \/_/ \/__________/\/_________/         \_\/ \/_________/        \/_/        
-                                                                                     
-
     ]]
-    opts.section.header.val = vim.split(logo, "\n", { trimempty = true })
-  end,
+logo = string.rep("\n", 8) .. logo .. "\n\n"
+
+return {
+  "glepnir/dashboard-nvim",
+  opts = {
+    config = {
+      header = vim.split(logo, "\n"),
+    },
+  },
 }
