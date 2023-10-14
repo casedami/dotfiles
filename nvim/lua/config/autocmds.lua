@@ -21,15 +21,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<space>fo", function()
       vim.lsp.buf.format({ async = true })
     end, opts)
-
-    local bfr = vim.api.nvim_get_current_buf()
-    local ft = vim.api.nvim_buf_get_option(bfr, "filetype")
-    if ft == "markdown" then
-      vim.keymap.set("n", "<localleader>ll", "<cmd>ObsidianOpen<cr>")
-      vim.keymap.set("n", "<localleader>gd", "<cmd>ObsidianFollowLink<cr>")
-      vim.keymap.set("n", "<localleader>ff", "<cmd>ObsidianBacklinks<cr>")
-      vim.keymap.set("n", "<localleader>t", "<cmd>ObsidianTemplate<cr>")
-      vim.opt.spelllang = {}
-    end
   end,
 })
