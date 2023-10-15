@@ -35,6 +35,7 @@ alias ssh="TERM=xterm-256color $(which ssh)"
 alias hw="cd ~/dev/tex/hw/"
 alias python="python3"
 alias sed="sed -E"
+alias time="/usr/bin/time -p"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
