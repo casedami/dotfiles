@@ -8,10 +8,6 @@ return {
           { "c", "cpp", "python", "markdown_inline", "swift" }
         )
       end
-      opts.highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { "markdown" },
-      }
     end,
   },
   { "lervag/vimtex" },
@@ -53,7 +49,7 @@ return {
       },
       formatters = {
         latexindent = {
-          extra_args = { "-m", "-c=./generated/" },
+          prepend_args = { "-m", "-c=./generated/" },
         },
       },
     },
