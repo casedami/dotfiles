@@ -13,8 +13,10 @@ return {
   { "echasnovski/mini.ai", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
   { "hrsh7th/cmp-buffer", enabled = false },
+  { "hrsh7th/cmp-path", enabled = false },
   { "RRethy/vim-illuminate", enabled = false },
   { "echasnovski/mini.bufremove", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
   { "folke/which-key.nvim", enabled = false },
+  { "windwp/nvim-ts-autotag", enabled = false },
 }
