@@ -17,9 +17,20 @@ return {
       })
     end,
   },
+  {
+    "neanias/everforest-nvim",
+    priority = 1000,
+    config = function()
+      require("everforest").setup({
+        background = "hard",
+        ui_contrast = "high",
+      })
+      vim.cmd([[colorscheme everforest]])
+    end,
+  },
   -- {
   --   "EdenEast/nightfox.nvim",
-  --   lazy = true,
+  --   lazy = false,
   --   opts = function()
   --     require("nightfox").setup({
   --       options = {
@@ -28,10 +39,4 @@ return {
   --     })
   --   end,
   -- },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "kanagawa-wave",
-    },
-  },
 }
