@@ -64,6 +64,7 @@ return {
       { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
     },
   },
+  -- TODO: remove from cade
   {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
@@ -99,6 +100,7 @@ return {
       end,
     },
   },
+  -- TODO: remove from cade
   {
     "luukvbaal/statuscol.nvim",
     config = function()

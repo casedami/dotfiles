@@ -1,3 +1,4 @@
+-- TODO: remove from cade
 return {
   "folke/trouble.nvim",
   cmd = { "TroubleToggle", "Trouble" },

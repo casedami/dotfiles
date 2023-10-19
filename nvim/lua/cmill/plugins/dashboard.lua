@@ -1,3 +1,4 @@
+-- TODO: remove from cade
 return {
   "nvimdev/dashboard-nvim",
   opts = function()
