@@ -104,12 +104,12 @@ return {
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
-        relcolright = true,
-        ft_ignore = { "neo-tree" },
         segments = {
+          { text = { "%C" }, click = "v:lua.ScFa" },
           {
             text = { builtin.lnumfunc, " " },
             condition = { true, builtin.not_empty },
+            click = "v:lua.ScLa",
           },
           { text = { "%s" }, click = "v:lua.ScSa" },
         },

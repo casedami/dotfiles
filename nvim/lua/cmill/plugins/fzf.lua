@@ -31,7 +31,7 @@ return {
         silent = true,
       },
       {
-        '<leader>s"',
+        "<leader>s",
         "<cmd>Telescope registers<cr>",
         desc = "Registers",
         silent = true,
