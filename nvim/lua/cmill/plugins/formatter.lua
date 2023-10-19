@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  event = "LspAttach",
+  event = { "BufRead", "BufNewFile" },
   opts = {},
   config = function()
     require("conform").setup({
@@ -11,6 +11,8 @@ return {
         c = { "clang-format" },
         tex = { "latexindent" },
         ["_"] = { "trim_whitespace" },
+        -- HACK: change to marksman ??
+        markdown = { "prettier" },
       },
       format_on_save = {
         lsp_fallback = true,
@@ -23,7 +25,7 @@ return {
       notify_on_error = true,
       formatters = {
         latexindent = {
-          args = { "-m", "-c=./generated/" },
+          prepend_args = { "-c=./generated/", "-m" },
         },
       },
     })

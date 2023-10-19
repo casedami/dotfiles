@@ -1,10 +1,19 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "BufReadPre",
+    event = "LspAttach",
     dependencies = {
       { "hrsh7th/cmp-path", event = "InsertEnter" },
-      { "L3MON4D3/LuaSnip", event = "InsertEnter" },
+      {
+        "L3MON4D3/LuaSnip",
+        event = "InsertEnter",
+        config = function()
+          -- load custom snippets
+          require("luasnip.loaders.from_lua").lazy_load({
+            paths = "~/.config/nvim/snippets/",
+          })
+        end,
+      },
       { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
       { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
     },

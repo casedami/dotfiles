@@ -1,11 +1,14 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufRead", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "windwp/nvim-ts-autotag",
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = { mode = "cursor" },
+      },
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {},
@@ -16,6 +19,7 @@ return {
       ensure_installed = {
         "json",
         "yaml",
+        "markdown",
         "markdown_inline",
         "lua",
         "vim",
@@ -46,7 +50,6 @@ return {
           goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
         },
       },
-      -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
       context_commentstring = {
         enable = true,
         enable_autocmd = false,

@@ -1,9 +1,9 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufRead", "BufNewFile" },
     dependencies = {
-      { "folke/neodev.nvim", event = "BufReadPre *.lua", opts = {} },
+      { "folke/neodev.nvim", opts = {} },
       { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
     },
     opts = {
@@ -40,42 +40,8 @@ return {
       setup = {},
     },
     config = function(_, opts)
-      local on_attach = function(client, bufnr)
-        opts.buffer = bufnr
-
-        -- set keybinds
-        opts.desc = "Show LSP references"
-        vim.keymap.set("n", "cR", "<cmd>Telescope lsp_references<CR>", opts)
-
-        opts.desc = "Go to declaration"
-        vim.keymap.set("n", "gd", vim.lsp.buf.declaration, opts)
-
-        opts.desc = "See available code actions"
-        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
-        opts.desc = "Smart rename"
-        vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, opts)
-
-        opts.desc = "Show buffer diagnostics"
-        vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-
-        opts.desc = "Show line diagnostics"
-        vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-        opts.desc = "Go to previous diagnostic"
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-        opts.desc = "Go to next diagnostic"
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-
-        opts.desc = "Show documentation for what is under cursor"
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-
-        opts.desc = "Restart LSP"
-        vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
-      end
-
       -- diagnostics
+      -- NOTE: find new icons that are better
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for name, icon in pairs(signs) do
         name = "DiagnosticSign" .. name
@@ -97,7 +63,6 @@ return {
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
           capabilities = vim.deepcopy(capabilities),
-          on_attach = on_attach,
         }, servers[server] or {})
 
         if opts.setup[server] then
