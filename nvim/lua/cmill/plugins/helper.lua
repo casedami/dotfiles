@@ -79,7 +79,6 @@ return {
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
 
-        -- require("cmill.util.ui")
         local function map(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
