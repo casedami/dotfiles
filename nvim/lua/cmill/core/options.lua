@@ -27,6 +27,7 @@ opt.cursorlineopt = "number"
 opt.background = "dark"
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.number = true
 opt.relativenumber = true -- Relative line numbers
 opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions =
