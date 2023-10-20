@@ -67,38 +67,4 @@ return {
   {
     "tpope/vim-fugitive",
   },
-  {
-    "luukvbaal/statuscol.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
-        relculright = true,
-        segments = {
-          {
-            sign = {
-              name = {
-                "Diagnostic",
-              },
-              maxwidth = 1,
-              colwidth = 1,
-              auto = false,
-            },
-          },
-          {
-            text = { builtin.lnumfunc, " " },
-            condition = { true, builtin.not_empty },
-          },
-          {
-            sign = {
-              name = { ".*" },
-              maxwidth = 1,
-              colwidth = 1,
-              auto = false,
-            },
-          },
-        },
-      })
-    end,
-  },
 }

@@ -59,7 +59,8 @@ opt.fillchars = {
   eob = " ",
 }
 
--- vim.opt.statuscolumn = [[%!v:lua.require'cmill.util.ui'.statuscolumn()]]
+-- sign column - right aligned relative number
+vim.opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}  "
 
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
