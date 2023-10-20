@@ -63,9 +63,6 @@ opt.fillchars = {
   eob = " ",
 }
 
--- sign column - right aligned relative number
-opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}  "
-
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 

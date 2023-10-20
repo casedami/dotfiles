@@ -11,7 +11,7 @@ return {
     keys = {
       {
         "<leader>e",
-        "<cmd>Neotree focus toggle float<cr>",
+        "<cmd>Neotree focus toggle<cr>",
         desc = "Toggle NeoTree ",
         silent = true,
       },
