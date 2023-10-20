@@ -66,4 +66,17 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
+local toggle_colscheme = function()
+  if vim.o.background == "light" then
+    vim.opt.background = "dark"
+    vim.g.everforest_background = "hard"
+    vim.cmd("colorscheme everforest")
+  else
+    vim.opt.background = "light"
+    vim.g.everforest_background = "soft"
+    vim.cmd("colorscheme everforest")
+  end
+end
+
+map("n", "<leader>uc", function() toggle_colscheme() end, { desc = "Toggle background light/dark" })
 -- stylua: ignore end
