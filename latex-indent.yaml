@@ -12,7 +12,7 @@ modifyLineBreaks:
     separator: ""
 
 oneSentencePerLine:
-    manipulateSentences:
+    manipulateSentences: 1
 
 noAdditionalIndent:
   item: 1
