@@ -11,7 +11,6 @@ return {
         c = { "clang-format" },
         tex = { "latexindent" },
         ["_"] = { "trim_whitespace" },
-        -- HACK: change to marksman ??
         markdown = { "prettier" },
       },
       format_on_save = {
