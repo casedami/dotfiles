@@ -3,7 +3,6 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     event = { "BufRead", "BufNewFile" },
-    -- TODO: add tag for release
     version = false, -- telescope did only one release, so use HEAD for now
     dependencies = {
       {

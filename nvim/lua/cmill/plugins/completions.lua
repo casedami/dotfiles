@@ -14,7 +14,6 @@ return {
           })
         end,
       },
-      -- TODO: remove from cade
       { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
       { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
     },

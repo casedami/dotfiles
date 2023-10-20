@@ -11,7 +11,7 @@ return {
     keys = {
       {
         "<leader>e",
-        "<cmd>Neotree focus toggle<cr>",
+        "<cmd>Neotree focus toggle float<cr>",
         desc = "Toggle NeoTree ",
         silent = true,
       },
@@ -25,6 +25,11 @@ return {
         bind_to_cwd = false,
         follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
+        filtered_items = {
+          never_show = {
+            ".DS_Store",
+          },
+        },
       },
       window = {
         mappings = {
@@ -42,11 +47,6 @@ return {
     },
     config = function()
       require("neo-tree").setup({})
-      -- BUG: need to do this differently
-      -- vim.api.nvim_command(
-      --   [[autocmd ColorScheme * highlight NeoTreeNormal guibg=#272E33]]
-      -- [[autocmd ColorScheme * highlight NeoTreeEndOfBuffer guibg=#272E33]]
-      -- )
     end,
   },
 }

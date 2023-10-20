@@ -1,4 +1,3 @@
--- TODO: remove from cade
 return {
   {
     "epwalsh/obsidian.nvim",
