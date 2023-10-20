@@ -1,5 +1,19 @@
 defaultIndent: "  "
 
+modifyLineBreaks:
+  textWrapOptions:
+    columns: 79
+    multipleSpacesToSingle: 1
+    removeBlockLineBreaks: 1
+    when: before
+    comments:
+      wrap: 0
+    huge: overflow
+    separator: ""
+
+oneSentencePerLine:
+    manipulateSentences:
+
 noAdditionalIndent:
   item: 1
   draw: 1
@@ -8,7 +22,7 @@ indentAfterItems:
   tabular: 1
 
 lookForAlignDelims:
-  tabular: 
+  tabular:
     multiColumnGrouping: 1
     alignFinalDoubleBackSlash: 1
   align*:
@@ -27,13 +41,3 @@ maximumIndentation: "      "
 
 condenseMultipleBlankLinesInto: 1
 
-modifyLineBreaks:
-  textWrapOptions:
-    columns: 79
-    multipleSpacesToSingle: 1
-    removeBlockLineBreaks: 1
-    when: before
-    comments:
-      wrap: 0
-    huge: overflow
-    separator: ""
