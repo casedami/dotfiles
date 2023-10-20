@@ -5,12 +5,19 @@ local map = vim.keymap.set
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy", silent = true })
 
--- Change default because Mac+Alacritty has issues with the option key
+-- move line up/down
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 
 -- marks
-map( "n", "<leader>mm", "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo!<cr> | <cmd>echo 'Deleting all marks...'<cr>", { desc = "Delete all marks", silent = true })
+map( "n", "<leader>md", "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo!<cr> | <cmd>echo 'Deleting all marks...'<cr>", { desc = "Delete all marks", silent = true })
+
+-- remove highlighting after search
+map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach", remap = false })
+
+-- paste from 0 register
+map("n", "0", "\"0p")
+map("n", ")", "\"0P")
 
 -- auto center when moving up/down
 map("n", "<C-d>", "<C-d>zz")
@@ -19,8 +26,6 @@ map("n", "<C-u>", "<C-u>zz")
 -- don't record macros
 map("n", "Q", "<nop>")
 map("n", "q", "<nop>")
-
-map("n", "<leader>l", "<cmd>Lazy<cr>")
 
 -- better indenting
 map("v", "<", "<gv")
@@ -45,6 +50,9 @@ map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = true })
+map("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
+map("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 
 -- diagnostics
 local diagnostic_goto = function(next, severity)

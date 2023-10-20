@@ -13,6 +13,10 @@ opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
+vim.opt.fillchars = { fold = " " }
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true -- Ignore case
@@ -60,7 +64,7 @@ opt.fillchars = {
 }
 
 -- sign column - right aligned relative number
-vim.opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}  "
+opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}  "
 
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

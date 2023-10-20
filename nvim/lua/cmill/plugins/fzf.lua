@@ -36,6 +36,12 @@ return {
         desc = "Registers",
         silent = true,
       },
+      {
+        "<leader>m",
+        "<cmd>Telescope marks<cr>",
+        desc = "Marks",
+        silent = true,
+      },
     },
     opts = function()
       return {
@@ -76,6 +82,14 @@ return {
             "%.app",
             "%.lock",
             ".DS_Store",
+          },
+        },
+        pickers = {
+          marks = {
+            theme = "ivy",
+          },
+          registers = {
+            theme = "dropdown",
           },
         },
       }
