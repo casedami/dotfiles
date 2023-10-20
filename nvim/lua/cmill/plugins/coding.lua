@@ -34,13 +34,13 @@ return {
     -- stylua: ignore
     opts = {
       keywords = {
-        FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-        TODO = { icon = " ", color = "info" },
-        HACK = { icon = "󰈻 ", color = "error" },
-        WARN = { icon = "󱇏 ", color = "warning", alt = { "WARNING", "XXX" } },
-        PERF = { icon = "󰄉 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = "󰎞 ", color = "hint", alt = { "INFO" } },
-        TEST = { icon = "󱖫 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+        FIX = { icon = " ", color = "#F85552", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
+        TODO = { icon = " ", color = "#3a94c5" },
+        HACK = { icon = "󰈻 ", color = "#f57d26" },
+        WARN = { icon = "󱇏 ", color = "#dfa000", alt = { "WARNING", "XXX" } },
+        PERF = { icon = "󰄉 ", color = "#dfa000", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = "󰎞 ", color = "#35A77C", alt = { "INFO" } },
+        TEST = { icon = "󱖫 ", color = "#DF69BA", alt = { "TESTING", "PASSED", "FAILED" } },
       },
     },
   },
