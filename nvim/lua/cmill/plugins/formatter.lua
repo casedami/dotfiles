@@ -10,8 +10,8 @@ return {
         sh = { "shfmt" },
         c = { "clang-format" },
         tex = { "latexindent" },
-        ["_"] = { "trim_whitespace" },
         markdown = { "prettier" },
+        ["_"] = { "trim_whitespace" },
       },
       format_on_save = {
         lsp_fallback = true,

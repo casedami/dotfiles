@@ -15,8 +15,8 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
-      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>ss", function() require("persistence").load() end, desc = "Restore Session" },
+      { "<leader>sl", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
     },
   },
   {
