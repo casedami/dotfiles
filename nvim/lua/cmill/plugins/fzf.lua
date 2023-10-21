@@ -5,46 +5,22 @@ return {
     event = { "BufRead", "BufNewFile" },
     version = false, -- telescope did only one release, so use HEAD for now
     dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        enabled = vim.fn.executable("make") == 1,
-      },
+      { "nvim-telescope/telescope-fzy-native.nvim" },
     },
+    -- stylua: ignore
     keys = {
-      {
-        "<leader>ff",
-        "<cmd>Telescope find_files<cr>",
-        desc = "Toggle Telescope",
-        silent = true,
-      },
-      {
-        "<leader>fg",
-        "<cmd>Telescope live_grep<cr>",
-        desc = "Toggle Telescope live_grep",
-        silent = true,
-      },
-      {
-        "<leader>,",
-        "<cmd>Telescope buffers<cr>",
-        desc = "Toggle Telescope buffers",
-        silent = true,
-      },
-      {
-        "<leader>s",
-        "<cmd>Telescope registers<cr>",
-        desc = "Registers",
-        silent = true,
-      },
-      {
-        "<leader>m",
-        "<cmd>Telescope marks<cr>",
-        desc = "Marks",
-        silent = true,
-      },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Toggle Telescope", silent = true, },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Toggle Telescope live_grep", silent = true, },
+      { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Toggle Telescope buffers", silent = true, },
+      { "<leader>s", "<cmd>Telescope registers<cr>", desc = "Registers", silent = true, },
+      { "<leader>m", "<cmd>Telescope marks<cr>", desc = "Marks", silent = true, },
+      { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git status", silent = true, },
+      { "<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "Git stash", silent = true, },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Git commits", silent = true, },
+      { "<leader>gC", "<cmd>Telescope git_bcommits<cr>", desc = "Git commits for current buffer", silent = true, },
     },
-    opts = function()
-      return {
+    config = function()
+      require("telescope").setup({
         defaults = {
           prompt_prefix = " ",
           selection_caret = " ",
@@ -92,7 +68,13 @@ return {
             theme = "dropdown",
           },
         },
-      }
+        mappings = {
+          i = {
+            ["<C-u>"] = false,
+          },
+        },
+      })
+      require("telescope").load_extension("fzy_native")
     end,
   },
 }
