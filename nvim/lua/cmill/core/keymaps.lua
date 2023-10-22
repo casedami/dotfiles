@@ -16,8 +16,8 @@ map( "n", "<leader>md", "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo!<cr> | <cmd>ech
 map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach", remap = false })
 
 -- paste from 0 register, override macro key
-map("n", "q", "\"0p")
-map("n", "Q", "\"0P")
+map({"n", "v"}, "q", "\"0p")
+map({"n", "v"}, "Q", "\"0P")
 
 -- auto center when moving up/down
 map("n", "<C-d>", "<C-d>zz")
@@ -66,6 +66,7 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
+-- colorschme light/dark
 local toggle_colscheme = function()
   if vim.o.background == "light" then
     vim.opt.background = "dark"
@@ -78,5 +79,16 @@ local toggle_colscheme = function()
   end
 end
 
-map("n", "<leader>uc", function() toggle_colscheme() end, { desc = "Toggle background light/dark" })
+map("n", "<leader>uc", function() toggle_colscheme() end)
+
+-- colorcolumn
+local toggle_colorcolumn = function()
+  if vim.o.colorcolumn == "" then
+    vim.opt.colorcolumn = "88"
+  else
+    vim.opt.colorcolumn = ""
+  end
+end
+
+map("n", "<leader>!", function() toggle_colorcolumn() end)
 -- stylua: ignore end

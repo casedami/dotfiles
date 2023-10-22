@@ -11,6 +11,7 @@ opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Enable highlighting of the current line
+opt.colorcolumn = "88"
 opt.expandtab = true -- Use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
 vim.opt.fillchars = { fold = " " }
@@ -23,7 +24,7 @@ opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3 -- global statusline
 opt.list = true -- Show some invisible characters (tabs...
-opt.cursorlineopt = "number"
+-- opt.cursorlineopt = "number"
 opt.background = "dark"
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
