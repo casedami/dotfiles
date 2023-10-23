@@ -23,6 +23,17 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "TabNew", "VimEnter" }, {
+  group = augroup("show_tab_line"),
+  callback = function()
+    if vim.cmd("echo len(gettabinfo())") == "1" then
+      vim.cmd("set showtabline=0")
+    else
+      vim.cmd("set showtabline=1")
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)

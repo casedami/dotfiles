@@ -14,7 +14,7 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
-          section_separators = { left = "", right = " " },
+          section_separators = { left = " ", right = " " },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "dashboard" },
           ignore_focus = {},
@@ -45,6 +45,14 @@ return {
             "progress",
             "location",
           },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        tabline = {
+          lualine_a = { { "tabs", show_modified_status = false } },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
           lualine_y = {},
           lualine_z = {},
         },
