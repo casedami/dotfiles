@@ -23,6 +23,14 @@ map({"n", "v"}, "Q", "\"0P")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
+-- open new file in current directory
+map("n", "<localleader>e", ":e %:h/", { desc = "Open new file in current directory" })
+map("n", "<localleader>E", ":e ~/", { desc = "Open new file in home directory" })
+
+-- search
+map("n", "<localleader>s", ":s/", { desc = "Start search and replace" })
+map("n", "<localleader>gs", ":%s/", { desc = "Start global search and replace" })
+
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
