@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
+-- only show tabline when more than one tab open
 vim.api.nvim_create_autocmd({ "TabNew", "VimEnter" }, {
   group = augroup("show_tab_line"),
   callback = function()
@@ -34,6 +35,20 @@ vim.api.nvim_create_autocmd({ "TabNew", "VimEnter" }, {
   end,
 })
 
+-- toggleterm keymaps
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    local opts = { buffer = 0 }
+    vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+    vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+    vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+    vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+    vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+    vim.keymap.set("t", "<C-w>", "<esc><cmd>q<cr>")
+  end,
+})
+
+-- lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)

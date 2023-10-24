@@ -16,7 +16,7 @@ return {
           theme = "auto",
           section_separators = { left = " ", right = " " },
           component_separators = { left = "", right = "" },
-          disabled_filetypes = { "dashboard", "neo-tree" },
+          disabled_filetypes = { "dashboard", "neo-tree", "toggleterm" },
           ignore_focus = {},
           always_divide_middle = true,
           globalstatus = true,
