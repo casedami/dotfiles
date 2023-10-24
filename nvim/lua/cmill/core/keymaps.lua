@@ -36,15 +36,15 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- buffers
-map("n", "H", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "L", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- HACK: may need to be changed
+map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
 
 -- tabs
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<localleader><tab>c", "<cmd>tabnew %<cr>", { desc = "New tab" })
+map("n", "<localleader><tab>d", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<localleader>]", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<localleader>[", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 -- windows
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })

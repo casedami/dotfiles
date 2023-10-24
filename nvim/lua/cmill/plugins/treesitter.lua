@@ -5,10 +5,6 @@ return {
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-        opts = { mode = "cursor" },
-      },
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {},
@@ -71,10 +67,6 @@ return {
             ["[a"] = "@parameter.inner",
           },
         },
-      },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
       },
     },
     config = function(_, opts)

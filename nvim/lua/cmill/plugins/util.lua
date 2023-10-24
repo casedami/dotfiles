@@ -30,9 +30,29 @@ return {
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
         relculright = true,
+        setopt = true,
         segments = {
-          { text = { "%s" }, click = "v:lua.ScFa" },
-          { text = { builtin.lnumfunc, "  " }, click = "v:lua.ScLa" },
+          {
+            text = { " ", "%s" },
+            condition = {
+              function(args)
+                return ((args.nu or args.rnu) and not args.empty)
+              end,
+              true,
+            },
+          },
+          {
+            text = { builtin.lnumfunc, "  " },
+            click = "v:lua.ScLa",
+            condition = {
+              function(args)
+                return ((args.nu or args.rnu) and not args.empty)
+              end,
+              function(args)
+                return ((args.nu or args.rnu) and not args.empty)
+              end,
+            },
+          },
         },
       })
     end,
