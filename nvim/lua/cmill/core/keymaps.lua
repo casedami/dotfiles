@@ -1,5 +1,4 @@
 -- stylua: ignore start
-
 local map = vim.keymap.set
 
 -- lazy
