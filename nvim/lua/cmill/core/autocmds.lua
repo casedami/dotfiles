@@ -2,10 +2,19 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
+-- highlight text on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function()
     vim.highlight.on_yank()
+  end,
+})
+
+-- don't auto-comment when o/O in normal mode
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = augroup("no_auto_comment"),
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
 })
 
