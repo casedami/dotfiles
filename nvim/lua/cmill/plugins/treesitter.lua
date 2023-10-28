@@ -22,8 +22,8 @@ return {
         "gitignore",
         "c",
         "cpp",
+        "rust",
         "python",
-        "swift",
       },
       incremental_selection = {
         enable = true,

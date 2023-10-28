@@ -10,6 +10,7 @@ return {
         sh = { "shfmt" },
         c = { "clang-format" },
         tex = { "latexindent" },
+        rust = { "rust-analyzer" },
         markdown = { "prettier" },
         ["_"] = { "trim_whitespace" },
       },
