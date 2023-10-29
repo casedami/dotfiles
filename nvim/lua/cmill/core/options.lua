@@ -14,10 +14,11 @@ opt.cursorline = true -- Enable highlighting of the current line
 opt.colorcolumn = ""
 opt.expandtab = true -- Use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
-vim.opt.fillchars = { fold = " " }
-vim.opt.foldmethod = "indent"
-vim.opt.foldenable = false
-vim.opt.foldlevel = 99
+opt.fillchars = { fold = " " }
+opt.foldmethod = "indent"
+opt.foldenable = false
+opt.foldlevel = 99
+opt.ruler = false
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true -- Ignore case
