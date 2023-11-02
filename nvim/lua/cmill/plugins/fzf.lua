@@ -14,10 +14,10 @@ return {
       { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Toggle Telescope buffers", silent = true, },
       { "<leader>s", "<cmd>Telescope registers<cr>", desc = "Registers", silent = true, },
       { "<leader>m", "<cmd>Telescope marks<cr>", desc = "Marks", silent = true, },
-      { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git status", silent = true, },
-      { "<leader>gS", "<cmd>Telescope git_stash<cr>", desc = "Git stash", silent = true, },
-      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Git commits", silent = true, },
-      { "<leader>gC", "<cmd>Telescope git_bcommits<cr>", desc = "Git commits for current buffer", silent = true, },
+      { "<localleader>gs", "<cmd>Telescope git_status<cr>", desc = "Git status", silent = true, },
+      { "<localleader>gS", "<cmd>Telescope git_stash<cr>", desc = "Git stash", silent = true, },
+      { "<localleader>gc", "<cmd>Telescope git_bcommits<cr>", desc = "Git commits for current buffer", silent = true, },
+      { "<localleader>gC", "<cmd>Telescope git_commits<cr>", desc = "Git commits", silent = true, },
     },
     config = function()
       require("telescope").setup({

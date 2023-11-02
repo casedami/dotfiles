@@ -32,18 +32,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
--- only show tabline when more than one tab open
-vim.api.nvim_create_autocmd({ "TabNew", "VimEnter" }, {
-  group = augroup("show_tab_line"),
-  callback = function()
-    if vim.cmd("echo len(gettabinfo())") == "1" then
-      vim.cmd("set showtabline=0")
-    else
-      vim.cmd("set showtabline=1")
-    end
-  end,
-})
-
 -- toggleterm keymaps
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()

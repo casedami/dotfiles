@@ -49,7 +49,21 @@ return {
           lualine_z = {},
         },
         tabline = {
-          lualine_a = { { "tabs", show_modified_status = false } },
+          lualine_a = {
+            {
+              "tabs",
+              show_modified_status = false,
+              cond = function()
+                if vim.api.nvim_eval("len(gettabinfo())") == "1" then
+                  vim.cmd("set showtabline=0")
+                  return false
+                else
+                  vim.cmd("set showtabline=1")
+                  return true
+                end
+              end,
+            },
+          },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},

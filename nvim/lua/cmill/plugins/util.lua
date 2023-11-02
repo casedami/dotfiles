@@ -22,6 +22,12 @@ return {
   {
     "tpope/vim-fugitive",
     event = "BufRead",
+    keys = {
+      { "<leader>gs", "<cmd>Git status<cr>" },
+      { "<leader>gl", "<cmd>Git log1<cr>" },
+      { "<leader>gL", "<cmd>Git glog<cr>" },
+      { "<leader>gg", ":Git " },
+    },
   },
   {
     "luukvbaal/statuscol.nvim",
