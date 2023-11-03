@@ -8,7 +8,6 @@ window:
   dynamic_padding: true
   title: Terminal
 
-
 env:
   TERM: xterm-256color
 
