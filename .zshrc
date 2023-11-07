@@ -37,6 +37,8 @@ alias hw="cd ~/dev/tex/hw/"
 alias python="python3"
 alias sed="sed -E"
 alias time="/usr/bin/time -p"
+alias tm="tmux"
+alias cd="z"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
@@ -51,3 +53,4 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
+eval "$(zoxide init zsh)"

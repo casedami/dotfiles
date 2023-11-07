@@ -11,6 +11,7 @@ return {
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Toggle Telescope", silent = true, },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Toggle Telescope live_grep", silent = true, },
+      { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Toggle Telescope resume", silent = true, },
       { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Toggle Telescope buffers", silent = true, },
       { "<leader>s", "<cmd>Telescope registers<cr>", desc = "Registers", silent = true, },
       { "<leader>m", "<cmd>Telescope marks<cr>", desc = "Marks", silent = true, },
@@ -20,6 +21,7 @@ return {
       { "<localleader>gC", "<cmd>Telescope git_commits<cr>", desc = "Git commits", silent = true, },
     },
     config = function()
+      local actions = require("telescope.actions")
       require("telescope").setup({
         defaults = {
           prompt_prefix = " ",
@@ -68,11 +70,7 @@ return {
             theme = "dropdown",
           },
         },
-        mappings = {
-          i = {
-            ["<C-u>"] = false,
-          },
-        },
+        path_display = { "truncate " },
       })
       require("telescope").load_extension("fzy_native")
     end,

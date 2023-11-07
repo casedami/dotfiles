@@ -10,15 +10,4 @@ return {
       vim.cmd("colorscheme everforest")
     end,
   },
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  --   lazy = false,
-  --   opts = function()
-  --     require("nightfox").setup({
-  --       options = {
-  --         transparent = false,
-  --       },
-  --     })
-  --   end,
-  -- },
 }
