@@ -18,9 +18,9 @@ return {
     },
   },
   {
-    "echasnovski/mini.pairs",
+    "cohama/lexima.vim",
     event = "InsertEnter",
-    opts = {},
+    config = function() end,
   },
   {
     "folke/todo-comments.nvim",

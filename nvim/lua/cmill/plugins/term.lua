@@ -20,6 +20,6 @@ return {
         border = "rounded",
       },
     },
-    event = { "BufEnter" },
+    event = { "BufReadPost" },
   },
 }
