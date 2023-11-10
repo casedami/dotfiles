@@ -18,11 +18,6 @@ return {
     },
   },
   {
-    "cohama/lexima.vim",
-    event = "InsertEnter",
-    config = function() end,
-  },
-  {
     "folke/todo-comments.nvim",
     event = { "BufRead", "BufNewFile" },
     -- stylua: ignore

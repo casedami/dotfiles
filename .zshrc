@@ -52,6 +52,7 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
+export TERM="xterm-256color"
 eval "$(zoxide init zsh)"
 
 PATH="$PATH:$HOME/.local/bin"
