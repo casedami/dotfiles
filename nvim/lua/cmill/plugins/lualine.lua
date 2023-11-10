@@ -32,7 +32,8 @@ return {
           lualine_c = {
             { "filename", path = 3 },
             { "branch", icon = "", padding = { left = -1 } },
-            { "diff" },
+            "diff",
+            "diagnostics",
           },
           lualine_x = {
             {
