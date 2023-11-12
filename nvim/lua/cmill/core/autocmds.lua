@@ -23,11 +23,21 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = augroup("Color"),
   callback = function()
     if vim.o.background == "light" then
-      vim.cmd("hi NeoTreeNormal guibg=#f3ead3")
-      vim.cmd("hi NeoTreeEndOfBuffer guibg=#f3ead3")
+      -- EVERFOREST
+      -- vim.cmd("hi NeoTreeNormal guibg=#f3ead3")
+      -- vim.cmd("hi NeoTreeEndOfBuffer guibg=#f3ead3")
+
+      -- GRUVBOX
+      vim.cmd("hi NeoTreeNormal guibg=#f2e5bc")
+      vim.cmd("hi NeoTreeEndOfBuffer guibg=#f235bc")
     else
-      vim.cmd("hi NeoTreeNormal guibg=#272e33")
-      vim.cmd("hi NeoTreeEndOfBuffer guibg=#272e33")
+      -- EVERFOREST
+      -- vim.cmd("hi NeoTreeNormal guibg=#272e33")
+      -- vim.cmd("hi NeoTreeEndOfBuffer guibg=#272e33")
+
+      -- GRUVBOX
+      vim.cmd("hi NeoTreeNormal guibg=#1d2021")
+      vim.cmd("hi NeoTreeEndOfBuffer guibg=#1d2021")
     end
   end,
 })
