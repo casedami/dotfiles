@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   callback = function()
     local dark_bg = "#1d2021"
     local light_bg = "#f2e5bc"
-    if vim.g.colors_name ~= "gruvbox-material" then
+    if vim.g.colors_name ~= "everforest" then
       return
     end
     if vim.o.background == "light" then
