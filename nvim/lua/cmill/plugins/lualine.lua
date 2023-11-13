@@ -13,11 +13,11 @@ return {
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = "auto",
+          theme = "gruvbox-material",
           section_separators = { left = " ", right = " " },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "dashboard", "toggleterm" },
-          ignore_focus = {},
+          ignore_focus = { "neo-tree" },
           always_divide_middle = true,
           globalstatus = true,
           refresh = {
