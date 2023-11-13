@@ -22,22 +22,17 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = augroup("Color"),
   callback = function()
+    local dark_bg = "#1d2021"
+    local light_bg = "#f2e5bc"
+    if vim.g.colors_name ~= "gruvbox-material" then
+      return
+    end
     if vim.o.background == "light" then
-      -- EVERFOREST
-      -- vim.cmd("hi NeoTreeNormal guibg=#f3ead3")
-      -- vim.cmd("hi NeoTreeEndOfBuffer guibg=#f3ead3")
-
-      -- GRUVBOX
-      vim.cmd("hi NeoTreeNormal guibg=#f2e5bc")
-      vim.cmd("hi NeoTreeEndOfBuffer guibg=#f235bc")
+      vim.cmd(string.format("hi NeoTreeNormal guibg=%s", light_bg))
+      vim.cmd(string.format("hi NeoTreeEndOfBuffer guibg=%s", light_bg))
     else
-      -- EVERFOREST
-      -- vim.cmd("hi NeoTreeNormal guibg=#272e33")
-      -- vim.cmd("hi NeoTreeEndOfBuffer guibg=#272e33")
-
-      -- GRUVBOX
-      vim.cmd("hi NeoTreeNormal guibg=#1d2021")
-      vim.cmd("hi NeoTreeEndOfBuffer guibg=#1d2021")
+      vim.cmd(string.format("hi NeoTreeNormal guibg=%s", dark_bg))
+      vim.cmd(string.format("hi NeoTreeEndOfBuffer guibg=%s", dark_bg))
     end
   end,
 })

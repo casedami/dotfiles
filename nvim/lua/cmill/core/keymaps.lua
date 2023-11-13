@@ -81,12 +81,10 @@ local toggle_colscheme = function()
   if vim.o.background == "light" then
     vim.opt.background = "dark"
     vim.g.everforest_background = "hard"
-    -- vim.cmd("colorscheme everforest")
     vim.cmd("colorscheme gruvbox-material")
   else
     vim.opt.background = "light"
     vim.g.everforest_background = "soft"
-    -- vim.cmd("colorscheme everforest")
     vim.cmd("colorscheme gruvbox-material")
   end
 end
