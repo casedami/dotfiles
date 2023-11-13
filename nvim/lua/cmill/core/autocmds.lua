@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     else
       vim.cmd(string.format("hi NeoTreeNormal guibg=%s", dark_bg))
       vim.cmd(string.format("hi NeoTreeEndOfBuffer guibg=%s", dark_bg))
+      vim.cmd("hi TelescopeSelection guibg=#282828")
     end
   end,
 })
