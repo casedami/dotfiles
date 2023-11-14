@@ -39,13 +39,14 @@ opt.shiftwidth = 2 -- size of an indent
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.showmode = false -- dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- columns of context
-opt.signcolumn = "yes" -- always show the signcolumn, otherwise it would shift the text each time
+opt.signcolumn = "yes:1" -- always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- don't ignore case with capitals
 opt.smartindent = true -- insert indents automatically
 opt.spelllang = { "en" }
 opt.splitbelow = true -- put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true -- put new windows right of current
+opt.statuscolumn = "%=%s %{v:relnum?v:relnum:v:lnum}  "
 opt.tabstop = 2 -- number of spaces tabs count for
 opt.termguicolors = true -- true color support
 opt.timeoutlen = 300
@@ -61,7 +62,7 @@ opt.fillchars = {
   foldclose = "",
   foldsep = " ",
   diff = "╱",
-  eob = " ",
+  eob = "~",
 }
 
 -- fix markdown indentation settings

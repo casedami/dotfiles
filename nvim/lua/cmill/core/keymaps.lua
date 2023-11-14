@@ -39,6 +39,7 @@ map("v", ">", ">gv")
 -- buffers
 -- HACK: may need to be changed
 map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<bs>", "<cmd>bprev<cr>", { desc = "Previous buffer" })
 map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
 
 -- tabs
@@ -80,12 +81,10 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 local toggle_colscheme = function()
   if vim.o.background == "light" then
     vim.opt.background = "dark"
-    vim.g.everforest_background = "hard"
-    vim.cmd("colorscheme everforest")
+    vim.cmd("colorscheme gruvbox-material")
   else
     vim.opt.background = "light"
-    vim.g.everforest_background = "hard"
-    vim.cmd("colorscheme everforest")
+    vim.cmd("colorscheme gruvbox-material")
   end
 end
 

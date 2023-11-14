@@ -1,20 +1,48 @@
+local colors = {
+  bg = "#282828",
+  fg = "#7c6f64",
+  fg_hi = "#ddc7a1",
+  mode_com = "#e78a4e",
+  mode_ins = "#d8a657",
+  mode_vis = "#d3869b",
+  mode_rep = "#89b482",
+}
+
 return {
   {
     "nvim-lualine/lualine.nvim",
-    init = function()
-      vim.g.lualine_laststatus = vim.o.laststatus
-      if vim.fn.argc(-1) > 0 then
-        vim.o.statusline = " "
-      else
-        vim.o.laststatus = 0
-      end
-    end,
     config = function()
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = "auto",
-          section_separators = { left = " ", right = " " },
+          theme = {
+            normal = {
+              a = { bg = colors.bg, fg = colors.fg },
+              b = { bg = colors.bg, fg = colors.fg },
+              c = { bg = colors.bg, fg = colors.fg },
+            },
+            insert = {
+              a = { bg = colors.bg, fg = colors.mode_ins },
+              b = { bg = colors.bg, fg = colors.fg },
+              c = { bg = colors.bg, fg = colors.fg },
+            },
+            visual = {
+              a = { bg = colors.bg, fg = colors.mode_vis },
+              b = { bg = colors.bg, fg = colors.fg },
+              c = { bg = colors.bg, fg = colors.fg },
+            },
+            replace = {
+              a = { bg = colors.bg, fg = colors.mode_rep },
+              b = { bg = colors.bg, fg = colors.fg },
+              c = { bg = colors.bg, fg = colors.fg },
+            },
+            command = {
+              a = { bg = colors.bg, fg = colors.mode_com },
+              b = { bg = colors.bg, fg = colors.fg_hi },
+              c = { bg = colors.bg, fg = colors.fg_hi },
+            },
+          },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "dashboard", "toggleterm" },
           ignore_focus = { "neo-tree" },
@@ -27,26 +55,30 @@ return {
           },
         },
         sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = {
+          lualine_a = {
+            { "mode", padding = { left = 2, right = 1 } },
+          },
+          lualine_b = {
             { "filename", path = 3 },
+          },
+          lualine_c = {
             { "branch", icon = "", padding = { left = -1 } },
-            "diff",
+            {
+              "diff",
+              colored = false,
+            },
             "diagnostics",
           },
-          lualine_x = {
+          lualine_x = {},
+          lualine_y = {
             {
               "filetype",
               colored = false,
               icon_only = true,
             },
-            "encoding",
-            "filesize",
             "progress",
-            "location",
+            { "location", padding = { right = 2 } },
           },
-          lualine_y = {},
           lualine_z = {},
         },
         tabline = {

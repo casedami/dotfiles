@@ -29,38 +29,4 @@ return {
       { "<leader>gg", ":Git " },
     },
   },
-  {
-    "luukvbaal/statuscol.nvim",
-    event = "BufRead",
-    config = function()
-      local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
-        relculright = true,
-        setopt = true,
-        segments = {
-          {
-            text = { " ", "%s" },
-            condition = {
-              function(args)
-                return ((args.nu or args.rnu) and not args.empty)
-              end,
-              true,
-            },
-          },
-          {
-            text = { builtin.lnumfunc, "  " },
-            click = "v:lua.ScLa",
-            condition = {
-              function(args)
-                return ((args.nu or args.rnu) and not args.empty)
-              end,
-              function(args)
-                return ((args.nu or args.rnu) and not args.empty)
-              end,
-            },
-          },
-        },
-      })
-    end,
-  },
 }

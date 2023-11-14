@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- change background of neo-tree depending on background mode
+-- change some color highlights
 vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
   group = augroup("Color"),
   callback = function()
@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
     local light_bg = "#f2e5bc"
     local border = "#928374"
     local selection_bg = "#282828"
+    local orange_hi = "#e78a4e"
 
     if vim.g.colors_name ~= "gruvbox-material" then
       return
@@ -33,14 +34,14 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
     if vim.o.background == "light" then
       vim.cmd(string.format("hi NeoTreeNormal guibg=%s", light_bg))
       vim.cmd(string.format("hi NeoTreeEndOfBuffer guibg=%s", light_bg))
-      vim.cmd(string.format("hi TelescopeSelection guibg=%s", selection_bg))
-      vim.cmd(string.format("hi TelescopeBorder guifg=%s", border))
     else
       vim.cmd(string.format("hi NeoTreeNormal guibg=%s", dark_bg))
       vim.cmd(string.format("hi NeoTreeEndOfBuffer guibg=%s", dark_bg))
-      vim.cmd(string.format("hi TelescopeSelection guibg=%s", selection_bg))
-      vim.cmd(string.format("hi TelescopeBorder guifg=%s", border))
     end
+    vim.cmd(string.format("hi TelescopeSelection guibg=%s", selection_bg))
+    vim.cmd(string.format("hi TelescopeBorder guifg=%s", border))
+    vim.cmd(string.format("hi CursorLineNr guifg=%s", orange_hi))
+    vim.cmd(string.format("hi EndOfBuffer guifg=%s", orange_hi))
   end,
 })
 
