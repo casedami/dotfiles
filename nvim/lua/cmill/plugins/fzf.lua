@@ -69,7 +69,7 @@ return {
             theme = "dropdown",
           },
         },
-        path_display = { "truncate " },
+        path_display = { "truncate" },
       })
       require("telescope").load_extension("fzy_native")
     end,
