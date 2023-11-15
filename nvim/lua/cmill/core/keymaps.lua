@@ -38,15 +38,15 @@ map("v", ">", ">gv")
 
 -- buffers
 -- HACK: may need to be changed
-map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<bs>", "<cmd>bprev<cr>", { desc = "Previous buffer" })
-map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
+map("n", "<localleader>]", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<localleader>[", "<cmd>bprev<cr>", { desc = "Previous buffer" })
+map("n", "<localleader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
 
 -- tabs
 map("n", "<localleader><tab>c", "<cmd>tabnew %<cr>", { desc = "New tab" })
 map("n", "<localleader><tab>d", "<cmd>tabclose<cr>", { desc = "Close tab" })
-map("n", "<localleader>]", "<cmd>tabnext<cr>", { desc = "Next tab" })
-map("n", "<localleader>[", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+map("n", "<localleader>}", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<localleader>{", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 -- windows
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })

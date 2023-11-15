@@ -13,7 +13,8 @@ return {
       hide_numbers = true,
       highlights = {
         FloatBorder = {
-          guifg = "#928374",
+          -- guifg = "#928374",
+          guifg = "#585b70",
         },
       },
       float_opts = {

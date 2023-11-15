@@ -1,12 +1,25 @@
-local colors = {
-  bg = "#282828",
-  fg = "#7c6f64",
-  fg_hi = "#ddc7a1",
-  mode_com = "#e78a4e",
-  mode_ins = "#d8a657",
-  mode_vis = "#d3869b",
-  mode_rep = "#89b482",
+local catppuccin = {
+  bg = "#11111b",
+  fg = "#51576d",
+  fg_hi = "#bac2de",
+  mode_nor = "#a6adc8",
+  mode_com = "#ef9f76",
+  mode_ins = "#e5c890",
+  mode_vis = "#ca9ee6",
+  mode_rep = "#81c8be",
 }
+-- local gruvbox = {
+--   bg = "#282828",
+--   fg = "#7c6f64",
+--   fg_hi = "#ddc7a1",
+--   mode_nor = "#a89984",
+--   mode_com = "#e78a4e",
+--   mode_ins = "#d8a657",
+--   mode_vis = "#d3869b",
+--   mode_rep = "#89b482",
+-- }
+
+local colors = catppuccin
 
 return {
   {
@@ -17,7 +30,7 @@ return {
           icons_enabled = true,
           theme = {
             normal = {
-              a = { bg = colors.bg, fg = colors.fg },
+              a = { bg = colors.bg, fg = colors.mode_nor },
               b = { bg = colors.bg, fg = colors.fg },
               c = { bg = colors.bg, fg = colors.fg },
             },
@@ -56,7 +69,7 @@ return {
         },
         sections = {
           lualine_a = {
-            { "mode", padding = { left = 2, right = 1 } },
+            { "mode", padding = { left = 2 } },
           },
           lualine_b = {
             { "filename", path = 3 },

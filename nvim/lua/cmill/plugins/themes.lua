@@ -2,17 +2,28 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = true,
+    -- lazy = true,
     config = function()
       require("catppuccin").setup({
-        flavour = "frappe",
+        flavour = "mocha",
         color_overrides = {
           all = {
             base = "#000000",
           },
         },
+        highlight_overrides = {
+          mocha = function(mocha)
+            return {
+              CursorLine = { bg = "#181825" },
+              ColorColumn = { bg = "#181825" },
+              CursorLineNr = { fg = "#ef9f76" },
+              FloatBorder = { fg = "#585b70" },
+            }
+          end,
+        },
+        show_end_of_buffer = true,
       })
-      -- vim.cmd("colorscheme catppuccin")
+      vim.cmd("colorscheme catppuccin")
     end,
   },
   {
@@ -24,7 +35,7 @@ return {
       vim.g.gruvbox_material_ui_contrast = "high"
       vim.g.gruvbox_material_float_style = "dim"
       vim.g.gruvbox_material_show_end_of_buffer = 1
-      vim.cmd("colorscheme gruvbox-material")
+      -- vim.cmd("colorscheme gruvbox-material")
     end,
   },
 }
