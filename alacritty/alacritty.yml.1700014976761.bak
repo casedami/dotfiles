@@ -1,0 +1,38 @@
+window:
+  padding:
+    x: 0
+    y: 10
+  decorations: buttonless
+  opacity: 1.0
+  option_as_alt: Both
+  dynamic_padding: true
+  title: Terminal
+
+env:
+  TERM: xterm-256color
+
+scrolling:
+  history: 500
+  auto_scroll: true
+
+
+font:
+  normal:
+    family: JetBrainsMono Nerd Font
+  bold:
+    family: JetBrainsMono Nerd Font
+  italic:
+    family: JetBrainsMono Nerd Font
+  bold_italic:
+    family: JetBrainsMono Nerd Font
+  size: 14.0
+
+cursor:
+  style:
+    shape: block
+    blinking: never
+  unfocused_hollow_cursor: true
+  # blink_timeout: 0
+
+# import:
+#   - ~/.config/alacritty/themes/themes/gruvbox_material_medium_dark.yaml
