@@ -52,13 +52,7 @@ return {
       }
     )
   ),
-  s({ trig = "mm", dscr = "inline math" }, {
-    t({ "\\( " }),
-    i(1),
-    t({ " \\) " }),
-    i(0),
-  }),
-  -- s({ trig = "mm", dscr = "inline math" }, fmta("\\( <> \\)", { i(1) })),
+  s({ trig = "mm", dscr = "inline math" }, fmta("\\( <> \\)", { i(1) })),
   s({ trig = "ff", dscr = "fraction" }, fmta("\\frac{<>}{<>}", { i(1), i(2) })),
   s({ trig = "ss", dscr = "quick math" }, fmta("$<>$", { i(1) })),
   s({ trig = "bf", dscr = "boldface" }, fmta("\\textbf{<>}", { i(1) })),
