@@ -41,7 +41,6 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
     vim.cmd(string.format("hi TelescopeSelection guibg=%s", selection_bg))
     vim.cmd(string.format("hi TelescopeBorder guifg=%s", border))
     vim.cmd(string.format("hi CursorLineNr guifg=%s", orange_hi))
-    vim.cmd(string.format("hi EndOfBuffer guifg=%s", orange_hi))
   end,
 })
 

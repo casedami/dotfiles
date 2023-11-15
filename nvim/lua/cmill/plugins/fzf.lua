@@ -3,7 +3,7 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     event = { "BufRead", "BufNewFile" },
-    version = false, -- telescope did only one release, so use HEAD for now
+    version = false,
     dependencies = {
       { "nvim-telescope/telescope-fzy-native.nvim" },
     },

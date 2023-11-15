@@ -3,6 +3,17 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = true,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "frappe",
+        color_overrides = {
+          all = {
+            base = "#000000",
+          },
+        },
+      })
+      -- vim.cmd("colorscheme catppuccin")
+    end,
   },
   {
     "sainnhe/gruvbox-material",
