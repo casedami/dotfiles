@@ -2,12 +2,13 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    priority = 1000,
     -- lazy = true,
     config = function()
       require("catppuccin").setup({
         flavour = "mocha",
         color_overrides = {
-          all = {
+          mocha = {
             base = "#000000",
           },
         },
@@ -15,9 +16,11 @@ return {
           mocha = function(mocha)
             return {
               CursorLine = { bg = "#181825" },
+              Folded = { bg = "#181825", fg = "#585b70" },
               ColorColumn = { bg = "#181825" },
               CursorLineNr = { fg = "#ef9f76" },
               FloatBorder = { fg = "#585b70" },
+              Visual = { bg = "#313244" },
             }
           end,
         },
@@ -28,7 +31,8 @@ return {
   },
   {
     "sainnhe/gruvbox-material",
-    priority = 1000,
+    -- priority = 1000,
+    lazy = true,
     config = function()
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_performance = 1

@@ -15,6 +15,7 @@ opt.colorcolumn = ""
 opt.expandtab = true -- use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.fillchars = { fold = " " }
+opt.foldcolumn = "auto"
 opt.foldmethod = "indent"
 opt.foldenable = false
 opt.foldlevel = 99
@@ -46,7 +47,7 @@ opt.spelllang = { "en" }
 opt.splitbelow = true -- put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true -- put new windows right of current
-opt.statuscolumn = "%=%s %{v:relnum?v:relnum:v:lnum}  "
+opt.statuscolumn = "%=%s %{v:relnum?v:relnum:v:lnum}  " -- build statuscolumn
 opt.tabstop = 2 -- number of spaces tabs count for
 opt.termguicolors = true -- true color support
 opt.timeoutlen = 300

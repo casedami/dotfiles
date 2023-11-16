@@ -81,10 +81,10 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 local toggle_colscheme = function()
   if vim.o.background == "light" then
     vim.opt.background = "dark"
-    vim.cmd("colorscheme gruvbox-material")
+    vim.cmd("colorscheme catppuccin-mocha")
   else
     vim.opt.background = "light"
-    vim.cmd("colorscheme gruvbox-material")
+    vim.cmd("colorscheme catppuccin-frappe")
   end
 end
 

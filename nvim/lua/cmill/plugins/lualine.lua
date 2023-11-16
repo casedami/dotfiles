@@ -1,7 +1,7 @@
 local catppuccin = {
   bg = "#11111b",
   fg = "#51576d",
-  fg_hi = "#bac2de",
+  fg_hi = "#cdd6f4",
   mode_nor = "#a6adc8",
   mode_com = "#ef9f76",
   mode_ins = "#e5c890",

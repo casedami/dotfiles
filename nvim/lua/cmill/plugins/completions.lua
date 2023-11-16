@@ -71,7 +71,7 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["W"] = cmp.mapping.abort(),
-          ["<bs>"] = cmp.mapping.confirm({ select = true }),
+          ["<tab>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
           { name = "luasnip", priority = 40 },
