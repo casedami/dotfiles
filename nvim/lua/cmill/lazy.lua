@@ -18,7 +18,7 @@ require("lazy").setup({
   defaults = {
     version = false,
   },
-  checker = { enabled = true },
+  checker = { enabled = false },
   change_detection = {
     enabled = true,
     notify = false,

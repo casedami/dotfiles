@@ -19,7 +19,6 @@ tail
 tar
 cp
 rm
-rename
 cat
 ssh
 git
@@ -31,3 +30,5 @@ stow
 chmod
 chown
 make
+curl
+pipenv

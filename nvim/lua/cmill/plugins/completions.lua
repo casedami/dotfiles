@@ -3,7 +3,6 @@ return {
     "hrsh7th/nvim-cmp",
     event = "LspAttach",
     dependencies = {
-      { "hrsh7th/cmp-path", event = "InsertEnter" },
       {
         "L3MON4D3/LuaSnip",
         event = "InsertEnter",
@@ -11,31 +10,11 @@ return {
           history = true,
           delete_check_events = "TextChanged",
         },
+        -- stylua: ignore
         keys = {
-          {
-            "<tab>",
-            function()
-              return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next"
-                or "<tab>"
-            end,
-            expr = true,
-            silent = true,
-            mode = "i",
-          },
-          {
-            "<tab>",
-            function()
-              require("luasnip").jump(1)
-            end,
-            mode = "s",
-          },
-          {
-            "<s-tab>",
-            function()
-              require("luasnip").jump(-1)
-            end,
-            mode = { "i", "s" },
-          },
+          { "<tab>", function() return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end, expr = true, silent = true, mode = "i", },
+          { "<tab>", function() require("luasnip").jump(1) end, mode = "s", },
+          { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" }, },
         },
         config = function()
           -- load custom snippets
@@ -76,7 +55,6 @@ return {
         sources = cmp.config.sources({
           { name = "luasnip", priority = 40 },
           { name = "nvim_lsp", priority = 30 },
-          { name = "path", priority = 10 },
         }),
         formatting = {},
         experimental = {

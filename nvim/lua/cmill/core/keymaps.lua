@@ -1,3 +1,4 @@
+-- open help in vertical split
 vim.cmd("cabbrev h vert h")
 
 -- stylua: ignore start
@@ -17,8 +18,9 @@ map( "n", "<leader>md", "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo!<cr> | <cmd>ech
 map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach", remap = false })
 
 -- paste from 0 register, override macro key
-map({"n", "v"}, "q", "\"0p")
-map({"n", "v"}, "Q", "\"0P")
+map({"n", "v"}, ")", "\"0p")
+map({"n", "v"}, "(", "\"0P")
+map("n", "Q", "<NOP>")
 
 -- auto center when moving up/down
 map("n", "<C-d>", "<C-d>zz")
@@ -37,7 +39,6 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- buffers
--- HACK: may need to be changed
 map("n", "<localleader>]", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<localleader>[", "<cmd>bprev<cr>", { desc = "Previous buffer" })
 map("n", "<localleader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })

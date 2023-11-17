@@ -18,6 +18,10 @@ return {
     },
   },
   {
+    "tpope/vim-surround",
+    event = "BufRead",
+  },
+  {
     "folke/todo-comments.nvim",
     event = { "BufRead", "BufNewFile" },
     -- stylua: ignore

@@ -82,7 +82,20 @@ return {
             },
             "diagnostics",
           },
-          lualine_x = {},
+          lualine_x = {
+            {
+              "tabs",
+              show_modified_status = false,
+              mode = 0,
+              tabs_color = {
+                active = "lualine_a_insert",
+                inactive = "lualine_b_normal",
+              },
+              cond = function()
+                return vim.api.nvim_eval("len(gettabinfo())") ~= 1
+              end,
+            },
+          },
           lualine_y = {
             {
               "filetype",
@@ -92,28 +105,6 @@ return {
             "progress",
             { "location", padding = { right = 2 } },
           },
-          lualine_z = {},
-        },
-        tabline = {
-          lualine_a = {
-            {
-              "tabs",
-              show_modified_status = false,
-              cond = function()
-                if vim.api.nvim_eval("len(gettabinfo())") == "1" then
-                  vim.cmd("set showtabline=0")
-                  return false
-                else
-                  vim.cmd("set showtabline=1")
-                  return true
-                end
-              end,
-            },
-          },
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
           lualine_z = {},
         },
       })
