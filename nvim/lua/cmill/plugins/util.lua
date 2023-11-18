@@ -14,20 +14,15 @@ return {
         "folds",
       },
     },
-    -- stylua: ignore
-    keys = {
-      { "<leader>ss", function() require("persistence").load() end, desc = "Restore Session" },
-      { "<leader>sl", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-    },
   },
   {
     "tpope/vim-fugitive",
     event = "BufRead",
     keys = {
-      { "<leader>gs", "<cmd>Git status<cr>" },
-      { "<leader>gl", "<cmd>Git log1<cr>" },
-      { "<leader>gL", "<cmd>Git glog<cr>" },
-      { "<leader>gg", ":Git " },
+      { "<localleader>gs", "<cmd>Git status<cr>" },
+      { "<localleader>gl", "<cmd>Git log1<cr>" },
+      { "<localleader>gL", "<cmd>Git glog<cr>" },
     },
+    cmd = "G",
   },
 }

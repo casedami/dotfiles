@@ -13,6 +13,7 @@ map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 
 -- marks
 map( "n", "<leader>md", "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo!<cr> | <cmd>echo 'Deleting all marks...'<cr>", { desc = "Delete all marks", silent = true })
+vim.api.nvim_create_user_command("M", "marks", { desc = "Show marks" })
 
 -- remove highlighting after search
 map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach", remap = false })
@@ -31,7 +32,7 @@ map("n", "<localleader>E", ":e ~/", { desc = "Open new file in home directory" }
 
 -- search
 map("n", "<localleader>s", ":s/", { desc = "Start search and replace" })
-map("n", "<localleader>gs", ":%s/", { desc = "Start global search and replace" })
+map("n", "<localleader>S", ":%s/", { desc = "Start global search and replace" })
 
 -- better indenting
 map("v", "<", "<gv")
@@ -43,10 +44,10 @@ map("n", "<localleader>[", "<cmd>bprev<cr>", { desc = "Previous buffer" })
 map("n", "<localleader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
 
 -- tabs
-map("n", "<localleader><tab>c", "<cmd>tabnew %<cr>", { desc = "New tab" })
-map("n", "<localleader><tab>d", "<cmd>tabclose<cr>", { desc = "Close tab" })
 map("n", "<localleader>}", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<localleader>{", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+map("n", "<localleader><tab>c", "<cmd>tabnew %<cr>", { desc = "New tab" })
+map("n", "<localleader><tab>d", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- windows
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
