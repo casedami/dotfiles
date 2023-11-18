@@ -13,6 +13,7 @@ opt.confirm = true -- confirm to save changes before exiting modified buffer
 opt.cursorline = true -- enable highlighting of the current line
 opt.colorcolumn = ""
 opt.expandtab = true -- use spaces instead of tabs
+opt.filetype = "on"
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.foldcolumn = "auto"
 opt.foldmethod = "indent"

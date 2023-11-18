@@ -1,3 +1,2 @@
-" FIX: not working, not sure why
-" syn match highlight_inline "==.*=="
-" hi highlight_inline ctermbg=#89b4fa ctermfg=#11111b
+syn region highlight_inline matchgroup=texStatement start="==" end="==" concealends
+hi highlight_inline guibg=#6a491d
