@@ -53,16 +53,18 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
   end,
 })
 
+local map = vim.keymap.set
+
 -- toggleterm keymaps
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     local opts = { buffer = 0 }
-    vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-    vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-    vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-    vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-    vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-    vim.keymap.set("t", "<C-w>", "<esc><cmd>q<cr>")
+    map("t", "<esc>", [[<C-\><C-n>]], opts)
+    map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+    map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+    map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+    map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+    map("t", "<C-w>", "<esc><cmd>q<cr>")
   end,
 })
 
@@ -73,17 +75,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    -- buffer local mappings
+    -- lsp
     local opts = { buffer = ev.buf }
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "<space>rr", vim.lsp.buf.rename, opts)
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>cd", "<cmd>Telescope lsp_definitions<CR>", opts)
-    vim.keymap.set("n", "<leader>cr", "<cmd>Telescope lsp_references<CR>", opts)
-    vim.keymap.set("n", "<leader>bd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-    vim.keymap.set("n", "<leader>fo", function()
+    map("n", "K", vim.lsp.buf.hover, opts)
+    map("n", "cd", "<cmd>Telescope lsp_definitions<CR>", opts)
+    map("n", "cD", vim.lsp.buf.declaration, opts)
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+    map("n", "<leader>rr", vim.lsp.buf.rename, opts)
+    map("n", "<leader>cr", "<cmd>Telescope lsp_references<CR>", opts)
+    map("n", "<leader>bd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+    map("n", "<leader>fo", function()
       vim.lsp.buf.format({ async = true })
     end, opts)
+
+    -- diagnostics
+    local diagnostic_goto = function(next, severity)
+      local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+      severity = severity and vim.diagnostic.severity[severity] or nil
+      return function()
+        go({ severity = severity })
+      end
+    end
+    map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+    map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+    map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+    map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+    map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+    map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+    map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
   end,
 })
