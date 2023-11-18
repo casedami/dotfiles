@@ -10,7 +10,6 @@ return {
         sh = { "shfmt" },
         c = { "clang-format" },
         tex = { "latexindent" },
-        rust = { "rust-analyzer" },
         markdown = { "prettier" },
         ["_"] = { "trim_whitespace" },
       },
@@ -26,6 +25,9 @@ return {
       formatters = {
         latexindent = {
           prepend_args = { "-c=./generated/", "-m" },
+        },
+        shfmt = {
+          args = { "-i", "2" },
         },
       },
     })

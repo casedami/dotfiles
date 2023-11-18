@@ -80,7 +80,15 @@ return {
               "diff",
               colored = false,
             },
-            "diagnostics",
+            {
+              "diagnostics",
+              symbols = {
+                error = " ",
+                warn = "󱈸 ",
+                hint = "󰛨 ",
+                info = " ",
+              },
+            },
           },
           lualine_x = {
             {
@@ -92,7 +100,7 @@ return {
                 inactive = "lualine_b_normal",
               },
               cond = function()
-                return vim.api.nvim_eval("len(gettabinfo())") ~= 1
+                return vim.api.nvim_eval("len(gettabinfo())") > 1
               end,
             },
           },

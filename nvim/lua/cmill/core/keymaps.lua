@@ -18,9 +18,8 @@ map( "n", "<leader>md", "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo!<cr> | <cmd>ech
 map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach", remap = false })
 
 -- paste from 0 register, override macro key
-map({"n", "v"}, ")", "\"0p")
-map({"n", "v"}, "(", "\"0P")
-map("n", "Q", "<NOP>")
+map({"n", "v"}, "q", "\"0p")
+map({"n", "v"}, "Q", "\"0P")
 
 -- auto center when moving up/down
 map("n", "<C-d>", "<C-d>zz")

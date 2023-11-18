@@ -11,6 +11,7 @@ return {
         "help",
         "globals",
         "skiprtp",
+        "folds",
       },
     },
     -- stylua: ignore

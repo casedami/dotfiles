@@ -14,7 +14,6 @@ opt.cursorline = true -- enable highlighting of the current line
 opt.colorcolumn = ""
 opt.expandtab = true -- use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
-opt.fillchars = { fold = " " }
 opt.foldcolumn = "auto"
 opt.foldmethod = "indent"
 opt.foldenable = false
@@ -34,7 +33,7 @@ opt.number = true -- show current line number
 opt.relativenumber = true -- relative line numbers
 opt.scrolloff = 4 -- lines of context
 opt.sessionoptions =
-  { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp" }
+  { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- round indent
 opt.shiftwidth = 2 -- size of an indent
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
@@ -48,7 +47,6 @@ opt.spelllang = { "en" }
 opt.splitbelow = true -- put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true -- put new windows right of current
-opt.statuscolumn = "%=%s %{v:relnum?v:relnum:v:lnum}  " -- build statuscolumn
 opt.tabstop = 2 -- number of spaces tabs count for
 opt.termguicolors = true -- true color support
 opt.timeoutlen = 300
@@ -58,14 +56,36 @@ opt.updatetime = 200 -- save swap file and trigger cursorhold
 opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode
 opt.wildmode = "longest:full,full" -- command-line completion mode
 opt.winminwidth = 5 -- minimum window width
-opt.wrap = true -- disable line wrap
+opt.wrap = false -- disable line wrap
 opt.fillchars = {
   foldopen = "",
   foldclose = "",
   foldsep = " ",
+  fold = " ",
   diff = "╱",
-  eob = "~",
+  eob = " ",
 }
+
+-- configure fold column
+local fcs = vim.opt.fillchars:get()
+local function get_fold(lnum)
+  -- don't show indent depth
+  if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+    return " "
+  end
+  -- don't show fold icon for single statements
+  if vim.fn.indent(lnum) > vim.fn.indent(lnum + 1) then
+    return " "
+  end
+  return vim.fn.foldclosed(lnum) == -1 and fcs.foldopen or fcs.foldclose
+end
+
+-- build status column
+_G.get_statuscol = function()
+  return "%=%s %{v:relnum?v:relnum:v:lnum} " .. get_fold(vim.v.lnum) .. " "
+end
+
+opt.statuscolumn = "%!v:lua.get_statuscol()"
 
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

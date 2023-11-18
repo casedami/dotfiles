@@ -38,6 +38,7 @@ alias sed="sed -E"
 alias time="/usr/bin/time -p"
 alias tm="tmux"
 alias cd="z"
+alias help="help.sh"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
