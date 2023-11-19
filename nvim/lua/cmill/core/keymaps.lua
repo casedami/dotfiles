@@ -26,8 +26,10 @@ map({"n", "v"}, "Q", "\"0P")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
--- open new file in current directory
-map("n", "<localleader>e", ":e %:h/", { desc = "Open new file in current directory" })
+-- edit shortcuts
+map("n", "<localleader>e", ":e <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory" })
+map("n", "<localleader>es", ":sp <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory (horizonatal split)" })
+map("n", "<localleader>ev", ":vsp <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory (vertical split)" })
 map("n", "<localleader>E", ":e ~/", { desc = "Open new file in home directory" })
 
 -- search
@@ -69,7 +71,7 @@ local toggle_colscheme = function()
     vim.cmd("colorscheme catppuccin-mocha")
   else
     vim.opt.background = "light"
-    vim.cmd("colorscheme catppuccin-frappe")
+    vim.cmd("colorscheme catppuccin-latte")
   end
 end
 

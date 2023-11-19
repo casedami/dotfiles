@@ -1,14 +1,13 @@
 return {
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = { "BufRead", "BufNewFile" },
-    opts = {
-      enable_autocmd = false,
-    },
-  },
-  {
     "echasnovski/mini.comment",
     event = { "BufRead", "BufNewFile" },
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      opts = {
+        enable_autocmd = false,
+      },
+    },
     opts = {
       options = {
         custom_commentstring = function()

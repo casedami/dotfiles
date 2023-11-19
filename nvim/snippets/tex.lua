@@ -1,7 +1,6 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local i = ls.insert_node
-local t = ls.text_node
 local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
@@ -55,8 +54,8 @@ return {
   s({ trig = "mm", dscr = "inline math" }, fmta("\\( <> \\)", { i(1) })),
   s({ trig = "ff", dscr = "fraction" }, fmta("\\frac{<>}{<>}", { i(1), i(2) })),
   s({ trig = "ss", dscr = "quick math" }, fmta("$<>$", { i(1) })),
-  s({ trig = "bf", dscr = "boldface" }, fmta("\\textbf{<>}", { i(1) })),
-  s({ trig = "if", dscr = "italics" }, fmta("\\textit{<>}", { i(1) })),
+  s({ trig = "bd", dscr = "boldface" }, fmta("\\textbf{<>}", { i(1) })),
+  s({ trig = "it", dscr = "italics" }, fmta("\\textit{<>}", { i(1) })),
   s({ trig = "tt", dscr = "mono" }, fmta("\\texttt{<>}", { i(1) })),
-  s({ trig = "setdef", dscr = "set definition" }, fmta("\\{<>\\}", { i(1) })),
+  s({ trig = "setdef", dscr = "set definition" }, fmta("\\{ <> \\}", { i(1) })),
 }

@@ -1,7 +1,7 @@
 return {
   {
     "folke/persistence.nvim",
-    event = "BufRead",
+    event = "BufReadPre",
     opts = {
       options = {
         "buffers",
