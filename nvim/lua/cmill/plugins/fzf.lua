@@ -19,54 +19,44 @@ return {
       { "<leader>gc", "<cmd>Telescope git_bcommits<cr>", desc = "Git commits for current buffer", silent = true, },
     },
     config = function()
+      -- stylua: ignore
+      require("telescope.pickers.layout_strategies").horizontal_merged = function( picker, max_columns, max_lines, layout_config)
+        local layout = require("telescope.pickers.layout_strategies").horizontal( picker, max_columns, max_lines, layout_config)
+        layout.prompt.title = ""
+        layout.results.title = ""
+        layout.preview.title = ""
+        return layout
+      end
       require("telescope").setup({
         defaults = {
           prompt_prefix = " ",
           selection_caret = " ",
-          file_ignore_patterns = {
-            "%.aux",
-            "%.log",
-            "%.xdv",
-            "%.lof",
-            "%.lot",
-            "%.fls",
-            "%.out",
-            "%.toc",
-            "%.fmt",
-            "%.fot",
-            "%.cb",
-            "%.cb2",
-            "%.nav",
-            "%.snm",
-            "%.*%.lb",
-            "__latex*",
-            "%.fdb_latexmk",
-            "%.synctex",
-            "%.synctex(busy)",
-            "%.synctex.gz",
-            "%.synctex.gz(busy)",
-            "%.pdfsync",
-            "%.pygstyle",
-            "%.bbl",
-            "%.bcf",
-            "%.blg",
-            "%.run.xml",
-            "indent.log",
-            "%.pdf",
-            "%.bak",
-            "%.app",
-            "%.lock",
-            ".DS_Store",
+          layout_strategy = "horizontal_merged",
+          sorting_strategy = "ascending",
+          scroll_strategy = "cycle",
+          path_display = { "tail" },
+          results_title = false,
+          prompt_title = false,
+          color_devicons = true,
+          layout_config = {
+            width = 0.99,
+            height = 0.65,
+            prompt_position = "top",
+            winblend = 0,
+            horizontal = {
+              anchor = "S",
+              preview_width = function(_, cols, _)
+                return math.floor(cols * 0.6)
+              end,
+            },
+          },
+          mappings = {
+            n = {
+              ["p"] = require("telescope.actions").close,
+            },
           },
         },
         pickers = {
-          find_files = {
-            mappings = {
-              n = {
-                ["kj"] = "close",
-              },
-            },
-          },
           marks = {
             theme = "ivy",
           },
@@ -74,7 +64,41 @@ return {
             theme = "dropdown",
           },
         },
-        path_display = { "truncate" },
+        file_ignore_patterns = {
+          "%.aux",
+          "%.log",
+          "%.xdv",
+          "%.lof",
+          "%.lot",
+          "%.fls",
+          "%.out",
+          "%.toc",
+          "%.fmt",
+          "%.fot",
+          "%.cb",
+          "%.cb2",
+          "%.nav",
+          "%.snm",
+          "%.*%.lb",
+          "__latex*",
+          "%.fdb_latexmk",
+          "%.synctex",
+          "%.synctex(busy)",
+          "%.synctex.gz",
+          "%.synctex.gz(busy)",
+          "%.pdfsync",
+          "%.pygstyle",
+          "%.bbl",
+          "%.bcf",
+          "%.blg",
+          "%.run.xml",
+          "indent.log",
+          "%.pdf",
+          "%.bak",
+          "%.app",
+          "%.lock",
+          ".DS_Store",
+        },
       })
       require("telescope").load_extension("fzy_native")
     end,
