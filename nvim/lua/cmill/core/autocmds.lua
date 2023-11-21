@@ -56,16 +56,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     -- enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+    local builtins = require("telescope.builtin")
 
     -- lsp
     local opts = { buffer = ev.buf }
     map("n", "K", vim.lsp.buf.hover, opts)
-    map("n", "cd", "<cmd>Telescope lsp_definitions<CR>", opts)
-    map("n", "cD", vim.lsp.buf.declaration, opts)
-    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+    map("n", "gd", builtins.lsp_definitions, opts)
+    map("n", "gD", vim.lsp.buf.declaration, opts)
     map("n", "<leader>rr", vim.lsp.buf.rename, opts)
-    map("n", "<leader>cr", "<cmd>Telescope lsp_references<CR>", opts)
-    map("n", "<leader>bd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+    map("n", "<leader>ci", builtins.lsp_implementations, opts)
+    map("n", "<leader>cr", builtins.lsp_references, opts)
+    map("n", "<leader>cd", builtins.diagnostics, opts)
     map("n", "<leader>fo", function()
       vim.lsp.buf.format({ async = true })
     end, opts)

@@ -60,6 +60,13 @@ return {
           },
         },
         pickers = {
+          find_files = {
+            mappings = {
+              n = {
+                ["kj"] = "close",
+              },
+            },
+          },
           marks = {
             theme = "ivy",
           },

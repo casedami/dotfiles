@@ -1,20 +1,10 @@
 return {
   {
-    "echasnovski/mini.comment",
+    "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      opts = {
-        enable_autocmd = false,
-      },
-    },
-    opts = {
-      options = {
-        custom_commentstring = function()
-          return require("ts_context_commentstring.internal").calculate_commentstring()
-        end,
-      },
-    },
+    config = function()
+      require("Comment").setup()
+    end,
   },
   {
     "tpope/vim-surround",
