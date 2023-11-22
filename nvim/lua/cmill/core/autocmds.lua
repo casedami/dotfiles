@@ -67,6 +67,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
     map("n", "<leader>ci", builtins.lsp_implementations, opts)
     map("n", "<leader>cr", builtins.lsp_references, opts)
+    map("n", "<leader>ld", vim.diagnostic.open_float, opts)
     map("n", "<leader>cd", builtins.diagnostics, opts)
     map("n", "<leader>fo", function()
       vim.lsp.buf.format({ async = true })
