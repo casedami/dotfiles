@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufRead", "BufNewFile" },
     dependencies = {
-      { "folke/neodev.nvim", opts = {}, ft = "lua" },
+      { "folke/neodev.nvim", opts = {} },
       { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
     },
     opts = {
@@ -27,9 +27,20 @@ return {
             Lua = {
               workspace = {
                 checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file("", true),
               },
               completion = {
                 callSnippet = "Replace",
+              },
+              runtime = {
+                version = "LuaJIT",
+              },
+              diagnostics = {
+                globals = { "vim", "describe", "it" },
+              },
+              -- Do not send telemetry data containing a randomized but unique identifier
+              telemetry = {
+                enable = false,
               },
             },
           },

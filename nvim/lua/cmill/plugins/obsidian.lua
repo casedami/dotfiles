@@ -1,6 +1,6 @@
 return {
   {
-    "epwalsh/obsidian.nvim",
+    "cdmill/obsidian.nvim",
     event = {
       "BufReadPre " .. vim.fn.expand("~") .. "/self/**.md",
       "BufNewFile " .. vim.fn.expand("~") .. "/self/**.md",
@@ -10,12 +10,6 @@ return {
     },
     opts = {
       dir = "~/self/uni",
-      completion = {
-        nvim_cmp = true,
-        min_chars = 2,
-        new_notes_location = "current_dir",
-        prepend_note_id = false,
-      },
       disable_frontmatter = true,
       templates = {
         subdir = "resources/templates",

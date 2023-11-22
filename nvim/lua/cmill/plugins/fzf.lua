@@ -24,7 +24,7 @@ return {
         local layout = require("telescope.pickers.layout_strategies").horizontal( picker, max_columns, max_lines, layout_config)
         layout.prompt.title = ""
         layout.results.title = ""
-        layout.preview.title = ""
+        if layout.preview then layout.preview.title = "" end
         return layout
       end
       require("telescope").setup({
@@ -34,15 +34,13 @@ return {
           layout_strategy = "horizontal_merged",
           sorting_strategy = "ascending",
           scroll_strategy = "cycle",
-          path_display = { "tail" },
-          results_title = false,
-          prompt_title = false,
+          path_display = { "truncate" },
           color_devicons = true,
+          winblend = 0,
           layout_config = {
             width = 0.99,
             height = 0.65,
             prompt_position = "top",
-            winblend = 0,
             horizontal = {
               anchor = "S",
               preview_width = function(_, cols, _)
@@ -57,9 +55,6 @@ return {
           },
         },
         pickers = {
-          marks = {
-            theme = "ivy",
-          },
           registers = {
             theme = "dropdown",
           },
