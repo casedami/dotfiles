@@ -11,8 +11,14 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy", silent = true })
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 
+local function del_marks()
+  vim.cmd("delm a-zA-Z")
+  vim.cmd("wviminfo!")
+  vim.cmd(([[echohl DiagnosticHint | echomsg "%s" | echohl None]]):format(" deleting marks..."))
+end
+
 -- marks
-map( "n", "<leader>md", "<cmd>delm a-zA-Z0-9<cr> | <cmd>wviminfo!<cr> | <cmd>echo 'Deleting all marks...'<cr>", { desc = "Delete all marks", silent = true })
+map( "n", "<leader>md", function() del_marks() end, { desc = "Delete all marks", silent = true })
 vim.api.nvim_create_user_command("M", "marks", { desc = "Show marks" })
 
 -- remove highlighting after search
