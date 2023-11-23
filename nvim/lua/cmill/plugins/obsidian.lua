@@ -18,12 +18,11 @@ return {
         -- A map for custom variables, the key should be the variable and the value a function
         substitutions = {},
       },
-      mappings = {
-        -- ["gf"] = ...
-      },
+      mappings = {},
       finder = "telescope.nvim",
       ui = {
         enable = true,
+        -- being overridden?
         hl_groups = {
           ObsidianTodo = { bold = true, fg = "#f78c6c" },
           ObsidianDone = { bold = true, fg = "#89ddff" },
