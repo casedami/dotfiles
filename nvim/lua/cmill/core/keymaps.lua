@@ -18,7 +18,7 @@ local function del_marks()
 end
 
 -- marks
-map( "n", "<leader>md", function() del_marks() end, { desc = "Delete all marks", silent = true })
+map( "n", "<leader>dm", function() del_marks() end, { desc = "Delete marks", silent = true })
 vim.api.nvim_create_user_command("M", "marks", { desc = "Show marks" })
 
 -- remove highlighting after search
