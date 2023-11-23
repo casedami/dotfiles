@@ -4,7 +4,7 @@ return {
     event = { "BufRead", "BufNewFile" },
     dependencies = {
       { "folke/neodev.nvim", opts = {} },
-      { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
+      { "williamboman/mason-lspconfig.nvim" },
     },
     opts = {
       diagnostics = {
@@ -128,7 +128,7 @@ return {
         "clangd",
         "clang-format",
         "latexindent",
-        "prettier",
+        "markdownlint",
       },
     },
     config = function(_, opts)
