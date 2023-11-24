@@ -9,7 +9,7 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {},
     opts = {
-      highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
+      highlight = { enable = true },
       indent = { enable = true },
       autotag = { enable = true },
       ensure_installed = {
