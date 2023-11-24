@@ -25,6 +25,8 @@ return {
       },
       { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
       { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-buffer" },
     },
     opts = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -52,6 +54,8 @@ return {
         sources = cmp.config.sources({
           { name = "luasnip", priority = 40 },
           { name = "nvim_lsp", priority = 30 },
+          { name = "buffer", priority = 20 },
+          { name = "path", priority = 20 },
         }),
         formatting = {},
         experimental = {
