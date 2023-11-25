@@ -32,6 +32,7 @@ cursor:
     blinking: never
   unfocused_hollow_cursor: true
   # blink_timeout: 0
+
 colors:
   # Default colors
   primary:

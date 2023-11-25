@@ -7,11 +7,11 @@ return {
     config = function()
       require("catppuccin").setup({
         flavour = "mocha",
-        color_overrides = {
-          mocha = {
-            base = "#000000",
-          },
-        },
+        -- color_overrides = {
+        --   mocha = {
+        --     base = "#000000",
+        --   },
+        -- },
         highlight_overrides = {
           mocha = function(mocha)
             return {
@@ -20,20 +20,10 @@ return {
               ColorColumn = { bg = "#181825" },
               CursorLineNr = { fg = "#ef9f76" },
               FloatBorder = { fg = "#585b70" },
-              Visual = { bg = "#313244" },
-              -- TelescopePromptNormal = { bg = "#1e1e2e" },
-              -- TelescopePromptTitle = { bg = "#1e1e2e" },
-              -- TelescopePromptBorder = { fg = "#1e1e2e", bg = "#1e1e2e" },
-              -- TelescopeResultsNormal = { bg = "#181825" },
-              -- TelescopeResultsTitle = { bg = "#181825" },
-              -- TelescopeResultsBorder = { fg = "#181825", bg = "#181825" },
-              -- TelescopePreviewNormal = { bg = "#11111b" },
-              -- TelescopePreviewTitle = { bg = "#11111b" },
-              -- TelescopePreviewBorder = { fg = "#11111b", bg = "#11111b" },
+              Visual = { bg = "#181825" },
             }
           end,
         },
-        show_end_of_buffer = true,
       })
       vim.cmd("colorscheme catppuccin")
     end,
