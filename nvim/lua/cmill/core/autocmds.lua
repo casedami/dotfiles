@@ -10,13 +10,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- don't auto-comment when o/O in normal mode
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = augroup("no_auto_comment"),
-  callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
-  end,
-})
+-- -- don't auto-comment when o/O in normal mode
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   group = augroup("no_auto_comment"),
+--   callback = function()
+--     vim.opt.formatoptions:remove({ "c", "r", "o" })
+--   end,
+-- })
 
 -- change some color highlights
 vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
