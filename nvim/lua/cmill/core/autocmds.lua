@@ -10,14 +10,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- -- don't auto-comment when o/O in normal mode
--- vim.api.nvim_create_autocmd("BufEnter", {
---   group = augroup("no_auto_comment"),
---   callback = function()
---     vim.opt.formatoptions:remove({ "c", "r", "o" })
---   end,
--- })
-
 -- change some color highlights
 vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
   group = augroup("Color"),
@@ -69,9 +61,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>cr", builtins.lsp_references, opts)
     map("n", "<leader>ld", vim.diagnostic.open_float, opts)
     map("n", "<leader>cd", builtins.diagnostics, opts)
-    map("n", "<leader>fo", function()
-      vim.lsp.buf.format({ async = true })
-    end, opts)
 
     -- diagnostics
     local diagnostic_goto = function(next, severity)

@@ -7,11 +7,11 @@ return {
     config = function()
       require("catppuccin").setup({
         flavour = "mocha",
-        -- color_overrides = {
-        --   mocha = {
-        --     base = "#000000",
-        --   },
-        -- },
+        color_overrides = {
+          mocha = {
+            base = "#000000",
+          },
+        },
         highlight_overrides = {
           mocha = function(mocha)
             return {
