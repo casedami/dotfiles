@@ -12,6 +12,9 @@ return {
         view_options = {
           show_hidden = true,
         },
+        preview = {
+          border = "shadow",
+        },
       })
       vim.api.nvim_create_user_command("E", "Oil", { desc = "Open Explorer" })
     end,
