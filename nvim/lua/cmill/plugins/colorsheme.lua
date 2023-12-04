@@ -14,6 +14,7 @@ return {
       vim.cmd("hi NormalFloat guibg=#0c0e0f")
       vim.cmd("hi TelescopeBorder guifg=#4F5B58")
       vim.cmd("hi ColorColumn guibg=#101314")
+      vim.cmd("hi Folded guibg=#101314")
     end,
   },
 }

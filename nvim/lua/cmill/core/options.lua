@@ -69,6 +69,7 @@ opt.fillchars = {
 
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+vim.g.markdown_folding = 1
 
 -- vimtex options
 vim.g.tex_flavor = "latex"
