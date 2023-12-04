@@ -1,5 +1,5 @@
 local everforest = {
-  bg = "#08090a",
+  bg = "#101314",
   fg = "#4F5B58",
   fg_hi = "#272Е33",
   mode_nor = "#9DA9A0",
