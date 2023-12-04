@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
@@ -9,25 +11,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
-
--- change some color highlights
-vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
-  group = augroup("Color"),
-  callback = function()
-    if vim.g.colors_name ~= "gruvbox-material" then
-      return
-    end
-
-    local border = "#928374"
-    local selection_bg = "#282828"
-    local orange_hi = "#e78a4e"
-    vim.cmd(string.format("hi TelescopeSelection guibg=%s", selection_bg))
-    vim.cmd(string.format("hi TelescopeBorder guifg=%s", border))
-    vim.cmd(string.format("hi CursorLineNr guifg=%s", orange_hi))
-  end,
-})
-
-local map = vim.keymap.set
 
 -- toggleterm keymaps
 vim.api.nvim_create_autocmd("TermOpen", {

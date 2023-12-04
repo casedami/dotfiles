@@ -6,6 +6,7 @@ return {
       {
         "L3MON4D3/LuaSnip",
         event = "InsertEnter",
+        commit = "1182638",
         opts = {
           history = true,
           delete_check_events = "TextChanged",

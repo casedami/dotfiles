@@ -1,25 +1,15 @@
-local catppuccin = {
-  bg = "#11111b",
-  fg = "#51576d",
-  fg_hi = "#cdd6f4",
-  mode_nor = "#a6adc8",
-  mode_com = "#ef9f76",
-  mode_ins = "#e5c890",
-  mode_vis = "#ca9ee6",
-  mode_rep = "#81c8be",
+local everforest = {
+  bg = "#08090a",
+  fg = "#4F5B58",
+  fg_hi = "#272Е33",
+  mode_nor = "#9DA9A0",
+  mode_com = "#E69875",
+  mode_ins = "#DBBC7F",
+  mode_vis = "#D699B6",
+  mode_rep = "#7FBBB3",
 }
--- local gruvbox = {
---   bg = "#282828",
---   fg = "#7c6f64",
---   fg_hi = "#ddc7a1",
---   mode_nor = "#a89984",
---   mode_com = "#e78a4e",
---   mode_ins = "#d8a657",
---   mode_vis = "#d3869b",
---   mode_rep = "#89b482",
--- }
 
-local colors = catppuccin
+local colors = everforest
 
 return {
   {
