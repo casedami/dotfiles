@@ -1,4 +1,4 @@
-local everforest = {
+local colors = {
   bg = "#101314",
   fg = "#4F5B58",
   fg_hi = "#272Е33",
@@ -8,8 +8,6 @@ local everforest = {
   mode_vis = "#D699B6",
   mode_rep = "#7FBBB3",
 }
-
-local colors = everforest
 
 return {
   {
@@ -59,7 +57,11 @@ return {
         },
         sections = {
           lualine_a = {
-            { "mode", padding = { left = 2 } },
+            {
+              "mode",
+              icon = { "", color = { fg = "#A7C080" } },
+              padding = { left = 1 },
+            },
           },
           lualine_b = {
             { "filename", path = 3 },
