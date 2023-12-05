@@ -75,7 +75,7 @@ return {
             {
               "diagnostics",
               symbols = {
-                error = "󰋔 ",
+                error = " ",
                 warn = "󰹆 ",
                 hint = "󰌵 ",
                 info = "󰙎 ",
