@@ -7,6 +7,7 @@ return {
       vim.g.everforest_performance = 1
       vim.g.everforest_ui_contrast = "low"
       vim.g.everforest_float_style = "dim"
+      vim.g.everforest_cursor = "orange"
       vim.cmd("colorscheme everforest")
       vim.cmd("hi Normal guibg=#161a1c")
       vim.cmd("hi NormalNC guibg=#161a1c")
