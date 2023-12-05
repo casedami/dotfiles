@@ -25,6 +25,42 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
+local fts = {
+  "lua",
+  "python",
+  "c",
+  "cpp",
+  "markdown",
+  "txt",
+}
+
+-- only show EOB on certain filetypes
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function(opts)
+    for _, ft in ipairs(fts) do
+      if vim.bo[opts.buf].filetype == ft then
+        vim.opt.fillchars = {
+          foldopen = "",
+          foldclose = "",
+          foldsep = " ",
+          fold = " ",
+          diff = "╱",
+          eob = "~",
+        }
+        return
+      end
+    end
+    vim.opt.fillchars = {
+      foldopen = "",
+      foldclose = "",
+      foldsep = " ",
+      fold = " ",
+      diff = "╱",
+      eob = " ",
+    }
+  end,
+})
+
 -- lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
