@@ -13,7 +13,7 @@ return {
   -- stylua: ignore
   {
     "folke/todo-comments.nvim",
-    event = { "BufRead", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
@@ -35,6 +35,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()
+      -- stylua: ignore
       require("gitsigns").setup({
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
@@ -45,48 +46,30 @@ return {
             vim.keymap.set(mode, l, r, opts)
           end
 
-          -- aavigation
+          -- navigation
           map("n", "[h", function()
-            if vim.wo.diff then
-              return "[h"
-            end
-            vim.schedule(function()
-              gs.next_hunk()
-            end)
+            if vim.wo.diff then return "[h" end
+            vim.schedule(function() gs.next_hunk() end)
             return "<Ignore>"
           end, { expr = true })
 
           map("n", "]h", function()
-            if vim.wo.diff then
-              return "]h"
-            end
-            vim.schedule(function()
-              gs.prev_hunk()
-            end)
+            if vim.wo.diff then return "]h" end
+            vim.schedule(function() gs.prev_hunk() end)
             return "<Ignore>"
           end, { expr = true })
 
           -- actions
           map("n", "<localleader>gs", gs.stage_hunk)
-          map("n", "<localleader>gr", gs.reset_hunk)
-          map("v", "<localleader>gs", function()
-            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
-          map("v", "<localleader>gr", function()
-            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
-          map("n", "<localleader>gS", gs.stage_buffer)
+          map("v", "<localleader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
           map("n", "<localleader>gu", gs.undo_stage_hunk)
+          map("n", "<localleader>gr", gs.reset_hunk)
+          map("v", "<localleader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
+          map("n", "<localleader>gS", gs.stage_buffer)
           map("n", "<localleader>gR", gs.reset_buffer)
-          map("n", "<localleader>gp", gs.preview_hunk)
-          map("n", "<localleader>gb", function()
-            gs.blame_line({ full = true })
-          end)
           map("n", "<localleader>gd", gs.diffthis)
-          map("n", "<localleader>gD", function()
-            gs.diffthis("~")
-          end)
           map("n", "<localleader>td", gs.toggle_deleted)
+          map("n", "<localleader>gb", function() gs.blame_line({ full = true }) end)
         end,
       })
     end,
