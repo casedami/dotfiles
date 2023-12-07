@@ -74,9 +74,11 @@ map("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 local toggle_colscheme = function()
   if vim.o.background == "light" then
     vim.opt.background = "dark"
+    vim.g.everforest_background = "hard"
     vim.cmd("colorscheme everforest")
   else
     vim.opt.background = "light"
+    vim.g.everforest_background = "soft"
     vim.cmd("colorscheme everforest")
   end
 end
