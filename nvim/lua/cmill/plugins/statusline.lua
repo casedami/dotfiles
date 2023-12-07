@@ -64,7 +64,14 @@ return {
             },
           },
           lualine_b = {
-            { "filename", path = 3 },
+            {
+              "filename",
+              path = 3,
+              symbols = {
+                modified = "*",
+                newfile = "[NEW]",
+              },
+            },
           },
           lualine_c = {
             { "branch", icon = "", padding = { left = -1 } },
