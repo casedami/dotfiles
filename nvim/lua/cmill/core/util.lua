@@ -97,4 +97,36 @@ function M.statuscolumn()
   return table.concat(components, "")
 end
 
+function M.statusline()
+  local colors = require("cmill.core.colors").statusline
+  local theme = {
+    normal = {
+      a = { bg = colors.bg, fg = colors.mode_nor },
+      b = { bg = colors.bg, fg = colors.fg },
+      c = { bg = colors.bg, fg = colors.fg },
+    },
+    insert = {
+      a = { bg = colors.bg, fg = colors.mode_ins },
+      b = { bg = colors.bg, fg = colors.fg },
+      c = { bg = colors.bg, fg = colors.fg },
+    },
+    visual = {
+      a = { bg = colors.bg, fg = colors.mode_vis },
+      b = { bg = colors.bg, fg = colors.fg },
+      c = { bg = colors.bg, fg = colors.fg },
+    },
+    replace = {
+      a = { bg = colors.bg, fg = colors.mode_rep },
+      b = { bg = colors.bg, fg = colors.fg },
+      c = { bg = colors.bg, fg = colors.fg },
+    },
+    command = {
+      a = { bg = colors.bg, fg = colors.mode_com },
+      b = { bg = colors.bg, fg = colors.fg_hi },
+      c = { bg = colors.bg, fg = colors.fg_hi },
+    },
+  }
+  return theme
+end
+
 return M
