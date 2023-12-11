@@ -1,6 +1,6 @@
 local M = {}
 
-M.statusline = {
+local colors = {
   bg = "#101314",
   fg = "#4F5B58",
   fg_hi = "#272Е33",
@@ -10,6 +10,8 @@ M.statusline = {
   mode_vis = "#D699B6",
   mode_rep = "#7FBBB3",
 }
+
+M.statusline = colors
 
 M.highlights = {
   bg = "#161a1c",

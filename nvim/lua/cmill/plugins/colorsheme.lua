@@ -2,7 +2,6 @@ return {
   {
     "sainnhe/everforest",
     priority = 1000,
-    -- stylua: ignore
     config = function()
       vim.g.everforest_background = "hard"
       vim.g.everforest_performance = 1
