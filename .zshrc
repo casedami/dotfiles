@@ -23,14 +23,12 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # aliases
-alias hist="rm .zsh_history .Rhistory .bash_history .python_history"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
 alias ls="exa --icons --group-directories-first"
 alias lsl="exa -l -h --no-user --git"
 alias tree="exa -T"
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
-alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
 alias vim="nvim"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias python="python3"
