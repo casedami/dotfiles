@@ -6,7 +6,7 @@ return {
         options = {
           icons_enabled = true,
           theme = require("cmill.core.util").statusline(),
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "dashboard", "toggleterm" },
           ignore_focus = {},
@@ -35,8 +35,6 @@ return {
                 newfile = "[NEW]",
               },
             },
-          },
-          lualine_c = {
             { "branch", icon = "", padding = { left = -1 } },
             {
               "diff",
@@ -52,6 +50,7 @@ return {
               },
             },
           },
+          lualine_c = {},
           lualine_x = {
             {
               "tabs",
@@ -65,8 +64,6 @@ return {
                 return vim.api.nvim_eval("len(gettabinfo())") > 1
               end,
             },
-          },
-          lualine_y = {
             {
               "filetype",
               colored = false,
@@ -75,6 +72,7 @@ return {
             "progress",
             { "location", padding = { right = 2 } },
           },
+          lualine_y = {},
           lualine_z = {},
         },
       })
