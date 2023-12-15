@@ -6,7 +6,7 @@ return {
         options = {
           icons_enabled = true,
           theme = require("cmill.core.util").statusline(),
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "dashboard", "toggleterm" },
           ignore_focus = {},
@@ -35,7 +35,11 @@ return {
                 newfile = "[NEW]",
               },
             },
-            { "branch", icon = "", padding = { left = -1 } },
+            {
+              "branch",
+              icon = "",
+              padding = { left = -1 },
+            },
             {
               "diff",
               colored = false,
