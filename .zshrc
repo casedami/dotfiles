@@ -55,3 +55,12 @@ export TERM="xterm-256color"
 eval "$(zoxide init zsh)"
 
 PATH="$PATH:$HOME/.local/bin"
+
+export FZF_DEFAULT_OPTS="
+--color=fg+:#D699B6,pointer:#D699B6,hl:#D699B6,hl+:#D699B6,gutter:-1,bg+:-1,prompt:#D3C6AA
+--reverse
+--cycle
+--multi
+--height 40%
+"
+source /opt/homebrew/Cellar/fzf/0.44.1/shell/completion.zsh
