@@ -42,6 +42,9 @@ map("n", "<localleader>E", ":e ~/", { desc = "Open new file in home directory" }
 map("n", "<localleader>s", ":s/", { desc = "Start search and replace" })
 map("n", "<localleader>S", ":%s/", { desc = "Start global search and replace" })
 
+-- remap in-line movement
+map("n", "0", "^", { desc = "Goto beginning of line" })
+
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")

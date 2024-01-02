@@ -38,7 +38,7 @@ function M.get_mark(buf, lnum)
   vim.list_extend(marks, vim.fn.getmarklist())
   for _, mark in ipairs(marks) do
     if mark.pos[1] == buf and mark.pos[2] == lnum and mark.mark:match("[a-zA-Z]") then
-      return { text = mark.mark:sub(2), texthl = "DiagnosticHint" }
+      return { text = mark.mark:sub(2), texthl = "DiagnosticOk" }
     end
   end
 end
@@ -87,7 +87,7 @@ function M.statuscolumn()
   local is_relnum = vim.wo[win].relativenumber
   if (is_num or is_relnum) and vim.v.virtnum == 0 then
     if vim.v.relnum == 0 then
-      components[2] = is_num and "%l" or "%r" -- the current line
+      components[2] = is_num and "%l " or "%r " -- the current line
     else
       components[2] = is_relnum and "%r" or "%l" -- other lines
     end
@@ -97,36 +97,111 @@ function M.statuscolumn()
   return table.concat(components, "")
 end
 
-function M.statusline()
-  local colors = require("cmill.core.colors").statusline
+function M.statusline_theme()
+  local colors = require("cmill.core.colors").statusline()
   local theme = {
     normal = {
-      a = { bg = colors.bg, fg = colors.mode_nor },
+      a = { bg = colors.component, fg = colors.mode_nor, gui = "bold" },
       b = { bg = colors.bg, fg = colors.fg },
       c = { bg = colors.bg, fg = colors.fg },
     },
     insert = {
-      a = { bg = colors.bg, fg = colors.mode_ins },
-      b = { bg = colors.bg, fg = colors.fg },
-      c = { bg = colors.bg, fg = colors.fg },
+      a = { bg = colors.component, fg = colors.mode_ins },
     },
     visual = {
-      a = { bg = colors.bg, fg = colors.mode_vis },
-      b = { bg = colors.bg, fg = colors.fg },
-      c = { bg = colors.bg, fg = colors.fg },
+      a = { bg = colors.component, fg = colors.mode_vis },
     },
     replace = {
-      a = { bg = colors.bg, fg = colors.mode_rep },
-      b = { bg = colors.bg, fg = colors.fg },
-      c = { bg = colors.bg, fg = colors.fg },
+      a = { bg = colors.component, fg = colors.mode_rep },
     },
     command = {
-      a = { bg = colors.bg, fg = colors.mode_com },
-      b = { bg = colors.bg, fg = colors.fg_hi },
-      c = { bg = colors.bg, fg = colors.fg_hi },
+      a = { bg = colors.component, fg = colors.mode_com },
     },
   }
   return theme
+end
+
+function M.statusline_components()
+  local colors = require("cmill.core.colors").statusline()
+  local components = {
+    modes = {
+      "mode",
+      fmt = function(str)
+        return str:sub(1, 3)
+      end,
+      separator = { left = "", right = "" },
+    },
+    nvim_icon = {
+      function()
+        return ""
+      end,
+      color = { bg = colors.dim, fg = colors.green },
+      separator = { right = "" },
+    },
+    spacer = {
+      function()
+        return " "
+      end,
+      color = { bg = colors.bg, fg = colors.bg },
+    },
+    branch = {
+      "branch",
+      icon = "",
+      color = { bg = colors.component, fg = colors.yellow },
+      separator = { left = "", right = "" },
+    },
+    diff = {
+      "diff",
+      color = { bg = colors.segment, fg = colors.fg },
+      colored = false,
+      separator = { right = "" },
+    },
+    filename = {
+      "filename",
+      path = 3,
+      symbols = {
+        modified = "*",
+        newfile = "[NEW]",
+      },
+      separator = { left = "", right = "" },
+      color = { bg = colors.component, fg = colors.mode_nor },
+    },
+    filetype = {
+      "filetype",
+      color = { bg = colors.segment, fg = colors.fg },
+      colored = false,
+      icon_only = true,
+      separator = { left = "", right = "" },
+    },
+    diagnostics = {
+      "diagnostics",
+      symbols = {
+        error = " ",
+        warn = "󰹆 ",
+        hint = "󰌵 ",
+        info = "󰙎 ",
+      },
+    },
+    progress = {
+      "progress",
+    },
+    location = {
+      "location",
+    },
+    tabs = {
+      "tabs",
+      show_modified_status = false,
+      mode = 0,
+      tabs_color = {
+        active = "lualine_a_insert",
+        inactive = "lualine_b_normal",
+      },
+      cond = function()
+        return vim.api.nvim_eval("len(gettabinfo())") > 1
+      end,
+    },
+  }
+  return components
 end
 
 return M

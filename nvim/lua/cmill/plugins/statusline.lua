@@ -1,3 +1,5 @@
+local components = require("cmill.core.util").statusline_components()
+
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -5,8 +7,8 @@ return {
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = require("cmill.core.util").statusline(),
-          section_separators = { left = "", right = "" },
+          theme = require("cmill.core.util").statusline_theme(),
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "dashboard", "toggleterm" },
           ignore_focus = {},
@@ -20,61 +22,24 @@ return {
         },
         sections = {
           lualine_a = {
-            {
-              "mode",
-              icon = { "", color = { fg = "#A7C080" } },
-              padding = { left = 1 },
-            },
+            components.nvim_icon,
+            components.modes,
           },
           lualine_b = {
-            {
-              "filename",
-              path = 3,
-              symbols = {
-                modified = "*",
-                newfile = "[NEW]",
-              },
-            },
-            {
-              "branch",
-              icon = "",
-              padding = { left = -1 },
-            },
-            {
-              "diff",
-              colored = false,
-            },
-            {
-              "diagnostics",
-              symbols = {
-                error = " ",
-                warn = "󰹆 ",
-                hint = "󰌵 ",
-                info = "󰙎 ",
-              },
-            },
+            components.spacer,
+            components.filename,
+            components.filetype,
+            components.spacer,
           },
-          lualine_c = {},
+          lualine_c = {
+            components.branch,
+            components.diff,
+            components.diagnostics,
+          },
           lualine_x = {
-            {
-              "tabs",
-              show_modified_status = false,
-              mode = 0,
-              tabs_color = {
-                active = "lualine_a_insert",
-                inactive = "lualine_b_normal",
-              },
-              cond = function()
-                return vim.api.nvim_eval("len(gettabinfo())") > 1
-              end,
-            },
-            {
-              "filetype",
-              colored = false,
-              icon_only = true,
-            },
-            "progress",
-            { "location", padding = { right = 2 } },
+            components.tabs,
+            components.progress,
+            components.location,
           },
           lualine_y = {},
           lualine_z = {},

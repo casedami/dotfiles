@@ -79,7 +79,7 @@
 
   # Add an empty line before each prompt except the first. This doesn't emulate the bug
   # in Pure that makes prompt drift down whenever you use the Alt-C binding from fzf or similar.
-  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
 
   # Magenta prompt symbol if the last command succeeded.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$white
@@ -172,7 +172,9 @@
   #   - always:   Trim down prompt when accepting a command line.
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
-  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
+  # function p10k-on-pre-prompt() { p10k display '1/left'=show '2/left/time'=hide }
+  # function p10k-on-post-prompt() { p10k display '1|2/right'=hide '1/gap'=show }
 
   # Instant prompt mode.
   #

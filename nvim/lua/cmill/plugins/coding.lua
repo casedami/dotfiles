@@ -6,10 +6,6 @@ return {
       require("Comment").setup()
     end,
   },
-  {
-    "tpope/vim-surround",
-    event = { "BufRead", "BufNewFile" },
-  },
   -- stylua: ignore
   {
     "folke/todo-comments.nvim",

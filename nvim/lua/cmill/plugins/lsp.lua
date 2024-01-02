@@ -8,9 +8,11 @@ return {
     },
     opts = {
       diagnostics = {
-        virtual_text = false,
+        virtual_text = {
+          prefix = "▪",
+        },
         underline = true,
-        update_in_insert = false,
+        update_in_insert = true,
         severity_sort = true,
       },
       inlay_hints = {
