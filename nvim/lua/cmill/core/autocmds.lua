@@ -46,42 +46,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.cmd(string.format("hi Folded guibg=%s", colors.line))
     vim.cmd(string.format("hi TelescopeBorder guifg=%s", colors.border))
     vim.cmd(string.format("hi TelescopeSelection guibg=%s", colors.bg1))
-  end,
-})
-
-local fts = {
-  "lua",
-  "python",
-  "c",
-  "cpp",
-  "markdown",
-  "txt",
-}
-
--- only show EOB on certain filetypes
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function(opts)
-    for _, ft in ipairs(fts) do
-      if vim.bo[opts.buf].filetype == ft then
-        vim.opt.fillchars = {
-          foldopen = "",
-          foldclose = "",
-          foldsep = " ",
-          fold = " ",
-          diff = "╱",
-          eob = "~",
-        }
-        return
-      end
-    end
-    vim.opt.fillchars = {
-      foldopen = "",
-      foldclose = "",
-      foldsep = " ",
-      fold = " ",
-      diff = "╱",
-      eob = " ",
-    }
+    vim.cmd(string.format("hi InfoText gui=italic guifg=%s", colors.blue))
   end,
 })
 

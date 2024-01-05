@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.g.autoformat = true
+-- vim.g.netrw_browse_split = 0
+-- vim.g.netrw_banner = 0
 
 local opt = vim.opt
 
@@ -64,7 +66,7 @@ opt.fillchars = {
   foldsep = " ",
   fold = " ",
   diff = "╱",
-  eob = " ",
+  eob = "~",
 }
 
 -- fix markdown indentation settings

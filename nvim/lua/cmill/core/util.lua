@@ -38,7 +38,7 @@ function M.get_mark(buf, lnum)
   vim.list_extend(marks, vim.fn.getmarklist())
   for _, mark in ipairs(marks) do
     if mark.pos[1] == buf and mark.pos[2] == lnum and mark.mark:match("[a-zA-Z]") then
-      return { text = mark.mark:sub(2), texthl = "DiagnosticOk" }
+      return { text = mark.mark:sub(2), texthl = "DiagnosticInfo" }
     end
   end
 end
@@ -87,7 +87,7 @@ function M.statuscolumn()
   local is_relnum = vim.wo[win].relativenumber
   if (is_num or is_relnum) and vim.v.virtnum == 0 then
     if vim.v.relnum == 0 then
-      components[2] = is_num and "%l " or "%r " -- the current line
+      components[2] = is_num and "%l  " or "%r  " -- the current line
     else
       components[2] = is_relnum and "%r" or "%l" -- other lines
     end

@@ -5,5 +5,5 @@ vim.keymap.set("n", "<localleader>t", "<cmd>ObsidianTemplate<cr>")
 vim.opt.foldmethod = "syntax"
 vim.opt.foldenable = true
 vim.opt.spelllang = {}
-vim.opt.statuscolumn = "%=%l  "
+vim.opt.relativenumber = false
 vim.opt.signcolumn = "no"

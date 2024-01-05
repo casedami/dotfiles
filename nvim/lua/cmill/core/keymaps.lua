@@ -14,7 +14,7 @@ map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 local function del_marks()
   vim.cmd("delm a-zA-Z")
   vim.cmd("wviminfo!")
-  vim.cmd(([[echohl DiagnosticHint | echomsg "%s" | echohl None]]):format(" deleting marks..."))
+  vim.cmd(([[echohl DiagnosticInfo | echomsg "%s" | echohl None]]):format(" deleting marks..."))
 end
 
 -- marks
@@ -41,6 +41,9 @@ map("n", "<localleader>E", ":e ~/", { desc = "Open new file in home directory" }
 -- search
 map("n", "<localleader>s", ":s/", { desc = "Start search and replace" })
 map("n", "<localleader>S", ":%s/", { desc = "Start global search and replace" })
+
+-- explorer
+map("n", "<leader>e", "<cmd>E<cr>", { desc = "Open explorer" })
 
 -- remap in-line movement
 map("n", "0", "^", { desc = "Goto beginning of line" })

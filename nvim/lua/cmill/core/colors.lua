@@ -41,6 +41,7 @@ M.highlights = {
   bg2 = "#272e33",
   float = "#0c0e0f",
   orange = "#e69875",
+  blue = "#7fbbb3",
   border = "#4f5858",
   line = "#101314",
 }
