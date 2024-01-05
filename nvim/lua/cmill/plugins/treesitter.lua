@@ -18,6 +18,7 @@ return {
         "markdown_inline",
         "lua",
         "vim",
+        "vimdoc",
         "gitignore",
         "c",
         "cpp",
