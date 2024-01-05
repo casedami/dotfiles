@@ -7,7 +7,6 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    commit = "cdb2ec9",
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
