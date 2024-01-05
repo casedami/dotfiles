@@ -101,21 +101,21 @@ function M.statusline_theme()
   local colors = require("cmill.core.colors").statusline()
   local theme = {
     normal = {
-      a = { bg = colors.component, fg = colors.mode_nor, gui = "bold" },
+      a = { bg = colors.mode_nor, fg = colors.black, gui = "bold" },
       b = { bg = colors.bg, fg = colors.fg },
       c = { bg = colors.bg, fg = colors.fg },
     },
     insert = {
-      a = { bg = colors.component, fg = colors.mode_ins },
+      a = { bg = colors.mode_ins, fg = colors.black },
     },
     visual = {
-      a = { bg = colors.component, fg = colors.mode_vis },
+      a = { bg = colors.mode_vis, fg = colors.black },
     },
     replace = {
-      a = { bg = colors.component, fg = colors.mode_rep },
+      a = { bg = colors.mode_rep, fg = colors.black },
     },
     command = {
-      a = { bg = colors.component, fg = colors.mode_com },
+      a = { bg = colors.mode_com, fg = colors.black },
     },
   }
   return theme
@@ -135,26 +135,14 @@ function M.statusline_components()
       function()
         return ""
       end,
-      color = { bg = colors.dim, fg = colors.green },
+      color = { bg = colors.nvim_bg, fg = colors.nvim_fg },
       separator = { right = "" },
-    },
-    spacer = {
-      function()
-        return " "
-      end,
-      color = { bg = colors.bg, fg = colors.bg },
     },
     branch = {
       "branch",
       icon = "",
-      color = { bg = colors.component, fg = colors.yellow },
+      color = { bg = colors.git_bg, fg = colors.git_fg },
       separator = { left = "", right = "" },
-    },
-    diff = {
-      "diff",
-      color = { bg = colors.segment, fg = colors.fg },
-      colored = false,
-      separator = { right = "" },
     },
     filename = {
       "filename",
@@ -163,15 +151,6 @@ function M.statusline_components()
         modified = "*",
         newfile = "[NEW]",
       },
-      separator = { left = "", right = "" },
-      color = { bg = colors.component, fg = colors.mode_nor },
-    },
-    filetype = {
-      "filetype",
-      color = { bg = colors.segment, fg = colors.fg },
-      colored = false,
-      icon_only = true,
-      separator = { left = "", right = "" },
     },
     diagnostics = {
       "diagnostics",
@@ -200,8 +179,39 @@ function M.statusline_components()
         return vim.api.nvim_eval("len(gettabinfo())") > 1
       end,
     },
+    spacer = {
+      function()
+        return " "
+      end,
+      color = { bg = colors.bg, fg = colors.bg },
+    },
   }
   return components
+end
+
+function M.statusline_sections()
+  local components = require("cmill.core.util").statusline_components()
+  local sections = {
+    lualine_a = {
+      components.nvim_icon,
+      components.modes,
+    },
+    lualine_b = {
+      components.branch,
+      components.filename,
+    },
+    lualine_c = {
+      components.diagnostics,
+    },
+    lualine_x = {
+      components.tabs,
+      components.progress,
+      components.location,
+    },
+    lualine_y = {},
+    lualine_z = {},
+  }
+  return sections
 end
 
 return M
