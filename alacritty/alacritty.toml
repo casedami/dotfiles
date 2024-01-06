@@ -1,0 +1,48 @@
+import = ["/Users/caseymiller/.config/alacritty/themes/themes/everforest_dark.toml"]
+
+[cursor]
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "never"
+shape = "block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font Propo"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font Propo"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font Propo"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Propo"
+
+[scrolling]
+history = 500
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+opacity = 1.0
+option_as_alt = "Both"
+title = "Terminal"
+
+[window.dimensions]
+columns = 0
+lines = 0
+
+[window.padding]
+x = 0
+y = 0
+
+[window.position]
+x = 0
+y = 0

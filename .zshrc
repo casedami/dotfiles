@@ -63,4 +63,11 @@ export FZF_DEFAULT_OPTS="
 --multi
 --height 40%
 "
-source /opt/homebrew/Cellar/fzf/0.44.1/shell/completion.zsh
+
+# fzf completion
+source /opt/homebrew/Cellar/fzf/0.45.0/shell/completion.zsh
+source /Users/caseymiller/.local/share/fzftab/zsh/fzf-zsh-completion.sh
+bindkey '^I' fzf_completion
+zstyle ':completion:*' fzf-search-display true
+autoload -U compinit
+compinit
