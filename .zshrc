@@ -71,3 +71,5 @@ bindkey '^I' fzf_completion
 zstyle ':completion:*' fzf-search-display true
 autoload -U compinit
 compinit
+
+[ -f "/Users/caseymiller/.ghcup/env" ] && source "/Users/caseymiller/.ghcup/env" # ghcup-env

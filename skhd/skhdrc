@@ -42,7 +42,7 @@ shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
 shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
 shift + alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
 
-# create desktop 
+# create desktop
 shift + alt - n : osascript /Users/caseymiller/scripts/create_new_space.scpt
 
 # fast focus desktop
@@ -53,6 +53,6 @@ cmd + shift - w : yabai -m window --display next; yabai -m display --focus next
 cmd + shift - e : yabai -m window --display 1; yabai -m display --focus 1
 
 # open terminal
-shift + alt - t : open /Applications/Alacritty.app
-shift + alt - b : open /Applications/Safari.app
+cmd + shift - a : open /Applications/Alacritty.app
+cmd + shift - b : open /Applications/Firefox.app
 
