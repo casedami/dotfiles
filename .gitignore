@@ -3,4 +3,5 @@ rstudio/
 gh/
 nvim.bak/
 alacritty/themes/
-
+.zshrc-e
+cabal/
