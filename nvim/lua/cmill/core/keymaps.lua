@@ -36,14 +36,14 @@ map("n", "<C-u>", "<C-u>zz")
 map("n", "<localleader>e", ":e <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory" })
 map("n", "<localleader>es", ":sp <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory (horizonatal split)" })
 map("n", "<localleader>ev", ":vsp <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory (vertical split)" })
-map("n", "<localleader>E", ":e ~/", { desc = "Open new file in home directory" })
 
 -- search
 map("n", "<localleader>s", ":s/", { desc = "Start search and replace" })
 map("n", "<localleader>S", ":%s/", { desc = "Start global search and replace" })
 
 -- explorer
-map("n", "<leader>e", "<cmd>E<cr>", { desc = "Open explorer" })
+map("n", "<leader>e", "<cmd>E %:p:h<cr>", { desc = "Open explore in dir of current file" })
+map("n", "<leader>E", "<cmd>E<cr>", { desc = "Open explore in cwd" })
 
 -- remap in-line movement
 map("n", "0", "^", { desc = "Goto beginning of line" })

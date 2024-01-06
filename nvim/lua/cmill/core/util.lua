@@ -141,7 +141,7 @@ function M.statusline_components()
     branch = {
       "branch",
       icon = "",
-      color = { bg = colors.git_bg, fg = colors.git_fg },
+      color = { bg = colors.bg, fg = colors.git_fg },
       separator = { left = "", right = "" },
     },
     filename = {
@@ -172,18 +172,12 @@ function M.statusline_components()
       show_modified_status = false,
       mode = 0,
       tabs_color = {
-        active = "lualine_a_insert",
+        active = "lualine_a_normal",
         inactive = "lualine_b_normal",
       },
       cond = function()
         return vim.api.nvim_eval("len(gettabinfo())") > 1
       end,
-    },
-    spacer = {
-      function()
-        return " "
-      end,
-      color = { bg = colors.bg, fg = colors.bg },
     },
   }
   return components
