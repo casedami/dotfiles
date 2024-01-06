@@ -1,6 +1,3 @@
--- open help in vertical split
-vim.cmd("cabbrev h vert h")
-
 -- stylua: ignore start
 local map = vim.keymap.set
 
@@ -101,4 +98,6 @@ local toggle_colorcolumn = function()
 end
 
 map("n", "<leader>!", function() toggle_colorcolumn() end)
+map("n", "<leader>hh", "<cmd>set filetype=help<cr>", {})
+map("n", "<leader>ht", "<cmd>set filetype=text<cr>", {})
 -- stylua: ignore end
