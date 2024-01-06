@@ -32,7 +32,6 @@ local fts = {
   "cpp",
   "markdown",
   "txt",
-  "oil",
 }
 
 -- only show EOB on certain filetypes
@@ -62,8 +61,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- change some colors
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
+    -- reset lualine when changing from light to dark mode and vice versa
     require("lualine").setup({
       options = { theme = require("cmill.core.util").statusline_theme() },
       sections = require("cmill.core.util").statusline_sections(),
@@ -79,7 +80,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.cmd(string.format("hi Normal guibg=%s", colors.bg0))
     vim.cmd(string.format("hi NormalNC guibg=%s", colors.bg0))
     vim.cmd(string.format("hi NormalFloat guibg=%s", colors.float))
-    vim.cmd( string.format( "hi MatchParen gui=bold guifg=%s guibg=%s", colors.orange, colors.bg))
+    vim.cmd(string.format( "hi MatchParen gui=bold guifg=%s guibg=%s", colors.orange, colors.bg))
     vim.cmd(string.format("hi CursorLineNr guifg=%s", colors.orange))
     vim.cmd(string.format("hi ColorColumn guibg=%s", colors.line))
     vim.cmd(string.format("hi CursorLine guibg=%s", colors.line))

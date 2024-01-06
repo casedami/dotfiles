@@ -1,3 +1,5 @@
+local colors = require("cmill.core.colors").highlights
+
 return {
   {
     "numToStr/Comment.nvim",
@@ -17,13 +19,13 @@ return {
     },
     opts = {
       keywords = {
-        FIX = { icon = " ", color = "#F85552", alt = { "BUG", "ISSUE" } },
-        TODO = { icon = "󰦐 ", color = "#3a94c5" },
-        HACK = { icon = "󰈻 ", color = "#f57d26" },
-        WARN = { icon = "󰹆 ", color = "#dfa000", alt = { "WARNING" } },
-        PERF = { icon = " ", color = "#dfa000", alt = { "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = "󰎞 ", color = "#35A77C", alt = { "INFO" } },
-        TEST = { icon = "󱖫 ", color = "#DF69BA", alt = { "TESTING", "PASSED", "FAILED" } },
+        FIX = { icon = " ", color =  colors.todo_red, alt = { "BUG", "ISSUE" } },
+        TODO = { icon = "󰦐 ", color = colors.todo_blue },
+        HACK = { icon = "󰈻 ", color = colors.todo_orange },
+        WARN = { icon = "󰹆 ", color = colors.todo_yellow, alt = { "WARNING" } },
+        PERF = { icon = " ", color = colors.todo_yellow, alt = { "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = "󰎞 ", color = colors.todo_aqua, alt = { "INFO" } },
+        TEST = { icon = "󱖫 ", color = colors.todo_purple, alt = { "TESTING", "PASSED", "FAILED" } },
       },
     },
   },

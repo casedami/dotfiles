@@ -47,6 +47,12 @@ M.highlights = {
   blue = "#7fbbb3",
   border = "#4f5858",
   line = "#101314",
+  todo_red = "#f85552",
+  todo_blue = "#3a94c5",
+  todo_orange = "#f57d26",
+  todo_yellow = "#dfa000",
+  todo_aqua = "#35a77c",
+  todo_purple = "#df69ba",
 }
 
 return M
