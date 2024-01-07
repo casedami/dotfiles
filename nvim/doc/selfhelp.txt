@@ -18,14 +18,14 @@ CONTENTS                                                 	     *selfhelp*
 
 EXPLORER                                                        *self-explorer*
 
-  Key           Function ~
+  Key           Function  
 
   `<leader>e`     open netrw in directory of current file
   `<leader>E`     open netrw in current working directory
 
 Within netrw:
 
-  Key           Function ~
+  Key           Function  
 
   `-`             go to parent directory
   `u`             go back to previous directory
@@ -40,7 +40,7 @@ Within netrw:
 
 LSP                                                                  *self-lsp*
 
-  Key           Function ~
+  Key           Function  
 
   `K`             open float for item under cursor
   `gd`            goto definition
@@ -54,7 +54,7 @@ LSP                                                                  *self-lsp*
 
 The following keymaps are for diagnostics navigation:
 
-  Key           Function ~
+  Key           Function  
 
   `]d`            next diagnostic
   `[d`            previous diagnostic
@@ -68,7 +68,7 @@ The following keymaps are for diagnostics navigation:
 
 FZF                                                                   *self-fzf*
 
-  Key           Function ~
+  Key           Function  
 
   `<leader>ff`    search files
   `<leader>fg`    live grep
@@ -83,7 +83,7 @@ FZF                                                                   *self-fzf*
 
 EX-COMMANDS                                                            *self-ex*
 
-  Key               Function ~
+  Key               Function  
 
   `<localleader>e`   edit new file in current directory
   `<localleader>es`  edit new file in current directory (h-split)
@@ -98,7 +98,7 @@ VIEWS                                                               *self-views*
 
 Buffers:
 
-  Key               Function ~
+  Key               Function  
 
   `<localleader>]`   next buffer
   `<localleader>[`   previous buffer
@@ -106,7 +106,7 @@ Buffers:
 
 Tabs:
 
-  Key                  Function ~
+  Key                  Function  
 
   `<localleader>}`       next tab
   `<localleader>{`       previous tab
@@ -115,7 +115,7 @@ Tabs:
 
 Windows:
 
-  Key            Function ~
+  Key            Function  
 
   `<C-Up>`         increase window height
   `<C-Down>`       decrease window height
@@ -131,7 +131,7 @@ Windows:
 
 Custom								   *self-custom*
 
-  Key            Function ~
+  Key            Function  
 
   `<leader>!`      toggle color column
   `<leader>uc`     toggle light/dark colorscheme
@@ -142,7 +142,7 @@ Custom								   *self-custom*
 
 SKHD                                                                 *self-skhd*
 
-  Key            Function ~
+  Key            Function  
 
   `<M-h>`          focus left window
   `<M-j>`          focus bottom window
@@ -157,6 +157,11 @@ SKHD                                                                 *self-skhd*
   `<M-r>`          rotate 90 degrees
   `<M-y>`          toggle full screen
   `<M-t>`          toggle managed
+
+  `<M-1>`          move to display 1
+  `<M-2>`          move to display 2
+  `<M-3>`          move to display 3
+  `<M-4>`          move to display 4
 
   `<Shift-M-1>`    move focused window to display 1
   `<Shift-M-2>`    move focused window to display 2
