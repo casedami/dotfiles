@@ -41,3 +41,4 @@ cmd + shift - e : yabai -m window --display 1; yabai -m display --focus 1
 # open terminal
 cmd + shift - a : open /Applications/Alacritty.app
 cmd + shift - m : open /Applications/Firefox.app
+cmd + shift - s : open /Applications/Spotify.app
