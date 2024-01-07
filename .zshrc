@@ -54,7 +54,7 @@ export LC_CTYPE="en_US.UTF-8"
 export TERM="xterm-256color"
 eval "$(zoxide init zsh)"
 
-PATH="$PATH:$HOME/.local/bin"
+PATH="$PATH:$HOME/.local/bin/scripts/"
 
 export FZF_DEFAULT_OPTS="
 --color=fg+:#D699B6,pointer:#D699B6,hl:#D699B6,hl+:#D699B6,gutter:-1,bg+:-1,prompt:#D3C6AA
@@ -73,3 +73,7 @@ autoload -U compinit
 compinit
 
 [ -f "/Users/caseymiller/.ghcup/env" ] && source "/Users/caseymiller/.ghcup/env" # ghcup-env
+
+# suspend/resume job with <C-z>
+source /Users/caseymiller/.config/scripts/fg_bg.zsh
+bindkey -v
