@@ -4,6 +4,10 @@ local map = vim.keymap.set
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy", silent = true })
 
+-- help
+map("n", "<leader>?", "<cmd>h selfhelp<cr>", { desc = "Open self help", silent = true })
+map("n", "<leader><localleader>", ":h self-", { desc = "Start self help command" })
+
 -- move line up/down
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
@@ -98,6 +102,4 @@ local toggle_colorcolumn = function()
 end
 
 map("n", "<leader>!", function() toggle_colorcolumn() end)
-map("n", "<leader>hh", "<cmd>set filetype=help<cr>", {})
-map("n", "<leader>ht", "<cmd>set filetype=text<cr>", {})
 -- stylua: ignore end
