@@ -27,18 +27,23 @@ setopt hist_find_no_dups
 # aliases
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
+alias python="python3"
+#
+alias cd="z"
 alias ls="exa --icons --group-directories-first"
 alias lsl="exa -l -h --no-user --git"
 alias tree="exa -T"
-alias cade="ssh u1337847@lab1-13.eng.utah.edu"
-alias vim="nvim"
-alias ssh="TERM=xterm-256color $(which ssh)"
-alias python="python3"
+#
 alias sed="sed -E"
 alias time="/usr/bin/time -p"
 alias tm="tmux"
-alias cd="z"
-alias help="help.sh"
+alias vim="nvim"
+#
+alias morning="morning.zsh"
+alias evening="vim /Users/caseymiller/self/uni/evening.md"
+# school aliases
+alias cade="ssh u1337847@lab1-13.eng.utah.edu"
+alias ssh="TERM=xterm-256color $(which ssh)"
 
 # add directory to PATH
 path+=('/Users/caseymiller/Library/Python/3.11/bin')
@@ -56,8 +61,10 @@ export LC_CTYPE="en_US.UTF-8"
 export TERM="xterm-256color"
 eval "$(zoxide init zsh)"
 
+# add scripts to path
 PATH="$PATH:$HOME/.local/bin/scripts/"
 
+# fzf opts
 export FZF_DEFAULT_OPTS="
 --color=fg+:#D699B6,pointer:#D699B6,hl:#D699B6,hl+:#D699B6,gutter:-1,bg+:-1,prompt:#D3C6AA
 --reverse
@@ -66,7 +73,7 @@ export FZF_DEFAULT_OPTS="
 --height 40%
 "
 
-# suspend/resume job with <C-z>
+# resume suspended job with <C-J>
 source /Users/caseymiller/.config/scripts/fg_bg.zsh
 bindkey -v
 
