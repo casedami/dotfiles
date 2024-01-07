@@ -66,6 +66,12 @@ export FZF_DEFAULT_OPTS="
 --height 40%
 "
 
+# suspend/resume job with <C-z>
+source /Users/caseymiller/.config/scripts/fg_bg.zsh
+bindkey -v
+
+[ -f "/Users/caseymiller/.ghcup/env" ] && source "/Users/caseymiller/.ghcup/env" # ghcup-env
+
 # fzf completion
 source /opt/homebrew/Cellar/fzf/0.45.0/shell/completion.zsh
 source /Users/caseymiller/.local/share/fzftab/zsh/fzf-zsh-completion.sh
@@ -73,9 +79,3 @@ bindkey '^I' fzf_completion
 zstyle ':completion:*' fzf-search-display true
 autoload -U compinit
 compinit
-
-[ -f "/Users/caseymiller/.ghcup/env" ] && source "/Users/caseymiller/.ghcup/env" # ghcup-env
-
-# suspend/resume job with <C-z>
-source /Users/caseymiller/.config/scripts/fg_bg.zsh
-bindkey -v
