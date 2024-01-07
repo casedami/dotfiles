@@ -25,9 +25,12 @@ vim.api.nvim_create_user_command("M", "marks", { desc = "Show marks" })
 -- remove highlighting after search
 map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach", remap = false })
 
--- paste from 0 register, override macro key
-map({"n", "v"}, "q", "\"0p")
-map({"n", "v"}, "Q", "\"0P")
+-- paste from 0 register
+map({"n", "v"}, ")", "\"0p")
+map({"n", "v"}, "(", "\"0P")
+
+map("n", "q", "<nop>")
+map("n", "Q", "<nop>")
 
 -- auto center when moving up/down
 map("n", "<C-d>", "<C-d>zz")
