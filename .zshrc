@@ -9,6 +9,8 @@ fi
 # load prompt plugin
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
+KEYTIMEOUT=1
+
 # history
 HISTSIZE=30
 HISTFILE=~/.zsh_history
