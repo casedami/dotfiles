@@ -40,7 +40,7 @@ alias tm="tmux"
 alias vim="nvim"
 #
 alias morning="morning.zsh"
-alias evening="vim /Users/caseymiller/self/uni/evening.md"
+alias evening="evening.zsh"
 # school aliases
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
 alias ssh="TERM=xterm-256color $(which ssh)"
