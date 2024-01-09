@@ -72,6 +72,12 @@ return {
             hl_group = "CmpGhostText",
           },
         },
+        window = {
+          completion = {
+            side_padding = 1,
+            scrollbar = false,
+          },
+        },
         sorting = defaults.sorting,
       }
     end,
