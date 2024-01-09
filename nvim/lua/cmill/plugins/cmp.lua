@@ -58,7 +58,15 @@ return {
           { name = "buffer" },
           { name = "path" },
         }),
-        formatting = {},
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(_, item)
+            local icons = require("cmill.core.util").lspicons()
+            local icon = icons[item.kind]
+            item.kind = "" .. icon .. " "
+            return item
+          end,
+        },
         experimental = {
           ghost_text = {
             hl_group = "CmpGhostText",
