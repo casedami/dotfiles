@@ -30,6 +30,10 @@ return {
     },
   },
   {
+    "tpope/vim-fugitive",
+    cmd = "G",
+  },
+  {
     "lewis6991/gitsigns.nvim",
     event = { "BufRead", "BufNewFile" },
     config = function()

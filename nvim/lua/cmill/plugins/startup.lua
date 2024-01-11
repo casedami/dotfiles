@@ -26,7 +26,6 @@ return {
           { action = "Explore",                           desc = " File Explorer",   icon = " ", key = "e" },
           { action = "Telescope live_grep",               desc = " Find text",       icon = " ", key = "g" },
           { action = "Telescope oldfiles",                desc = " Recent files",    icon = " ", key = "r" },
-          { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
           { action = "Lazy",                              desc = " Lazy",            icon = "󰒲 ", key = "l" },
           { action = "qa",                                desc = " Quit",            icon = " ", key = "q" },
         },
