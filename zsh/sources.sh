@@ -1,0 +1,17 @@
+alias tm="tmux"
+alias vim="nvim"
+alias cd="z"
+alias sed="sed -E"
+alias time="/usr/bin/time -p"
+alias ls="exa --icons --group-directories-first"
+alias lsl="exa -l -h --no-user --git"
+alias tree="exa -T"
+
+alias morning="morning.zsh"
+alias evening="evening.zsh"
+
+alias cade="ssh u1337847@lab1-13.eng.utah.edu"
+alias ssh="TERM=xterm-256color $(which ssh)"
+alias ystop="yabai --stop-service"
+alias ystart="yabai --start-service"
+alias python="python3"
