@@ -24,7 +24,7 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr "*"
 zstyle ':vcs_info:*' stagedstr "+"
-zstyle ':vcs_info:git:*' formats '%F{yellow}%b%u%f%F{green}%c%f%F{cyan}%m%f '
+zstyle ':vcs_info:git:*' formats '%F{yellow}%b%u%c%f%F{cyan}%m%f '
 
 zstyle ':vcs_info:git*+set-message:*' hooks git-st
 function +vi-git-st() {
@@ -69,7 +69,7 @@ function TRAPINT() {
 }
 
 # build prompt
-dir=" %F{blue}%(3~|.../%1~|%~)%f "
+dir="%F{blue}%(3~|.../%1~|%~)%f "
 git='${vcs_info_msg_0_}'
 promptchar='%(?|%F{white}${mode}%f |%F{red}${mode}%f '
 
