@@ -1,5 +1,5 @@
 autoload -Uz vcs_info
-# autoload -Uz promptinit && promptinit
+autoload -Uz promptinit && promptinit
 setopt PROMPT_SUBST
 
 # print new line after each entry
@@ -54,4 +54,4 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr "*"
 zstyle ':vcs_info:*' stagedstr ""
-zstyle ':vcs_info:git:*' formats '%F{yellow}%b%u%c%f '
+zstyle ':vcs_info:git:*' formats '%F{yellow}%b%u%f %F{cyan}%c%f (%a) '
