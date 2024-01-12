@@ -29,8 +29,8 @@ map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach",
 map({"n", "v"}, ")", "\"0p")
 map({"n", "v"}, "(", "\"0P")
 
+map("n", "Q", "q:")
 map("n", "q", "<nop>")
-map("n", "Q", "<nop>")
 
 -- auto center when moving up/down
 map("n", "<C-d>", "<C-d>zz")
