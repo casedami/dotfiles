@@ -54,5 +54,3 @@ yabai -m rule --add app="^Reminders$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
 
 yabai -m config layout bsp
-
-echo "yabai configuration loaded.."
