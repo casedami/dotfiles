@@ -69,7 +69,7 @@ function TRAPINT() {
 }
 
 # build prompt
-dir="%F{blue}%(3~|.../%1~|%~)%f "
+dir=" %F{blue}%(3~|.../%1~|%~)%f "
 git='${vcs_info_msg_0_}'
 promptchar='%(?|%F{white}${mode}%f |%F{red}${mode}%f '
 
