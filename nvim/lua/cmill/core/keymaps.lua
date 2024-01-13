@@ -6,7 +6,7 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy", silent = true })
 
 -- help
 map("n", "<leader>?", "<cmd>h selfhelp<cr>", { desc = "Open self help", silent = true })
-map("n", "<leader><localleader>", ":h self-", { desc = "Start self help command" })
+map("n", "<localleader>?", ":h self-", { desc = "Start self help command" })
 
 -- move line up/down
 map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
@@ -79,6 +79,9 @@ map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = true })
 map("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
+map("n", "<leader>we", "<C-W>=", { desc = "Size windows equally", remap = true })
+map("n", "<leader>wk", "<C-W>_", { desc = "Maximize current window vertically", remap = true })
+map("n", "<leader>wl", "<C-W>|", { desc = "Maximize current window horizontally", remap = true })
 
 -- colorscheme light/dark
 local toggle_colscheme = function()
