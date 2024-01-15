@@ -14,4 +14,8 @@
 [alias]
 	glog = log --all --graph --decorate
 	glog1 = log --all --graph --decorate --oneline
-	log1 = log --oneline
+	l = log --oneline
+  s = status -s
+  aliases = config --get-regexp alias
+  amend = commit --amend --reuse-message=HEAD
+  whoami = config user.email
