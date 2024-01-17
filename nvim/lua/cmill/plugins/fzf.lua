@@ -63,6 +63,7 @@ return {
             "%.bak",
             "%.app",
             "%.lock",
+            "__pycache__",
             ".DS_Store",
           },
           prompt_prefix = " ",

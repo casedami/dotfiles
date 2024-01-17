@@ -59,11 +59,12 @@ return {
           { name = "path" },
         }),
         formatting = {
-          fields = { "kind", "abbr", "menu" },
+          fields = { "abbr", "kind", "menu" },
           format = function(_, item)
             local icons = require("cmill.core.util").lspicons()
             local icon = icons[item.kind]
-            item.kind = "" .. icon .. " "
+            item.kind = string.format("%s %s", icon, item.kind)
+            item.menu = ""
             return item
           end,
         },

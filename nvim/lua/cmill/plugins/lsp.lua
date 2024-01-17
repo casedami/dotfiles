@@ -130,7 +130,7 @@ return {
         "clangd",
         "clang-format",
         "latexindent",
-        "markdownlint",
+        "prettier",
       },
     },
     config = function(_, opts)
