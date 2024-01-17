@@ -65,8 +65,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
 
     -- stylua: ignore start
-    vim.cmd(string.format("hi Normal guibg=%s", colors.bg0))
-    vim.cmd(string.format("hi NormalNC guibg=%s", colors.bg0))
+    vim.cmd(string.format("hi Normal guibg=%s guifg=%s", colors.bg0, colors.fg))
+    vim.cmd(string.format("hi NormalNC guibg=%s guifg=%s", colors.bg0, colors.fg))
     vim.cmd(string.format("hi NormalFloat guibg=%s", colors.float))
     vim.cmd(string.format( "hi MatchParen gui=bold guifg=%s guibg=%s", colors.orange, colors.bg))
     vim.cmd(string.format("hi CursorLineNr guifg=%s", colors.orange))

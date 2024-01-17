@@ -106,16 +106,16 @@ function M.statusline_theme()
       c = { bg = colors.bg, fg = colors.fg },
     },
     insert = {
-      a = { bg = colors.mode_ins, fg = colors.black },
+      a = { bg = colors.mode_ins, fg = colors.black, gui = "bold" },
     },
     visual = {
-      a = { bg = colors.mode_vis, fg = colors.black },
+      a = { bg = colors.mode_vis, fg = colors.black, gui = "bold" },
     },
     replace = {
-      a = { bg = colors.mode_rep, fg = colors.black },
+      a = { bg = colors.mode_rep, fg = colors.black, gui = "bold" },
     },
     command = {
-      a = { bg = colors.mode_com, fg = colors.black },
+      a = { bg = colors.mode_com, fg = colors.black, gui = "bold" },
     },
   }
   return theme
