@@ -129,11 +129,11 @@ function M.statusline_components()
       fmt = function(str)
         return str:sub(1, 3)
       end,
-      separator = { left = "", right = "" },
+      separator = { right = "" },
     },
     nvim_icon = {
       function()
-        return ""
+        return " "
       end,
       color = { bg = colors.nvim_bg, fg = colors.nvim_fg },
       separator = { right = "" },
@@ -187,7 +187,6 @@ function M.statusline_sections()
   local components = require("cmill.core.util").statusline_components()
   local sections = {
     lualine_a = {
-      components.nvim_icon,
       components.modes,
     },
     lualine_b = {
