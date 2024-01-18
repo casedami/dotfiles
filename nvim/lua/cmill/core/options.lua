@@ -8,7 +8,7 @@ local global_opts = {
   netrw_browse_split = 0,
   netrw_bufsettings = "noma nomod nu nobl nowrap ro",
 
-  -- MARKDON   ===========================================
+  -- MARKDOWN   ==========================================
   autoformat = true,
   markdown_recommended_style = 0,
   markdown_folding = 1,
@@ -54,6 +54,7 @@ local options = {
   spelllang = { "en" },
   tabstop = 2, -- number of spaces tabs count for
   wrap = false,
+
   -- UX   ================================================
   autowrite = true,
   clipboard = "unnamedplus", -- sync with system clipboard
@@ -76,6 +77,7 @@ local options = {
   undolevels = 10000,
   virtualedit = "block", -- allow cursor to move where there is no text in visual block mode
   wildmode = "longest:full,full", -- command-line completion mode
+
   -- UI   ================================================
   background = "dark",
   colorcolumn = "",
@@ -96,6 +98,7 @@ local options = {
   termguicolors = true,
   updatetime = 200,
   winminwidth = 5,
+
   -- MISC   ==============================================
   formatoptions = "jcroqlnt",
   grepformat = "%f:%l:%c:%m",
