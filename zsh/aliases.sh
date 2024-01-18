@@ -6,9 +6,6 @@ alias time="/usr/bin/time -p"
 alias ls="exa --icons --group-directories-first"
 alias lsl="exa -l -h --no-user --git"
 alias tree="exa -T"
-
-alias ..="cd .."
-alias ...="cd ../.."
 alias grep="grep --color=auto"
 
 alias morning="morning.zsh"
