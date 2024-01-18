@@ -1,4 +1,3 @@
-alias tm="tmux"
 alias vim="nvim"
 alias cd="z"
 alias sed="sed -E"
