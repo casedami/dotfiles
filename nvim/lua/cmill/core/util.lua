@@ -187,7 +187,7 @@ function M.statusline_sections()
   local components = require("cmill.core.util").statusline_components()
   local sections = {
     lualine_a = {
-      components.nvim_icon,
+      -- components.nvim_icon,
       components.modes,
     },
     lualine_b = {
