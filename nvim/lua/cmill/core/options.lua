@@ -102,7 +102,7 @@ local options = {
   -- MISC
   formatoptions = "jcroqlnt",
   grepformat = "%f:%l:%c:%m",
-  grepprg = "rg, --vimgrep",
+  grepprg = "rg --vimgrep",
   sessionoptions = {
     "buffers",
     "curdir",
