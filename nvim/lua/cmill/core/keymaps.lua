@@ -29,7 +29,9 @@ map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach",
 map({"n", "v"}, ")", "\"0p")
 map({"n", "v"}, "(", "\"0P")
 
-map("n", "Q", "q:")
+-- remap q to history
+map("n", "Q", "q:") -- commnad history
+map("n", "<leader>/", "q/") -- search history
 map("n", "q", "<nop>")
 
 -- auto center when moving up/down
