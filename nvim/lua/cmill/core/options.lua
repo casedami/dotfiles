@@ -1,19 +1,19 @@
 local global_opts = {
-  -- LEADER KEYS   =======================================
+  -- LEADER KEYS
   mapleader = " ",
   maplocalleader = "\\",
 
-  -- NETRW   =============================================
+  -- NETRW
   netrw_banner = 0,
   netrw_browse_split = 0,
   netrw_bufsettings = "noma nomod nu nobl nowrap ro",
 
-  -- MARKDOWN   ==========================================
+  -- MARKDOWN
   autoformat = true,
   markdown_recommended_style = 0,
   markdown_folding = 1,
 
-  -- TEX   ===============================================
+  -- TEX
   tex_flavor = "latex",
   vimtex_view_method = "skim",
   vimtex_view_skim_sync = 1,
@@ -38,7 +38,7 @@ local global_opts = {
 }
 
 local options = {
-  -- TEXT   ==============================================
+  -- TEXT
   fillchars = {
     foldopen = "",
     foldclose = "",
@@ -55,7 +55,7 @@ local options = {
   tabstop = 2, -- number of spaces tabs count for
   wrap = false,
 
-  -- UX   ================================================
+  -- UX
   autowrite = true,
   clipboard = "unnamedplus", -- sync with system clipboard
   completeopt = "menu,menuone,noselect",
@@ -78,7 +78,7 @@ local options = {
   virtualedit = "block", -- allow cursor to move where there is no text in visual block mode
   wildmode = "longest:full,full", -- command-line completion mode
 
-  -- UI   ================================================
+  -- UI
   background = "dark",
   colorcolumn = "",
   conceallevel = 2, -- hide * markup for bold and italic
@@ -99,7 +99,7 @@ local options = {
   updatetime = 200,
   winminwidth = 5,
 
-  -- MISC   ==============================================
+  -- MISC
   formatoptions = "jcroqlnt",
   grepformat = "%f:%l:%c:%m",
   grepprg = "rg, --vimgrep",
