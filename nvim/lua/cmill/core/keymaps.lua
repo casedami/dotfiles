@@ -83,6 +83,14 @@ map("n", "<leader>we", "<C-W>=", { desc = "Size windows equally", remap = true }
 map("n", "<leader>wk", "<C-W>_", { desc = "Maximize current window vertically", remap = true })
 map("n", "<leader>wl", "<C-W>|", { desc = "Maximize current window horizontally", remap = true })
 
+-- quickfix
+map("n", "<leader>qn", "<cmd>cnext<cr>", { desc = "Advance to next item" })
+map("n", "<leader>qN", "<cmd>cnfile<cr>", { desc = "Advance to first item in next file" })
+map("n", "<leader>qp", "<cmd>cprev<cr>", { desc = "Advance to previous item" })
+map("n", "<leader>qP", "<cmd>cpfile<cr>", { desc = "Advance to last item in previous file" })
+map("n", "<leader>qo", "<cmd>copen<cr>", { desc = "Open quickfix list" })
+map("n", "<leader>qc", "<cmd>copen<cr>", { desc = "Close quickfix list" })
+
 -- colorscheme light/dark
 local toggle_colscheme = function()
   if vim.o.background == "light" then
