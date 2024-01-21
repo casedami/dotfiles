@@ -34,6 +34,8 @@ map("n", "Q", "q:") -- commnad history
 map("n", "<leader>/", "q/") -- search history
 map("n", "q", "<nop>")
 
+map("n", "!", "<C-l>") -- clear cmd line output
+
 -- auto center when moving up/down
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
@@ -59,9 +61,10 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- buffers
-map("n", "<localleader>]", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<localleader>[", "<cmd>bprev<cr>", { desc = "Previous buffer" })
+map("n", "<localleader>]", "<cmd>bnext<cr>", { desc = "Next buffer in bufferlist" })
+map("n", "<localleader>[", "<cmd>bprev<cr>", { desc = "Previous buffer in bufferlist" })
 map("n", "<localleader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
+map("n", "<localleader>p", "<C-6>", { desc = "Previous buffer" })
 
 -- tabs
 map("n", "<localleader>}", "<cmd>tabnext<cr>", { desc = "Next tab" })
