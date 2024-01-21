@@ -1,5 +1,13 @@
 return {
   {
+    "cdmill/saguaro.nvim",
+    lazy = true,
+    branch = "dev",
+    config = function()
+      require("saguaro").load()
+    end,
+  },
+  {
     "sainnhe/everforest",
     priority = 1000,
     config = function()

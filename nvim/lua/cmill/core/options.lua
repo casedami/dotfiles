@@ -56,6 +56,7 @@ local options = {
   wrap = false,
 
   -- UX
+  autoindent = true,
   autowrite = true,
   clipboard = "unnamedplus", -- sync with system clipboard
   completeopt = "menu,menuone,noselect",
