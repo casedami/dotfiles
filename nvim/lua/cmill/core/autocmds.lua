@@ -49,38 +49,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- change some colors
-vim.api.nvim_create_autocmd("ColorScheme", {
-  callback = function()
-    -- reset lualine when changing from light to dark mode and vice versa
-    require("lualine").setup({
-      options = { theme = require("cmill.core.util").statusline_theme() },
-      sections = require("cmill.core.util").statusline_sections(),
-    })
-
-    local colors = require("cmill.core.colors").highlights
-    if vim.o.background == "light" then
-      vim.cmd("hi CursorLineNr guifg=#f57d26")
-      return
-    end
-
-    -- stylua: ignore start
-    vim.cmd(string.format("hi Normal guibg=%s guifg=%s", colors.bg0, colors.fg))
-    vim.cmd(string.format("hi NormalNC guibg=%s guifg=%s", colors.bg0, colors.fg))
-    vim.cmd(string.format("hi NormalFloat guibg=%s", colors.float))
-    vim.cmd(string.format( "hi MatchParen gui=bold guifg=%s guibg=%s", colors.orange, colors.bg))
-    vim.cmd(string.format("hi CursorLineNr guifg=%s", colors.orange))
-    vim.cmd(string.format("hi ColorColumn guibg=%s", colors.line))
-    vim.cmd(string.format("hi CursorLine guibg=%s", colors.line))
-    vim.cmd(string.format("hi Folded guibg=%s", colors.line))
-    vim.cmd(string.format("hi InfoText gui=italic guifg=%s", colors.blue))
-
-    vim.cmd(string.format("hi TelescopeBorder guifg=%s", colors.border))
-    vim.cmd(string.format("hi TelescopeSelection guibg=%s", colors.bg1))
-    -- stylua: ignore end
-  end,
-})
-
 -- lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
