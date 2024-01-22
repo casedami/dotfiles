@@ -97,30 +97,6 @@ function M.statuscolumn()
   return table.concat(components, "")
 end
 
-function M.statusline_theme()
-  local colors = require("cmill.core.colors").statusline()
-  local theme = {
-    normal = {
-      a = { bg = colors.mode_nor, fg = colors.black, gui = "bold" },
-      b = { bg = colors.bg, fg = colors.fg },
-      c = { bg = colors.bg, fg = colors.fg },
-    },
-    insert = {
-      a = { bg = colors.mode_ins, fg = colors.black, gui = "bold" },
-    },
-    visual = {
-      a = { bg = colors.mode_vis, fg = colors.black, gui = "bold" },
-    },
-    replace = {
-      a = { bg = colors.mode_rep, fg = colors.black, gui = "bold" },
-    },
-    command = {
-      a = { bg = colors.mode_com, fg = colors.black, gui = "bold" },
-    },
-  }
-  return theme
-end
-
 function M.statusline_components()
   local colors = require("cmill.core.colors").statusline()
   local components = {
@@ -141,7 +117,7 @@ function M.statusline_components()
     branch = {
       "branch",
       icon = "",
-      color = { bg = colors.bg, fg = colors.git_fg },
+      color = { fg = colors.git_fg },
       separator = { left = "", right = "" },
     },
     filename = {
@@ -155,10 +131,10 @@ function M.statusline_components()
     diagnostics = {
       "diagnostics",
       symbols = {
-        error = " ",
-        warn = "󰹆 ",
-        hint = "󰌵 ",
-        info = "󰙎 ",
+        error = "󰯆 ",
+        warn = " ",
+        hint = " ",
+        info = " ",
       },
     },
     progress = {
@@ -192,9 +168,9 @@ function M.statusline_sections()
     },
     lualine_b = {
       components.branch,
-      components.filename,
     },
     lualine_c = {
+      components.filename,
       components.diagnostics,
     },
     lualine_x = {
