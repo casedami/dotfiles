@@ -23,11 +23,13 @@ return {
       ui = {
         enable = true,
         -- being overridden?
+        -- TODO: fix colors
         hl_groups = {
           ObsidianTodo = { bold = true, fg = "#f78c6c" },
           ObsidianDone = { bold = true, fg = "#89ddff" },
           ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
           ObsidianTilde = { bold = true, fg = "#ff5370" },
+          ObsidianBullet = { bold = true, fg = "#bfce94", bg = "#151515" },
           ObsidianRefText = { underline = true, fg = "#c792ea" },
           ObsidianExtLinkIcon = { fg = "#c792ea" },
           ObsidianTag = { italic = true, fg = "#89ddff" },

@@ -44,7 +44,7 @@ function +vi-git-st() {
     (( $ahead )) && gitstatus+=( " " )
     (( $behind )) && gitstatus+=( " " )
 
-    hook_com[misc]+=${(j:/:)gitstatus}
+    hook_com[misc]+=${(j::)gitstatus}
 }
 
 # change promptchar depending on current mode

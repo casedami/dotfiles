@@ -8,7 +8,7 @@ return {
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
-      -- highlight = { enable = true },
+      highlight = { enable = true },
       indent = { enable = true },
       autotag = { enable = true },
       ensure_installed = {
