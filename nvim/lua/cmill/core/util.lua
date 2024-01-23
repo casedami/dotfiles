@@ -97,6 +97,21 @@ function M.statuscolumn()
   return table.concat(components, "")
 end
 
+local lsp_client = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  local clients = vim.lsp.buf_get_clients(bufnr)
+  if next(clients) == nil then
+    return ""
+  end
+
+  local c = {}
+  for _, client in pairs(clients) do
+    table.insert(c, client.name)
+  end
+  return table.concat(c, "|") .. " "
+end
+
 function M.statusline_components()
   local colors = require("cmill.core.colors").statusline()
   local components = {
@@ -105,20 +120,11 @@ function M.statusline_components()
       fmt = function(str)
         return str:sub(1, 3)
       end,
-      separator = { right = "" },
-    },
-    nvim_icon = {
-      function()
-        return ""
-      end,
-      color = { bg = colors.nvim_bg, fg = colors.nvim_fg },
-      separator = { right = "" },
     },
     branch = {
       "branch",
       icon = "",
       color = { fg = colors.git_fg },
-      separator = { left = "", right = "" },
     },
     filename = {
       "filename",
@@ -139,6 +145,14 @@ function M.statusline_components()
     },
     progress = {
       "progress",
+    },
+    lsp = {
+      lsp_client,
+      color = { fg = colors.git_fg },
+    },
+    datetime = {
+      "datetime",
+      style = "%H:%M:%S",
     },
     location = {
       "location",
@@ -178,7 +192,10 @@ function M.statusline_sections()
       components.progress,
       components.location,
     },
-    lualine_y = {},
+    lualine_y = {
+      components.lsp,
+      components.datetime,
+    },
     lualine_z = {},
   }
   return sections

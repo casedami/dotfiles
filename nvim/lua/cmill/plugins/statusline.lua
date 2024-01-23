@@ -6,7 +6,7 @@ return {
         options = {
           icons_enabled = true,
           theme = "saguaro",
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "dashboard", "toggleterm" },
           ignore_focus = {},

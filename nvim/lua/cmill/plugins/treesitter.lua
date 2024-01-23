@@ -16,6 +16,7 @@ return {
         "yaml",
         "markdown",
         "markdown_inline",
+        "latex",
         "lua",
         "vim",
         "vimdoc",
