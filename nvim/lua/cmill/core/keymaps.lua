@@ -30,9 +30,8 @@ map({"n", "v"}, ")", "\"0p")
 map({"n", "v"}, "(", "\"0P")
 
 -- remap q to history
-map("n", "Q", "q:") -- commnad history
-map("n", "<leader>/", "q/") -- search history
-map("n", "q", "<nop>")
+map("n", "q", "q:") -- commnad history
+map("n", "Q", "q/") -- search history
 
 map("n", "!", "<C-l>") -- clear cmd line output
 

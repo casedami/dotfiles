@@ -1,3 +1,4 @@
+local components = require("cmill.core.util").statusline_components()
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -18,7 +19,28 @@ return {
             winbar = 1000,
           },
         },
-        sections = require("cmill.core.util").statusline_sections(),
+        sections = {
+          lualine_a = {
+            components.modes,
+          },
+          lualine_b = {
+            components.branch,
+          },
+          lualine_c = {
+            components.filename,
+            components.diagnostics,
+          },
+          lualine_x = {
+            components.tabs,
+            components.progress,
+            components.location,
+          },
+          lualine_y = {
+            components.lsp,
+            components.datetime,
+          },
+          lualine_z = {},
+        },
       })
     end,
   },

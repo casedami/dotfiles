@@ -1,5 +1,3 @@
-local colors = require("cmill.core.colors").highlights
-
 return {
   {
     "numToStr/Comment.nvim",
@@ -8,10 +6,10 @@ return {
       require("Comment").setup()
     end,
   },
-  -- stylua: ignore
   {
     "folke/todo-comments.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    -- stylua: ignore
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
@@ -19,13 +17,13 @@ return {
     },
     opts = {
       keywords = {
-        FIX = { icon = " ", color =  colors.todo_red, alt = { "BUG", "ISSUE" } },
-        TODO = { icon = "󰦐 ", color = colors.todo_blue },
-        HACK = { icon = "󰈻 ", color = colors.todo_orange },
-        WARN = { icon = "󰹆 ", color = colors.todo_yellow, alt = { "WARNING" } },
-        PERF = { icon = " ", color = colors.todo_yellow, alt = { "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = "󰎞 ", color = colors.todo_aqua, alt = { "INFO" } },
-        TEST = { icon = "󱖫 ", color = colors.todo_purple, alt = { "TESTING", "PASSED", "FAILED" } },
+        FIX = { icon = " ", alt = { "BUG", "ISSUE" } },
+        TODO = { icon = "󰦐 " },
+        HACK = { icon = "󰈻 " },
+        WARN = { icon = "󰹆 ", alt = { "WARNING" } },
+        PERF = { icon = " ", alt = { "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = "󰎞 ", alt = { "INFO" } },
+        TEST = { icon = "󱖫 ", alt = { "TESTING", "PASSED", "FAILED" } },
       },
     },
   },

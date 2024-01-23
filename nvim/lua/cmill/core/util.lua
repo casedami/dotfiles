@@ -113,7 +113,6 @@ local lsp_client = function()
 end
 
 function M.statusline_components()
-  local colors = require("cmill.core.colors").statusline()
   local components = {
     modes = {
       "mode",
@@ -124,7 +123,7 @@ function M.statusline_components()
     branch = {
       "branch",
       icon = "",
-      color = { fg = colors.git_fg },
+      color = { fg = "#DBBC7F" },
     },
     filename = {
       "filename",
@@ -148,7 +147,7 @@ function M.statusline_components()
     },
     lsp = {
       lsp_client,
-      color = { fg = colors.git_fg },
+      color = { fg = "#DBBC7F" },
     },
     datetime = {
       "datetime",
@@ -165,40 +164,13 @@ function M.statusline_components()
         active = "lualine_a_normal",
         inactive = "lualine_b_normal",
       },
+      separator = { left = "", right = "" },
       cond = function()
         return vim.api.nvim_eval("len(gettabinfo())") > 1
       end,
     },
   }
   return components
-end
-
-function M.statusline_sections()
-  local components = require("cmill.core.util").statusline_components()
-  local sections = {
-    lualine_a = {
-      -- components.nvim_icon,
-      components.modes,
-    },
-    lualine_b = {
-      components.branch,
-    },
-    lualine_c = {
-      components.filename,
-      components.diagnostics,
-    },
-    lualine_x = {
-      components.tabs,
-      components.progress,
-      components.location,
-    },
-    lualine_y = {
-      components.lsp,
-      components.datetime,
-    },
-    lualine_z = {},
-  }
-  return sections
 end
 
 function M.lspicons()

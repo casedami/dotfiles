@@ -37,7 +37,7 @@ local global_opts = {
   },
 }
 
-local options = {
+local opts = {
   -- TEXT
   fillchars = {
     foldopen = "",
@@ -122,6 +122,6 @@ for k, v in pairs(global_opts) do
   vim.g[k] = v
 end
 
-for k, v in pairs(options) do
+for k, v in pairs(opts) do
   vim.opt[k] = v
 end
