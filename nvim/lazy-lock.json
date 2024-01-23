@@ -19,7 +19,7 @@
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "19a91a38b02c1c28c14e0ba468d20ae1423c39b2" },
   "obsidian.nvim": { "branch": "main", "commit": "1c888996fdced99e7a6fae23f4424450c9c91eec" },
   "plenary.nvim": { "branch": "master", "commit": "663246936325062427597964d81d30eaa42ab1e4" },
-  "saguaro.nvim": { "branch": "main", "commit": "2afe766ff18ccb790b1c7650d708cc7a388e978e" },
+  "saguaro.nvim": { "branch": "main", "commit": "b22bbdad6f585cf98e2c8f55bcd0a837b7dbca06" },
   "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c89903377252bf5b" },
   "telescope.nvim": { "branch": "master", "commit": "36dce6261ae3660bb57ba942361067b2028aec31" },
   "todo-comments.nvim": { "branch": "main", "commit": "833d8dd8b07eeda37a09e99460f72a02616935cb" },
