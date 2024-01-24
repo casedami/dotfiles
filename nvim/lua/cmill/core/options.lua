@@ -76,7 +76,7 @@ local opts = {
   splitright = true, -- put new windows right of current
   timeoutlen = 300,
   undofile = true,
-  undolevels = 10000,
+  undolevels = 50,
   virtualedit = "block", -- allow cursor to move where there is no text in visual block mode
   wildmode = "longest:full,full", -- command-line completion mode
 

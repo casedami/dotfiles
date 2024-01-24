@@ -28,7 +28,6 @@ return {
           },
           lualine_c = {
             components.filename,
-            components.diagnostics,
           },
           lualine_x = {
             components.tabs,
@@ -36,8 +35,8 @@ return {
             components.location,
           },
           lualine_y = {
+            components.diagnostics,
             components.lsp,
-            components.datetime,
           },
           lualine_z = {},
         },

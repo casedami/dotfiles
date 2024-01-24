@@ -135,6 +135,7 @@ function M.statusline_components()
     },
     diagnostics = {
       "diagnostics",
+      colored = false,
       symbols = {
         error = "󰯆 ",
         warn = " ",
