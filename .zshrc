@@ -7,3 +7,4 @@ source /Users/caseymiller/.config/zsh/prompt.zsh
 source /Users/caseymiller/.config/zsh/aliases.sh
 source /Users/caseymiller/.config/zsh/opt.sh
 source /Users/caseymiller/.config/zsh/fg_bg.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

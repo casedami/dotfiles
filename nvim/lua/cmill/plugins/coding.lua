@@ -74,19 +74,4 @@ return {
       })
     end,
   },
-  {
-    "akinsho/toggleterm.nvim",
-    event = { "BufReadPost" },
-    version = "*",
-    opts = {
-      open_mapping = [[<c-\>]],
-      shade_terminals = false,
-      insert_mappings = true,
-      terminal_mappings = true,
-      direction = "horizontal",
-      auto_scroll = true,
-      persist_size = false,
-      hide_numbers = true,
-    },
-  },
 }

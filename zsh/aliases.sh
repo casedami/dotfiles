@@ -1,5 +1,6 @@
 alias vim="nvim"
 alias cd="z"
+alias tm="tmux"
 alias sed="sed -E"
 alias time="/usr/bin/time -p"
 alias ls="exa --icons --group-directories-first"

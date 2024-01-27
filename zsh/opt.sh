@@ -10,7 +10,7 @@ setopt hist_save_no_dups
 setopt hist_find_no_dups
 
 setopt cd_silent     # don't print dir after cd
-setopt extended_glob # extened globbing functionality
+setopt extended_glob # extended globbing functionality
 setopt vi            # turn on vi-mode
 
 export LANG="en_US.UTF-8"
@@ -28,11 +28,4 @@ export FZF_DEFAULT_OPTS="
 --multi
 --height 40%
 "
-
-# completion
-source /opt/homebrew/Cellar/fzf/0.45.0/shell/completion.zsh
-source /Users/caseymiller/.local/share/fzftab/zsh/fzf-zsh-completion.sh
-bindkey '^I' fzf_completion
-zstyle ':completion:*' fzf-search-display true
-autoload -U compinit
-compinit
+export FZF_COMPLETION_TRIGGER=';'

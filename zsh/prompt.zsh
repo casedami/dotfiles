@@ -24,7 +24,7 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr "*"
 zstyle ':vcs_info:*' stagedstr "+"
-zstyle ':vcs_info:git:*' formats '%F{blue}%b%u%c%f%F{magenta}%m%f '
+zstyle ':vcs_info:git:*' formats '%F{cyan}%b%u%c%f%F{magenta}%m%f '
 
 zstyle ':vcs_info:git*+set-message:*' hooks git-st
 function +vi-git-st() {
@@ -47,31 +47,10 @@ function +vi-git-st() {
     hook_com[misc]+=${(j::)gitstatus}
 }
 
-# change promptchar depending on current mode
-ins="%#"
-com=">"
-mode=$ins
-
-function zle-keymap-select {
-  mode="${${KEYMAP/vicmd/${com}}/(main|viins)/${ins}}"
-  zle reset-prompt
-}
-zle -N zle-keymap-select
-
-function zle-line-finish {
-  mode=$ins
-}
-zle -N zle-line-finish
-
-function TRAPINT() {
-  mode=$ins
-  return $(( 128 + $1 ))
-}
-
 # build prompt
-dir="%F{green}%(3~|.../%1~|%~)%f "
+dir="%F{blue}%(3~|.../%1~|%~)%f "
 git='${vcs_info_msg_0_}'
-promptchar='%(?|%F{white}${mode}%f |%F{red}${mode}%f '
+promptchar='%(?|%F{white}>%f |%F{red}>%f '
 
 ps1=(
   $dir
