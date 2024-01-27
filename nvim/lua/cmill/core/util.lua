@@ -123,7 +123,6 @@ function M.statusline_components()
     branch = {
       "branch",
       icon = "",
-      color = { fg = "#DBBC7F" },
     },
     filename = {
       "filename",
@@ -148,7 +147,6 @@ function M.statusline_components()
     },
     lsp = {
       lsp_client,
-      color = { fg = "#DBBC7F" },
     },
     datetime = {
       "datetime",

@@ -19,3 +19,4 @@ alias python="python3"
 
 alias uni="cd ~/dev/uni/"
 alias notes="cd ~/self/uni/"
+alias conf="cd ~/.config/"
