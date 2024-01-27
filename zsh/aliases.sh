@@ -16,3 +16,6 @@ alias ssh="TERM=xterm-256color $(which ssh)"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
 alias python="python3"
+
+alias uni="cd ~/dev/uni/"
+alias notes="cd ~/self/uni/"
