@@ -12,16 +12,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- toggleterm keymaps
-vim.api.nvim_create_autocmd("TermOpen", {
-  callback = function()
-    local opts = { buffer = 0 }
-    map("t", "<esc>", [[<C-\><C-n>]], opts)
-    map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-    map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-    map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-    map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-    map("t", "<C-w>", "<esc><cmd>q<cr>")
+-- go to last loc when opening a buffer
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup("last_loc"),
+  callback = function(event)
+    local exclude = { "gitcommit" }
+    local buf = event.buf
+    if
+      vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc
+    then
+      return
+    end
+    vim.b[buf].lazyvim_last_loc = true
+    local mark = vim.api.nvim_buf_get_mark(buf, '"')
+    local lcount = vim.api.nvim_buf_line_count(buf)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
   end,
 })
 
