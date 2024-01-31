@@ -10,7 +10,6 @@ return {
         sh = { "shfmt" },
         c = { "clang-format" },
         tex = { "latexindent" },
-        markdown = { "prettier" },
         ["_"] = { "trim_whitespace" },
       },
       format_on_save = {
