@@ -8,9 +8,10 @@ return {
     },
     opts = {
       diagnostics = {
-        virtual_text = {
-          prefix = "▪",
-        },
+        -- virtual_text = {
+        --   prefix = "▪",
+        -- },
+        virtual_text = false,
         underline = true,
         update_in_insert = false,
         severity_sort = true,
