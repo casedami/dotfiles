@@ -13,6 +13,7 @@ alias evening="evening.zsh"
 alias todo="todo.sh"
 
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
+alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias ystop="yabai --stop-service"
 alias ystart="yabai --start-service"
