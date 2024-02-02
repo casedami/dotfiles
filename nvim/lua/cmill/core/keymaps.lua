@@ -48,10 +48,6 @@ map("n", "<localleader>ev", ":vsp <C-R>=expand('%:p:h') . '/' <CR>", { desc = "E
 map("n", "<localleader>s", ":s/", { desc = "Start search and replace" })
 map("n", "<localleader>S", ":%s/", { desc = "Start global search and replace" })
 
--- explorer
-map("n", "<leader>e", "<cmd>E %:p:h<cr>", { desc = "Open explore in dir of current file" })
-map("n", "<leader>E", "<cmd>E<cr>", { desc = "Open explore in cwd" })
-
 -- remap in-line movement
 map("n", "0", "^", { desc = "Goto beginning of line" })
 
