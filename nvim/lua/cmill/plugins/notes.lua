@@ -1,6 +1,7 @@
 return {
   {
     "epwalsh/obsidian.nvim",
+    version = "*",
     event = {
       "BufReadPre " .. vim.fn.expand("~") .. "/self/**.md",
       "BufNewFile " .. vim.fn.expand("~") .. "/self/**.md",
@@ -15,14 +16,12 @@ return {
         subdir = "resources/templates",
         date_format = "%Y-%m-%d",
         time_format = "%H:%M",
-        -- A map for custom variables, the key should be the variable and the value a function
         substitutions = {},
       },
       mappings = {},
       finder = "telescope.nvim",
       ui = {
         enable = true,
-        -- being overridden?
         -- TODO: fix colors
         hl_groups = {
           ObsidianTodo = { bold = true, fg = "#f78c6c" },
@@ -36,6 +35,9 @@ return {
           ObsidianHighlightText = { bg = "#3f4a33" },
         },
       },
+      note_id_func = function(prefix)
+        return prefix .. os.date("%Y%m%d%H%M")
+      end,
     },
   },
   { "lervag/vimtex" },

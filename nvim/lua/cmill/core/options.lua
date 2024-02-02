@@ -15,9 +15,8 @@ local global_opts = {
 
   -- TEX
   tex_flavor = "latex",
-  vimtex_view_method = "skim",
-  vimtex_view_skim_sync = 1,
-  vimtex_view_skim_activate = 1,
+  vimtex_view_method = "sioyek",
+  vimtex_view_sioyek_options = "--reuse-window",
   vimtex_indent_on = 1,
   vimtex_syntax_conceal_disable = 1,
   vimtex_quickfix_open_on_warning = 0,
