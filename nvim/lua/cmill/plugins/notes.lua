@@ -20,6 +20,7 @@ return {
       },
       mappings = {},
       finder = "telescope.nvim",
+      log_level = vim.log.levels.OFF,
       ui = {
         enable = true,
         hl_groups = {
