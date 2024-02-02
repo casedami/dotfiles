@@ -22,16 +22,15 @@ return {
       finder = "telescope.nvim",
       ui = {
         enable = true,
-        -- TODO: fix colors
         hl_groups = {
-          ObsidianTodo = { bold = true, fg = "#f78c6c" },
-          ObsidianDone = { bold = true, fg = "#89ddff" },
+          ObsidianTodo = { bold = true, fg = "#e67e80" },
+          ObsidianDone = { bold = true, fg = "#b7c3e3" },
           ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
           ObsidianTilde = { bold = true, fg = "#ff5370" },
           ObsidianBullet = { bold = true, fg = "#bfce94", bg = "#151515" },
-          ObsidianRefText = { underline = true, fg = "#c792ea" },
+          ObsidianRefText = { underline = true, fg = "#A07A93" },
           ObsidianExtLinkIcon = { fg = "#c792ea" },
-          ObsidianTag = { italic = true, fg = "#89ddff" },
+          ObsidianTag = { italic = true, fg = "#8799cf" },
           ObsidianHighlightText = { bg = "#3f4a33" },
         },
       },
