@@ -34,7 +34,8 @@ return {
           ObsidianHighlightText = { bg = "#3f4a33" },
         },
       },
-      note_id_func = function(prefix)
+      note_id_func = function(tag)
+        local prefix = tag or ""
         return prefix .. os.date("%Y%m%d%H%M")
       end,
     },
