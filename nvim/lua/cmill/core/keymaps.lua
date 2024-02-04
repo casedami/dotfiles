@@ -1,112 +1,13 @@
--- stylua: ignore start
-local map = vim.keymap.set
-
--- lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy", silent = true })
-
--- help
-map("n", "<leader>?", "<cmd>h selfhelp<cr>", { desc = "Open self help", silent = true })
-map("n", "<localleader>?", ":h self-", { desc = "Start self help command" })
-
--- move line up/down
-map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
-map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
-
 local function del_marks()
   vim.cmd("delm a-zA-Z")
   vim.cmd("wviminfo!")
-  vim.cmd(([[echohl DiagnosticInfo | echomsg "%s" | echohl None]]):format(" deleting marks..."))
+  vim.cmd(
+    ([[echohl DiagnosticInfo | echomsg "%s" | echohl None]]):format(
+      " deleting marks..."
+    )
+  )
 end
 
--- marks
-map( "n", "<leader>dm", function() del_marks() end, { desc = "Delete marks", silent = true })
-vim.api.nvim_create_user_command("M", "marks", { desc = "Show marks" })
-
--- remove highlighting after search
-map("n", "<CR>", "<cmd>noh<cr><cr>", { desc = "Remove highlighting after seach", remap = false })
-
--- paste from 0 register
-map({"n", "v"}, ")", "\"0p")
-map({"n", "v"}, "(", "\"0P")
-
--- remap q to history
-map("n", "q", "q:") -- commnad history
-map("n", "Q", "q/") -- search history
-
-map("n", "!", "<C-l>") -- clear cmd line output
-
--- auto center when moving up/down
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-
--- edit shortcuts
-map("n", "<localleader>e", ":e <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory" })
-map("n", "<localleader>es", ":sp <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory (horizonatal split)" })
-map("n", "<localleader>ev", ":vsp <C-R>=expand('%:p:h') . '/' <CR>", { desc = "Edit file in current directory (vertical split)" })
-
--- search
-map("n", "<localleader>s", ":s/", { desc = "Start search and replace" })
-map("n", "<localleader>S", ":%s/", { desc = "Start global search and replace" })
-
--- remap in-line movement
-map("n", "0", "^", { desc = "Goto beginning of line" })
-
--- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
-
--- buffers
-map("n", "<localleader>]", "<cmd>bnext<cr>", { desc = "Next buffer in bufferlist" })
-map("n", "<localleader>[", "<cmd>bprev<cr>", { desc = "Previous buffer in bufferlist" })
-map("n", "<localleader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
-map("n", "<localleader>p", "<C-6>", { desc = "Previous buffer" })
-
--- tabs
-map("n", "<localleader>}", "<cmd>tabnext<cr>", { desc = "Next tab" })
-map("n", "<localleader>{", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
-map("n", "<localleader><tab>c", "<cmd>tabnew %<cr>", { desc = "New tab" })
-map("n", "<localleader><tab>d", "<cmd>tabclose<cr>", { desc = "Close tab" })
-
--- windows
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<C-Left>", "<cmd>vertical resize +2<cr>", { desc = "Decrease window width" })
-map("n", "<C-Right>", "<cmd>vertical resize -2<cr>", { desc = "Increase window width" })
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete window", remap = true })
-map("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
-map("n", "<leader>we", "<C-W>=", { desc = "Size windows equally", remap = true })
-map("n", "<leader>wk", "<C-W>_", { desc = "Maximize current window vertically", remap = true })
-map("n", "<leader>wl", "<C-W>|", { desc = "Maximize current window horizontally", remap = true })
-
--- quickfix
-map("n", "<leader>qn", "<cmd>cnext<cr>", { desc = "Advance to next item" })
-map("n", "<leader>qN", "<cmd>cnfile<cr>", { desc = "Advance to first item in next file" })
-map("n", "<leader>qp", "<cmd>cprev<cr>", { desc = "Advance to previous item" })
-map("n", "<leader>qP", "<cmd>cpfile<cr>", { desc = "Advance to last item in previous file" })
-map("n", "<leader>qo", "<cmd>copen<cr>", { desc = "Open quickfix list" })
-map("n", "<leader>qc", "<cmd>copen<cr>", { desc = "Close quickfix list" })
-
--- colorscheme light/dark
-local toggle_colscheme = function()
-  if vim.o.background == "light" then
-    vim.opt.background = "dark"
-    vim.g.everforest_background = "hard"
-    vim.cmd("colorscheme everforest")
-  else
-    vim.opt.background = "light"
-    vim.g.everforest_background = "soft"
-    vim.cmd("colorscheme everforest")
-  end
-end
-
-map("n", "<leader>uc", function() toggle_colscheme() end)
-
--- colorcolumn
 local toggle_colorcolumn = function()
   if vim.o.colorcolumn == "" then
     vim.opt.colorcolumn = "88"
@@ -115,5 +16,86 @@ local toggle_colorcolumn = function()
   end
 end
 
-map("n", "<leader>!", function() toggle_colorcolumn() end)
--- stylua: ignore end
+local opts = {
+  silent = { silent = true },
+  noremap = { remap = false },
+  remap = { remap = true },
+}
+
+local maps = {
+  { "n", "<leader>l", "<cmd>Lazy<cr>", opts["silent"] }, -- open lazy
+  { "n", "<leader>?", "<cmd>h selfhelp<cr>", opts["silent"] }, -- open selfhelp
+  { "n", "<localleader>?", ":h self-" }, -- start search command
+  -- MOVEMENT
+  { "n", "0", "^" }, -- remap inline movement (beginning of line)
+  { "n", "<C-u>", "<C-u>zz" }, --auto center after moving up
+  { "n", "<C-d>", "<C-d>zz" }, -- auto center after moving down
+  { "v", "J", ":m '>+1<cr>gv=gv", opts["silent"] }, -- move line up
+  { "v", "K", ":m '<-2<cr>gv=gv", opts["silent"] }, -- move line down
+  { "v", "<", "<gv" }, -- better indenting
+  { "v", ">", ">gv" }, -- better indenting
+  -- BUFFERS
+  { "n", "<localleader>]", "<cmd>bnext<cr>" }, -- next buffer in bufferlist
+  { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
+  { "n", "<localleader>bd", "<cmd>bd<cr>" }, -- delete buffer
+  { "n", "<localleader>p", "<C-6>" }, -- previous buffer
+  -- TABS
+  { "n", "<localleader>}", "<cmd>tabnext<cr>" }, -- next tab
+  { "n", "<localleader>{", "<cmd>tabprevious<cr>" }, -- previous tab
+  { "n", "<localleader><tab>c", "<cmd>tabnew %<cr>" }, -- new tab
+  { "n", "<localleader><tab>d", "<cmd>tabclose<cr>" }, -- close tab
+  -- WINDOWS
+  { "n", "<C-Up>", "<cmd>resize +2<cr>" }, -- increase window height
+  { "n", "<C-Down>", "<cmd>resize -2<cr>" }, -- decrease window height
+  { "n", "<C-Left>", "<cmd>vertical resize +2<cr>" }, -- decrease window width
+  { "n", "<C-Right>", "<cmd>vertical resize -2<cr>" }, -- increase window width
+  { "n", "<C-h>", "<C-w>h", opts["remap"] }, -- goto left window
+  { "n", "<C-j>", "<C-w>j", opts["remap"] }, -- goto lower window
+  { "n", "<C-k>", "<C-w>k", opts["remap"] }, -- goto upper window
+  { "n", "<C-l>", "<C-w>l", opts["remap"] }, -- goto right window
+  { "n", "<leader>wd", "<C-W>c", opts["remap"] }, -- delete window
+  { "n", "<leader>-", "<C-W>s", opts["remap"] }, -- split window below
+  { "n", "<leader>|", "<C-W>c", opts["remap"] }, -- split window right
+  { "n", "<leader>we", "<C-W>=", opts["remap"] }, -- split windows equally
+  { "n", "<leader>wk", "<C-W>_", opts["remap"] }, -- maximize current window vertically
+  { "n", "<leader>wl", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
+  -- QUICK FIX LIST
+  { "n", "<leader>qn", "<cmd>cnext<cr>" }, -- goto to next item in qf list
+  { "n", "<leader>qN", "<cmd>cnfile<cr>" }, -- goto to first item in next file
+  { "n", "<leader>qp", "<cmd>cprev<cr>" }, -- goto to previous item in qf list
+  { "n", "<leader>qP", "<cmd>cpfile<cr>" }, -- goto to last item in previous file
+  { "n", "<leader>qo", "<cmd>copen<cr>" }, -- open qf list
+  { "n", "<leader>qc", "<cmd>copen<cr>" }, -- close qf list
+  -- MISC COMMAND SHORTCUTS
+  { "n", "<localleader>e", ":e <C-R>=expand('%:p:h') . '/' <CR>" }, -- edit new file in current dir
+  { "n", "<localleader>es", ":sp <C-R>=expand('%:p:h') . '/' <CR>" }, -- edit new file in current dir (hsplit)
+  { "n", "<localleader>ev", ":vsp <C-R>=expand('%:p:h') . '/' <CR>" }, --edit new file in current dir (vsplit)
+  { "n", "<localleader>s", ":s/" }, -- start search and replace
+  { "n", "<localleader>S", ":%s/" }, -- start global search and replace
+  { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
+  { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
+  { { "n", "v" }, "q", "q:" }, -- remap q to command history
+  { { "n", "v" }, "Q", "q/" }, -- remap Q to search history
+  { "n", "!", "<C-l>" }, -- clear cmd line
+  { "n", "<CR>", "<cmd>noh<cr><cr>", opts["noremap"] }, -- remove highlighting after search
+  {
+    "n",
+    "<leader>!",
+    function()
+      toggle_colorcolumn()
+    end,
+  },
+  {
+    "n",
+    "<leader>dm",
+    function()
+      del_marks()
+    end,
+    { silent = true },
+  },
+}
+
+for _, v in pairs(maps) do
+  opts = v[4] or {}
+  vim.keymap.set(v[1], v[2], v[3], opts)
+end
