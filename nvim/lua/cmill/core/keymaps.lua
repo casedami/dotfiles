@@ -55,10 +55,10 @@ local maps = {
   { "n", "<C-l>", "<C-w>l", opts["remap"] }, -- goto right window
   { "n", "<leader>wd", "<C-W>c", opts["remap"] }, -- delete window
   { "n", "<leader>-", "<C-W>s", opts["remap"] }, -- split window below
-  { "n", "<leader>|", "<C-W>c", opts["remap"] }, -- split window right
+  { "n", "<leader>|", "<C-W>v", opts["remap"] }, -- split window right
   { "n", "<leader>we", "<C-W>=", opts["remap"] }, -- split windows equally
   { "n", "<leader>wk", "<C-W>_", opts["remap"] }, -- maximize current window vertically
-  { "n", "<leader>wl", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
+  { "n", "<leader>wh", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
   -- QUICK FIX LIST
   { "n", "<leader>qn", "<cmd>cnext<cr>" }, -- goto to next item in qf list
   { "n", "<leader>qN", "<cmd>cnfile<cr>" }, -- goto to first item in next file
