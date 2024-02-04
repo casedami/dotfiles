@@ -8,7 +8,7 @@ local function del_marks()
   )
 end
 
-local toggle_colorcolumn = function()
+local function toggle_colorcolumn()
   if vim.o.colorcolumn == "" then
     vim.opt.colorcolumn = "88"
   else
@@ -25,7 +25,7 @@ local opts = {
 local maps = {
   { "n", "<leader>l", "<cmd>Lazy<cr>", opts["silent"] }, -- open lazy
   { "n", "<leader>?", "<cmd>h selfhelp<cr>", opts["silent"] }, -- open selfhelp
-  { "n", "<localleader>?", ":h self-" }, -- start search command
+  { "n", "<localleader>?", ":h self-" }, -- start search help command
   -- MOVEMENT
   { "n", "0", "^" }, -- remap inline movement (beginning of line)
   { "n", "<C-u>", "<C-u>zz" }, --auto center after moving up
@@ -78,21 +78,8 @@ local maps = {
   { { "n", "v" }, "Q", "q/" }, -- remap Q to search history
   { "n", "!", "<C-l>" }, -- clear cmd line
   { "n", "<CR>", "<cmd>noh<cr><cr>", opts["noremap"] }, -- remove highlighting after search
-  {
-    "n",
-    "<leader>!",
-    function()
-      toggle_colorcolumn()
-    end,
-  },
-  {
-    "n",
-    "<leader>dm",
-    function()
-      del_marks()
-    end,
-    { silent = true },
-  },
+  { "n", "<leader>!", toggle_colorcolumn }, -- toggle color column
+  { "n", "<leader>dm", del_marks, opts["silent"] }, -- delete user's marks
 }
 
 for _, v in pairs(maps) do

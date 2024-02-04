@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 local function augroup(name)
-  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("cmill" .. name, { clear = true })
 end
 
 -- highlight text on yank
