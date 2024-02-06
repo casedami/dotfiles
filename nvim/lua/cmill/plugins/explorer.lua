@@ -1,17 +1,17 @@
 return {
   {
     "stevearc/oil.nvim",
-    opts = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
       { "<leader>fe", "<cmd>Oil<cr>" },
     },
+    cmd = "Oil",
     config = function()
       require("oil").setup({
         default_file_explorer = true,
         view_options = {
           show_hidden = true,
         },
+        columns = {},
         keymaps = {
           ["g?"] = "actions.show_help",
           ["<CR>"] = "actions.select",
