@@ -9,7 +9,7 @@ function fish_prompt
 
     set -l __last_command_exit_status $status
 
-    set -g __fish_git_prompt_color yellow
+    set -g __fish_git_prompt_color cyan
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showupstream git
     set -g __fish_git_prompt_color_upstream magenta
@@ -28,7 +28,7 @@ function fish_prompt
         set promptchar "$promptchar_color# "
     end
 
-    set -l cwd $cyan(basename (prompt_pwd))
+    set -l cwd $blue(basename (prompt_pwd))
 
     echo -n -s $cwd (fish_git_prompt) ' ' $promptchar ''$normal''
 end

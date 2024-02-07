@@ -20,5 +20,5 @@ alias ystart="yabai --start-service"
 alias python="python3"
 
 alias uni="cd ~/self/dev/uni/"
-alias notes="cd ~/self/notes/uni/"
+alias notes="cd ~/self/notes/main/"
 alias conf="cd ~/.config/"

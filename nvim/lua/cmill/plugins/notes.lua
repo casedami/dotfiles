@@ -10,7 +10,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = {
-      dir = "~/self/uni",
+      dir = "~/self/notes/main",
       disable_frontmatter = true,
       templates = {
         subdir = "resources/templates",

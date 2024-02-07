@@ -1,3 +1,3 @@
-open "obsidian://open?vault=uni&file=evening"
+open "obsidian://open?vault=main&file=evening"
 sleep 1
 yabai -m window --toggle zoom-fullscreen
