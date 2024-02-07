@@ -3,7 +3,7 @@ return {
     "cdmill/saguaro.nvim",
     config = function()
       require("saguaro").setup({
-        transparent = true,
+        -- transparent = true,
         lualine = {
           transparent = true,
         },
