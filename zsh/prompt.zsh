@@ -8,17 +8,17 @@ load_vcs () {
 }
 
 # print newline after each command
-newline() {
-  precmd() {
-      echo
-  }
-}
+# newline() {
+#   precmd() {
+#       echo
+#   }
+# }
 
 add-zsh-hook precmd load_vcs
-add-zsh-hook precmd newline
+# add-zsh-hook precmd newline
 
 # don't print newline before prompt on clear command
-alias clear="precmd() {precmd() {echo }} && clear"
+# alias clear="precmd() {precmd() {echo }} && clear"
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
