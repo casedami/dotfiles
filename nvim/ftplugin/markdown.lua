@@ -1,4 +1,5 @@
 -- TODO: add to self help
+vim.keymap.set("n", "<localleader>e", ":e ~/self/notes/main/inbox/")
 vim.keymap.set("n", "<localleader>ll", "<cmd>ObsidianOpen<cr>")
 vim.keymap.set("n", "<localleader>gd", "<cmd>ObsidianFollowLink<cr>")
 vim.keymap.set("n", "<localleader>gs", "<cmd>ObsidianFollowLink hsplit<cr>")

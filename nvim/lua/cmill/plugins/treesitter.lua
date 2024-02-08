@@ -9,7 +9,12 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
       highlight = { enable = true },
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        disable = {
+          "markdown",
+        },
+      },
       autotag = { enable = true },
       ensure_installed = {
         "json",
