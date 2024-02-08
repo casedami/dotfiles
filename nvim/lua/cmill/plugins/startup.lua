@@ -2,8 +2,8 @@ return {
   "nvimdev/dashboard-nvim",
   opts = function()
     local logo = [[
-        ▄▄▄▄▄                
-   ▄▄█  █▄         ▄▄▄       
+         ▄▄▄▄▄                
+    ▄▄█  █▄         ▄▄▄       
  ▄▄▄ ▄   █   ▄▄▄▄▄ ▄▄▄ ▄▄▄ ▄
  █▄█ █   █   ▄▄▄ █ █ █ █▄█ █
    █▄█▄▄ █▄▄ █▄█ █ ▄▄█ ▄▄█▄█
