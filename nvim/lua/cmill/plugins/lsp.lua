@@ -48,14 +48,40 @@ return {
             },
           },
         },
-        pyright = {},
+        pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { "*" },
+              },
+            },
+          },
+        },
         clangd = {},
       },
-      setup = {},
+      setup = {
+        ruff_lsp = function()
+          local on_attach = function(client, _)
+            if client.name == "ruff_lsp" then
+              -- Disable hover in favor of Pyright
+              client.server_capabilities.hoverProvider = false
+            end
+          end
+
+          require("lspconfig").ruff_lsp.setup({
+            on_attach = on_attach,
+          })
+        end,
+      },
     },
     config = function(_, opts)
       -- diagnostics
-      local signs = { Error = "󰯆 ", Warn = " ", Hint = " ", Info = " " }
+      local signs = { Error = "󰯆", Warn = "", Hint = "", Info = "" }
       for name, icon in pairs(signs) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
@@ -126,12 +152,10 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
-        "pyright",
-        "black",
+        "ruff-lsp",
         "clangd",
         "clang-format",
         "latexindent",
-        "prettier",
       },
     },
     config = function(_, opts)
