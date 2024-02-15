@@ -134,12 +134,13 @@ function M.statusline_components()
     },
     diagnostics = {
       "diagnostics",
-      colored = false,
+      -- colored = false,
+      sections = { "error", "warn" },
       symbols = {
-        error = "󰯆 ",
-        warn = " ",
-        hint = " ",
-        info = " ",
+        error = "Errs:",
+        warn = "Warn:",
+        -- hint = "H",
+        -- info = "I",
       },
     },
     progress = {

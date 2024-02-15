@@ -20,7 +20,7 @@
   "obsidian.nvim": { "branch": "main", "commit": "0a6739d2229c8eb30396db550f3818e092088c27" },
   "oil.nvim": { "branch": "master", "commit": "bf753c3e3f8736939ad5597f92329dfe7b1df4f5" },
   "plenary.nvim": { "branch": "master", "commit": "4f71c0c4a196ceb656c824a70792f3df3ce6bb6d" },
-  "saguaro.nvim": { "branch": "main", "commit": "cba7dbadbc997a2e4bce5e49ca660c44ef4eb841" },
+  "saguaro.nvim": { "branch": "main", "commit": "8bd09e605ee13e2e32a9b40680bcbab2b280ad4c" },
   "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c89903377252bf5b" },
   "telescope.nvim": { "branch": "master", "commit": "eb88dc6434194bd8eebfcc6ade5dd36e850849ce" },
   "todo-comments.nvim": { "branch": "main", "commit": "833d8dd8b07eeda37a09e99460f72a02616935cb" },
