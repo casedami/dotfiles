@@ -114,6 +114,12 @@ end
 
 function M.statusline_components()
   local components = {
+    nvim_icon = {
+      function()
+        return ""
+      end,
+      color = { fg = "#bfce94" },
+    },
     modes = {
       "mode",
       fmt = function(str)
@@ -134,13 +140,10 @@ function M.statusline_components()
     },
     diagnostics = {
       "diagnostics",
-      -- colored = false,
       sections = { "error", "warn" },
       symbols = {
         error = "Errs:",
         warn = "Warn:",
-        -- hint = "H",
-        -- info = "I",
       },
     },
     progress = {

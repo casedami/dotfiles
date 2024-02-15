@@ -35,9 +35,7 @@ return {
             components.location,
             components.diagnostics,
           },
-          lualine_y = {
-            components.lsp,
-          },
+          lualine_y = {},
           lualine_z = {},
         },
       })
