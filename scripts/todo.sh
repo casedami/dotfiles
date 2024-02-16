@@ -7,7 +7,7 @@ if [[ "$1" == "new" ]]; then
   task=$(echo $task | xargs)
   echo "- [ ] $task" >>~/self/notes/main/tasks/self.md
 elif [[ "$1" == "ls" ]]; then
-  cat ~/self/notes/main/tasks/self.md | sed 's/\[ \] //' | sed '1d'
+  cat ~/self/notes/main/tasks/self.md | sed 's/\[ \] //' | sed '1d;2d'
 else
   echo "unsupported or unknown args"
 fi
