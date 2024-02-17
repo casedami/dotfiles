@@ -17,10 +17,6 @@ export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
 eval "$(zoxide init zsh)"
 
-# plugin opts
-exa_colors=(di=32;i ex=31;1 fi=37 ln=35)
-export EXA_COLORS=${(j<:>)exa_colors}
-
 export FZF_DEFAULT_OPTS="
 --color=fg+:#91809e,pointer:#91809e,hl:#91809e,hl+:#91809e,gutter:-1,bg+:-1,prompt:#b7c3e3
 --reverse
