@@ -74,8 +74,10 @@ local maps = {
   { "n", "<localleader>S", ":%s/" }, -- start global search and replace
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
-  { { "n", "v" }, "q", "q:" }, -- remap q to command history
-  { { "n", "v" }, "Q", "q/" }, -- remap Q to search history
+  { { "n", "v" }, "<leader>qq", "q:" }, -- remap to command history
+  { { "n", "v" }, "<leader>QQ", "q/" }, -- remap to search history
+  { { "n", "v" }, "q", "<nop>" }, -- remove macro ...
+  { { "n", "v" }, "Q", "<nop>" }, -- remove Q
   { "n", "!", "<C-l>" }, -- clear cmd line
   { "n", "<CR>", "<cmd>noh<cr><cr>", opts["noremap"] }, -- remove highlighting after search
   { "n", "<leader>!", toggle_colorcolumn }, -- toggle color column
