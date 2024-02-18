@@ -18,13 +18,17 @@ export TERM="xterm-256color"
 eval "$(zoxide init zsh)"
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---color=fg+:#ecae6d,pointer:#ecae6d,hl:#ecae6d,hl+:#ecae6d,gutter:-1,bg+:-1,prompt:#bfce94,info:#4f5b58
---separator="─" --scrollbar="│" --layout="reverse" --info="right"
---prompt=" "
---marker=">"
---pointer="󱞪"
---cycle
---multi
---height 40%
-'
+  --color=fg+:#ecae6d,pointer:#ecae6d,hl:#ecae6d,hl+:#ecae6d,gutter:-1,bg+:-1,prompt:#bfce94,info:#4f5b58
+  --separator="─" --scrollbar="│" --layout="reverse" --info="right"
+  --prompt=" "
+  --marker=">"
+  --pointer="󱞪"
+  --cycle
+  --multi
+  --height 40%
+  --preview "cat {} 2> /dev/null"
+  --bind='?:toggle-preview'
+  --bind='ctrl-u:preview-page-up'
+  --bind='ctrl-d:preview-page-down'
+  '
 export FZF_COMPLETION_TRIGGER=';'
