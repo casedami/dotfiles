@@ -7,7 +7,6 @@ vim.keymap.set("n", "<localleader>gv", "<cmd>ObsidianFollowLink vsplit<cr>")
 vim.keymap.set("n", "<localleader>ff", "<cmd>ObsidianBacklinks<cr>")
 vim.keymap.set("n", "<localleader>ft", ":ObsidianTags ")
 vim.keymap.set("n", "<localleader>fn", "<cmd>ObsidianNew<cr>")
-vim.keymap.set("n", "<localleader>fl", "<cmd>ObsidianBacklinks<cr>")
 vim.keymap.set("n", "<localleader>t", "<cmd>ObsidianTemplate<cr>")
 vim.opt.foldmethod = "syntax"
 vim.opt.foldenable = true
