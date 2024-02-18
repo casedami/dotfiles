@@ -11,7 +11,7 @@ setopt hist_find_no_dups
 
 setopt cd_silent     # don't print dir after cd
 setopt extended_glob # extended globbing functionality
-setopt vi            # turn on vi-mode
+# setopt vi            # turn on vi-mode
 
 export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
