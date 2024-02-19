@@ -8,4 +8,4 @@ function fg-bg {
   fi
 }
 zle -N fg-bg
-bindkey -M viins '^K' fg-bg
+bindkey '^L' fg-bg

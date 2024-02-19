@@ -101,7 +101,7 @@ return {
             ".DS_Store",
           },
           prompt_prefix = " ",
-          selection_caret = "󱞪 ",
+          selection_caret = "󰘍 ",
           layout_strategy = "horizontal_merged",
           sorting_strategy = "ascending",
           scroll_strategy = "cycle",

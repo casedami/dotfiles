@@ -11,7 +11,9 @@ setopt hist_find_no_dups
 
 setopt cd_silent     # don't print dir after cd
 setopt extended_glob # extended globbing functionality
-# setopt vi            # turn on vi-mode
+
+bindkey '^K' up-line-or-search
+bindkey '^J' down-line-or-search
 
 export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
@@ -22,11 +24,12 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --separator="─" --scrollbar="│" --layout="reverse" --info="right"
   --prompt=" "
   --marker=">"
-  --pointer="󱞪"
+  --pointer="󰘍"
   --cycle
   --multi
   --height 40%
   --preview "cat {} 2> /dev/null"
+  --preview-window='right:60%:hidden'
   --bind='?:toggle-preview'
   --bind='ctrl-u:preview-page-up'
   --bind='ctrl-d:preview-page-down'
