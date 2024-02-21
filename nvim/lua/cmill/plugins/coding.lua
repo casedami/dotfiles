@@ -18,7 +18,7 @@ return {
     opts = {
       keywords = {
         FIX = { icon = " ", alt = { "BUG", "ISSUE" } },
-        TODO = { icon = "󰦐 " },
+        TODO = { icon = " " },
         HACK = { icon = "󰈻 " },
         WARN = { icon = "󰹆 ", alt = { "WARNING" } },
         PERF = { icon = " ", alt = { "PERFORMANCE", "OPTIMIZE" } },

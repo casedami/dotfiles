@@ -3,14 +3,10 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufRead", "BufNewFile" },
     dependencies = {
-      { "folke/neodev.nvim", opts = {} },
       { "williamboman/mason-lspconfig.nvim" },
     },
     opts = {
       diagnostics = {
-        -- virtual_text = {
-        --   prefix = "▪",
-        -- },
         virtual_text = false,
         underline = true,
         update_in_insert = false,
@@ -41,7 +37,6 @@ return {
               diagnostics = {
                 globals = { "vim", "describe", "it" },
               },
-              -- Do not send telemetry data containing a randomized but unique identifier
               telemetry = {
                 enable = false,
               },
