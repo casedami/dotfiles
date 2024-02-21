@@ -164,13 +164,17 @@ function M.statusline_components()
       show_modified_status = false,
       mode = 0,
       tabs_color = {
-        active = "lualine_a_normal",
-        inactive = "lualine_b_normal",
+        active = "lualine_b_normal",
+        inactive = "lualine_c_normal",
       },
       separator = { left = "", right = "" },
       cond = function()
         return vim.api.nvim_eval("len(gettabinfo())") > 1
       end,
+    },
+    pomodoro = {
+      require("cmill.core.pomodoro").statusline,
+      color = { fg = "#99ae9c" },
     },
   }
   return components

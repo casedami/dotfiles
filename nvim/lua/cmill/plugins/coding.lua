@@ -1,4 +1,5 @@
 return {
+  { "MunifTanjim/nui.nvim" },
   {
     "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },

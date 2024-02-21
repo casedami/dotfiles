@@ -28,15 +28,17 @@ return {
           },
           lualine_c = {
             components.filename,
+            components.tabs,
           },
           lualine_x = {
-            components.tabs,
             components.progress,
             components.location,
             components.diagnostics,
           },
           lualine_y = {},
-          lualine_z = {},
+          lualine_z = {
+            components.pomodoro,
+          },
         },
       })
     end,

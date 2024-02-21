@@ -82,6 +82,8 @@ local maps = {
   { "n", "<CR>", "<cmd>noh<cr><cr>", opts["noremap"] }, -- remove highlighting after search
   { "n", "<leader>!", toggle_colorcolumn }, -- toggle color column
   { "n", "<leader>dm", del_marks, opts["silent"] }, -- delete user's marks
+  { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro
+  { "n", "<leader>sq", "<cmd>Pstop<cr>", opts["silent"] }, -- stop pomodoro
 }
 
 for _, v in pairs(maps) do
