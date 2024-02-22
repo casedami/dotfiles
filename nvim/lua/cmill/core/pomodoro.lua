@@ -3,7 +3,7 @@ local break_len = 5
 local longbreak_len = 15
 local sessions_until_longbreak = 2
 
-local state = "stopped"
+local state = "inactive"
 local session_start
 local break_start
 local sessions_completed = 0
@@ -19,6 +19,11 @@ end
 
 local function time_remaining(duration, start)
   local seconds = duration * 60 - os.difftime(os.time(), start)
+  if seconds < 0 then
+    state = "stopped"
+    return "--:--"
+  end
+
   if math.floor(seconds / 60) >= 60 then
     return os.date("!%0H:%0M:%0S", seconds)
   else
@@ -28,46 +33,42 @@ end
 
 local show_sessioncomplete_menu
 local function start_session()
-  if state ~= "running" then
-    if uv_timer == nil then
-      uv_timer = vim.loop.new_timer()
-    end
-
-    local work_milliseconds = session_len * 60 * 1000
-    uv_timer:start(work_milliseconds, 0, vim.schedule_wrap(show_sessioncomplete_menu))
-    session_start = os.time()
-    state = "running"
+  if uv_timer == nil then
+    uv_timer = vim.loop.new_timer()
   end
+
+  local ms = session_len * 60 * 1000
+  uv_timer:start(ms, 0, vim.schedule_wrap(show_sessioncomplete_menu))
+  session_start = os.time()
+  state = "running"
 end
 
 local show_startsession_menu
 local function start_break()
-  if state == "running" then
-    if uv_timer == nil then
-      vim.notify("pomodoro: instantiation error", 4, nil)
-      return
-    end
-
-    sessions_completed = (sessions_completed + 1) % sessions_until_longbreak
-    local break_milliseconds = get_break_len() * 60 * 1000
-    uv_timer:start(break_milliseconds, 0, vim.schedule_wrap(show_startsession_menu))
-    break_start = os.time()
-    state = "break"
+  if uv_timer == nil then
+    vim.notify("pomodoro: instantiation error", 4, nil)
+    return
   end
+
+  sessions_completed = (sessions_completed + 1) % sessions_until_longbreak
+  local ms = get_break_len() * 60 * 1000
+  uv_timer:start(ms, 0, vim.schedule_wrap(show_startsession_menu))
+  break_start = os.time()
+  state = "break"
 end
 
 local Pomodoro = {}
 
 function Pomodoro.start()
-  if state == "stopped" then
-    uv_timer = vim.loop.new_timer()
-    start_session()
-  end
+  uv_timer = vim.loop.new_timer()
+  start_session()
 end
 
 function Pomodoro.statusline()
-  if state == "stopped" then
+  if state == "inactive" then
     return "(inactive)"
+  elseif state == "stopped" then
+    return "--:--"
   elseif state == "running" then
     return " " .. time_remaining(session_len, session_start)
   else
@@ -81,12 +82,10 @@ function Pomodoro.status()
 end
 
 function Pomodoro.stop()
-  if state ~= "stopped" then
-    if uv_timer ~= nil then
-      uv_timer:stop()
-      uv_timer:close()
-      state = "stopped"
-    end
+  if uv_timer ~= nil then
+    uv_timer:stop()
+    uv_timer:close()
+    state = "inactive"
   end
 end
 
@@ -114,7 +113,6 @@ show_sessioncomplete_menu = function()
       submit = { "<CR>", "<Space>" },
     },
     lines = { Menu.item("Take a break"), Menu.item("Quit") },
-    on_close = Pomodoro.stop,
     on_submit = function(item)
       if item.text == "Quit" then
         Pomodoro.stop()
@@ -125,8 +123,14 @@ show_sessioncomplete_menu = function()
   }
   local menu = Menu(popup_options, menu_options)
   menu:mount()
+  menu:on(event.BufEnter, function()
+    state = "stopped"
+    if uv_timer ~= nil then
+      uv_timer:stop()
+      uv_timer:close()
+    end
+  end, { once = true })
   menu:on(event.BufLeave, function()
-    Pomodoro.stop()
     menu:unmount()
   end, { once = true })
   menu:map("n", "b", function()
@@ -160,7 +164,6 @@ show_startsession_menu = function()
       submit = { "<CR>", "<Space>" },
     },
     lines = { Menu.item("Start session"), Menu.item("Quit") },
-    on_close = Pomodoro.stop,
     on_submit = function(item)
       if item.text == "Quit" then
         Pomodoro.stop()
@@ -172,8 +175,13 @@ show_startsession_menu = function()
 
   local menu = Menu(popup_options, menu_options)
   menu:mount()
+  menu:on(event.BufEnter, function()
+    if uv_timer ~= nil then
+      uv_timer:stop()
+      uv_timer:close()
+    end
+  end, { once = true })
   menu:on(event.BufLeave, function()
-    Pomodoro.stop()
     menu:unmount()
   end, { once = true })
   menu:map("n", "p", function()
