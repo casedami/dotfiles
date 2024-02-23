@@ -4,6 +4,7 @@ return {
     event = { "BufRead", "BufNewFile" },
     dependencies = {
       { "williamboman/mason-lspconfig.nvim" },
+      { "folke/neodev.nvim", opts = {} },
     },
     opts = {
       diagnostics = {
@@ -21,28 +22,7 @@ return {
         timeout_ms = nil,
       },
       servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-                library = vim.api.nvim_get_runtime_file("", true),
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-              runtime = {
-                version = "LuaJIT",
-              },
-              diagnostics = {
-                globals = { "vim", "describe", "it" },
-              },
-              telemetry = {
-                enable = false,
-              },
-            },
-          },
-        },
+        lua_ls = {},
         pyright = {
           settings = {
             pyright = {
@@ -75,8 +55,7 @@ return {
       },
     },
     config = function(_, opts)
-      -- diagnostics
-      local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+      local signs = { Error = "", Warn = "", Hint = "", Info = "!" }
       for name, icon in pairs(signs) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
