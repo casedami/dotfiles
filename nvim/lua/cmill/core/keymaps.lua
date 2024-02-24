@@ -66,6 +66,10 @@ local maps = {
   { "n", "<leader>qP", "<cmd>cpfile<cr>" }, -- goto to last item in previous file
   { "n", "<leader>qo", "<cmd>copen<cr>" }, -- open qf list
   { "n", "<leader>qc", "<cmd>copen<cr>" }, -- close qf list
+  -- TERM KEYMAPS
+  { "n", "<leader>t", "<cmd>tabnew | term<cr>" }, -- open term in new tab
+  { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
+  { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell
   -- MISC COMMAND SHORTCUTS
   { "n", "<localleader>e", ":e <C-R>=expand('%:p:h') . '/' <CR>" }, -- edit new file in current dir
   { "n", "<localleader>es", ":sp <C-R>=expand('%:p:h') . '/' <CR>" }, -- edit new file in current dir (hsplit)

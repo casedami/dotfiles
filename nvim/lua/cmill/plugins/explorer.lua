@@ -122,6 +122,9 @@ return {
             n = {
               ["p"] = require("telescope.actions").close,
             },
+            i = {
+              ["PP"] = require("telescope.actions").close,
+            },
           },
         },
         pickers = {
