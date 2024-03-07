@@ -2,6 +2,10 @@
 
 desktop_spaces=$(yabai -m query --displays | jq "map(select(.id == 2).spaces)" | sed 's/[^0-9]*//g' | xargs)
 
+if [[ $desktop_spaces == "" ]]; then
+  exit
+fi
+
 for space in $desktop_spaces; do
   yabai -m config --space $space top_padding 200
   yabai -m config --space $space bottom_padding 200
