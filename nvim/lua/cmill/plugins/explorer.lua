@@ -45,7 +45,7 @@ return {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Toggle Telescope", silent = true, },
       { "<leader>fr", "<cmd>Telescope oldfiles cwd_only=true<cr>", desc = "Toggle Telescope recent files", silent = true, },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Toggle Telescope live_grep", silent = true, },
-      { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Toggle Telescope resume", silent = true, },
+      { "<leader>fR", "<cmd>Telescope resume<cr>", desc = "Toggle Telescope resume", silent = true, },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Toggle Telescope help", silent = true, },
       { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Toggle Telescope buffers", silent = true, },
       { "<leader>fs", "<cmd>Telescope registers<cr>", desc = "Registers", silent = true, },

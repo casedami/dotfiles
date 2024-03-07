@@ -142,8 +142,8 @@ function M.statusline_components()
       "diagnostics",
       sections = { "error", "warn" },
       symbols = {
-        error = "Errs:",
-        warn = "Warn:",
+        error = "E:",
+        warn = "W:",
       },
     },
     progress = {
@@ -174,7 +174,10 @@ function M.statusline_components()
     },
     pomodoro = {
       require("cmill.core.pomodoro").statusline,
-      color = { fg = "#99ae9c" },
+      color = { fg = "#58a897" },
+      cond = function()
+        return require("cmill.core.pomodoro").statusline() ~= "(inactive)"
+      end,
     },
   }
   return components
