@@ -1,13 +1,14 @@
 return {
   {
-    "cdmill/saguaro.nvim",
+    "cdmill/neomodern.nvim",
     config = function()
-      require("saguaro").setup({
+      require("neomodern").setup({
+        -- style = "darkforest",
         lualine = {
           transparent = true,
         },
       })
-      require("saguaro").load()
+      require("neomodern").load()
     end,
   },
 }
