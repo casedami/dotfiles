@@ -69,7 +69,7 @@ return {
           map("n", "<localleader>gS", gs.stage_buffer)
           map("n", "<localleader>gR", gs.reset_buffer)
           map("n", "<localleader>gd", gs.diffthis)
-          map("n", "<localleader>td", gs.toggle_deleted)
+          map("n", "<localleader>gtd", gs.toggle_deleted)
           map("n", "<localleader>gb", function() gs.blame_line({ full = true }) end)
         end,
       })

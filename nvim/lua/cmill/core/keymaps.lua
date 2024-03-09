@@ -59,13 +59,14 @@ local maps = {
   { "n", "<leader>we", "<C-W>=", opts["remap"] }, -- split windows equally
   { "n", "<leader>wk", "<C-W>_", opts["remap"] }, -- maximize current window vertically
   { "n", "<leader>wh", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
+  { "n", "<leader>wl", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
   -- QUICK FIX LIST
-  { "n", "<leader>qn", "<cmd>cnext<cr>" }, -- goto to next item in qf list
-  { "n", "<leader>qN", "<cmd>cnfile<cr>" }, -- goto to first item in next file
-  { "n", "<leader>qp", "<cmd>cprev<cr>" }, -- goto to previous item in qf list
-  { "n", "<leader>qP", "<cmd>cpfile<cr>" }, -- goto to last item in previous file
-  { "n", "<leader>qo", "<cmd>copen<cr>" }, -- open qf list
-  { "n", "<leader>qc", "<cmd>copen<cr>" }, -- close qf list
+  { "n", "<leader>qn", "<cmd>cnext<cr>" }, -- goto next item in qfix list
+  { "n", "<leader>qN", "<cmd>cnfile<cr>" }, -- goto first item in next file
+  { "n", "<leader>qp", "<cmd>cprev<cr>" }, -- goto previous item in qfix list
+  { "n", "<leader>qP", "<cmd>cpfile<cr>" }, -- goto last item in previous file
+  { "n", "<leader>qo", "<cmd>copen<cr>" }, -- open qfix list
+  { "n", "<leader>qc", "<cmd>copen<cr>" }, -- close qfix list
   -- TERM KEYMAPS
   { "n", "<leader>t", "<cmd>tabnew | term<cr>" }, -- open term in new tab
   { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
