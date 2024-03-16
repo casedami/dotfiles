@@ -14,8 +14,8 @@ split_tasks() {
   local input=$1
   local file=$2
   array=$(awk '{n = split($0, t, ", "); for (i = 0; ++i <= n;) print t[i]}' <<<"$input")
-  for item in $array; do
-    echo "- [ ] $item" >>$2
+  for ((i = 0; i < ${#array[@]}; i++)); do
+    echo "- [ ] ${array[$i]}" >>$2
   done
 }
 
