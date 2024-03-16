@@ -84,7 +84,8 @@ local maps = {
   { { "n", "v" }, "q", "<nop>" }, -- remove macro ...
   { { "n", "v" }, "Q", "<nop>" }, -- remove Q
   { "n", "!", "<C-l>" }, -- clear cmd line
-  { "n", "<CR>", "<cmd>noh<cr><cr>", opts["noremap"] }, -- remove highlighting after search
+  { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
+  { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "<leader>!", toggle_colorcolumn }, -- toggle color column
   { "n", "<leader>dm", del_marks, opts["silent"] }, -- delete user's marks
   { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro

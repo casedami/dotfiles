@@ -85,6 +85,7 @@ local opts = {
   cursorline = true,
   cursorlineopt = "number",
   foldcolumn = "1", -- always show fold column
+  hlsearch = false, -- dont highlighting search matches
   laststatus = 3, -- global statusline
   number = true,
   relativenumber = true,
