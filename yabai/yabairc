@@ -6,7 +6,7 @@ sudo yabai --load-sa
 # global settings
 yabai -m config layout bsp                    # let yabai manage layout
 yabai -m config mouse_follows_focus on        # move mouse to focused display
-yabai -m config focus_follows_mouse autoraise # focus window under mouse
+yabai -m config focus_follows_mouse off       # focus window under mouse
 yabai -m config window_placement second_child # add new windows to right or bottom
 yabai -m config auto_balance on               # auto split ratios
 yabai -m config split_ratio 0.50              # if auto balance is off -> split windows 50:50
@@ -41,3 +41,4 @@ yabai -m rule --add app="^Anki$" manage=off
 yabai -m rule --add app="^Clock$" manage=off
 yabai -m rule --add app="^Reminders$" manage=off
 yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^$" manage=off
