@@ -126,6 +126,7 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
+        "ruff",
         "ruff-lsp",
         "clangd",
         "clang-format",

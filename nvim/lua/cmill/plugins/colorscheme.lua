@@ -3,10 +3,8 @@ return {
     "cdmill/neomodern.nvim",
     config = function()
       require("neomodern").setup({
-        -- style = "roseprime",
-        lualine = {
-          transparent = true,
-        },
+        -- style = "darkforest",
+        plain_ui = true,
       })
       require("neomodern").load()
     end,
