@@ -4,6 +4,7 @@ if [[ $(yabai -m query --displays | jq ".[].id" | grep 2) ]]; then
   desktop_spaces=$(yabai -m query --displays | jq "map(select(.id == 2).spaces)" | sed 's/[^0-9]*//g' | xargs)
 
   for space in $desktop_spaces; do
+    # FIX: popup windows are begin included
     if [[ $(yabai -m query --windows --space $space | jq "length") > 2 ]]; then
       hpad=50
       gap=25
