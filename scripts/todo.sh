@@ -7,9 +7,9 @@ today=$(date +"%Y-%m-%d")
 mod_date=$(stat -f "%Sm" -t "%Y-%m-%d" "$today_tasks_file")
 
 if [ "$mod_date" != "$today" ]; then
-  sed -i -E '/- \[x\]/d' $today_tasks_file
+  sed -i '/- \[x\]/d' $today_tasks_file
   cat $today_tasks_file | grep -- '- \[ \]' >>$self_tasks_file
-  sed -i -E '/- \[ \]/d' $today_tasks_file
+  sed -i '/- \[ \]/d' $today_tasks_file
   echo "todo: starting fresh..."
 fi
 

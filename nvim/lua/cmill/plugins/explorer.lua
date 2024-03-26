@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
+    event = "VimEnter",
     keys = {
       { "<leader>fe", "<cmd>Oil<cr>" },
     },

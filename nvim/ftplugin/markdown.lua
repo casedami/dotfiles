@@ -10,6 +10,5 @@ vim.keymap.set("n", "<localleader>t", "<cmd>ObsidianTemplate<cr>")
 vim.opt.foldmethod = "syntax"
 vim.opt.foldenable = true
 vim.opt.spelllang = {}
-vim.opt.signcolumn = "no"
 vim.opt.textwidth = 88
 vim.opt.formatoptions = { "autowrap" }

@@ -38,6 +38,9 @@ return {
         local prefix = tag or ""
         return prefix .. os.date("%Y%m%d%H%M")
       end,
+      disable_frontmatter = function(note)
+        return string.find(note, "python")
+      end,
       note_frontmatter_func = function(note)
         -- Add the title of the note as an alias.
         if note.title then
