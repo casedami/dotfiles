@@ -7,9 +7,9 @@ today=$(date +"%Y-%m-%d")
 mod_date=$(stat -f "%Sm" -t "%Y-%m-%d" "$today_tasks_file")
 
 if [ "$mod_date" != "$today" ]; then
-  sed -i '/- \[x\]/d' $today_tasks_file
-  cat $today_tasks_file | grep -- '- \[ \]' >>$self_tasks_file
-  sed -i '/- \[ \]/d' $today_tasks_file
+  sed -i '' '/\[x\]/d' $today_tasks_file
+  cat $today_tasks_file | grep -E '\[ \]' >>$self_tasks_file
+  sed -i '' '/\[ \]/d' $today_tasks_file
   echo "todo: starting fresh..."
 fi
 
@@ -26,11 +26,7 @@ fi
 split_tasks() {
   local input=$1
   local file=$2
-  array=$(awk '{n = split($0, t, ", "); for (i = 0; ++i <= n;) print t[i]}' <<<"$input")
-  # FIX: currently accessing by space
-  for task in ${array[@]}; do
-    echo "- [ ] $task" >>$file
-  done
+  awk '{n = split($0, t, ", "); for (i = 0; ++i <= n;) print "- [ ] " t[i]}' <<<"$input" >>$today_tasks_file
 }
 
 get_tasks() {
@@ -65,9 +61,9 @@ elif [[ "$1" == "ls" ]]; then
   fi
 elif [[ "$1" == "clean" ]]; then
   if [[ "$2" == "-s" ]]; then
-    sed -i -e '/- \[x\]/d' $self_tasks_file
+    sed -i '' '/\[x\]/d' $self_tasks_file
   else
-    sed -i -e '/- \[x\]/d' $today_tasks_file
+    sed -i '' '/\[x\]/d' $today_tasks_file
   fi
 else
   echo "todo: unsupported or unknown args"
