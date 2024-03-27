@@ -26,4 +26,7 @@ require("lazy").setup({
     enabled = true,
     notify = false,
   },
+  ui = {
+    backdrop = 100,
+  },
 })
