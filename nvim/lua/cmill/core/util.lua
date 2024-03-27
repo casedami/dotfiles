@@ -174,7 +174,7 @@ function M.statusline_components()
     },
     pomodoro = {
       require("cmill.core.pomodoro").statusline,
-      color = { fg = "#58a897" },
+      color = { fg = "#559ba3" },
       cond = function()
         return require("cmill.core.pomodoro").statusline() ~= "(inactive)"
       end,
