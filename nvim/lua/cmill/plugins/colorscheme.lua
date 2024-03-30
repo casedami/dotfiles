@@ -4,9 +4,12 @@ return {
     config = function()
       require("neomodern").setup({
         -- style = "darkforest",
-        plain_ui = true,
-        lualine = {
-          bold = false,
+        ui = {
+          plain = true,
+          -- colored_docstrings = false,
+          lualine = {
+            bold = false,
+          },
         },
       })
       require("neomodern").load()
