@@ -4,6 +4,9 @@ return {
     config = function()
       require("neomodern").setup({
         -- style = "darkforest",
+        code_style = {
+          headings = "none",
+        },
         ui = {
           plain = true,
           -- colored_docstrings = false,
