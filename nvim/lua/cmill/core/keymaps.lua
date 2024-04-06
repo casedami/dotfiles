@@ -96,3 +96,15 @@ for _, v in pairs(maps) do
   opts = v[4] or {}
   vim.keymap.set(v[1], v[2], v[3], opts)
 end
+
+-- SESSIONS
+vim.api.nvim_create_user_command("Sw", function()
+  vim.cmd("SessionManager save_current_session")
+  local msg = vim.loop.cwd() .. " session saved"
+  vim.cmd("echo '" .. msg .. "'")
+end, {})
+vim.api.nvim_create_user_command("Sd", function()
+  vim.cmd("SessionManager delete_current_dir_session")
+  local msg = vim.loop.cwd() .. " session deleted"
+  vim.cmd("echo '" .. msg .. "'")
+end, {})

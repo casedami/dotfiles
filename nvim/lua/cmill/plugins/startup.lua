@@ -4,27 +4,39 @@ return {
     version = "*",
     event = "VimEnter",
     opts = function()
-      local pad = string.rep(" ", 22)
-      local new_section = function(name, action, section)
-        return { name = name, action = action, section = pad .. section }
+      local new_section = function(name, action)
+        return { name = name, action = action, section = "" }
       end
       local starter = require("mini.starter")
       local config = {
         evaluate_single = true,
         content_hooks = {
-          starter.gen_hook.aligning("center", "center"),
+          starter.gen_hook.padding(0, 8),
+          starter.gen_hook.aligning("center", "top"),
         },
         items = {
-          new_section("Find", "Telescope find_files", "Files"),
-          new_section("Explorer", "Oil", "Files"),
-          new_section("Recents", "Telescope oldfiles cwd_only=true", "Files"),
-          new_section("Grep", "Telescope live_grep", "Files"),
-          new_section("Lazy", "Lazy", "Built-in"),
-          new_section("Quit", "qa", "Built-in"),
+          new_section("Find", "Telescope find_files"),
+          new_section("Explorer", "Oil"),
+          new_section("Recents", "Telescope oldfiles cwd_only=true"),
+          new_section("Grep", "Telescope live_grep"),
+          new_section("Session", "SessionManager load_last_session"),
+          new_section("Lazy", "Lazy"),
+          new_section("Quit", "qa"),
         },
         silent = true,
       }
       return config
+    end,
+  },
+  {
+    "Shatur/neovim-session-manager",
+    event = "VimEnter",
+    config = function()
+      require("session_manager").setup({
+        autoload_mode = "disabled",
+        autoload_last_session = false,
+        autosave_last_session = false,
+      })
     end,
   },
 }

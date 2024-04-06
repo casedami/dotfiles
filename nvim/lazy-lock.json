@@ -14,6 +14,7 @@
   "mini.starter": { "branch": "main", "commit": "ce222a5b6de50a9963c1eb62aa16ec6d5efca7ee" },
   "neodev.nvim": { "branch": "main", "commit": "ce9a2e8eaba5649b553529c5498acb43a6c317cd" },
   "neomodern.nvim": { "branch": "main", "commit": "4879e4e30834081dbf92dc7c0d23ebfdc7771380" },
+  "neovim-session-manager": { "branch": "master", "commit": "d8e1ba3bbcf3fdc6a887bcfbd94c48ae4707b457" },
   "nui.nvim": { "branch": "main", "commit": "cbd2668414331c10039278f558630ed19b93e69b" },
   "nvim-cmp": { "branch": "main", "commit": "ce16de5665c766f39c271705b17fff06f7bcb84f" },
   "nvim-lspconfig": { "branch": "master", "commit": "e13ef0c5c8ccdbb9c84682522d6ad5923a65c1a8" },
