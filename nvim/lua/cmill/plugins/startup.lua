@@ -15,13 +15,14 @@ return {
           starter.gen_hook.aligning("center", "center"),
         },
         items = {
-          new_section("Explorer", "Oil", ""),
-          new_section("Files", "Telescope find_files", "Telescope"),
-          new_section("Recents", "Telescope oldfiles cwd_only=true", "Telescope"),
-          new_section("Grep", "Telescope live_grep", "Telescope"),
+          new_section("Find", "Telescope find_files", "Files"),
+          new_section("Explorer", "Oil", "Files"),
+          new_section("Recents", "Telescope oldfiles cwd_only=true", "Files"),
+          new_section("Grep", "Telescope live_grep", "Files"),
           new_section("Lazy", "Lazy", "Built-in"),
           new_section("Quit", "qa", "Built-in"),
         },
+        silent = true,
       }
       return config
     end,
