@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.signcolumn = "no"
-    vim.keymap.set("n", "q", "<cmd>bd!<cr>")
+    vim.keymap.set("n", "q", "<cmd>bd!<cr>", { buffer = true })
   end,
 })
 

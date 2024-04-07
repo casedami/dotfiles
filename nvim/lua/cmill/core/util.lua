@@ -118,7 +118,6 @@ function M.statusline_components()
       function()
         return ""
       end,
-      color = { fg = "#bfce94" },
     },
     modes = {
       "mode",
