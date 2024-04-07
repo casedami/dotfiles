@@ -11,7 +11,7 @@ return {
       local config = {
         evaluate_single = true,
         content_hooks = {
-          starter.gen_hook.padding(0, 8),
+          starter.gen_hook.padding(0, 4),
           starter.gen_hook.aligning("center", "top"),
         },
         items = {
@@ -46,11 +46,11 @@ return {
         callback = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          starter.config.footer = "(loaded "
+          starter.config.footer = "loaded "
             .. stats.count
             .. " plugins in "
             .. ms
-            .. "ms)"
+            .. "ms"
           pcall(starter.refresh)
         end,
       })
