@@ -56,21 +56,4 @@ return {
       })
     end,
   },
-  {
-    "Shatur/neovim-session-manager",
-    event = "VimEnter",
-    config = function()
-      require("session_manager").setup({
-        autoload_mode = "disabled",
-        autoload_last_session = false,
-        autosave_last_session = false,
-      })
-    end,
-  },
-  {
-    "karb94/neoscroll.nvim",
-    config = function()
-      require("neoscroll").setup()
-    end,
-  },
 }

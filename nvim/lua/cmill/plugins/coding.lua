@@ -1,5 +1,4 @@
 return {
-  { "MunifTanjim/nui.nvim" },
   {
     "numToStr/Comment.nvim",
     event = { "BufRead", "BufNewFile" },
@@ -31,6 +30,17 @@ return {
   {
     "tpope/vim-fugitive",
     cmd = "G",
+  },
+  {
+    "Shatur/neovim-session-manager",
+    event = "VimEnter",
+    config = function()
+      require("session_manager").setup({
+        autoload_mode = "disabled",
+        autoload_last_session = false,
+        autosave_last_session = false,
+      })
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

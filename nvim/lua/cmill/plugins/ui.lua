@@ -1,15 +1,22 @@
-local components = require("cmill.core.util").statusline_components()
 return {
+  { "MunifTanjim/nui.nvim" },
+  {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup()
+    end,
+  },
   {
     "nvim-lualine/lualine.nvim",
     config = function()
+      local components = require("cmill.core.util").statusline_components()
       require("lualine").setup({
         options = {
           icons_enabled = true,
           theme = "auto",
           section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
-          disabled_filetypes = { "dashboard" },
+          disabled_filetypes = { "starter", "TelescopePrompt" },
           ignore_focus = {},
           always_divide_middle = true,
           globalstatus = true,
