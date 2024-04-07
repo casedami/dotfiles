@@ -66,7 +66,8 @@ local maps = {
   { "n", "<leader>qo", "<cmd>copen<cr>" }, -- open qfix list
   { "n", "<leader>qc", "<cmd>copen<cr>" }, -- close qfix list
   -- TERM KEYMAPS
-  { "n", "<leader>t", "<cmd>tabnew | term<cr>" }, -- open term in new tab
+  { "n", "<leader>t", "<cmd>split | resize 10 | terminal<cr>i" }, -- open term in hsplit
+  { "n", "<leader>T", "<cmd>tabnew | term<cr>i" }, -- open term in new tab
   { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
   { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell
   -- MISC COMMAND SHORTCUTS

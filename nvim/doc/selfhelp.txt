@@ -104,7 +104,7 @@ The following keymaps are for treesitter:
 
 EX-COMMANDS                                                            *self-ex*
 
-  Key               Function ~
+  Key              Function ~
 
   `<localleader>e`   edit new file in current directory
   `<localleader>es`  edit new file in current directory (h-split)
@@ -156,9 +156,16 @@ Windows:
   `<leader>-`      split window horizontal
   `<leader>|`      split window vertical
 
+Sessions:
+
+  Key   Function ~
+
+  `:Sw`   save current session
+  `:Sd`   delete session for cwd
+
 QUICK FIX LIST                                                       *self-qfix*
 
-  Key               Function ~
+  Key          Function ~
 
   `<leader>qn`   goto next item in qfix list
   `<leader>qN`   goto first item in qfix list in next file
@@ -169,9 +176,10 @@ QUICK FIX LIST                                                       *self-qfix*
 
 TERM                                                                 *self-term*
 
-  Key               Function ~
+  Key         Function ~
 
-  `<leader>t`   goto next item in qfix list
+  `<leader>t`   open terminal in hsplit
+  `<leader>T`   open terminal in new tab
   `<C-v><esc>`  send esc key to shell
 
 NOTES                                                               *self-notes*
