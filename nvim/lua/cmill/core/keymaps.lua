@@ -28,8 +28,6 @@ local maps = {
   { "n", "<localleader>?", ":h self-" }, -- start search help command
   -- MOVEMENT
   { "n", "0", "^" }, -- remap inline movement (beginning of line)
-  { "n", "<C-u>", "<C-u>zz" }, --auto center after moving up
-  { "n", "<C-d>", "<C-d>zz" }, -- auto center after moving down
   { "v", "J", ":m '>+1<cr>gv=gv", opts["silent"] }, -- move line up
   { "v", "K", ":m '<-2<cr>gv=gv", opts["silent"] }, -- move line down
   { "v", "<", "<gv" }, -- better indenting

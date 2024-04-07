@@ -9,6 +9,7 @@ return {
         },
         ui = {
           plain = true,
+          show_eob = false,
           -- colored_docstrings = false,
           lualine = {
             bold = false,

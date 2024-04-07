@@ -27,6 +27,34 @@ return {
       }
       return config
     end,
+    config = function(_, config)
+      if vim.o.filetype == "lazy" then
+        vim.cmd.close()
+        vim.api.nvim_create_autocmd("User", {
+          pattern = "MiniStarterOpened",
+          callback = function()
+            require("lazy").show()
+          end,
+        })
+      end
+
+      local starter = require("mini.starter")
+      starter.setup(config)
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          local stats = require("lazy").stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          starter.config.footer = "(loaded "
+            .. stats.count
+            .. " plugins in "
+            .. ms
+            .. "ms)"
+          pcall(starter.refresh)
+        end,
+      })
+    end,
   },
   {
     "Shatur/neovim-session-manager",
@@ -37,6 +65,12 @@ return {
         autoload_last_session = false,
         autosave_last_session = false,
       })
+    end,
+  },
+  {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup()
     end,
   },
 }
