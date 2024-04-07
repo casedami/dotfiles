@@ -1,5 +1,5 @@
 return {
-  { "MunifTanjim/nui.nvim" },
+  { "MunifTanjim/nui.nvim", lazy = true },
   {
     "karb94/neoscroll.nvim",
     config = function()
@@ -14,7 +14,7 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "starter", "TelescopePrompt" },
           ignore_focus = {},

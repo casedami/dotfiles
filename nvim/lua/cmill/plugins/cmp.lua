@@ -23,10 +23,16 @@ return {
         })
       end,
     },
+    {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
     { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
     { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path", event = "InsertEnter" },
+    { "hrsh7th/cmp-buffer", event = "InsertEnter" },
   },
   opts = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -59,13 +65,6 @@ return {
       }),
       formatting = {
         fields = { "abbr", "kind", "menu" },
-        format = function(_, item)
-          local icons = require("cmill.core.util").lspicons()
-          local icon = icons[item.kind]
-          item.kind = string.format("%s %s", icon, item.kind)
-          item.menu = ""
-          return item
-        end,
       },
       experimental = {
         ghost_text = {
