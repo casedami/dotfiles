@@ -118,6 +118,7 @@ function M.statusline_components()
       function()
         return ""
       end,
+      color = { fg = "#7da77e" },
     },
     modes = {
       "mode",
@@ -134,7 +135,8 @@ function M.statusline_components()
       path = 3,
       symbols = {
         modified = "*",
-        newfile = "[NEW]",
+        newfile = "+",
+        unnamed = "[ANON]",
       },
     },
     diagnostics = {

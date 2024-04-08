@@ -11,9 +11,10 @@ return {
           plain = true,
           show_eob = false,
           -- colored_docstrings = false,
-          lualine = {
-            bold = false,
-          },
+        },
+        lualine = {
+          plain = false,
+          bold = true,
         },
       })
       require("neomodern").load()
