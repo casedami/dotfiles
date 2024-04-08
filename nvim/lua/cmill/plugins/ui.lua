@@ -48,6 +48,11 @@ return {
             components.pomodoro,
           },
         },
+        extensions = {
+          "oil",
+          "man",
+          "quickfix",
+        },
       })
     end,
   },
