@@ -125,10 +125,14 @@ function M.statusline_components()
       fmt = function(str)
         return str:sub(1, 3)
       end,
+      -- separator = { left = "" },
+      -- padding = { left = 1, right = 1 },
     },
     branch = {
       "branch",
       icon = "",
+      -- separator = { left = "", right = "" },
+      -- padding = { left = 1, right = -1 },
     },
     filename = {
       "filename",

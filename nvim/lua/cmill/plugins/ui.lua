@@ -28,9 +28,7 @@ return {
           },
         },
         sections = {
-          lualine_a = {
-            components.modes,
-          },
+          lualine_a = {},
           lualine_b = {
             components.branch,
           },
@@ -43,10 +41,10 @@ return {
             components.location,
             components.diagnostics,
           },
-          lualine_y = {},
-          lualine_z = {
+          lualine_y = {
             components.pomodoro,
           },
+          lualine_z = {},
         },
         extensions = {
           "oil",
