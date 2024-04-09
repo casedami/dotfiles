@@ -78,6 +78,7 @@ local maps = {
   { "n", "<localleader>S", ":%s/" }, -- start global search and replace
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
+  { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
   { { "n", "v" }, "<leader>qq", "q:" }, -- remap to command history
   { { "n", "v" }, "<leader>QQ", "q/" }, -- remap to search history
   { { "n", "v" }, "q", "<nop>" }, -- remove macro ...
