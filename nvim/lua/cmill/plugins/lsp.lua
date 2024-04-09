@@ -55,7 +55,7 @@ return {
       },
     },
     config = function(_, opts)
-      local signs = { Error = "", Warn = "", Hint = "", Info = "!" }
+      local signs = { Error = "󰅖", Warn = "", Hint = "", Info = "i" }
       for name, icon in pairs(signs) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })

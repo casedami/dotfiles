@@ -15,7 +15,7 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "starter", "TelescopePrompt" },
           ignore_focus = {},
@@ -30,11 +30,12 @@ return {
         sections = {
           lualine_a = {},
           lualine_b = {
+            components.tabs,
             components.branch,
           },
           lualine_c = {
+            components.nvim_icon,
             components.filename,
-            components.tabs,
           },
           lualine_x = {
             components.progress,
@@ -42,6 +43,7 @@ return {
             components.diagnostics,
           },
           lualine_y = {
+            components.datetime,
             components.pomodoro,
           },
           lualine_z = {},

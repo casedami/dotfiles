@@ -125,30 +125,21 @@ function M.statusline_components()
       fmt = function(str)
         return str:sub(1, 3)
       end,
-      -- separator = { left = "" },
-      -- padding = { left = 1, right = 1 },
     },
     branch = {
       "branch",
       icon = "",
-      -- separator = { left = "", right = "" },
-      -- padding = { left = 1, right = -1 },
     },
     filename = {
       "filename",
       path = 3,
-      symbols = {
-        modified = "*",
-        newfile = "+",
-        unnamed = "[ANON]",
-      },
     },
     diagnostics = {
       "diagnostics",
       sections = { "error", "warn" },
       symbols = {
-        error = "E:",
-        warn = "W:",
+        error = "󰅖 ",
+        warn = " ",
       },
     },
     progress = {
@@ -165,14 +156,10 @@ function M.statusline_components()
       "location",
     },
     tabs = {
-      "tabs",
-      show_modified_status = false,
-      mode = 0,
-      tabs_color = {
-        active = "lualine_b_normal",
-        inactive = "lualine_c_normal",
-      },
-      separator = { left = "", right = "" },
+      function()
+        return vim.fn.tabpagenr()
+      end,
+      -- color = { fg = "#dbbc8a" },
       cond = function()
         return vim.api.nvim_eval("len(gettabinfo())") > 1
       end,
