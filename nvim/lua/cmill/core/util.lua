@@ -161,6 +161,7 @@ function M.statusline_components()
     date = {
       "datetime",
       style = "%Y-%m-%d",
+      color = { fg = "#88888f" },
     },
     location = {
       "location",
