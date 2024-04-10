@@ -44,7 +44,7 @@ return {
             components.diagnostics,
           },
           lualine_y = {
-            components.datetime,
+            components.time,
             components.pomodoro,
           },
           lualine_z = {},

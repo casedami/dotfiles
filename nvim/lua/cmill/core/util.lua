@@ -120,6 +120,12 @@ function M.statusline_components()
       end,
       color = { fg = "#7da77e" },
     },
+    sep = {
+      function()
+        return "|"
+      end,
+      color = { fg = "#7da77e" },
+    },
     modes = {
       "mode",
       fmt = function(str)
@@ -148,9 +154,13 @@ function M.statusline_components()
     lsp = {
       lsp_client,
     },
-    datetime = {
+    time = {
       "datetime",
       style = "%H:%M:%S",
+    },
+    date = {
+      "datetime",
+      style = "%Y-%m-%d",
     },
     location = {
       "location",
@@ -166,7 +176,8 @@ function M.statusline_components()
     },
     pomodoro = {
       require("cmill.core.pomodoro").statusline,
-      color = { fg = "#559ba3" },
+      color = { fg = "#559ba3", bg = "#1d1d1f" },
+      separator = { left = "", right = "" },
       cond = function()
         return require("cmill.core.pomodoro").statusline() ~= "(inactive)"
       end,
