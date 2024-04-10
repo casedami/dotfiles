@@ -65,7 +65,14 @@ return {
         { name = "path" },
       }),
       formatting = {
-        fields = { "abbr", "kind", "menu" },
+        fields = { "kind", "abbr", "menu" },
+        format = function(_, item)
+          local icons = require("cmill.core.util").lspicons()
+          local kind = item.kind
+          item.kind = (icons[kind] or "")
+          item.menu = "[" .. kind .. "]"
+          return item
+        end,
       },
       experimental = {
         ghost_text = {
