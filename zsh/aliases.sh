@@ -22,6 +22,7 @@ alias ystart="yabai --start-service"
 alias python="python3"
 alias conda+="conda activate"
 alias conda-="conda deactivate"
+alias pydb="python -m pdb"
 
 alias uni="cd ~/self/dev/uni/"
 alias notes="cd ~/self/notes/main/"
