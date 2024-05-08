@@ -11,7 +11,7 @@ alias grep="grep --color=auto"
 
 alias morning="morning.zsh"
 alias evening="evening.zsh"
-alias todo="todo.sh"
+alias todo="todo.py"
 alias pad="desktop_padding.sh"
 
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
