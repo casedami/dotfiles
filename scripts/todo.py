@@ -85,21 +85,18 @@ def restart(args, filepath: str) -> None:
 
 
 def select(args, filepath: str) -> None:
-    with tempfile.NamedTemporaryFile(delete=False) as output_file:
-        pass
-
-    commands = [
-        f"cat {filepath}",
-        "grep -E '\\[( |>)\\]'",  # find incomplete/forwarded tasks
-        "sed -E 's/- \\[( |>)\\] //'",  # remove todo prefixes
-        f"fzf > {output_file.name}",  # pass to fzf and write selection to temp file
-    ]
-    sp.call(" | ".join(commands), shell=True)
-
     selection = []
-    with open(output_file.name, encoding="utf-8") as f:
-        for line in f:
-            selection.append(line.strip("\n"))
+    with tempfile.NamedTemporaryFile(delete=False) as output_file:
+        commands = [
+            f"cat {filepath}",
+            "grep -E '\\[( |>)\\]'",  # find incomplete/forwarded tasks
+            "sed -E 's/- \\[( |>)\\] //'",  # remove todo prefixes
+            f"fzf > {output_file.name}",  # pass to fzf and write selection to temp file
+        ]
+        sp.call(" | ".join(commands), shell=True)
+        with open(output_file.name, encoding="utf-8") as f:
+            for line in f:
+                selection.append(line.strip("\n"))
 
     os.unlink(output_file.name)
     for task in selection:
