@@ -70,10 +70,13 @@ def ls(args, filepath: str) -> None:
 
 
 def new(args, filepath: str) -> None:
-    tasks = [task for task in input(">>> ").split(", ")]
-    with open(filepath, "a") as f:
-        for task in tasks:
-            f.write("- [ ] {}\n".format(task))
+    try:
+        tasks = [task for task in input(">>> ").split(", ")]
+        with open(filepath, "a") as f:
+            for task in tasks:
+                f.write("- [ ] {}\n".format(task))
+    except KeyboardInterrupt:
+        print()
 
 
 def clean(args, filepath: str) -> None:
