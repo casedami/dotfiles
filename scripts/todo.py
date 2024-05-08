@@ -45,13 +45,13 @@ def parse_args():
 
 def ls(args, file):
     try:
-        sp.check_output("grep -E '\\[(x| )\\]' {}".format(file), shell=True)
+        sp.check_output("grep -E '\\[(x| |>)\\]' {}".format(file), shell=True)
         if args.list == "TODAY":
             print("Here's your tasks for today 󰃶 :")
         else:
             print("Here's your tasks:")
         sp.call(
-            "cat {} | grep -E '\\[(x| )\\]' | sed 's/- \\[x\\]//' | sed 's/\\[ \\] //' | sort".format(
+            "cat {} | grep -E '\\[(x| |>)\\]' | sed 's/- \\[x\\]/ /' | sed 's/- \\[ \\]/ -/' | sed 's/- \\[>\\]/ >/' | sort".format(
                 file
             ),
             shell=True,
@@ -89,12 +89,13 @@ if __name__ == "__main__":
     today = dt.datetime.now().date()
     filetime = dt.datetime.fromtimestamp(os.path.getmtime(TODAY))
     if filetime.date() != today:
+        sp.call(["sed", "-i", "", "-E", "s/\\[ \\]/\\[>\\]/", TODAY])
         sp.call(["sed", "-i", "", "-E", "/\\[x\\]/d", TODAY])
-        sp.call(["sed", "-i", "", "-E", "/\\[ \\]/\\[>\\]", TODAY])
         sp.call(
             "cat {0} | grep -E '\\[ \\]' >>{1}".format(TOMORROW, TODAY),
             shell=True,
         )
+        sp.call(["sed", "-i", "", "-E", "/\\[ \\]/d", TOMORROW])
         print("It's a new day  ")
 
     if args.func is not None:

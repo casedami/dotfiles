@@ -39,7 +39,7 @@ return {
         return prefix .. os.date("%Y%m%d%H%M")
       end,
       disable_frontmatter = function(note)
-        return string.find(note, "python")
+        return string.find(note, "python") or string.find(note, "tasks")
       end,
       note_frontmatter_func = function(note)
         -- Add the title of the note as an alias.
