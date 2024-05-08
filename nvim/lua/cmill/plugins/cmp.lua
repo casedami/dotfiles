@@ -23,13 +23,6 @@ return {
         })
       end,
     },
-    {
-      "rafamadriz/friendly-snippets",
-      event = "InsertEnter",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
     { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
     { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
     { "hrsh7th/cmp-path", event = "InsertEnter" },

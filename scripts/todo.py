@@ -51,7 +51,7 @@ def ls(args, file):
         else:
             print("Here's your tasks:")
         sp.call(
-            "cat {} | grep -E '\\[(x| |>)\\]' | sed 's/- \\[x\\]/ /' | sed 's/- \\[ \\]/ -/' | sed 's/- \\[>\\]/ >/' | sort".format(
+            "cat {} | grep -E '\\[(x| |>)\\]' | sed 's/- \\[x\\]/ /' | sed 's/- \\[ \\]/ -/' | sed 's/- \\[>\\]/ >/' | sort".format(
                 file
             ),
             shell=True,
@@ -90,12 +90,12 @@ if __name__ == "__main__":
     filetime = dt.datetime.fromtimestamp(os.path.getmtime(TODAY))
     if filetime.date() != today:
         sp.call(["sed", "-i", "", "-E", "s/\\[ \\]/\\[>\\]/", TODAY])
-        sp.call(["sed", "-i", "", "-E", "/\\[x\\]/d", TODAY])
+        clean(args, TODAY)
         sp.call(
             "cat {0} | grep -E '\\[ \\]' >>{1}".format(TOMORROW, TODAY),
             shell=True,
         )
-        sp.call(["sed", "-i", "", "-E", "/\\[ \\]/d", TOMORROW])
+        restart(args, TOMORROW)
         print("It's a new day  ")
 
     if args.func is not None:
