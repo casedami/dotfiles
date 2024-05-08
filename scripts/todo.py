@@ -4,13 +4,11 @@ import subprocess as sp
 import argparse
 import os
 import datetime as dt
-from enum import StrEnum
 
 
-class Todo(StrEnum):
-    TODAY = "/Users/caseymiller/self/notes/main/tasks/today.md"
-    TOMORROW = "/Users/caseymiller/self/notes/main/tasks/tomorrow.md"
-    SELF = "/Users/caseymiller/self/notes/main/tasks/self.md"
+TODAY = "/Users/caseymiller/self/notes/main/tasks/today.md"
+TOMORROW = "/Users/caseymiller/self/notes/main/tasks/tomorrow.md"
+SELF = "/Users/caseymiller/self/notes/main/tasks/self.md"
 
 
 def parse_args():
@@ -49,9 +47,9 @@ def ls(args, file):
     try:
         sp.check_output("grep -E '\\[(x| )\\]' {}".format(file), shell=True)
         if args.list == "TODAY":
-            print("TODO: here's your tasks for today...")
+            print("Here's your tasks for today 󰃶 :")
         else:
-            print("TODO: here's your tasks...")
+            print("Here's your tasks:")
         sp.call(
             "cat {} | grep -E '\\[(x| )\\]' | sed 's/- \\[x\\]//' | sed 's/\\[ \\] //' | sort".format(
                 file
@@ -59,7 +57,7 @@ def ls(args, file):
             shell=True,
         )
     except sp.CalledProcessError:
-        print("TODO: no tasks left to complete")
+        print("No tasks left to complete!")
 
 
 def new(args, file):
@@ -82,24 +80,25 @@ if __name__ == "__main__":
 
     match args.list:
         case "TODAY":
-            file = Todo.TODAY.value
+            file = TODAY
         case "TOMORROW":
-            file = Todo.TOMORROW.value
+            file = TOMORROW
         case "SELF":
-            file = Todo.SELF.value
+            file = SELF
 
     today = dt.datetime.now().date()
-    filetime = dt.datetime.fromtimestamp(os.path.getmtime(Todo.TODAY.value))
+    filetime = dt.datetime.fromtimestamp(os.path.getmtime(TODAY))
     if filetime.date() != today:
-        sp.call(["sed", "-i", "", "-E", "/\\[x\\]/d", Todo.TODAY.value])
-        sp.call(["sed", "-i", "", "-E", "/\\[ \\]/\\[>\\]", Todo.TODAY.value])
+        sp.call(["sed", "-i", "", "-E", "/\\[x\\]/d", TODAY])
+        sp.call(["sed", "-i", "", "-E", "/\\[ \\]/\\[>\\]", TODAY])
         sp.call(
-            "cat {0} | grep -E '\\[ \\]' >>{1}".format(Todo.TOMORROW, Todo.TODAY.value),
+            "cat {0} | grep -E '\\[ \\]' >>{1}".format(TOMORROW, TODAY),
             shell=True,
         )
+        print("It's a new day  ")
 
     if args.func is not None:
         args.func(args, file)
     else:
-        print("TODO: unknown command or no command given. use '-h' for help.")
+        sp.call(["nvim", file])
         exit()
