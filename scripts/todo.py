@@ -5,12 +5,120 @@ import argparse
 import os
 import datetime as dt
 import tempfile
+from enum import StrEnum
 
 
 TODAY = "/Users/caseymiller/self/notes/main/tasks/today.md"
 TOMORROW = "/Users/caseymiller/self/notes/main/tasks/tomorrow.md"
 SELF = "/Users/caseymiller/self/notes/main/tasks/self.md"
 UNI = "/Users/caseymiller/self/notes/main/tasks/uni.md"
+
+
+class TodoType(StrEnum):
+    TODO = " "
+    DONE = "x"
+    LATE = ">"
+
+
+class CommandBuilder:
+    def __init__(self) -> None:
+        self.command = ""
+
+    def __str__(self):
+        return self.command
+
+    def __add__(self, other):
+        if not isinstance(other, str):
+            raise TypeError(
+                "Unable to perform addition operation on CommandBuilder object."
+            )
+        if self.command == "":
+            self.command = other
+        else:
+            self.command += f" | {other}"
+        return self
+
+    def __mul__(self, other):
+        if not isinstance(other, str):
+            raise TypeError(
+                "Unable to perform addition operation on CommandBuilder object."
+            )
+        if self.command == "":
+            self.command = other
+        else:
+            self.command += f" ; {other}"
+        return self
+
+    def find(
+        self,
+        p: str | list[str],
+        fp: str | None = None,
+        todo: bool = True,
+    ):
+        if isinstance(p, list):
+            pattern = "|".join(p)
+        else:
+            pattern = p
+
+        if todo:
+            pattern = f"\\[({pattern})\\]"
+
+        if fp:
+            command = f"grep -E '{pattern}' {filepath}"
+        else:
+            command = f"grep -E '{pattern}'"
+
+        return command
+
+    def find_and_append(
+        self,
+        p: str | list[str],
+        dest: str,
+        fp: str | None = None,
+        todo: bool = True,
+    ):
+        command = self.find(p, fp, todo)
+        return f"{command} >> {dest}"
+
+    def replace(
+        self,
+        orig: str,
+        new: str,
+        fp: str | None = None,
+        todo: bool = True,
+    ):
+        if todo:
+            orig = f"\\[({orig})\\]"
+            new = f"\\[({new})\\]"
+        if fp:
+            return f"sed -i '' -E 's/{orig}/{new}/' {fp}"
+        return f"sed -E 's/{orig}/{new}/'"
+
+    def delete(
+        self,
+        p: str | list[str],
+        fp: str,
+        todo: bool = True,
+    ):
+        if isinstance(p, list):
+            pattern = "|".join(p)
+        else:
+            pattern = p
+        if todo:
+            pattern = f"\\[({pattern})\\]"
+
+        return f"sed -i '' -E '/({pattern})/d' {fp}"
+
+    def strip(self, p: str, prefix=False):
+        if prefix:
+            return f"sed -E 's/- \\[({p})\\]//'"
+        match p:
+            case TodoType.TODO:
+                return f"sed -E 's/- \\[({p})\\]/-/'"
+            case TodoType.DONE:
+                return f"sed -E 's/- \\[({p})\\]/x/'"
+            case TodoType.LATE:
+                return f"sed -E 's/- \\[({p})\\]/>/'"
 
 
 def parse_args():
@@ -61,8 +169,8 @@ def parse_args():
     command_push.add_argument(
         "-c",
         dest="clear",
-        action="store_false",
-        default=True,
+        action="store_true",
+        default=False,
         help="push tasks but don't clear",
     )
     command_push.set_defaults(func=push)
@@ -72,22 +180,25 @@ def parse_args():
 
 def ls(args, filepath: str) -> None:
     try:
-        sp.check_output("grep -E '\\[(x| |>)\\]' {}".format(filepath), shell=True)
+        command = CommandBuilder()
+        sp.check_output(
+            command.find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath),
+            shell=True,
+        )
         if args.todo == "TODAY":
             outstr = "Here's your tasks for today:"
         else:
             outstr = "Here's your tasks:"
         print(outstr)
         print("-" * len(outstr))
-        commands = [
-            f"cat {filepath}",
-            "grep -E '\\[(x| |>)\\]'",  # find all tasks in file
-            "sed 's/- \\[x\\]/x/'",  # mark completed with 'x'
-            "sed 's/- \\[ \\]/-/'",  # mark incompleted with '-'
-            "sed 's/- \\[>\\]/>/'",  # mark forwarded with '>'
-            "sort",
-        ]
-        sp.call(" | ".join(commands), shell=True)
+        command += command.find(
+            [TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath
+        )
+        command += command.strip(TodoType.TODO)
+        command += command.strip(TodoType.DONE)
+        command += command.strip(TodoType.LATE)
+        command += "sort"
+        sp.call(str(command), shell=True)
     except sp.CalledProcessError:
         print("No tasks left to complete!")
 
@@ -97,28 +208,32 @@ def new(args, filepath: str) -> None:
         tasks = [task for task in input(">>> ").split(", ")]
         with open(filepath, "a") as f:
             for task in tasks:
-                f.write("- [ ] {}\n".format(task))
+                f.write(f"- [ ] {task}\n")
     except KeyboardInterrupt:
         print()
 
 
 def clean(args, filepath: str) -> None:
-    sp.call(f"sed -i '' -E '/\\[x\\]/d' {filepath}", shell=True)
+    command = CommandBuilder()
+    sp.call(command.delete(TodoType.TODO, filepath), shell=True)
 
 
 def restart(args, filepath: str) -> None:
-    sp.call(f"sed -i '' -E '/\\[(x| |>)\\]/d' {filepath}", shell=True)
+    command = CommandBuilder()
+    sp.call(
+        command.delete([TodoType.TODO, TodoType.DONE, TodoType.LATE], filepath),
+        shell=True,
+    )
 
 
 def push(args, filepath: str) -> None:
     if args.todo == "TOMORROW":
         return
     if args.all:
-        commands = [
-            f"sed -i '' -E 's/\\[>\\]/\\[ \\]/' {filepath}",
-            f"grep -E '\\[ \\]' {filepath} >> {TOMORROW}",
-        ]
-        sp.call(" | ".join(commands), shell=True)
+        command = CommandBuilder()
+        command *= command.replace(TodoType.LATE, TodoType.TODO, fp=filepath)
+        command *= command.find_and_append(TodoType.TODO, TOMORROW, fp=filepath)
+        sp.call(str(command), shell=True)
     else:
         select(args, filepath)
     if args.clear:
@@ -128,13 +243,12 @@ def push(args, filepath: str) -> None:
 def select(args, filepath: str) -> None:
     selection = []
     with tempfile.NamedTemporaryFile(delete=False) as output_file:
-        commands = [
-            f"cat {filepath}",
-            "grep -E '\\[( |>)\\]'",  # find incomplete/forwarded tasks
-            "sed -E 's/- \\[( |>)\\] //'",  # remove todo prefixes
-            f"fzf > {output_file.name}",  # pass to fzf and write selection to temp file
-        ]
-        sp.call(" | ".join(commands), shell=True)
+        command = CommandBuilder()
+        command += command.find([TodoType.TODO, TodoType.LATE], fp=filepath)
+        command += command.strip(TodoType.TODO, prefix=True)
+        command += command.strip(TodoType.LATE, prefix=True)
+        command += f"fzf > {output_file.name}"
+        sp.call(str(command), shell=True)
 
         with open(output_file.name, encoding="utf-8") as f:
             for line in f:
@@ -142,15 +256,16 @@ def select(args, filepath: str) -> None:
 
     os.unlink(output_file.name)
     for task in selection:
-        if args.func:
-            commands = [
-                f"grep -E '{task}' {filepath} >> {TOMORROW}",  # push selected tasks to tomorrow
-                f"sed -i '' '/{task}/d' {filepath}",  # remove selected tasks from file
-            ]
-            command = " | ".join(commands)
+        task = task.strip()
+        command = CommandBuilder()
+        if args.func.__name__ == "push":
+            command *= command.find_and_append(task, TOMORROW, fp=filepath, todo=False)
+            command *= command.delete(task, filepath, todo=False)
         else:
-            command = f"sed -i '' -E 's/\\[( |>)\\] {task}/\\[x\\] {task}/' {filepath}"
-        sp.call(command, shell=True)
+            command = command.replace(
+                f"\\[( |>)\\] {task}", f"\\[x\\] {task}", fp=filepath, todo=False
+            )
+        sp.call(str(command), shell=True)
 
 
 if __name__ == "__main__":
@@ -166,10 +281,11 @@ if __name__ == "__main__":
 
     today = dt.datetime.now().date()
     filetime = dt.datetime.fromtimestamp(os.path.getmtime(TODAY))
+    command = CommandBuilder()
     if filetime.date() != today:
-        sp.call(f"sed -i '' -E 's/\\[ \\]/\\[>\\]/' {TODAY}", shell=True)
+        sp.call(command.replace(TodoType.TODO, TodoType.LATE, fp=filepath), shell=True)
         clean(args, TODAY)
-        sp.call(f"cat {TOMORROW} | grep -E '\\[ \\]' >>{TODAY}", shell=True)
+        sp.call(command.find_and_append(TodoType.TODO, TODAY, fp=TOMORROW), shell=True)
         restart(args, TOMORROW)
         print("It's a new day  ")
 
