@@ -55,6 +55,7 @@ return {
       { "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Marks", silent = true, },
       { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git status", silent = true, },
       { "<leader>gc", "<cmd>Telescope git_bcommits<cr>", desc = "Git commits for current buffer", silent = true, },
+      { "<leader>fc", require("cmill.core.util").config, desc = "Open config files" },
     },
     config = function()
       -- stylua: ignore

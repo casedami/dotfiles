@@ -21,6 +21,7 @@ return {
           new_section("Grep", "Telescope live_grep"),
           new_section("Session", "SessionManager load_last_session"),
           new_section("Lazy", "Lazy"),
+          new_section("Config", require("cmill.core.util").config),
           new_section("Quit", "qa"),
         },
         silent = true,

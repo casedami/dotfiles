@@ -187,6 +187,10 @@ function M.statusline_components()
   return components
 end
 
+function M.config()
+  return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
+end
+
 function M.lspicons()
   return {
     Namespace = "󰌗 ",

@@ -53,6 +53,9 @@ return {
           "oil",
           "man",
           "quickfix",
+          "lazy",
+          "mason",
+          "trouble",
         },
       })
     end,
