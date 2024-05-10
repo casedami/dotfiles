@@ -47,15 +47,15 @@ class CommandBuilder:
         todo: bool = True,
     ):
         if isinstance(p, list):
-            pattern = "|".join(p)
+            pattern = f"({'|'.join(p)})"
         else:
             pattern = p
 
         if todo:
-            pattern = f"\\[({pattern})\\]"
+            pattern = f"\\[{pattern}\\]"
 
         if fp:
-            command = f"grep -E '{pattern}' {filepath}"
+            command = f"grep -E '{pattern}' {fp}"
         else:
             command = f"grep -E '{pattern}'"
 
@@ -82,8 +82,8 @@ class CommandBuilder:
         todo: bool = True,
     ):
         if todo:
-            orig = f"\\[({orig})\\]"
-            new = f"\\[({new})\\]"
+            orig = f"\\[{orig}\\]"
+            new = f"\\[{new}\\]"
         if fp:
             command = f"sed -i '' -E 's/{orig}/{new}/' {fp}"
         else:
@@ -206,6 +206,8 @@ def ls(args, filepath: str) -> None:
         sp.check_output(str(cb), shell=True)
         if args.todo == "TODAY":
             outstr = "Here's your tasks for today:"
+        elif args.todo == "TOMORROW":
+            outstr = "Here's your tasks for tomorrow:"
         else:
             outstr = "Here's your tasks:"
         print(outstr)
@@ -303,7 +305,7 @@ if __name__ == "__main__":
     filetime = dt.datetime.fromtimestamp(os.path.getmtime(TODAY))
     cb = CommandBuilder()
     if filetime.date() != today:
-        cb.replace(TodoType.TODO, TodoType.LATE, fp=filepath)
+        cb.replace(TodoType.TODO, TodoType.LATE, fp=TODAY)
         sp.call(str(cb), shell=True)
         clean(args, TODAY)
         cb.find(TodoType.TODO, fp=TOMORROW)
