@@ -21,32 +21,23 @@ class TodoType(StrEnum):
 
 
 class CommandBuilder:
-    def __init__(self) -> None:
+    def __init__(self, sep: str | None = None) -> None:
+        if sep not in ("|", ";", None):
+            raise ValueError("Invalid command separator. Use '|' or ';'")
         self.command = ""
+        self.sep = sep
 
     def __str__(self):
         return self.command
 
-    def __add__(self, other):
-        if not isinstance(other, str):
-            raise TypeError(
-                "Unable to perform addition operation on CommandBuilder object."
-            )
-        if self.command == "":
-            self.command = other
-        else:
-            self.command += f" | {other}"
-        return self
+    def reset(self):
+        self.command = ""
 
-    def __mul__(self, other):
-        if not isinstance(other, str):
-            raise TypeError(
-                "Unable to perform addition operation on CommandBuilder object."
-            )
-        if self.command == "":
-            self.command = other
+    def named(self, command: str):
+        if self.sep:
+            self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
         else:
-            self.command += f" ; {other}"
+            self.command = command
         return self
 
     def find(
@@ -68,17 +59,20 @@ class CommandBuilder:
         else:
             command = f"grep -E '{pattern}'"
 
-        return command
+        if self.sep:
+            self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        else:
+            self.command = command
+        return self
 
-    def find_and_append(
+    def append_to(
         self,
-        p: str | list[str],
         dest: str,
-        fp: str | None = None,
-        todo: bool = True,
     ):
-        command = self.find(p, fp, todo)
-        return f"{command} >> {dest}"
+        if not self.command:
+            raise ValueError(f"Cannot append empty command to file '{dest}'.")
+        self.command = " >> ".join(filter(None, [self.command, dest]))
+        return self
 
     def replace(
         self,
@@ -91,8 +85,15 @@ class CommandBuilder:
             orig = f"\\[({orig})\\]"
             new = f"\\[({new})\\]"
         if fp:
-            return f"sed -i '' -E 's/{orig}/{new}/' {fp}"
-        return f"sed -E 's/{orig}/{new}/'"
+            command = f"sed -i '' -E 's/{orig}/{new}/' {fp}"
+        else:
+            command = f"sed -E 's/{orig}/{new}/'"
+
+        if self.sep:
+            self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        else:
+            self.command = command
+        return self
 
     def delete(
         self,
@@ -107,18 +108,30 @@ class CommandBuilder:
         if todo:
             pattern = f"\\[({pattern})\\]"
 
-        return f"sed -i '' -E '/({pattern})/d' {fp}"
+        command = f"sed -i '' -E '/({pattern})/d' {fp}"
+        if self.sep:
+            self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        else:
+            self.command = command
+        return self
 
-    def strip(self, p: str, prefix=False):
+    def strip(self, p: str, prefix: bool = False):
         if prefix:
-            return f"sed -E 's/- \\[({p})\\]//'"
-        match p:
-            case TodoType.TODO:
-                return f"sed -E 's/- \\[({p})\\]/-/'"
-            case TodoType.DONE:
-                return f"sed -E 's/- \\[({p})\\]/x/'"
-            case TodoType.LATE:
-                return f"sed -E 's/- \\[({p})\\]/>/'"
+            command = f"sed -E 's/- \\[({p})\\]//'"
+        else:
+            match p:
+                case TodoType.TODO:
+                    command = f"sed -E 's/- \\[({p})\\]/-/'"
+                case TodoType.DONE:
+                    command = f"sed -E 's/- \\[({p})\\]/x/'"
+                case TodoType.LATE:
+                    command = f"sed -E 's/- \\[({p})\\]/>/'"
+
+        if self.sep:
+            self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        else:
+            self.command = command
+        return self
 
 
 def parse_args():
@@ -141,6 +154,14 @@ def parse_args():
         default="TODAY",
         help="use 'self' tasks file",
     )
+    filepath.add_argument(
+        "-u",
+        dest="todo",
+        action="store_const",
+        const="UNI",
+        default="TODAY",
+        help="use 'uni' tasks file",
+    )
     parser.set_defaults(func=None)
 
     command_ls = subparsers.add_parser("ls", help="list tasks")
@@ -152,10 +173,10 @@ def parse_args():
     command_clean = subparsers.add_parser("clean", help="remove finished tasks")
     command_clean.set_defaults(func=clean)
 
-    command_restart = subparsers.add_parser("restart", help="remove all tasks")
-    command_restart.set_defaults(func=restart)
+    command_reset = subparsers.add_parser("reset", help="remove all tasks")
+    command_reset.set_defaults(func=reset_todo)
 
-    command_select = subparsers.add_parser("mk", help="select tasks to mark complete")
+    command_select = subparsers.add_parser("mark", help="select tasks to mark complete")
     command_select.set_defaults(func=select)
 
     command_push = subparsers.add_parser("push", help="push tasks to tomorrow")
@@ -180,25 +201,20 @@ def parse_args():
 
 def ls(args, filepath: str) -> None:
     try:
-        command = CommandBuilder()
-        sp.check_output(
-            command.find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath),
-            shell=True,
-        )
+        cb = CommandBuilder(sep="|")
+        cb.find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
+        sp.check_output(str(cb), shell=True)
         if args.todo == "TODAY":
             outstr = "Here's your tasks for today:"
         else:
             outstr = "Here's your tasks:"
         print(outstr)
         print("-" * len(outstr))
-        command += command.find(
-            [TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath
-        )
-        command += command.strip(TodoType.TODO)
-        command += command.strip(TodoType.DONE)
-        command += command.strip(TodoType.LATE)
-        command += "sort"
-        sp.call(str(command), shell=True)
+        cb.strip(TodoType.TODO)
+        cb.strip(TodoType.DONE)
+        cb.strip(TodoType.LATE)
+        cb.named("sort")
+        sp.call(str(cb), shell=True)
     except sp.CalledProcessError:
         print("No tasks left to complete!")
 
@@ -214,58 +230,60 @@ def new(args, filepath: str) -> None:
 
 
 def clean(args, filepath: str) -> None:
-    command = CommandBuilder()
-    sp.call(command.delete(TodoType.TODO, filepath), shell=True)
+    cb = CommandBuilder()
+    cb.delete(TodoType.DONE, filepath)
+    sp.call(str(cb), shell=True)
 
 
-def restart(args, filepath: str) -> None:
-    command = CommandBuilder()
-    sp.call(
-        command.delete([TodoType.TODO, TodoType.DONE, TodoType.LATE], filepath),
-        shell=True,
-    )
+def reset_todo(args, filepath: str) -> None:
+    cb = CommandBuilder()
+    cb.delete([TodoType.TODO, TodoType.DONE, TodoType.LATE], filepath)
+    sp.call(str(cb), shell=True)
 
 
 def push(args, filepath: str) -> None:
     if args.todo == "TOMORROW":
         return
     if args.all:
-        command = CommandBuilder()
-        command *= command.replace(TodoType.LATE, TodoType.TODO, fp=filepath)
-        command *= command.find_and_append(TodoType.TODO, TOMORROW, fp=filepath)
-        sp.call(str(command), shell=True)
+        cb = CommandBuilder(sep=";")
+        cb.replace(TodoType.LATE, TodoType.TODO, fp=filepath)
+        cb.find(TodoType.TODO, fp=filepath)
+        cb.append_to(TOMORROW)
+        sp.call(str(cb), shell=True)
     else:
         select(args, filepath)
     if args.clear:
-        restart(args, TODAY)
+        reset_todo(args, TODAY)
 
 
 def select(args, filepath: str) -> None:
     selection = []
     with tempfile.NamedTemporaryFile(delete=False) as output_file:
-        command = CommandBuilder()
-        command += command.find([TodoType.TODO, TodoType.LATE], fp=filepath)
-        command += command.strip(TodoType.TODO, prefix=True)
-        command += command.strip(TodoType.LATE, prefix=True)
-        command += f"fzf > {output_file.name}"
-        sp.call(str(command), shell=True)
+        cb = CommandBuilder(sep="|")
+        cb.find([TodoType.TODO, TodoType.LATE], fp=filepath)
+        cb.strip(TodoType.TODO, prefix=True)
+        cb.strip(TodoType.LATE, prefix=True)
+        cb.named("sort")
+        cb.named(f"fzf > {output_file.name}")
+        sp.call(str(cb), shell=True)
 
         with open(output_file.name, encoding="utf-8") as f:
             for line in f:
                 selection.append(line.strip("\n"))
-
     os.unlink(output_file.name)
+
     for task in selection:
         task = task.strip()
-        command = CommandBuilder()
+        cb = CommandBuilder(sep=";")
         if args.func.__name__ == "push":
-            command *= command.find_and_append(task, TOMORROW, fp=filepath, todo=False)
-            command *= command.delete(task, filepath, todo=False)
+            cb.find(task, fp=filepath, todo=False)
+            cb.append_to(TOMORROW)
+            cb.delete(task, filepath, todo=False)
         else:
-            command = command.replace(
+            cb.replace(
                 f"\\[( |>)\\] {task}", f"\\[x\\] {task}", fp=filepath, todo=False
             )
-        sp.call(str(command), shell=True)
+        sp.call(str(cb), shell=True)
 
 
 if __name__ == "__main__":
@@ -278,15 +296,20 @@ if __name__ == "__main__":
             filepath = TOMORROW
         case "SELF":
             filepath = SELF
+        case "UNI":
+            filepath = UNI
 
     today = dt.datetime.now().date()
     filetime = dt.datetime.fromtimestamp(os.path.getmtime(TODAY))
-    command = CommandBuilder()
+    cb = CommandBuilder()
     if filetime.date() != today:
-        sp.call(command.replace(TodoType.TODO, TodoType.LATE, fp=filepath), shell=True)
+        cb.replace(TodoType.TODO, TodoType.LATE, fp=filepath)
+        sp.call(str(cb), shell=True)
         clean(args, TODAY)
-        sp.call(command.find_and_append(TodoType.TODO, TODAY, fp=TOMORROW), shell=True)
-        restart(args, TOMORROW)
+        cb.find(TodoType.TODO, fp=TOMORROW)
+        cb.append_to(TODAY)
+        sp.call(str(cb), shell=True)
+        reset_todo(args, TOMORROW)
         print("It's a new day  ")
 
     if args.func:
