@@ -18,7 +18,7 @@ return {
           theme = "auto",
           section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
-          disabled_filetypes = { "starter", "TelescopePrompt" },
+          disabled_filetypes = { "starter" },
           ignore_focus = {},
           always_divide_middle = true,
           globalstatus = true,

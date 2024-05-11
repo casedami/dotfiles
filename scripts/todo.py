@@ -40,12 +40,7 @@ class CommandBuilder:
             self.command = command
         return self
 
-    def find(
-        self,
-        p: str | list[str],
-        fp: str | None = None,
-        todo: bool = True,
-    ):
+    def find(self, p: str | list[str], fp: str | None = None, todo: bool = True):
         if isinstance(p, list):
             pattern = f"({'|'.join(p)})"
         else:
@@ -65,10 +60,7 @@ class CommandBuilder:
             self.command = command
         return self
 
-    def append_to(
-        self,
-        dest: str,
-    ):
+    def append_to(self, dest: str):
         if not self.command:
             raise ValueError(f"Cannot append empty command to file '{dest}'.")
         self.command = " >> ".join(filter(None, [self.command, dest]))
@@ -95,12 +87,7 @@ class CommandBuilder:
             self.command = command
         return self
 
-    def delete(
-        self,
-        p: str | list[str],
-        fp: str,
-        todo: bool = True,
-    ):
+    def delete(self, p: str | list[str], fp: str, todo: bool = True):
         if isinstance(p, list):
             pattern = "|".join(p)
         else:
@@ -173,11 +160,14 @@ def parse_args():
     command_clean = subparsers.add_parser("clean", help="remove finished tasks")
     command_clean.set_defaults(func=clean)
 
+    command_rm = subparsers.add_parser("rm", help="remove finished tasks")
+    command_rm.set_defaults(func=remove)
+
     command_reset = subparsers.add_parser("reset", help="remove all tasks")
     command_reset.set_defaults(func=reset_todo)
 
-    command_select = subparsers.add_parser("mark", help="select tasks to mark complete")
-    command_select.set_defaults(func=select)
+    command_mark = subparsers.add_parser("mark", help="select tasks to mark complete")
+    command_mark.set_defaults(func=mark)
 
     command_push = subparsers.add_parser("push", help="push tasks to tomorrow")
     command_push.add_argument(
@@ -231,6 +221,15 @@ def new(args, filepath: str) -> None:
         print()
 
 
+def remove(args, filepath: str) -> None:
+    marked = select(filepath)
+    for task in marked:
+        task = task.strip()
+        cb = CommandBuilder(sep=";")
+        cb.delete(task, filepath, todo=False)
+        sp.call(str(cb), shell=True)
+
+
 def clean(args, filepath: str) -> None:
     cb = CommandBuilder()
     cb.delete(TodoType.DONE, filepath)
@@ -253,12 +252,28 @@ def push(args, filepath: str) -> None:
         cb.append_to(TOMORROW)
         sp.call(str(cb), shell=True)
     else:
-        select(args, filepath)
+        marked = select(filepath)
+        for task in marked:
+            task = task.strip()
+            cb = CommandBuilder(sep=";")
+            cb.find(task, fp=filepath, todo=False)
+            cb.append_to(TOMORROW)
+            cb.delete(task, filepath, todo=False)
+            sp.call(str(cb), shell=True)
     if args.clear:
         reset_todo(args, TODAY)
 
 
-def select(args, filepath: str) -> None:
+def mark(args, filepath: str) -> None:
+    marked = select(filepath)
+    for task in marked:
+        task = task.strip()
+        cb = CommandBuilder(sep=";")
+        cb.replace(f"\\[( |>)\\] {task}", f"\\[x\\] {task}", fp=filepath, todo=False)
+        sp.call(str(cb), shell=True)
+
+
+def select(filepath: str) -> None:
     selection = []
     with tempfile.NamedTemporaryFile(delete=False) as output_file:
         cb = CommandBuilder(sep="|")
@@ -273,19 +288,7 @@ def select(args, filepath: str) -> None:
             for line in f:
                 selection.append(line.strip("\n"))
     os.unlink(output_file.name)
-
-    for task in selection:
-        task = task.strip()
-        cb = CommandBuilder(sep=";")
-        if args.func.__name__ == "push":
-            cb.find(task, fp=filepath, todo=False)
-            cb.append_to(TOMORROW)
-            cb.delete(task, filepath, todo=False)
-        else:
-            cb.replace(
-                f"\\[( |>)\\] {task}", f"\\[x\\] {task}", fp=filepath, todo=False
-            )
-        sp.call(str(cb), shell=True)
+    return selection
 
 
 if __name__ == "__main__":
