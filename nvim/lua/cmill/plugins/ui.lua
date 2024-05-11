@@ -1,5 +1,5 @@
 return {
-  { "MunifTanjim/nui.nvim", lazy = true },
+  { "MunifTanjim/nui.nvim", event = "VeryLazy" },
   {
     "karb94/neoscroll.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -39,6 +39,7 @@ return {
             components.filename,
           },
           lualine_x = {
+            components.lsp,
             components.progress,
             components.location,
             components.diagnostics,
@@ -52,10 +53,6 @@ return {
         extensions = {
           "oil",
           "man",
-          "quickfix",
-          "lazy",
-          "mason",
-          "trouble",
         },
       })
     end,
