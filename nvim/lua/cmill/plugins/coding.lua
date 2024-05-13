@@ -22,7 +22,7 @@ return {
         HACK = { icon = "󰈻 " },
         WARN = { icon = "󰹆 ", alt = { "WARNING" } },
         PERF = { icon = " ", alt = { "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = "󰎞 ", alt = { "INFO" } },
+        NOTE = { icon = "󰎞 ", alt = { "INFO", "IDEA" } },
         TEST = { icon = "󱖫 ", alt = { "TESTING", "PASSED", "FAILED" } },
         MARK = { icon = " " },
       },

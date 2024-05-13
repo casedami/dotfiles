@@ -317,6 +317,11 @@ def print_priority(task: str, priority: str):
             return out
 
 
+def format_output(tasks: dict):
+    # IDEA: convert class list with headers to dict keys
+    pass
+
+
 def select(filepath: str) -> None:
     selection = []
     with tempfile.NamedTemporaryFile(delete=False) as output_file:
