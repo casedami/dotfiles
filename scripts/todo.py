@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/opt/homebrew/Caskroom/miniconda/base/bin/python3
 
 import argparse
 import datetime as dt
@@ -7,6 +7,8 @@ import re
 import subprocess as sp
 import tempfile
 from enum import StrEnum
+from termcolor import colored
+import humanize as hmn
 
 TODAY = "/Users/caseymiller/self/notes/main/tasks/today.md"
 TOMORROW = "/Users/caseymiller/self/notes/main/tasks/tomorrow.md"
@@ -21,17 +23,35 @@ class TodoType(StrEnum):
 
 
 class Priority:
-    def __init__(self, priority: str):
+    def __init__(self, priority: str, date: dt.datetime):
         self._level = priority
+        self._date = date
 
     @property
     def level(self):
         return self._level
 
+    @property
+    def date(self):
+        return self._date
+
     def __lt__(self, other):
+        """
+        higher priority and dated sooner
+        higher priority
+        dated
+        """
+
         if other is None:
             return True
-        return self.level[-1] < other.level[-1]
+        if self.date is None or other.date is None:
+            return self.level[-1] < other.level[-1]
+        if self.date == other.date:
+            return self.level[-1] < other.level[-1]
+        if self.date < other.date:
+            return True
+        if self.date > other.date:
+            return False
 
 
 class CommandBuilder:
@@ -203,24 +223,62 @@ def sort_by_priority(fp: str):
 
         with open(output_file.name) as f:
             tasks = f.read().splitlines()
+            for task in tasks:
+                task = task.strip()
     os.unlink(output_file.name)
 
     priorities = {}
     for i in range(len(tasks)):
-        priority = re.search("high|medium|low", tasks[i])
-        priorities[i] = Priority(priority.group())
+        level = re.search("high|medium|low", tasks[i])
+        date = re.search(r"\d\d\d\d-\d\d-\d\d", tasks[i])
+        if date is not None:
+            date = str2date(date.group())
+        if level is not None:
+            priorities[i] = Priority(level.group(), date)
 
-    # TODO: sort by date
+    if len(priorities) == 0:
+        return tasks
+
     for i in range(1, len(tasks)):
         j = i - 1
-        key = tasks[i].strip()
+        key = tasks[i]
         while j >= 0 and priorities[i] < priorities[j]:
             tasks[j + 1] = tasks[j]
             priorities[j], priorities[j + 1] = priorities[j + 1], priorities[j]
             j -= 1
         tasks[j + 1] = key
 
+    for i in range(len(tasks)):
+        tasks[i] = print_priority(tasks[i], priorities[i])
+
     return tasks
+
+
+def str2date(date: str) -> dt.datetime:
+    year = int(date[0:4])
+    month = int(date[5:7])
+    day = int(date[8:])
+    return dt.datetime(year, month, day)
+
+
+def print_priority(task: str, priority: str):
+    level, date = priority.level, priority.date
+    out = re.sub(f"#{level}", "", task)
+    if date is not None:
+        out = re.sub(
+            r" @{\d\d\d\d-\d\d-\d\d}",
+            f"due in {hmn.naturaldelta(date - dt.datetime.now())}".upper(),
+            out,
+        )
+    match level:
+        case "high":
+            out = colored(out, "red")
+            return out
+        case "medium":
+            out = colored(out, "yellow")
+            return out
+        case "low":
+            return out
 
 
 def ls(args, filepath: str) -> None:
