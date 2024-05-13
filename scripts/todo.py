@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import subprocess as sp
 import argparse
-import os
 import datetime as dt
+import os
+import re
+import subprocess as sp
 import tempfile
 from enum import StrEnum
-
 
 TODAY = "/Users/caseymiller/self/notes/main/tasks/today.md"
 TOMORROW = "/Users/caseymiller/self/notes/main/tasks/tomorrow.md"
@@ -18,6 +18,20 @@ class TodoType(StrEnum):
     TODO = " "
     DONE = "x"
     LATE = ">"
+
+
+class Priority:
+    def __init__(self, priority: str):
+        self._level = priority
+
+    @property
+    def level(self):
+        return self._level
+
+    def __lt__(self, other):
+        if other is None:
+            return True
+        return self.level[-1] < other.level[-1]
 
 
 class CommandBuilder:
@@ -175,14 +189,50 @@ def parse_args():
     return parser.parse_args()
 
 
-def ls(args, filepath: str) -> None:
-    try:
+def sort_by_priority(fp: str):
+    with tempfile.NamedTemporaryFile(delete=False) as output_file:
         cmd = (
             CommandBuilder(sep="|")
-            .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
+            .find([TodoType.TODO, TodoType.LATE], fp=fp)
+            .strip(TodoType.TODO)
+            .strip(TodoType.LATE)
+            .named(f"sort > {output_file.name}")
+            .string
+        )
+        sp.call(cmd, shell=True)
+
+        with open(output_file.name) as f:
+            tasks = f.read().splitlines()
+    os.unlink(output_file.name)
+
+    priorities = {}
+    for i in range(len(tasks)):
+        priority = re.search("high|medium|low", tasks[i])
+        priorities[i] = Priority(priority.group())
+
+    # TODO: sort by date
+    for i in range(1, len(tasks)):
+        j = i - 1
+        key = tasks[i].strip()
+        while j >= 0 and priorities[i] < priorities[j]:
+            tasks[j + 1] = tasks[j]
+            priorities[j], priorities[j + 1] = priorities[j + 1], priorities[j]
+            j -= 1
+        tasks[j + 1] = key
+
+    return tasks
+
+
+def ls(args, filepath: str) -> None:
+    try:
+        clean(args, filepath)
+        cmd = (
+            CommandBuilder(sep="|")
+            .find([TodoType.TODO, TodoType.LATE], fp=filepath)
             .string
         )
         sp.check_output(cmd, shell=True)
+
         if args.todo == "TODAY":
             outstr = "Here's your tasks for today:"
         elif args.todo == "TOMORROW":
@@ -191,16 +241,9 @@ def ls(args, filepath: str) -> None:
             outstr = "Here's your tasks:"
         print(outstr)
         print("-" * len(outstr))
-        cmd = (
-            CommandBuilder(sep="|")
-            .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
-            .strip(TodoType.TODO)
-            .strip(TodoType.DONE)
-            .strip(TodoType.LATE)
-            .named("sort")
-            .string
-        )
-        sp.call(cmd, shell=True)
+        tasks = sort_by_priority(filepath)
+        for task in tasks:
+            print(task)
     except sp.CalledProcessError:
         print("No tasks left to complete!")
 
@@ -275,6 +318,7 @@ def mark(args, filepath: str) -> None:
             .string
         )
         sp.call(cmd, shell=True)
+    # TODO: clean if all items are marked
 
 
 def select(filepath: str) -> None:
