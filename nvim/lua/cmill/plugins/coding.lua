@@ -28,8 +28,15 @@ return {
     },
   },
   {
-    "tpope/vim-fugitive",
-    cmd = "G",
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+    },
+    keys = {
+      { "<leader>G", "<cmd>Neogit kind=auto<cr>" },
+    },
+    config = true,
   },
   {
     "Shatur/neovim-session-manager",

@@ -118,7 +118,7 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    cmd = "Mason",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     build = ":MasonUpdate",
     opts = {
       ensure_installed = {
