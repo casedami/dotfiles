@@ -41,7 +41,7 @@ return {
     dependencies = {
       { "nvim-telescope/telescope-fzy-native.nvim" },
     },
-    -- stylua: ignore
+    -- stylua: ignore start
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Toggle Telescope", silent = true, },
       { "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Toggle Telescope current buffer", silent = true, },
@@ -57,45 +57,19 @@ return {
       { "<leader>gc", "<cmd>Telescope git_bcommits<cr>", desc = "Git commits for current buffer", silent = true, },
       { "<leader>fc", require("cmill.core.util").config, desc = "Open config files" },
     },
+    -- stylua: ignore end
     config = function()
       -- stylua: ignore
-      require("telescope.pickers.layout_strategies").horizontal_merged = function( picker, max_columns, max_lines, layout_config)
-        local layout = require("telescope.pickers.layout_strategies").horizontal( picker, max_columns, max_lines, layout_config)
-        layout.prompt.title = ""
+      require("telescope.pickers.layout_strategies").center_h = function( picker, max_columns, max_lines, layout_config)
+        local layout = require("telescope.pickers.layout_strategies").center( picker, max_columns, max_lines, layout_config)
+        layout.results.line = layout.results.line + 1
         layout.results.title = ""
-        if layout.preview then layout.preview.title = "" end
         return layout
       end
       require("telescope").setup({
         defaults = {
           file_ignore_patterns = {
-            "%.aux",
-            "%.log",
-            "%.xdv",
-            "%.lof",
-            "%.lot",
-            "%.fls",
-            "%.out",
-            "%.toc",
-            "%.fmt",
-            "%.fot",
-            "%.cb",
-            "%.cb2",
-            "%.nav",
-            "%.snm",
-            "%.*%.lb",
-            "__latex*",
-            "%.fdb_latexmk",
-            "%.synctex",
-            "%.synctex(busy)",
-            "%.synctex.gz",
-            "%.synctex.gz(busy)",
-            "%.pdfsync",
-            "%.pygstyle",
-            "%.bbl",
-            "%.bcf",
-            "%.blg",
-            "%.run.xml",
+            "generated",
             "indent.log",
             "%.pdf",
             "%.bak",
@@ -106,29 +80,25 @@ return {
           },
           prompt_prefix = " ",
           selection_caret = "󰘍 ",
-          layout_strategy = "horizontal_merged",
+          layout_strategy = "center_h",
           sorting_strategy = "ascending",
           scroll_strategy = "cycle",
           path_display = { "truncate" },
           color_devicons = true,
           winblend = 0,
+          preview = false,
           layout_config = {
-            width = 0.99,
-            height = 0.65,
+            width = 0.45,
+            height = 0.60,
             prompt_position = "top",
-            horizontal = {
-              anchor = "S",
-              preview_width = function(_, cols, _)
-                return math.floor(cols * 0.6)
-              end,
-            },
           },
           mappings = {
             n = {
-              ["p"] = require("telescope.actions").close,
+              ["q"] = require("telescope.actions").close,
             },
             i = {
               ["PP"] = require("telescope.actions").close,
+              ["<C-d>"] = "delete_buffer",
             },
           },
         },

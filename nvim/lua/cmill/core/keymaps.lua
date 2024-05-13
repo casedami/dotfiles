@@ -91,6 +91,7 @@ local maps = {
   { "n", "<leader>dm", del_marks, opts["silent"] }, -- delete user's marks
   { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro
   { "n", "<leader>sq", "<cmd>Pstop<cr>", opts["silent"] }, -- stop pomodoro
+  { "x", "<localleader>ff", ":!pandoc -t commonmark_x<cr>" }, -- auto format selected markdown table
 }
 
 for _, v in pairs(maps) do
