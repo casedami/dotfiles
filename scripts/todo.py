@@ -92,6 +92,16 @@ class TodoType(StrEnum):
 
 
 class Priority:
+    """
+    Represents the priority of a task. The priority level and date are used
+    for ordering.
+
+    Priority is ordered as follows:
+        - higher priority level and dated sooner
+        - higher priority level
+        - dated
+    """
+
     def __init__(self, priority: str, date: dt.datetime):
         self._level = priority
         self._date = date
@@ -105,14 +115,10 @@ class Priority:
         return self._date
 
     def __lt__(self, other):
-        """
-        higher priority and dated sooner
-        higher priority
-        dated
-        """
-
-        if other is None:
+        if other is None or other.level is None:
             return True
+        if self.level is None:
+            return False
         if self.date is None or other.date is None:
             return self.level[-1] < other.level[-1]
         if self.date == other.date:
@@ -124,6 +130,10 @@ class Priority:
 
 
 class CommandBuilder:
+    """
+    Builder utility class for terminal commands, especially for managing TODO CLI.
+    """
+
     def __init__(self, sep: str | None = None) -> None:
         if sep not in ("|", ";", None):
             raise ValueError("Invalid command separator. Use '|' or ';'")
@@ -137,8 +147,8 @@ class CommandBuilder:
     def string(self):
         return self.command
 
-    def named(self, command: str):
-        self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+    def named(self, cmd: str):
+        self.command = f" {self.sep} ".join(filter(None, [self.command, cmd]))
         return self
 
     def find(self, p: str | list[str], fp: str | None = None, todo: bool = True):
@@ -151,11 +161,11 @@ class CommandBuilder:
             pattern = f"\\[{pattern}\\]"
 
         if fp:
-            command = f"grep -E '{pattern}' {fp}"
+            cmd = f"grep -E '{pattern}' {fp}"
         else:
-            command = f"grep -E '{pattern}'"
+            cmd = f"grep -E '{pattern}'"
 
-        self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        self.command = f" {self.sep} ".join(filter(None, [self.command, cmd]))
         return self
 
     def append_to(self, dest: str):
@@ -175,11 +185,11 @@ class CommandBuilder:
             orig = f"\\[{orig}\\]"
             new = f"\\[{new}\\]"
         if fp:
-            command = f"sed -i '' -E 's/{orig}/{new}/' {fp}"
+            cmd = f"sed -i '' -E 's/{orig}/{new}/' {fp}"
         else:
-            command = f"sed -E 's/{orig}/{new}/'"
+            cmd = f"sed -E 's/{orig}/{new}/'"
 
-        self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        self.command = f" {self.sep} ".join(filter(None, [self.command, cmd]))
         return self
 
     def delete(self, p: str | list[str], fp: str, todo: bool = True):
@@ -190,32 +200,44 @@ class CommandBuilder:
         if todo:
             pattern = f"\\[({pattern})\\]"
 
-        command = f"sed -i '' -E '/({pattern})/d' {fp}"
-        self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        cmd = f"sed -i '' -E '/({pattern})/d' {fp}"
+        self.command = f" {self.sep} ".join(filter(None, [self.command, cmd]))
         return self
 
-    def strip(self, p: str, prefix: bool = False):
+    def strip(self, p: str, prefix: bool = False, priority: bool = False):
+        if priority:
+            cmd_pr = f"sed -E 's/(- \\[{p}\\] .+)#(high|medium|low)((.+)?)/\\1/'"
+        else:
+            cmd_pr = None
         if prefix:
-            command = f"sed -E 's/- \\[({p})\\]//'"
+            cmd = f"sed -E 's/- \\[{p}\\]//'"
         else:
             match p:
                 case TodoType.TODO:
-                    command = f"sed -E 's/- \\[({p})\\]/-/'"
+                    cmd = f"sed -E 's/- \\[{p}\\]/-/'"
                 case TodoType.DONE:
-                    command = f"sed -E 's/- \\[({p})\\]/x/'"
+                    cmd = f"sed -E 's/- \\[{p}\\]/󰅖/'"
                 case TodoType.LATE:
-                    command = f"sed -E 's/- \\[({p})\\]/>/'"
+                    cmd = f"sed -E 's/- \\[{p}\\]/>/'"
 
-        self.command = f" {self.sep} ".join(filter(None, [self.command, command]))
+        self.command = f" {self.sep} ".join(filter(None, [self.command, cmd_pr, cmd]))
         return self
 
 
+# MARK: HELPER METHODS
+
+
 def sort_by_priority(filepath: str):
+    """
+    Sorts tasks by priority (level & date) if any, otherwise alphanumerically.
+    """
+
     with tempfile.NamedTemporaryFile(delete=False) as output_file:
         cmd = (
             CommandBuilder(sep="|")
-            .find([TodoType.TODO, TodoType.LATE], fp=filepath)
+            .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
             .strip(TodoType.TODO)
+            .strip(TodoType.DONE, priority=True)
             .strip(TodoType.LATE)
             .named(f"sort > {output_file.name}")
             .string
@@ -230,15 +252,17 @@ def sort_by_priority(filepath: str):
 
     priorities = {}
     for i in range(len(tasks)):
+        if tasks[i][0] == "x":
+            priorities[i] = Priority(None, None)
+            continue
+
         level = re.search("high|medium|low", tasks[i])
         date = re.search(r"\d\d\d\d-\d\d-\d\d", tasks[i])
-        if date is not None:
-            date = str2date(date.group())
-        if level is not None:
-            priorities[i] = Priority(level.group(), date)
 
-    if len(priorities) == 0:
-        return tasks
+        level = level.group() if level is not None else None
+        date = str2date(date.group()) if date is not None else None
+
+        priorities[i] = Priority(level, date)
 
     for i in range(1, len(tasks)):
         j = i - 1
@@ -250,12 +274,17 @@ def sort_by_priority(filepath: str):
         tasks[j + 1] = key
 
     for i in range(len(tasks)):
-        tasks[i] = print_priority(tasks[i], priorities[i])
+        if tasks[i][0] != "x":
+            tasks[i] = print_priority(tasks[i], priorities[i])
 
     return tasks
 
 
 def str2date(date: str) -> dt.datetime:
+    """
+    Converts a string in ISO format (YYYY-MM-DD) to a datetime object
+    """
+
     year = int(date[0:4])
     month = int(date[5:7])
     day = int(date[8:])
@@ -263,6 +292,11 @@ def str2date(date: str) -> dt.datetime:
 
 
 def print_priority(task: str, priority: str):
+    """
+    Colorizes output according to priority level and transforms datetime object
+    to relative date in human-readable format.
+    """
+
     level, date = priority.level, priority.date
     out = re.sub(f"#{level}", "", task)
     if date is not None:
@@ -271,6 +305,7 @@ def print_priority(task: str, priority: str):
             f"due in {hmn.naturaldelta(date - dt.datetime.now())}".upper(),
             out,
         )
+
     match level:
         case "high":
             out = colored(out, "red")
@@ -278,16 +313,43 @@ def print_priority(task: str, priority: str):
         case "medium":
             out = colored(out, "yellow")
             return out
-        case "low":
+        case _:
             return out
 
 
-def ls(args, filepath: str) -> None:
-    try:
-        clean(args, filepath)
+def select(filepath: str) -> None:
+    selection = []
+    with tempfile.NamedTemporaryFile(delete=False) as output_file:
         cmd = (
             CommandBuilder(sep="|")
             .find([TodoType.TODO, TodoType.LATE], fp=filepath)
+            .strip(TodoType.TODO, prefix=True, priority=True)
+            .strip(TodoType.LATE, prefix=True, priority=True)
+            .named("sort")
+            .named(f"fzf > {output_file.name}")
+            .string
+        )
+        sp.call(cmd, shell=True)
+
+        with open(output_file.name, encoding="utf-8") as f:
+            for line in f:
+                selection.append(line.strip("\n"))
+    os.unlink(output_file.name)
+    return selection
+
+
+# MARK: TODO CLI commands
+
+
+def ls(args, filepath: str) -> None:
+    """
+    Lists the tasks for a given TODO list if any.
+    """
+
+    try:
+        cmd = (
+            CommandBuilder(sep="|")
+            .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
             .string
         )
         sp.check_output(cmd, shell=True)
@@ -308,6 +370,10 @@ def ls(args, filepath: str) -> None:
 
 
 def new(args, filepath: str) -> None:
+    """
+    Adds new tasks to a given TODO list.
+    """
+
     try:
         tasks = [task for task in input(">>> ").split(", ")]
         with open(filepath, "a") as f:
@@ -318,6 +384,10 @@ def new(args, filepath: str) -> None:
 
 
 def remove(args, filepath: str) -> None:
+    """
+    Removes a task from a given TODO list.
+    """
+
     marked = select(filepath)
     for task in marked:
         task = task.strip()
@@ -326,11 +396,19 @@ def remove(args, filepath: str) -> None:
 
 
 def clean(args, filepath: str) -> None:
+    """
+    Removes all finished tasks from a given TODO list.
+    """
+
     cmd = CommandBuilder().delete(TodoType.DONE, filepath).string
     sp.call(cmd, shell=True)
 
 
 def reset_todo(args, filepath: str) -> None:
+    """
+    Removes all tasks from a given TODO list.
+    """
+
     cmd = (
         CommandBuilder()
         .delete([TodoType.TODO, TodoType.DONE, TodoType.LATE], filepath)
@@ -340,6 +418,10 @@ def reset_todo(args, filepath: str) -> None:
 
 
 def push(args, filepath: str) -> None:
+    """
+    Moves selected tasks from a given TODO list to TOMORROW list.
+    """
+
     if args.todo == "TOMORROW":
         return
     if args.all:
@@ -368,38 +450,23 @@ def push(args, filepath: str) -> None:
 
 
 def mark(args, filepath: str) -> None:
+    """
+    Marks selected tasks in a given TODO list as finished.
+    """
+
     marked = select(filepath)
     for task in marked:
         task = task.strip()
+        task = re.sub(r"(\?|\+|\.)", "\\\1", task)
         cmd = (
-            CommandBuilder(sep=";")
+            CommandBuilder()
             .replace(f"\\[( |>)\\] {task}", f"\\[x\\] {task}", fp=filepath, todo=False)
             .string
         )
         sp.call(cmd, shell=True)
-    # TODO: clean if all items are marked
 
 
-def select(filepath: str) -> None:
-    selection = []
-    with tempfile.NamedTemporaryFile(delete=False) as output_file:
-        cmd = (
-            CommandBuilder(sep="|")
-            .find([TodoType.TODO, TodoType.LATE], fp=filepath)
-            .strip(TodoType.TODO, prefix=True)
-            .strip(TodoType.LATE, prefix=True)
-            .named("sort")
-            .named(f"fzf > {output_file.name}")
-            .string
-        )
-        sp.call(cmd, shell=True)
-
-        with open(output_file.name, encoding="utf-8") as f:
-            for line in f:
-                selection.append(line.strip("\n"))
-    os.unlink(output_file.name)
-    return selection
-
+# MARK: driver
 
 if __name__ == "__main__":
     args = parse_args()
