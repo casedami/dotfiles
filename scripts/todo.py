@@ -7,13 +7,82 @@ import re
 import subprocess as sp
 import tempfile
 from enum import StrEnum
-from termcolor import colored
+
 import humanize as hmn
+from termcolor import colored
 
 TODAY = "/Users/caseymiller/self/notes/main/tasks/today.md"
 TOMORROW = "/Users/caseymiller/self/notes/main/tasks/tomorrow.md"
 SELF = "/Users/caseymiller/self/notes/main/tasks/self.md"
 UNI = "/Users/caseymiller/self/notes/main/tasks/uni.md"
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="TODO CLI")
+    subparsers = parser.add_subparsers(help="commands")
+    filepath = parser.add_mutually_exclusive_group(required=False)
+    filepath.add_argument(
+        "-m",
+        dest="todo",
+        action="store_const",
+        const="TOMORROW",
+        default="TODAY",
+        help="use 'tomorrow' tasks file",
+    )
+    filepath.add_argument(
+        "-s",
+        dest="todo",
+        action="store_const",
+        const="SELF",
+        default="TODAY",
+        help="use 'self' tasks file",
+    )
+    filepath.add_argument(
+        "-u",
+        dest="todo",
+        action="store_const",
+        const="UNI",
+        default="TODAY",
+        help="use 'uni' tasks file",
+    )
+    parser.set_defaults(func=None)
+
+    command_ls = subparsers.add_parser("ls", help="list tasks")
+    command_ls.set_defaults(func=ls)
+
+    command_new = subparsers.add_parser("new", help="create new task")
+    command_new.set_defaults(func=new)
+
+    command_clean = subparsers.add_parser("clean", help="remove finished tasks")
+    command_clean.set_defaults(func=clean)
+
+    command_rm = subparsers.add_parser("rm", help="remove finished tasks")
+    command_rm.set_defaults(func=remove)
+
+    command_reset = subparsers.add_parser("reset", help="remove all tasks")
+    command_reset.set_defaults(func=reset_todo)
+
+    command_mark = subparsers.add_parser("mark", help="select tasks to mark complete")
+    command_mark.set_defaults(func=mark)
+
+    command_push = subparsers.add_parser("push", help="push tasks to tomorrow")
+    command_push.add_argument(
+        "-a",
+        dest="all",
+        action="store_true",
+        default=False,
+        help="push all incomplete tasks",
+    )
+    command_push.add_argument(
+        "-c",
+        dest="clear",
+        action="store_true",
+        default=False,
+        help="push tasks but don't clear",
+    )
+    command_push.set_defaults(func=push)
+
+    return parser.parse_args()
 
 
 class TodoType(StrEnum):
@@ -141,79 +210,11 @@ class CommandBuilder:
         return self
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(description="TODO CLI")
-    subparsers = parser.add_subparsers(help="commands")
-    filepath = parser.add_mutually_exclusive_group(required=False)
-    filepath.add_argument(
-        "-m",
-        dest="todo",
-        action="store_const",
-        const="TOMORROW",
-        default="TODAY",
-        help="use 'tomorrow' tasks file",
-    )
-    filepath.add_argument(
-        "-s",
-        dest="todo",
-        action="store_const",
-        const="SELF",
-        default="TODAY",
-        help="use 'self' tasks file",
-    )
-    filepath.add_argument(
-        "-u",
-        dest="todo",
-        action="store_const",
-        const="UNI",
-        default="TODAY",
-        help="use 'uni' tasks file",
-    )
-    parser.set_defaults(func=None)
-
-    command_ls = subparsers.add_parser("ls", help="list tasks")
-    command_ls.set_defaults(func=ls)
-
-    command_new = subparsers.add_parser("new", help="create new task")
-    command_new.set_defaults(func=new)
-
-    command_clean = subparsers.add_parser("clean", help="remove finished tasks")
-    command_clean.set_defaults(func=clean)
-
-    command_rm = subparsers.add_parser("rm", help="remove finished tasks")
-    command_rm.set_defaults(func=remove)
-
-    command_reset = subparsers.add_parser("reset", help="remove all tasks")
-    command_reset.set_defaults(func=reset_todo)
-
-    command_mark = subparsers.add_parser("mark", help="select tasks to mark complete")
-    command_mark.set_defaults(func=mark)
-
-    command_push = subparsers.add_parser("push", help="push tasks to tomorrow")
-    command_push.add_argument(
-        "-a",
-        dest="all",
-        action="store_true",
-        default=False,
-        help="push all incomplete tasks",
-    )
-    command_push.add_argument(
-        "-c",
-        dest="clear",
-        action="store_true",
-        default=False,
-        help="push tasks but don't clear",
-    )
-    command_push.set_defaults(func=push)
-
-    return parser.parse_args()
-
-
-def sort_by_priority(fp: str):
+def sort_by_priority(filepath: str):
     with tempfile.NamedTemporaryFile(delete=False) as output_file:
         cmd = (
             CommandBuilder(sep="|")
-            .find([TodoType.TODO, TodoType.LATE], fp=fp)
+            .find([TodoType.TODO, TodoType.LATE], fp=filepath)
             .strip(TodoType.TODO)
             .strip(TodoType.LATE)
             .named(f"sort > {output_file.name}")
