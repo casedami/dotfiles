@@ -24,6 +24,7 @@ return {
         PERF = { icon = " ", alt = { "PERFORMANCE", "OPTIMIZE" } },
         NOTE = { icon = "󰎞 ", alt = { "INFO" } },
         TEST = { icon = "󱖫 ", alt = { "TESTING", "PASSED", "FAILED" } },
+        MARK = { icon = " " },
       },
     },
   },
@@ -80,8 +81,8 @@ return {
           map("n", "<localleader>gs", gs.stage_hunk)
           map("v", "<localleader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
           map("n", "<localleader>gu", gs.undo_stage_hunk)
-          map("n", "<localleader>grl", gs.reset_hunk)
-          map("v", "<localleader>grh", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
+          map("n", "<localleader>gr", gs.reset_hunk)
+          map("v", "<localleader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
           map("n", "<localleader>gS", gs.stage_buffer)
           map("n", "<localleader>gR", gs.reset_buffer)
           map("n", "<localleader>gd", gs.diffthis)
