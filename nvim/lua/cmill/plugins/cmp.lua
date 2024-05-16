@@ -27,7 +27,7 @@ return {
     { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
     { "hrsh7th/cmp-path", event = "InsertEnter" },
     { "hrsh7th/cmp-buffer", event = "InsertEnter" },
-    { "micangl/cmp-vimtex", event = "InsertEnter" },
+    { "hrsh7th/cmp-omni", event = "InsertEnter" },
   },
   config = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -92,9 +92,9 @@ return {
 
     cmp.setup.filetype("tex", {
       sources = {
-        { name = "vimtex" },
+        { name = "omni", trigger_characters = { "{", "\\" } },
+        { name = "luasnip" },
         { name = "buffer" },
-        -- other sources
       },
     })
   end,

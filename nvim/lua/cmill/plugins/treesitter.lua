@@ -8,7 +8,7 @@ return {
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
-      highlight = { enable = true },
+      highlight = { enable = true, disable = { "latex" } },
       indent = {
         enable = true,
         disable = {

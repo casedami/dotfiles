@@ -18,11 +18,17 @@ local global_opts = {
   vimtex_view_method = "sioyek",
   vimtex_view_sioyek_options = "--reuse-window",
   vimtex_indent_on = 1,
-  vimtex_syntax_conceal_disable = 1,
+  vimtex_fold_enabled = 1,
+  vimtex_complete_bib = {
+    abbr_fmt = "[@type] @author_short (@year)",
+    menu_fmt = "@title",
+  },
   vimtex_quickfix_open_on_warning = 0,
-  vimtex_complete_enabled = 1,
-  vimtex_complete_smart_case = 1,
-  vimtex_complete_bib = { simple = 1 },
+  vimtex_toc_config = {
+    name = "ToC",
+    layers = { "content", "todo", "include" },
+    show_help = false,
+  },
   vimtex_compiler_latexmk_engines = { ["_"] = "-lualatex" },
   vimtex_compiler_method = "latexmk",
   vimtex_compiler_latexmk = {
