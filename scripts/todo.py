@@ -240,16 +240,34 @@ def sort_by_priority(filepath: str):
     """
 
     with tempfile.NamedTemporaryFile(delete=False) as output_file:
-        cmd = (
-            CommandBuilder(sep="|")
-            .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
-            .strip(TodoType.TODO)
-            .strip(TodoType.DONE, priority=True)
-            .strip(TodoType.LATE)
-            .named(f"sort -r -k 2 -o {output_file.name}")
-            .string
-        )
-        sp.call(cmd, shell=True)
+        try:
+            cmd = (
+                CommandBuilder()
+                .find([TodoType.DONE, TodoType.LATE], fp=filepath)
+                .string
+            )
+            sp.check_output(cmd, shell=True)
+            cmd = (
+                CommandBuilder(sep="|")
+                .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
+                .strip(TodoType.TODO)
+                .strip(TodoType.DONE, priority=True)
+                .strip(TodoType.LATE)
+                .named(f"sort -r -o {output_file.name}")
+                .string
+            )
+            sp.call(cmd, shell=True)
+        except sp.CalledProcessError:
+            cmd = (
+                CommandBuilder(sep="|")
+                .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
+                .strip(TodoType.TODO)
+                .strip(TodoType.DONE, priority=True)
+                .strip(TodoType.LATE)
+                .named(f"sort -r -k 2 -o {output_file.name}")
+                .string
+            )
+            sp.call(cmd, shell=True)
 
         with open(output_file.name) as f:
             tasks = f.read().splitlines()
