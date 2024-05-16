@@ -27,12 +27,13 @@ return {
     { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
     { "hrsh7th/cmp-path", event = "InsertEnter" },
     { "hrsh7th/cmp-buffer", event = "InsertEnter" },
+    { "micangl/cmp-vimtex", event = "InsertEnter" },
   },
-  opts = function()
+  config = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
     local defaults = require("cmp.config.default")()
-    return {
+    cmp.setup({
       completion = {
         completeopt = "menu,menuone,noinsert",
       },
@@ -58,6 +59,7 @@ return {
         { name = "path" },
       }),
       formatting = {
+        expandable_indicator = false,
         fields = { "kind", "abbr", "menu" },
         format = function(_, item)
           local icons = require("cmill.core.util").lspicons()
@@ -79,11 +81,21 @@ return {
         },
       },
       view = {
+        docs = { auto_open = true },
         entries = {
           follow_cursor = true,
+          selection_order = "top_down",
         },
       },
       sorting = defaults.sorting,
-    }
+    })
+
+    cmp.setup.filetype("tex", {
+      sources = {
+        { name = "vimtex" },
+        { name = "buffer" },
+        -- other sources
+      },
+    })
   end,
 }

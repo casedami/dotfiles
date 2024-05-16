@@ -13,6 +13,11 @@ return {
           show_hidden = true,
         },
         columns = {},
+        float = {
+          padding = 2,
+          max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.45),
+          max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.6),
+        },
         keymaps = {
           ["g?"] = "actions.show_help",
           ["<CR>"] = "actions.select",
@@ -103,6 +108,15 @@ return {
           },
         },
         pickers = {
+          find_files = {
+            disable_devicons = true,
+          },
+          oldfiles = {
+            disable_devicons = true,
+          },
+          live_grep = {
+            disable_devicons = true,
+          },
           registers = {
             theme = "dropdown",
           },

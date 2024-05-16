@@ -20,6 +20,9 @@ local global_opts = {
   vimtex_indent_on = 1,
   vimtex_syntax_conceal_disable = 1,
   vimtex_quickfix_open_on_warning = 0,
+  vimtex_complete_enabled = 1,
+  vimtex_complete_smart_case = 1,
+  vimtex_complete_bib = { simple = 1 },
   vimtex_compiler_latexmk_engines = { ["_"] = "-lualatex" },
   vimtex_compiler_method = "latexmk",
   vimtex_compiler_latexmk = {

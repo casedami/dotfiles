@@ -1,12 +1,29 @@
 local M = {}
 
+---@alias Sign {name:string, text:string, texthl:string, priority:number}
+
+-- Returns a list of regular and extmark signs sorted by priority (low to high)
+---@return Sign[]
+---@param buf number
+---@param lnum number
 function M.get_signs(buf, lnum)
   -- Get regular signs
-  local signs = vim.tbl_map(function(sign)
-    local ret = vim.fn.sign_getdefined(sign.name)[1]
-    ret.priority = sign.priority
-    return ret
-  end, vim.fn.sign_getplaced(buf, { group = "*", lnum = lnum })[1].signs)
+  ---@type Sign[]
+  local signs = {}
+
+  if vim.fn.has("nvim-0.10") == 0 then
+    -- Only needed for Neovim <0.10
+    -- Newer versions include legacy signs in nvim_buf_get_extmarks
+    for _, sign in
+      ipairs(vim.fn.sign_getplaced(buf, { group = "*", lnum = lnum })[1].signs)
+    do
+      local ret = vim.fn.sign_getdefined(sign.name)[1] --[[@as Sign]]
+      if ret then
+        ret.priority = sign.priority
+        signs[#signs + 1] = ret
+      end
+    end
+  end
 
   -- Get extmark signs
   local extmarks = vim.api.nvim_buf_get_extmarks(

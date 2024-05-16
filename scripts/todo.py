@@ -227,6 +227,13 @@ class CommandBuilder:
 # MARK: HELPER METHODS
 
 
+def no_priority(priorities: dict):
+    for task in priorities.values():
+        if task.level is not None or task.date is not None:
+            return True
+    return False
+
+
 def sort_by_priority(filepath: str):
     """
     Sorts tasks by priority (level & date) if any, otherwise alphanumerically.
@@ -239,7 +246,7 @@ def sort_by_priority(filepath: str):
             .strip(TodoType.TODO)
             .strip(TodoType.DONE, priority=True)
             .strip(TodoType.LATE)
-            .named(f"sort > {output_file.name}")
+            .named(f"sort -r -k 2 -o {output_file.name}")
             .string
         )
         sp.call(cmd, shell=True)
@@ -263,6 +270,9 @@ def sort_by_priority(filepath: str):
         date = str2date(date.group()) if date is not None else None
 
         priorities[i] = Priority(level, date)
+
+    if no_priority(priorities):
+        return tasks
 
     for i in range(1, len(tasks)):
         j = i - 1
@@ -459,6 +469,7 @@ def mark(args, filepath: str) -> None:
     Marks selected tasks in a given TODO list as finished.
     """
 
+    # TODO: replace apostrophe
     marked = select(filepath)
     for task in marked:
         task = task.strip()

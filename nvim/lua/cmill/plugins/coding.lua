@@ -1,12 +1,5 @@
 return {
   {
-    "numToStr/Comment.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("Comment").setup()
-    end,
-  },
-  {
     "folke/todo-comments.nvim",
     event = { "BufReadPost", "BufNewFile" },
     -- stylua: ignore

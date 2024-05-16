@@ -61,5 +61,7 @@ return {
       end,
     },
   },
-  { "lervag/vimtex" },
+  {
+    "lervag/vimtex",
+  },
 }
