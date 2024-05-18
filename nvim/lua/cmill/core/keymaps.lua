@@ -16,6 +16,14 @@ local function toggle_colorcolumn()
   end
 end
 
+local function toggle_lightdark()
+  if vim.o.background == "light" then
+    vim.opt.background = "dark"
+  else
+    vim.opt.background = "light"
+  end
+end
+
 local opts = {
   silent = { silent = true },
   noremap = { remap = false },
@@ -89,6 +97,7 @@ local maps = {
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
   { "n", "<leader>!", toggle_colorcolumn }, -- toggle color column
   { "n", "<leader>dm", del_marks, opts["silent"] }, -- delete user's marks
+  { "n", "<leader>uc", toggle_lightdark, opts["silent"] }, -- toggle light/dark mode
   { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro
   { "n", "<leader>sq", "<cmd>Pstop<cr>", opts["silent"] }, -- stop pomodoro
   { "x", "<localleader>ff", ":!pandoc -t commonmark_x<cr>" }, -- auto format selected markdown table
