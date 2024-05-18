@@ -450,6 +450,11 @@ def reset_todo(args, filepath: str) -> None:
     sp.call(cmd, shell=True)
 
 
+def pull(args, filepath: str) -> None:
+    # IDEA: pull task to TODAY
+    pass
+
+
 def push(args, filepath: str) -> None:
     """
     Moves selected tasks from a given TODO list to TOMORROW list.

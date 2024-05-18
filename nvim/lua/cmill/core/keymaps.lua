@@ -92,7 +92,6 @@ local maps = {
   { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro
   { "n", "<leader>sq", "<cmd>Pstop<cr>", opts["silent"] }, -- stop pomodoro
   { "x", "<localleader>ff", ":!pandoc -t commonmark_x<cr>" }, -- auto format selected markdown table
-  { "n", "gx", "!open <c-r><c-a>" }, -- open link under cursor (bc using oil instead of netrw)
 }
 
 for _, v in pairs(maps) do

@@ -3,7 +3,8 @@ return {
     "cdmill/neomodern.nvim",
     config = function()
       require("neomodern").setup({
-        -- style = "darkforest",
+        style = "iceclimber",
+        toggle_style_key = "<leader>cc",
         code_style = {
           headings = "none",
         },
@@ -11,10 +12,6 @@ return {
           plain = true,
           show_eob = false,
           -- colored_docstrings = false,
-        },
-        lualine = {
-          plain = false,
-          bold = true,
         },
       })
       require("neomodern").load()
