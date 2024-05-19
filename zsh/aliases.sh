@@ -1,5 +1,4 @@
 alias vim="nvim"
-alias cd="z"
 alias tm="tmux"
 alias sed="sed -E"
 alias fd="fd -c never"

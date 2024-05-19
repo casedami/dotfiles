@@ -27,8 +27,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:*' fzf-flags --bind "tab:toggle,btab:ignore,ctrl-space:ignore"
 
-eval "$(zoxide init zsh)"
-
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg+:#ecae6d,pointer:#ecae6d,hl:#ecae6d,hl+:#ecae6d,gutter:-1,bg+:-1,prompt:#8da0d6,info:#4f5b58
   --separator="─" --scrollbar="│" --layout="reverse" --info="right"
