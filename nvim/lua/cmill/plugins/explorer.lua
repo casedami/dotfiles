@@ -67,7 +67,7 @@ return {
     config = function()
       -- stylua: ignore
       require("telescope.pickers.layout_strategies").center_h = function( picker, max_columns, max_lines, layout_config)
-        local layout = require("telescope.pickers.layout_strategies").center( picker, max_columns, max_lines, layout_config)
+        local layout = require("telescope.pickers.layout_strategies").center(picker, max_columns, max_lines, layout_config)
         layout.results.line = layout.results.line + 1
         layout.results.title = ""
         return layout
@@ -94,13 +94,16 @@ return {
           winblend = 0,
           preview = false,
           layout_config = {
-            width = 0.45,
+            width = function(_, max_columns)
+              return math.max(math.floor(0.40 * max_columns), 60)
+            end,
             height = 0.60,
             prompt_position = "top",
           },
           mappings = {
             n = {
               ["q"] = require("telescope.actions").close,
+              ["<C-d>"] = "delete_buffer",
             },
             i = {
               ["PP"] = require("telescope.actions").close,

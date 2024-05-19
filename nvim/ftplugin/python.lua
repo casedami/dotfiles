@@ -1,1 +1,1 @@
-vim.keymap.set("n", "<localleader>R", "<cmd>!python3 %<cr>")
+vim.keymap.set("n", "<localleader>R", "<cmd>!python3 %<cr>", { buffer = true })
