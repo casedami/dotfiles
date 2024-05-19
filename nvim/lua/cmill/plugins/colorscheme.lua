@@ -12,6 +12,7 @@ return {
           plain = true,
           show_eob = false,
           -- colored_docstrings = false,
+          telescope = "borderless",
         },
       })
       require("neomodern").load()

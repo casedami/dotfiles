@@ -1,7 +1,30 @@
+if [[ -f "/opt/homebrew/bin/brew" ]] then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# plugin manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
+
+# plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit snippet OMZP::sudo
+zinit snippet OMZP::command-not-found
+
+# load completions
+autoload -Uz compinit && compinit
+
+zinit cdreplay -q
+
 PATH="$PATH:$HOME/.local/bin/scripts/"
 PATH="$PATH:$HOME/Library/Python/3.11/bin"
-
-[ -f "/Users/caseymiller/.ghcup/env" ] && source "/Users/caseymiller/.ghcup/env" # ghcup-env
 
 source /Users/caseymiller/.config/zsh/prompt.zsh
 source /Users/caseymiller/.config/zsh/aliases.sh

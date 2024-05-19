@@ -1,22 +1,32 @@
 KEYTIMEOUT=1
 
-HISTSIZE=30
-HISTFILE=~/.local/.zsh_history
-SAVEHIST=30
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
 HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
 setopt hist_ignore_all_dups
-setopt hist_ignore_dups
 setopt hist_save_no_dups
+setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 setopt cd_silent     # don't print dir after cd
 setopt extended_glob # extended globbing functionality
 
-bindkey '^K' up-line-or-search
-bindkey '^J' down-line-or-search
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 
-export LANG="en_US.UTF-8"
-export TERM="xterm-256color"
+# format completions
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
