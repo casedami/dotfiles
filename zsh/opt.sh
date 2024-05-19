@@ -27,7 +27,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:*' fzf-flags --bind "tab:toggle,btab:ignore,ctrl-space:ignore"
 
-# eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
@@ -46,4 +45,3 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --bind='ctrl-d:preview-page-down'
   '
 export FZF_COMPLETION_TRIGGER=';'
-export FZF_ALT_C_COMMAND='^e'
