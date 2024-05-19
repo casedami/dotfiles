@@ -1,6 +1,7 @@
 return {
   {
     "cdmill/neomodern.nvim",
+    branch = "dev",
     config = function()
       require("neomodern").setup({
         style = "iceclimber",

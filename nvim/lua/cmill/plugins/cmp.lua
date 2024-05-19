@@ -2,6 +2,7 @@ return {
   "hrsh7th/nvim-cmp",
   event = "LspAttach",
   dependencies = {
+    { "onsails/lspkind.nvim" },
     {
       "L3MON4D3/LuaSnip",
       event = "InsertEnter",
@@ -33,6 +34,7 @@ return {
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
     local defaults = require("cmp.config.default")()
+    local lspkind = require("lspkind")
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,noinsert",
@@ -61,13 +63,15 @@ return {
       formatting = {
         expandable_indicator = false,
         fields = { "kind", "abbr", "menu" },
-        format = function(_, item)
-          local icons = require("cmill.core.util").lspicons()
-          local kind = item.kind
-          item.kind = (icons[kind] or "")
-          item.menu = "[" .. kind .. "]"
-          return item
-        end,
+        format = lspkind.cmp_format({
+          mode = "symbol",
+          maxwidth = 15,
+          ellipsis_char = "...",
+          show_labelDetails = true,
+          before = function(_, item)
+            return item
+          end,
+        }),
       },
       experimental = {
         ghost_text = {
