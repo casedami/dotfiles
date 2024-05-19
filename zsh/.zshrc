@@ -31,6 +31,7 @@ source /Users/caseymiller/.config/zsh/fg_bg.zsh
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+export __zoxide_zi='cdi'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
