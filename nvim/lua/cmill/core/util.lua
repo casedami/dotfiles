@@ -138,6 +138,13 @@ function M.statusline_components()
     filename = {
       "filename",
       path = 3,
+      fmt = function(str)
+        if vim.bo.buftype == "terminal" then
+          return "zsh"
+        else
+          return str
+        end
+      end,
     },
     diagnostics = {
       "diagnostics",
