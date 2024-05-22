@@ -121,6 +121,9 @@ return {
           live_grep = {
             disable_devicons = true,
           },
+          buffers = {
+            disable_devicons = true,
+          },
           registers = {
             theme = "dropdown",
           },

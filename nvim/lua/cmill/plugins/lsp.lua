@@ -14,7 +14,7 @@ return {
         severity_sort = true,
       },
       inlay_hints = {
-        enabled = false,
+        enabled = true,
       },
       capabilities = {},
       format = {
@@ -22,7 +22,20 @@ return {
         timeout_ms = nil,
       },
       servers = {
-        lua_ls = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = "Disable",
+                semicolon = "Disable",
+                arrayIndex = "Disable",
+              },
+            },
+          },
+        },
         pyright = {
           settings = {
             pyright = {

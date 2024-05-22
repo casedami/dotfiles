@@ -24,7 +24,7 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr "*"
 zstyle ':vcs_info:*' stagedstr "+"
-zstyle ':vcs_info:git:*' formats '%F{12}%b%u%c%f%F{magenta}%m%f '
+zstyle ':vcs_info:git:*' formats '%F{17}%b%u%c%f%F{magenta}%m%f '
 
 zstyle ':vcs_info:git*+set-message:*' hooks git-st
 function +vi-git-st() {

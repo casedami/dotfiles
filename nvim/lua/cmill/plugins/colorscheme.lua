@@ -1,10 +1,9 @@
 return {
   {
     "cdmill/neomodern.nvim",
-    branch = "dev",
     config = function()
       require("neomodern").setup({
-        style = "iceclimber",
+        style = "darkforest",
         toggle_style_key = "<leader>cc",
         code_style = {
           headings = "none",
