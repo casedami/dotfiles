@@ -1,4 +1,43 @@
-import = ["/Users/caseymiller/.config/alacritty/themes/themes/everforest_dark.toml"]
+# DARKFOREST Alacritty Colors
+# Default colors
+[colors.primary]
+background = '#181b1b'
+foreground = '#bbbac1'
+
+#[colors.cursor]
+#cursor = '#bbbac1'
+#text = '#181b1b'
+
+# Normal colors
+[colors.normal]
+black = '#111312'
+red = '#e67e80'
+green = '#7da77e'
+yellow = '#dbbc7f'
+blue = '#a7c080'
+magenta = '#abbceb'
+cyan = '#78b0a8'
+white = '#bbbac1'
+
+# Bright colors
+[colors.bright]
+black = '#7a8478'
+red = '#e67e80'
+green = '#7da77e'
+yellow = '#dbbc7f'
+blue = '#a7c080'
+magenta = '#9094de'
+cyan = '#78b0a8'
+white = '#bbbac1'
+
+# Indexed Colors
+[[colors.indexed_colors]]
+index = 16
+color = '#e69875'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#d6a56f'
 
 [cursor]
 unfocused_hollow = true
@@ -11,7 +50,7 @@ shape = "block"
 TERM = "xterm-256color"
 
 [font]
-size = 13.0
+size = 13.25
 
 [font.bold]
 family = "FiraCode Nerd Font Propo"
@@ -31,13 +70,14 @@ style = "Regular"
 
 [font.offset]
 x = 0
-y = 0
+y = 1
 
 [scrolling]
 history = 500
 
 [window]
-decorations = "buttonless"
+decorations = "full"
+decorations_theme_variant = "Dark"
 dynamic_padding = true
 opacity = 1.0
 option_as_alt = "Both"

@@ -34,6 +34,7 @@ eval "$(zoxide init --cmd cd zsh)"
 export __zoxide_zi='cdi'
 export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
+export HOMEBREW_NO_ENV_HINTS
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
