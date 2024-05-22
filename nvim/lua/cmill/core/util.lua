@@ -176,7 +176,6 @@ function M.statusline_components()
       function()
         return vim.fn.tabpagenr()
       end,
-      -- color = { fg = "#dbbc8a" },
       cond = function()
         return vim.api.nvim_eval("len(gettabinfo())") > 1
       end,

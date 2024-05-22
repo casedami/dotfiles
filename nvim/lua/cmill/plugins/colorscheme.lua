@@ -11,7 +11,7 @@ return {
         ui = {
           plain = true,
           show_eob = false,
-          -- colored_docstrings = false,
+          colored_docstrings = false,
           telescope = "borderless",
         },
       })
