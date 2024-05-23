@@ -10,15 +10,14 @@ function fish_prompt
 
     set -g __fish_git_prompt_color $alt
     set -g __fish_git_prompt_showdirtystate 1
-    set -g __fish_git_prompt_showupstream git
+    set -g __fish_git_prompt_showupstream auto
     set -g __fish_git_prompt_color_upstream magenta
     set -g __fish_git_prompt_color_prefix $orange
     set -g __fish_git_prompt_color_suffix $orange
     set -g __fish_git_prompt_color_dirtystate $orange
-    set -g __fish_git_prompt_char_upstream_ahead ↑
-    set -g __fish_git_prompt_char_upstream_behind ↓
+    set -g __fish_git_prompt_char_upstream_ahead :↑
+    set -g __fish_git_prompt_char_upstream_behind :↓
     set -g __fish_git_prompt_char_upstream_equal ''
-    set -g __fish_git_prompt_char_upstream_prefix :
     set -g __fish_git_prompt_char_stateseparator ':'
 
     set -l promptchar_color "$normal"
