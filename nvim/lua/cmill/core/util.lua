@@ -140,7 +140,7 @@ function M.statusline_components()
       path = 3,
       fmt = function(str)
         if vim.bo.buftype == "terminal" then
-          return "zsh"
+          return "fish"
         else
           return str
         end
