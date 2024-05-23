@@ -1,5 +1,4 @@
 function fish_prompt
-    set -l cyan (set_color -o cyan)
     set -l yellow (set_color -o yellow)
     set -l red (set_color -o red)
     set -l green (set_color -o green)
@@ -9,7 +8,7 @@ function fish_prompt
 
     set -l __last_command_exit_status $status
 
-    set -g __fish_git_prompt_color cyan
+    set -g __fish_git_prompt_color $orange
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showupstream git
     set -g __fish_git_prompt_color_upstream magenta
