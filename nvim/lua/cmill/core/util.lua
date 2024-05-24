@@ -146,14 +146,16 @@ function M.statusline_components()
       "filename",
       path = 3,
       fmt = function(str)
+        local fname = {
+          TelescopePrompt = "Telescope",
+          oil = require("oil").get_current_dir(),
+          lazy = "Lazy",
+        }
+
         if vim.bo.buftype == "terminal" then
           return "fish"
-        elseif vim.bo.filetype == "TelescopePrompt" then
-          return "Telescope"
-        elseif vim.bo.filetype == "oil" then
-          return require("oil").get_current_dir()
         else
-          return str
+          return fname[vim.bo.filetype] or str
         end
       end,
     },
