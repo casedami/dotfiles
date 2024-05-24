@@ -51,7 +51,6 @@ return {
           lualine_z = {},
         },
         extensions = {
-          "oil",
           "man",
         },
       })

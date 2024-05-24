@@ -2,32 +2,12 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# plugin manager
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-source "${ZINIT_HOME}/zinit.zsh"
-
-# plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
-
 PATH="$PATH:$HOME/.local/bin/scripts/"
 PATH="$PATH:$HOME/Library/Python/3.11/bin"
 
 source /Users/caseymiller/.config/zsh/prompt.zsh
 source /Users/caseymiller/.config/zsh/aliases.sh
 source /Users/caseymiller/.config/zsh/opt.sh
-source /Users/caseymiller/.config/zsh/fg_bg.zsh
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

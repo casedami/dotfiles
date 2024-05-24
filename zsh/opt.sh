@@ -19,14 +19,6 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
-# format completions
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
-zstyle ':fzf-tab:*' fzf-flags --bind "tab:toggle,btab:ignore,ctrl-space:ignore"
-
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:#bbbac1,bg:#181b1b,hl:#e69875,gutter:#181b1b
   --color=fg+:#bbbac1,bg+:#313b35,hl+:#e69875
