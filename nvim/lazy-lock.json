@@ -16,7 +16,7 @@
   "mini.starter": { "branch": "main", "commit": "ce222a5b6de50a9963c1eb62aa16ec6d5efca7ee" },
   "neodev.nvim": { "branch": "main", "commit": "ce9a2e8eaba5649b553529c5498acb43a6c317cd" },
   "neogit": { "branch": "master", "commit": "daebc4bc94bdcfa69d8d75c731878bff758e16fa" },
-  "neomodern.nvim": { "branch": "main", "commit": "422f068b2580e0dd40cff6929cff6bd50a57216d" },
+  "neomodern.nvim": { "branch": "main", "commit": "cb59f9df1d57d0dae30aa75806c5bd4bef4a16b4" },
   "neoscroll.nvim": { "branch": "master", "commit": "e78657719485c5663b88e5d96ffcfb6a2fe3eec0" },
   "neovim-session-manager": { "branch": "master", "commit": "4376507a99af4a92c85263c30ab8efee0bb2857f" },
   "nui.nvim": { "branch": "main", "commit": "b1b3dcd6ed8f355c78bad3d395ff645be5f8b6ae" },
