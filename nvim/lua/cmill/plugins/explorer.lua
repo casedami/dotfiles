@@ -4,6 +4,7 @@ return {
     event = "VimEnter",
     keys = {
       { "<leader>fe", "<cmd>Oil<cr>" },
+      { "<leader>fE", "<cmd>Oil " .. vim.fn.getcwd() .. "<cr>" },
     },
     cmd = "Oil",
     config = function()

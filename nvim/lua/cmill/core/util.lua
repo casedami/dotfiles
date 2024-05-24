@@ -36,6 +36,9 @@ function M.get_signs(buf, lnum)
   return signs
 end
 
+---@return Sign?
+---@param buf number
+---@param lnum number
 function M.get_mark(buf, lnum)
   local marks = vim.fn.getmarklist(buf)
   vim.list_extend(marks, vim.fn.getmarklist())
@@ -46,6 +49,8 @@ function M.get_mark(buf, lnum)
   end
 end
 
+---@param sign? Sign
+---@param len? number
 function M.icon(sign, len)
   sign = sign or {}
   len = len or 2
@@ -54,7 +59,7 @@ function M.icon(sign, len)
   return sign.texthl and ("%#" .. sign.texthl .. "#" .. text .. "%*") or text
 end
 
--- build status column
+-- Build statuscoloumn of the form {diagnostics, marks}-linenumber-{gitsigns, folds}
 function M.statuscolumn()
   local win = vim.g.statusline_winid
   local buf = vim.api.nvim_win_get_buf(win)
@@ -100,6 +105,7 @@ function M.statuscolumn()
   return table.concat(components, "")
 end
 
+-- Returns icon if an lsp client is attached to the current buffer, otherwise an empty string
 local lsp_client = function()
   local bufnr = vim.api.nvim_get_current_buf()
 
@@ -111,6 +117,7 @@ local lsp_client = function()
   end
 end
 
+-- Returns a table of lualine components with configs
 function M.statusline_components()
   local components = {
     nvim_icon = {
@@ -141,6 +148,10 @@ function M.statusline_components()
       fmt = function(str)
         if vim.bo.buftype == "terminal" then
           return "fish"
+        elseif vim.bo.filetype == "TelescopePrompt" then
+          return "Telescope"
+        elseif vim.bo.filetype == "oil" then
+          return require("oil").get_current_dir()
         else
           return str
         end
@@ -192,6 +203,7 @@ function M.statusline_components()
   return components
 end
 
+-- Opens telescope for searching .config files
 function M.config()
   return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
 end
