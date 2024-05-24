@@ -1,5 +1,5 @@
-set -U orange e69875
-set -U alt d6a56f
+set -U orange e69875 # color 16
+set -U alt d6a56f # color 17
 
 set -g fish_color_normal bbbac1
 set -g fish_color_command 7da77e

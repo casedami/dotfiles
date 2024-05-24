@@ -8,6 +8,7 @@ return {
         lua = { "stylua" },
         python = { "ruff_format" },
         sh = { "shfmt" },
+        fish = { "fish_indent" },
         c = { "clang-format" },
         tex = { "latexindent" },
         ["_"] = { "trim_whitespace" },
