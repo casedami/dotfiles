@@ -65,7 +65,7 @@ return {
         fields = { "kind", "abbr", "menu" },
         format = lspkind.cmp_format({
           mode = "symbol",
-          maxwidth = 15,
+          maxwidth = 12,
           ellipsis_char = "...",
           show_labelDetails = true,
           before = function(_, item)

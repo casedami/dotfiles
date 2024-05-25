@@ -90,7 +90,7 @@ return {
           layout_strategy = "center_h",
           sorting_strategy = "ascending",
           scroll_strategy = "cycle",
-          path_display = { "truncate" },
+          path_display = { "tail" },
           color_devicons = true,
           winblend = 0,
           preview = false,

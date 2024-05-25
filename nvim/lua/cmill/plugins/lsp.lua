@@ -53,7 +53,7 @@ return {
         clangd = {},
       },
       setup = {
-        ruff_lsp = function()
+        ruff = function()
           local on_attach = function(client, _)
             if client.name == "ruff_lsp" then
               -- Disable hover in favor of Pyright
@@ -61,7 +61,7 @@ return {
             end
           end
 
-          require("lspconfig").ruff_lsp.setup({
+          require("lspconfig").ruff.setup({
             on_attach = on_attach,
           })
         end,
@@ -137,8 +137,8 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
+        "pyright",
         "ruff",
-        "ruff-lsp",
         "clangd",
         "clang-format",
         "latexindent",
