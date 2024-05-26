@@ -143,8 +143,7 @@ class CommandBuilder:
     def __str__(self):
         return self.command
 
-    @property
-    def string(self):
+    def build(self):
         return self.command
 
     def named(self, cmd: str):
@@ -244,7 +243,7 @@ def sort_by_priority(filepath: str):
             cmd = (
                 CommandBuilder()
                 .find([TodoType.DONE, TodoType.LATE], fp=filepath)
-                .string
+                .build()
             )
             sp.check_output(cmd, shell=True)
             cmd = (
@@ -254,7 +253,7 @@ def sort_by_priority(filepath: str):
                 .strip(TodoType.DONE, priority=True)
                 .strip(TodoType.LATE)
                 .named(f"sort -r -o {output_file.name}")
-                .string
+                .build()
             )
             sp.call(cmd, shell=True)
         except sp.CalledProcessError:
@@ -265,7 +264,7 @@ def sort_by_priority(filepath: str):
                 .strip(TodoType.DONE, priority=True)
                 .strip(TodoType.LATE)
                 .named(f"sort -r -k 2 -o {output_file.name}")
-                .string
+                .build()
             )
             sp.call(cmd, shell=True)
 
@@ -360,7 +359,7 @@ def select(filepath: str) -> None:
             .strip(TodoType.LATE, prefix=True, priority=True)
             .named("sort")
             .named(f"fzf > {output_file.name}")
-            .string
+            .build()
         )
         sp.call(cmd, shell=True)
 
@@ -383,7 +382,7 @@ def ls(args, filepath: str) -> None:
         cmd = (
             CommandBuilder(sep="|")
             .find([TodoType.TODO, TodoType.DONE, TodoType.LATE], fp=filepath)
-            .string
+            .build()
         )
         sp.check_output(cmd, shell=True)
 
@@ -424,7 +423,7 @@ def remove(args, filepath: str) -> None:
     marked = select(filepath)
     for task in marked:
         task = task.strip()
-        cmd = CommandBuilder().delete(task, filepath, todo=False).string
+        cmd = CommandBuilder().delete(task, filepath, todo=False).build()
         sp.call(cmd, shell=True)
 
 
@@ -433,7 +432,7 @@ def clean(args, filepath: str) -> None:
     Removes all finished tasks from a given TODO list.
     """
 
-    cmd = CommandBuilder().delete(TodoType.DONE, filepath).string
+    cmd = CommandBuilder().delete(TodoType.DONE, filepath).build()
     sp.call(cmd, shell=True)
 
 
@@ -445,7 +444,7 @@ def reset_todo(args, filepath: str) -> None:
     cmd = (
         CommandBuilder()
         .delete([TodoType.TODO, TodoType.DONE, TodoType.LATE], filepath)
-        .string
+        .build()
     )
     sp.call(cmd, shell=True)
 
@@ -468,7 +467,7 @@ def push(args, filepath: str) -> None:
             .replace(TodoType.LATE, TodoType.TODO, fp=filepath)
             .find(TodoType.TODO, fp=filepath)
             .append_to(TOMORROW)
-            .string
+            .build()
         )
         sp.call(cmd, shell=True)
     else:
@@ -480,7 +479,7 @@ def push(args, filepath: str) -> None:
                 .find(task, fp=filepath, todo=False)
                 .append_to(TOMORROW)
                 .delete(task, filepath, todo=False)
-                .string
+                .build()
             )
             sp.call(cmd, shell=True)
     if args.clear:
@@ -500,7 +499,7 @@ def mark(args, filepath: str) -> None:
         cmd = (
             CommandBuilder()
             .replace(f"\\[( |>)\\] {task}", f"\\[x\\] {task}", fp=filepath, todo=False)
-            .string
+            .build()
         )
         sp.call(cmd, shell=True)
 
@@ -523,10 +522,10 @@ if __name__ == "__main__":
     today = dt.datetime.now().date()
     filetime = dt.datetime.fromtimestamp(os.path.getmtime(TODAY))
     if filetime.date() != today:
-        cmd = CommandBuilder().replace(TodoType.TODO, TodoType.LATE, fp=TODAY).string
+        cmd = CommandBuilder().replace(TodoType.TODO, TodoType.LATE, fp=TODAY).build()
         sp.call(cmd, shell=True)
         clean(args, TODAY)
-        cmd = CommandBuilder().find(TodoType.TODO, fp=TOMORROW).append_to(TODAY).string
+        cmd = CommandBuilder().find(TodoType.TODO, fp=TOMORROW).append_to(TODAY).build()
         sp.call(cmd, shell=True)
         reset_todo(args, TOMORROW)
         print("It's a new day  ")
