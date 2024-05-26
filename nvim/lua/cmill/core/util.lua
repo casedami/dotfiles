@@ -120,27 +120,22 @@ end
 -- Returns a table of lualine components with configs
 function M.statusline_components()
   local components = {
-    nvim_icon = {
-      function()
-        return ""
-      end,
-      color = { fg = "#7da77e" },
-    },
-    sep = {
-      function()
-        return "|"
-      end,
-      color = { fg = "#7da77e" },
-    },
-    modes = {
-      "mode",
-      fmt = function(str)
-        return str:sub(1, 3)
-      end,
-    },
     branch = {
       "branch",
       icon = "",
+    },
+    date = {
+      "datetime",
+      style = "%Y-%m-%d",
+      color = { fg = "#88888f" },
+    },
+    diagnostics = {
+      "diagnostics",
+      sections = { "error", "warn" },
+      symbols = {
+        error = "󰅖 ",
+        warn = " ",
+      },
     },
     filename = {
       "filename",
@@ -160,31 +155,40 @@ function M.statusline_components()
         end
       end,
     },
-    diagnostics = {
-      "diagnostics",
-      sections = { "error", "warn" },
-      symbols = {
-        error = "󰅖 ",
-        warn = " ",
-      },
-    },
-    progress = {
-      "progress",
+    location = {
+      "location",
     },
     lsp = {
       lsp_client,
     },
-    time = {
-      "datetime",
-      style = "%H:%M:%S",
+    modes = {
+      "mode",
+      fmt = function(str)
+        return str:sub(1, 3)
+      end,
     },
-    date = {
-      "datetime",
-      style = "%Y-%m-%d",
-      color = { fg = "#88888f" },
+    nvim_icon = {
+      function()
+        return ""
+      end,
+      color = { fg = "#7da77e" },
     },
-    location = {
-      "location",
+    pomodoro = {
+      require("cmill.core.pomodoro").statusline,
+      color = { fg = "#559ba3", bg = "#1d1d1f" },
+      separator = { left = "", right = "" },
+      cond = function()
+        return require("cmill.core.pomodoro").statusline() ~= "(inactive)"
+      end,
+    },
+    progress = {
+      "progress",
+    },
+    sep = {
+      function()
+        return "|"
+      end,
+      color = { fg = "#7da77e" },
     },
     tabs = {
       function()
@@ -194,13 +198,9 @@ function M.statusline_components()
         return vim.api.nvim_eval("len(gettabinfo())") > 1
       end,
     },
-    pomodoro = {
-      require("cmill.core.pomodoro").statusline,
-      color = { fg = "#559ba3", bg = "#1d1d1f" },
-      separator = { left = "", right = "" },
-      cond = function()
-        return require("cmill.core.pomodoro").statusline() ~= "(inactive)"
-      end,
+    time = {
+      "datetime",
+      style = "%H:%M:%S",
     },
   }
   return components

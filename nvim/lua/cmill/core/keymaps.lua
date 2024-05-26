@@ -45,6 +45,7 @@ local maps = {
   { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
   { "n", "<localleader>bd", "<cmd>bd<cr>" }, -- delete buffer
   { "n", "<localleader>p", "<C-6>" }, -- previous buffer
+  { "n", "<leader>bb", "<cmd>ls<cr>:b<space>" }, -- change buffer via buflist preview
   -- TABS
   { "n", "<localleader>}", "<cmd>tabnext<cr>" }, -- next tab
   { "n", "<localleader>{", "<cmd>tabprevious<cr>" }, -- previous tab
@@ -91,7 +92,7 @@ local maps = {
   { { "n", "v" }, "<leader>QQ", "q/" }, -- remap to search history
   { { "n", "v" }, "q", "<nop>" }, -- remove macro ...
   { { "n", "v" }, "Q", "<nop>" }, -- remove Q
-  { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>
+  { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>)
   { "n", "!", "<C-l>" }, -- clear cmd line
   { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
@@ -101,6 +102,9 @@ local maps = {
   { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro
   { "n", "<leader>sq", "<cmd>Pstop<cr>", opts["silent"] }, -- stop pomodoro
   { "x", "<localleader>ff", ":!pandoc -t commonmark_x<cr>" }, -- auto format selected markdown table
+  -- ABBREVIATIONS
+  { "ca", "ws", "WriteSes" },
+  { "ca", "ds", "DelSes" },
 }
 
 for _, v in pairs(maps) do
@@ -109,12 +113,12 @@ for _, v in pairs(maps) do
 end
 
 -- SESSIONS
-vim.api.nvim_create_user_command("Sw", function()
+vim.api.nvim_create_user_command("WriteSes", function()
   vim.cmd("SessionManager save_current_session")
   local msg = vim.loop.cwd() .. " session saved"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
-vim.api.nvim_create_user_command("Sd", function()
+vim.api.nvim_create_user_command("DelSes", function()
   vim.cmd("SessionManager delete_current_dir_session")
   local msg = vim.loop.cwd() .. " session deleted"
   vim.cmd("echo '" .. msg .. "'")

@@ -56,7 +56,7 @@ local opts = {
     eob = "~",
   },
   list = true, -- show some invisible characters (tabs...
-  scrolloff = 4, -- lines of context
+  scrolloff = 10, -- lines of context
   shiftround = true,
   shiftwidth = 2, -- size of an indent
   spelllang = { "en" },
@@ -76,6 +76,7 @@ local opts = {
   history = 100,
   ignorecase = true,
   inccommand = "nosplit", -- preview incremental substitute
+  jumpoptions = "stack,view",
   smartcase = true,
   smartindent = false,
   splitbelow = true, -- put new windows below current

@@ -56,7 +56,7 @@ return {
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Toggle Telescope live_grep", silent = true, },
       { "<leader>fR", "<cmd>Telescope resume<cr>", desc = "Toggle Telescope resume", silent = true, },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Toggle Telescope help", silent = true, },
-      { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Toggle Telescope buffers", silent = true, },
+      { "<leader>,", "<cmd>Telescope buffers sort_mru=true<cr>", desc = "Toggle Telescope buffers", silent = true, },
       { "<leader>fs", "<cmd>Telescope registers<cr>", desc = "Registers", silent = true, },
       { "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Marks", silent = true, },
       { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git status", silent = true, },

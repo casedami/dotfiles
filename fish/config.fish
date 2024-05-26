@@ -5,6 +5,7 @@ if status is-interactive
     abbr --add go git checkout
     abbr --add gc git commit
     abbr --add gp git push
+    abbr --add gs git s
 
     alias vim="nvim"
     alias cd="z"
