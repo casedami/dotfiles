@@ -1,13 +1,20 @@
--- stylua: ignore start
-vim.keymap.set("n", "<localleader>e", ":e ~/self/notes/main/inbox/", {buffer = true})
-vim.keymap.set("n", "<localleader>ll", "<cmd>ObsidianOpen<cr>", {buffer = true})
-vim.keymap.set("n", "<localleader>gd", "<cmd>ObsidianFollowLink<cr>", {buffer = true})
-vim.keymap.set("n", "<localleader>gs", "<cmd>ObsidianFollowLink hsplit<cr>", {buffer = true})
-vim.keymap.set("n", "<localleader>gv", "<cmd>ObsidianFollowLink vsplit<cr>", {buffer = true})
-vim.keymap.set("n", "<localleader>ff", "<cmd>ObsidianBacklinks<cr>", {buffer = true})
-vim.keymap.set("n", "<localleader>ft", ":ObsidianTags ", {buffer = true})
-vim.keymap.set("n", "<localleader>fn", "<cmd>ObsidianNew<cr>", {buffer = true})
-vim.keymap.set("n", "<localleader>t", "<cmd>ObsidianTemplate<cr>", {buffer = true})
+local maps = {
+  { "n", "<localleader>e", ":e ~/self/notes/main/inbox/" },
+  { "n", "<localleader>ll", "<cmd>ObsidianOpen<cr>" },
+  { "n", "<localleader>gd", "<cmd>ObsidianFollowLink<cr>" },
+  { "n", "<localleader>gs", "<cmd>ObsidianFollowLink hsplit<cr>" },
+  { "n", "<localleader>gv", "<cmd>ObsidianFollowLink vsplit<cr>" },
+  { "n", "<localleader>fl", "<cmd>ObsidianBacklinks<cr>" },
+  { "n", "<localleader>fn", "<cmd>ObsidianNew<cr>" },
+  { "n", "<localleader>t", "<cmd>ObsidianTemplate<cr>" },
+  { "ca", "ff", "ObsidianQuickSwitch" },
+  { "ca", "ft", "ObsidianTags" },
+}
+
+for _, v in pairs(maps) do
+  vim.keymap.set(v[1], v[2], v[3], { buffer = true })
+end
+
 -- stylua: ignore end
 vim.opt.foldmethod = "syntax"
 vim.opt.foldenable = true

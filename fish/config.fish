@@ -19,9 +19,6 @@ if status is-interactive
     alias fd="fd -c never"
     alias timeit="/usr/bin/time -p"
 
-    alias morning="morning.zsh"
-    alias evening="evening.zsh"
-    alias todo="todo.py"
     alias pad="desktop_padding.sh"
 
     alias cade="ssh u1337847@lab1-13.eng.utah.edu"
@@ -36,14 +33,14 @@ if status is-interactive
     alias pydb="python -m pdb"
 
     alias uni="cd ~/self/dev/uni/"
-    alias notes="cd ~/self/notes/uni/"
+    alias notes="cd ~/self/notes/main/"
     alias conf="cd ~/.config/"
     alias ic="cd /Users/caseymiller/Library/Mobile Documents/com~apple~CloudDocs"
 
     set -U fish_greeting
     set -gx LANG en_US.UTF-8
     set -gx TERM xterm-256color
-    set -gx HOMEBREW_NO_ENV_HINTS
+    set -gx HOMEBREW_NO_ENV_HINTS 1
     set -U EDITOR nvim
 
     set -gx __zoxide_zi cdi

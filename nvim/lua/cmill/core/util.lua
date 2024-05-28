@@ -120,6 +120,11 @@ end
 -- Returns a table of lualine components with configs
 function M.statusline_components()
   local components = {
+    battery = {
+      function()
+        return vim.fn.system("battery.sh")
+      end,
+    },
     branch = {
       "branch",
       icon = "",
