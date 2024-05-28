@@ -10,7 +10,7 @@ function fish_prompt
     set -g __fish_git_prompt_color $alt
     set -g __fish_git_prompt_color_prefix $orange
     set -g __fish_git_prompt_color_suffix $orange
-    set -g __fish_git_prompt_color_cleanstate brmagenta
+    set -g __fish_git_prompt_color_cleanstate red
     set -g __fish_git_prompt_color_dirtystate $orange
     set -g __fish_git_prompt_color_upstream magenta
     set -g __fish_git_prompt_color_merging red
