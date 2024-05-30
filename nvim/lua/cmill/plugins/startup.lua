@@ -17,6 +17,7 @@ return {
         items = {
           new_section("Find", "Telescope find_files"),
           new_section("Explorer", "Oil"),
+          new_section("New", "lua require('cmill.core.util').new_file()"),
           new_section("Recents", "Telescope oldfiles cwd_only=true"),
           new_section("Grep", "Telescope live_grep"),
           new_section("Session", "SessionManager load_last_session"),
