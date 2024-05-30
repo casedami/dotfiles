@@ -22,15 +22,10 @@ return {
     },
   },
   {
-    "NeogitOrg/neogit",
+    "tpope/vim-fugitive",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
+      "sindrets/diffview.nvim",
     },
-    keys = {
-      { "<leader>G", "<cmd>Neogit kind=auto<cr>" },
-    },
-    config = true,
   },
   {
     "Shatur/neovim-session-manager",
