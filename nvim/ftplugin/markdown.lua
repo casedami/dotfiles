@@ -9,6 +9,7 @@ local maps = {
   { "n", "<localleader>t", "<cmd>ObsidianTemplate<cr>" },
   { "ca", "ff", "ObsidianQuickSwitch" },
   { "ca", "ft", "ObsidianTags" },
+  { "ca", "fn", "ObsidianNew" },
 }
 
 for _, v in pairs(maps) do
