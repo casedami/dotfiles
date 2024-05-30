@@ -47,7 +47,7 @@ function M.statusline()
     return "--:--"
   end
 
-  local icon = state == "running" and "@ " or "~ "
+  local icon = state == "running" and " " or " "
   return icon .. os.date("!%0M:%0S", seconds)
 end
 
