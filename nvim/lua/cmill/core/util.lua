@@ -155,6 +155,8 @@ function M.statusline_components()
 
         if vim.bo.buftype == "terminal" then
           return "fish"
+        elseif vim.bo.buftype == "prompt" then
+          return ""
         else
           return fname[vim.bo.filetype] or str
         end
@@ -214,6 +216,54 @@ end
 -- Opens telescope for searching .config files
 function M.config()
   return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
+end
+
+function M.new_file()
+  local Input = require("nui.input")
+  local Event = require("nui.utils.autocmd").event
+
+  local path = vim.fn.expand("%:p:h")
+  local is_note = false
+  if path:find("self/notes") then
+    is_note = true
+  end
+
+  local input = Input({
+    position = "50%",
+    size = {
+      width = math.floor(vim.api.nvim_win_get_width(0) * 0.20),
+    },
+    border = {
+      style = "single",
+      text = {
+        top = is_note and "New Note" or "New File",
+        top_align = "center",
+      },
+    },
+  }, {
+    prompt = " ",
+    default_value = "",
+    on_close = function() end,
+    on_submit = function(newfile)
+      if newfile ~= nil then
+        if is_note then
+          path = vim.fn.expand("~") .. "/self/notes/main/inbox/" .. newfile .. ".md"
+        else
+          path = path .. "/" .. newfile
+        end
+        vim.cmd(([[e %s]]):format(path))
+      end
+    end,
+  })
+
+  -- stylua: ignore
+  input:map("n", "<Esc>", function() input:unmount() end, { noremap = true })
+  -- stylua: ignore
+  input:map("n", "q", function() input:unmount() end, { noremap = true })
+
+  input:mount()
+  -- stylua: ignore
+  input:on(Event.BufLeave, function() input:unmount() end)
 end
 
 return M
