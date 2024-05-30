@@ -15,7 +15,8 @@
   "mason.nvim": { "branch": "main", "commit": "49ff59aded1047a773670651cfa40e76e63c6377" },
   "mini.starter": { "branch": "main", "commit": "ce222a5b6de50a9963c1eb62aa16ec6d5efca7ee" },
   "neodev.nvim": { "branch": "main", "commit": "ce9a2e8eaba5649b553529c5498acb43a6c317cd" },
-  "neomodern.nvim": { "branch": "main", "commit": "cb59f9df1d57d0dae30aa75806c5bd4bef4a16b4" },
+  "neogit": { "branch": "master", "commit": "9da48298a1c1e1ea52b4b9b9a4c2c4ded6ac422a" },
+  "neomodern.nvim": { "branch": "main", "commit": "9c6fb3276fa6ef191f26c3e53f620d4c795520a5" },
   "neoscroll.nvim": { "branch": "master", "commit": "a731f66f1d39ec6175fd201c5bf849e54abda99c" },
   "neovim-session-manager": { "branch": "master", "commit": "b552ee8667037be5d0291229279a35af25e515fb" },
   "nui.nvim": { "branch": "main", "commit": "b1b3dcd6ed8f355c78bad3d395ff645be5f8b6ae" },
@@ -30,6 +31,5 @@
   "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c89903377252bf5b" },
   "telescope.nvim": { "branch": "master", "commit": "dfa230be84a044e7f546a6c2b0a403c739732b86" },
   "todo-comments.nvim": { "branch": "main", "commit": "e1549807066947818113a7d7ed48f637e49620d3" },
-  "vim-fugitive": { "branch": "master", "commit": "4f59455d2388e113bd510e85b310d15b9228ca0d" },
   "vimtex": { "branch": "master", "commit": "9665df7f51ee24aa81dbd81782e0a22480209753" }
 }
