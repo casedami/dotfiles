@@ -6,8 +6,8 @@ set -g alt abbceb # color 17
 
 # Syntax Highlighting Colors
 set -g fish_color_normal bbbac1
-set -g fish_color_command 817faf
-set -g fish_color_keyword 817faf
+set -g fish_color_command 8c8abd
+set -g fish_color_keyword 8c8abd
 set -g fish_color_quote 7da77e
 set -g fish_color_redirection e29eca
 set -g fish_color_end 817faf
