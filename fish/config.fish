@@ -46,10 +46,10 @@ if status is-interactive
 
     set -gx __zoxide_zi cdi
     set -gx FZF_DEFAULT_OPTS '
-  --color=fg:#bbbac1,bg:#181b1b,hl:#e69875,gutter:#181b1b
-  --color=fg+:#bbbac1,bg+:#313b35,hl+:#e69875
-  --color=info:#7a8478,prompt:#78b0a8,pointer:#78b0a8
-  --color=marker:#7da77e,spinner:#7da77e,header:#7da77e
+  --color=fg:#bbbac1,bg:#171718,hl:#d6a56f,gutter:#171718
+  --color=fg+:#bbbac1,bg+:#333336,hl+:#d6a56f
+  --color=info:#55555e,prompt:#559ba3,pointer:#559ba3
+  --color=marker:#817faf,spinner:#817faf,header:#817faf
   --separator="─" --scrollbar="│" --layout="reverse" --info="right"
   --prompt=" "
   --marker=">"
