@@ -6,3 +6,4 @@ alacritty/themes/
 .zshrc-e
 cabal/
 Session.vim
+fish_variables

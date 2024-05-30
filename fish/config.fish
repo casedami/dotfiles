@@ -6,6 +6,7 @@ if status is-interactive
     abbr --add gc git commit
     abbr --add gp git push
     abbr --add gs git s
+    abbr --add kitty "rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
 
     alias vim="nvim"
     alias cd="z"
