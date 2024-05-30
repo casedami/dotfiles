@@ -151,6 +151,7 @@ function M.statusline_components()
           TelescopePrompt = "Telescope",
           oil = path:gsub("^/Users/caseymiller", "~"),
           lazy = "Lazy",
+          fugitive = "Git",
         }
 
         if vim.bo.buftype == "terminal" then
