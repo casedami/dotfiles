@@ -156,7 +156,7 @@ function M.statusline_components()
 
         if vim.bo.buftype == "terminal" then
           return "fish"
-        elseif vim.bo.buftype == "prompt" then
+        elseif vim.bo.filetype ~= "TelescopePrompt" and vim.bo.buftype == "prompt" then
           return ""
         else
           return fname[vim.bo.filetype] or str
