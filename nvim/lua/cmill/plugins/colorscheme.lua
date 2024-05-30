@@ -3,7 +3,6 @@ return {
     "cdmill/neomodern.nvim",
     config = function()
       require("neomodern").setup({
-        style = "darkforest",
         toggle_style_key = "<leader>cc",
         code_style = {
           headings = "none",
