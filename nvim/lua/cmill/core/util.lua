@@ -183,7 +183,13 @@ function M.statusline_components()
     },
     pomodoro = {
       require("cmill.core.pomodoro").statusline,
-      color = { fg = "#559ba3", bg = "#1d1d1f" },
+      color = function()
+        if vim.o.background == "dark" then
+          return { fg = "#559ba3", bg = "#1d1d1f" }
+        else
+          return { fg = "#ffffff", bg = "#a7a7b0" }
+        end
+      end,
       separator = { left = "", right = "" },
       cond = function()
         return require("cmill.core.pomodoro").statusline() ~= "(inactive)"
