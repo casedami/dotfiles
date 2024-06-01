@@ -16,7 +16,6 @@ CONTENTS                                                 	     *selfhelp*
     2. Outside nvim ..................... |self-outside-nvim|
       - SKHD .................................... |self-skhd|
       - TMUX .................................... |self-tmux|
-      - ZSH ...................................... |self-zsh|
 
 ==============================================================================
 1. Mappings                                                     *self-mappings*
@@ -26,12 +25,17 @@ EXPLORER                                                        *self-explorer*
   Key           Function ~
 
   `<leader>fe`    open file explorer
+  `<leader>fE`    open file explorer in cwd
 
 FZF                                                                   *self-fzf*
 
   Key           Function ~
 
   `<leader>ff`    search files
+  `<leader>fc`    search nvim config files
+  `<leader>fC`    search colorschemes
+  `<leader>fb`    search current buffer
+  `<leader>fl`    show lsp diagnostics for current buffer
   `<leader>fg`    live grep
   `<leader>fr`    search recent files
   `<leader>fR`    resume last telescope search
@@ -50,6 +54,8 @@ CODE                                                                 *self-code*
   `K`             open float for item under cursor
   `gd`            goto definition
   `gD`            goto declaration
+  `<leader>gg`    open neogit (in new tab)
+  `<leader>gv`    open neogit (in split)
   `<leader>rr`    refactor item under cursor
   `<leader>ca`    show code actions
   `<leader>ci`    show implementations for item under cursor
@@ -160,8 +166,8 @@ Sessions:
 
   Key   Function ~
 
-  `:Sw`   save current session
-  `:Sd`   delete session for cwd
+  `:ws`   save current session
+  `:ds`   delete session for cwd
 
 QUICK FIX LIST                                                       *self-qfix*
 
@@ -193,10 +199,12 @@ keymaps inside (obsidian) markdown files:
   `<localleader>gd`   follow link under cursor
   `<localleader>gs`   follow link under cursor (in hsplit)
   `<localleader>gv`   follow link under cursor (in vsplit)
-  `<localleader>ff`   open backlinks
-  `<localleader>ft`   start tag query
+  `<localleader>fl`   open backlinks
   `<localleader>fn`   edit new file with ID
   `<localleader>t`    open templates
+  `<abbr>ft`   	    start tag query
+  `<abbr>ff`   	    quick switch
+  `<abbr>fn`   	    edit new file without ID
 
 CUSTOM								   *self-custom*
 
@@ -269,13 +277,5 @@ TMUX								     *self-tmux*
   `<C-s>b`         toggle statusbar
   `<C-s>i`         run help script
   `<C-s>!`         kill session
-
-ZSH								      *self-zsh*
-
-  Key            Function ~
-
-  `<C-l>`          resume job
-  `<C-j>`          scroll up history
-  `<C-k>`          scroll down history
 
 vim:tw=78:ts=8:noet:ft=help:norl:

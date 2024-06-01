@@ -1,10 +1,18 @@
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        vim.env.LAZY .. "/luvit-meta/library",
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     event = { "BufRead", "BufNewFile" },
     dependencies = {
       { "williamboman/mason-lspconfig.nvim" },
-      { "folke/neodev.nvim", opts = {} },
     },
     opts = {
       diagnostics = {
@@ -142,6 +150,7 @@ return {
         "clangd",
         "clang-format",
         "latexindent",
+        "rust-analyzer",
       },
     },
     config = function(_, opts)
