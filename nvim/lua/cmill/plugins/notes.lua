@@ -26,17 +26,7 @@ return {
       log_level = vim.log.levels.OFF,
       ui = {
         enable = true,
-        hl_groups = {
-          ObsidianTodo = { link = "@markup.list.unchecked" },
-          ObsidianDone = { link = "@markup.list.checked" },
-          ObsidianRightArrow = { bold = true, fg = "#bbbac1" },
-          ObsidianTilde = { bold = true, fg = "#bbbac1" },
-          ObsidianBullet = { link = "@markup.list" },
-          ObsidianRefText = { link = "@markup.link" },
-          ObsidianExtLinkIcon = { link = "@markup.strikethrough" },
-          ObsidianTag = { link = "@markup.list.unchecked" },
-          ObsidianHighlightText = { fg = "#b7c3e3", bg = "#282c38" },
-        },
+        hl_groups = {},
       },
       note_id_func = function(tag)
         local prefix = tag or ""
