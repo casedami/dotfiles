@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     -- enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-    vim.lsp.inlay_hint.enable()
+    vim.lsp.inlay_hint.enable(false)
     local builtins = require("telescope.builtin")
 
     -- lsp

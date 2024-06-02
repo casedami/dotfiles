@@ -3,12 +3,12 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 start-at-login = true
 
 [gaps]
-inner.horizontal = 15
-inner.vertical = 15
-outer.left = 5
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
 outer.bottom = 10
 outer.top = 10
-outer.right = 5
+outer.right = 10
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open -n /Applications/kitty.app'

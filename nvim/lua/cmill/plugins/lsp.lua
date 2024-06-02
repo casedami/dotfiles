@@ -2,11 +2,7 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
-    opts = {
-      library = {
-        vim.env.LAZY .. "/luvit-meta/library",
-      },
-    },
+    opts = {},
   },
   {
     "neovim/nvim-lspconfig",
@@ -22,7 +18,7 @@ return {
         severity_sort = true,
       },
       inlay_hints = {
-        enabled = true,
+        enabled = false,
       },
       capabilities = {},
       format = {
