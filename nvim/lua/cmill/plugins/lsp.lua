@@ -59,6 +59,18 @@ return {
           },
         },
         clangd = {},
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              check = {
+                command = "clippy",
+              },
+              diagnostics = {
+                enable = true,
+              },
+            },
+          },
+        },
       },
       setup = {
         ruff = function()
@@ -150,7 +162,6 @@ return {
         "clangd",
         "clang-format",
         "latexindent",
-        "rust-analyzer",
       },
     },
     config = function(_, opts)
