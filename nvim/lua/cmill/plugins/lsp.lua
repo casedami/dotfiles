@@ -158,6 +158,7 @@ return {
         "clangd",
         "clang-format",
         "latexindent",
+        "rust-analyzer",
       },
     },
     config = function(_, opts)

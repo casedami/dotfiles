@@ -36,8 +36,9 @@ return {
   {
     "Shatur/neovim-session-manager",
     config = function()
+      local config = require("session_manager.config")
       require("session_manager").setup({
-        autoload_mode = "disabled",
+        autoload_mode = config.AutoloadMode.Disabled,
         autoload_last_session = false,
         autosave_last_session = false,
       })

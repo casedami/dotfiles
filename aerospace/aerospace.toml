@@ -5,14 +5,14 @@ start-at-login = true
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
-outer.left = 10
-outer.bottom = 10
-outer.top = 10
-outer.right = 10
+outer.left = 8
+outer.bottom = 8
+outer.top = 8
+outer.right = 8
 
 [mode.main.binding]
-alt-enter = 'exec-and-forget open -n /Applications/kitty.app'
-alt-shift-m = 'exec-and-forget open -n /Applications/Firefox.app'
+alt-enter = 'exec-and-forget open /Applications/kitty.app'
+alt-shift-m = 'exec-and-forget open /Applications/Firefox.app'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -26,7 +26,7 @@ alt-shift-l = 'move right'
 
 alt-f = 'fullscreen'
 
-alt-s = 'layout v_accordion' # 'layout stacking' in i3
+alt-q = 'layout v_accordion' # 'layout stacking' in i3
 alt-w = 'layout h_accordion' # 'layout tabbed' in i3
 alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
