@@ -1,13 +1,6 @@
 return {
   { "MunifTanjim/nui.nvim", event = "VeryLazy" },
   {
-    "karb94/neoscroll.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("neoscroll").setup()
-    end,
-  },
-  {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
