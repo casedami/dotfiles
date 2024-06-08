@@ -59,7 +59,7 @@ local opts = {
   scrolloff = 10, -- lines of context
   shiftround = true,
   shiftwidth = 2, -- size of an indent
-  spelllang = { "en" },
+  spelllang = { "en_us" },
   tabstop = 2, -- number of spaces tabs count for
   wrap = false,
 

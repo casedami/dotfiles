@@ -19,6 +19,5 @@ end
 -- stylua: ignore end
 vim.opt.foldmethod = "syntax"
 vim.opt.foldenable = true
-vim.opt.spelllang = {}
 vim.opt.textwidth = 88
 vim.opt.formatoptions = { "autowrap" }
