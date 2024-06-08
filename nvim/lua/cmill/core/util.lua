@@ -179,16 +179,17 @@ function M.statusline_components()
       function()
         return ""
       end,
-      color = { fg = "#7da77e" },
+      color = function()
+        local palette = require("neomodern.terminal").colors()
+        return { fg = palette.green }
+      end,
     },
     pomodoro = {
       require("cmill.core.pomodoro").statusline,
       color = function()
-        if vim.o.background == "dark" then
-          return { fg = "#559ba3", bg = "#1d1d1f" }
-        else
-          return { fg = "#ffffff", bg = "#a7a7b0" }
-        end
+        local palette = require("neomodern.palette")
+        local style = vim.g.neomodern_config.style
+        return { fg = palette[style].property, bg = palette[style].line }
       end,
       separator = { left = "", right = "" },
       cond = function()
@@ -197,12 +198,6 @@ function M.statusline_components()
     },
     progress = {
       "progress",
-    },
-    sep = {
-      function()
-        return "|"
-      end,
-      color = { fg = "#7da77e" },
     },
     tabs = {
       function()
@@ -225,6 +220,7 @@ function M.config()
   return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
 end
 
+-- Opens a prompt for creating a new file or a new note if in ~/self/notes/
 function M.new_file()
   local Input = require("nui.input")
   local Event = require("nui.utils.autocmd").event
