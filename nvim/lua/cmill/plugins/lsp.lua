@@ -67,6 +67,15 @@ return {
             },
           },
         },
+        sourcekit = {
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = true,
+              },
+            },
+          },
+        },
       },
       setup = {
         ruff = function()
