@@ -36,6 +36,7 @@ set -U fish_greeting
 set -gx LANG en_US.UTF-8
 set -gx TERM xterm-256color
 set -gx HOMEBREW_NO_ENV_HINTS 1
+set -gx RUST_BACKTRACE 1
 set -U EDITOR nvim
 
 set -gx __zoxide_zi cdi

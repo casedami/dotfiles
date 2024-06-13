@@ -11,6 +11,7 @@ return {
         fish = { "fish_indent" },
         c = { "clang-format" },
         tex = { "latexindent" },
+        swift = { "swift_format" },
         ["_"] = { "trim_whitespace" },
       },
       format_on_save = {
