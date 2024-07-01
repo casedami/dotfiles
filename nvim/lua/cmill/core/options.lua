@@ -4,9 +4,9 @@ local global_opts = {
   maplocalleader = "\\",
 
   -- NETRW
-  -- netrw_banner = 0,
-  -- netrw_browse_split = 0,
-  -- netrw_bufsettings = "noma nomod nu nobl nowrap ro",
+  netrw_banner = 0,
+  netrw_browse_split = 0,
+  netrw_bufsettings = "noma nomod nu nobl nowrap ro",
 
   -- MARKDOWN
   autoformat = true,

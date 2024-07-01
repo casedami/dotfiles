@@ -12,6 +12,7 @@ return {
         c = { "clang-format" },
         tex = { "latexindent" },
         swift = { "swift_format" },
+        R = { "styler" },
         ["_"] = { "trim_whitespace" },
       },
       format_on_save = {

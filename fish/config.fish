@@ -5,6 +5,8 @@ abbr --add gc git commit
 abbr --add gp git push
 abbr --add gs git s
 abbr --add kitty "rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
+abbr --add assgn "cp -r ~/Developer/tex/templates/assignment-template"
+abbr --add wrtg "cp -r ~/Developer/tex/templates/wrtg-template"
 
 alias vim="nvim"
 alias cd="z"
