@@ -67,6 +67,7 @@ return {
             },
           },
         },
+        r_language_server = {},
         sourcekit = {
           capabilities = {
             workspace = {
