@@ -8,7 +8,7 @@ return {
       require("lualine").setup({
         options = {
           icons_enabled = true,
-          theme = "auto",
+          theme = "neomodern",
           section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = { "starter" },
@@ -24,7 +24,7 @@ return {
         sections = {
           lualine_a = {},
           lualine_b = {
-            components.tabs,
+            -- components.tabs,
             components.branch,
           },
           lualine_c = {

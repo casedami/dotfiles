@@ -3,12 +3,12 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 start-at-login = true
 
 [gaps]
-inner.horizontal = 10
-inner.vertical = 10
-outer.left = 8
-outer.bottom = 8
-outer.top = 8
-outer.right = 8
+inner.horizontal = [{monitor."built-in" = 10}, {monitor."dell" = 25}, 10]
+inner.vertical = [{monitor."built-in" = 10}, {monitor."dell" = 25}, 10]
+outer.left = [{monitor."built-in" = 8}, {monitor."dell" = 20}, 8]
+outer.bottom = [{monitor."built-in" = 8}, {monitor."dell" = 100}, 8]
+outer.top = [{monitor."built-in" = 8}, {monitor."dell" = 100}, 8]
+outer.right = [{monitor."built-in" = 8}, {monitor."dell" = 20}, 8]
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open /Applications/kitty.app'
@@ -36,13 +36,14 @@ alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
 
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
+
+cmd-shift-n = 'move-workspace-to-monitor next'
+cmd-shift-p = 'move-workspace-to-monitor prev'
 
 alt-shift-c = 'reload-config'
 
@@ -55,3 +56,9 @@ k = 'resize height -50'
 l = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
+
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'main'
+3 = 'secondary'
+4 = 'secondary'
