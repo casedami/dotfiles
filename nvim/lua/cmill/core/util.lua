@@ -63,12 +63,11 @@ end
 function M.statuscolumn()
   local win = vim.g.statusline_winid
   local buf = vim.api.nvim_win_get_buf(win)
-  local is_file = vim.bo[buf].buftype == ""
-  local show_signs = vim.wo[win].signcolumn ~= "no"
+  local is_term = vim.bo[buf].buftype == "terminal"
 
   local components = { "", "", "" }
 
-  if show_signs then
+  if not is_term then
     local left, right, fold
     for _, s in ipairs(M.get_signs(buf, vim.v.lnum)) do
       if s.name and s.name:find("GitSign") then
@@ -87,8 +86,8 @@ function M.statuscolumn()
     end)
     -- Left: mark or non-git sign
     components[1] = " " .. M.icon(M.get_mark(buf, vim.v.lnum) or left)
-    -- Right: fold icon or git sign (only if file)
-    components[3] = is_file and M.icon(fold or right) or " "
+    -- Right: fold icon or git sign
+    components[3] = M.icon(fold or right)
   end
 
   local is_num = vim.wo[win].number

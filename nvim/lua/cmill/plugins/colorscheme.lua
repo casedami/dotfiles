@@ -4,6 +4,7 @@ return {
     config = function()
       require("neomodern").setup({
         toggle_style_key = "<leader>cc",
+        style = "roseprime",
         code_style = {
           headings = "none",
         },
