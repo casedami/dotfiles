@@ -1,3 +1,7 @@
+local toggle_spell = function()
+  vim.opt.spell = not (vim.opt.spell:get())
+end
+
 local maps = {
   { "n", "<localleader>e", ":e ~/self/notes/main/inbox/" },
   { "n", "<localleader>ll", "<cmd>ObsidianOpen<cr>" },
@@ -7,6 +11,7 @@ local maps = {
   { "n", "<localleader>fl", "<cmd>ObsidianBacklinks<cr>" },
   { "n", "<localleader>fn", "<cmd>ObsidianNew<cr>" },
   { "n", "<localleader>t", "<cmd>ObsidianTemplate<cr>" },
+  { "n", "<localleader>ss", toggle_spell },
   { "ca", "ff", "ObsidianQuickSwitch" },
   { "ca", "ft", "ObsidianTags" },
   { "ca", "fn", "ObsidianNew" },

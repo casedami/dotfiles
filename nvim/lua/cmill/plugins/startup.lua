@@ -6,7 +6,7 @@ return {
       local logo = "Neovim ["
         .. tostring(vim.version())
         .. "] by "
-        .. vim.loop.os_get_passwd()["username"]
+        .. vim.uv.os_get_passwd()["username"]
         .. " on "
         .. os.date("%a %B %d %Y")
 
