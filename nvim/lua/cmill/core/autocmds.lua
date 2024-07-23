@@ -50,6 +50,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.lsp.inlay_hint.enable(false)
     local builtins = require("telescope.builtin")
 
+    local toggle_diagnostics = function()
+      vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    end
+
     -- lsp
     local opts = { buffer = ev.buf }
     map("n", "gd", builtins.lsp_definitions, opts)
@@ -60,6 +64,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>cr", builtins.lsp_references, opts)
     map("n", "<leader>ld", vim.diagnostic.open_float, opts)
     map("n", "<leader>cd", builtins.diagnostics, opts)
+    map("n", "<leader>dd", toggle_diagnostics, opts)
 
     -- diagnostics
     local diagnostic_goto = function(next, severity)

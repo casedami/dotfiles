@@ -5,10 +5,10 @@ start-at-login = true
 [gaps]
 inner.horizontal = [{monitor."built-in" = 10}, {monitor."dell" = 25}, 10]
 inner.vertical = [{monitor."built-in" = 10}, {monitor."dell" = 25}, 10]
-outer.left = [{monitor."built-in" = 8}, {monitor."dell" = 20}, 8]
-outer.bottom = [{monitor."built-in" = 8}, {monitor."dell" = 100}, 8]
-outer.top = [{monitor."built-in" = 8}, {monitor."dell" = 100}, 8]
-outer.right = [{monitor."built-in" = 8}, {monitor."dell" = 20}, 8]
+outer.left = [{monitor."built-in" = 10}, {monitor."dell" = 20}, 10]
+outer.bottom = [{monitor."built-in" = 20}, {monitor."dell" = 100}, 10]
+outer.top = [{monitor."built-in" = 20}, {monitor."dell" = 100}, 10]
+outer.right = [{monitor."built-in" = 10}, {monitor."dell" = 20}, 10]
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open /Applications/kitty.app'
