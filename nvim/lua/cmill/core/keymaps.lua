@@ -117,11 +117,11 @@ end
 -- SESSIONS
 vim.api.nvim_create_user_command("WriteSes", function()
   vim.cmd("SessionManager save_current_session")
-  local msg = vim.loop.cwd() .. " session saved"
+  local msg = vim.fn.getcwd() .. " session saved"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
 vim.api.nvim_create_user_command("DelSes", function()
   vim.cmd("SessionManager delete_current_dir_session")
-  local msg = vim.loop.cwd() .. " session deleted"
+  local msg = vim.fn.getcwd() .. " session deleted"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
