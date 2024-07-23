@@ -1,61 +1,117 @@
 return {
   {
-    "echasnovski/mini.starter",
-    version = "*",
-    event = "VimEnter",
+    "nvimdev/dashboard-nvim",
+    lazy = false,
     opts = function()
-      local new_section = function(name, action)
-        return { name = name, action = action, section = "" }
-      end
-      local starter = require("mini.starter")
-      local config = {
-        evaluate_single = true,
-        content_hooks = {
-          starter.gen_hook.padding(0, 4),
-          starter.gen_hook.aligning("center", "top"),
+      local logo = "Neovim ["
+        .. tostring(vim.version())
+        .. "] by "
+        .. vim.loop.os_get_passwd()["username"]
+        .. " on "
+        .. os.date("%a %B %d %Y")
+
+      logo = string.rep("\n", 8) .. logo .. "\n\n"
+
+      local opts = {
+        theme = "doom",
+        hide = {
+          statusline = true,
         },
-        items = {
-          new_section("Find", "Telescope find_files"),
-          new_section("Explorer", "Oil"),
-          new_section("New", "lua require('cmill.core.util').new_file()"),
-          new_section("Recents", "Telescope oldfiles cwd_only=true"),
-          new_section("Grep", "Telescope live_grep"),
-          new_section("Session", "SessionManager load_last_session"),
-          new_section("Lazy", "Lazy"),
-          new_section("Config", require("cmill.core.util").config),
-          new_section("Quit", "qa"),
+        config = {
+          header = vim.split(logo, "\n"),
+          center = {
+            {
+              action = "Telescope find_files",
+              desc = " Find File",
+              icon = " ",
+              key = "f",
+            },
+            {
+              action = "lua require('cmill.core.util').new_file()",
+              desc = " New File",
+              icon = " ",
+              key = "n",
+            },
+            {
+              action = "Telescope oldfiles cwd_only=true",
+              desc = " Recent Files",
+              icon = " ",
+              key = "r",
+            },
+            {
+              action = "Oil",
+              desc = " Explorer",
+              icon = "󱏒 ",
+              key = "e",
+            },
+            {
+              action = "Telescope live_grep",
+              desc = " Grep",
+              icon = " ",
+              key = "g",
+            },
+            {
+              action = "SessionManager load_last_session",
+              desc = " Restore Session",
+              icon = " ",
+              key = "s",
+            },
+            {
+              action = "lua require('cmill.core.util').config()",
+              desc = " Config",
+              icon = " ",
+              key = "c",
+            },
+            {
+              action = "Lazy",
+              desc = " Lazy",
+              icon = "󰒲 ",
+              key = "l",
+            },
+            {
+              action = function()
+                vim.api.nvim_input("<cmd>qa<cr>")
+              end,
+              desc = " Quit",
+              icon = " ",
+              key = "q",
+            },
+          },
+          footer = function()
+            local stats = require("lazy").stats()
+            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+            return {
+              "⚡ Neovim loaded "
+                .. stats.loaded
+                .. "/"
+                .. stats.count
+                .. " plugins in "
+                .. ms
+                .. "ms",
+            }
+          end,
         },
-        silent = true,
       }
-      return config
-    end,
-    config = function(_, config)
+
+      for _, button in ipairs(opts.config.center) do
+        button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+        button.key_format = "  %s"
+      end
+
+      -- open dashboard after closing lazy
       if vim.o.filetype == "lazy" then
-        vim.cmd.close()
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "MiniStarterOpened",
+        vim.api.nvim_create_autocmd("WinClosed", {
+          pattern = tostring(vim.api.nvim_get_current_win()),
+          once = true,
           callback = function()
-            require("lazy").show()
+            vim.schedule(function()
+              vim.api.nvim_exec_autocmds("UIEnter", { group = "dashboard" })
+            end)
           end,
         })
       end
 
-      local starter = require("mini.starter")
-      starter.setup(config)
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LazyVimStarted",
-        callback = function()
-          local stats = require("lazy").stats()
-          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          starter.config.footer = "loaded "
-            .. stats.count
-            .. " plugins in "
-            .. ms
-            .. "ms"
-          pcall(starter.refresh)
-        end,
-      })
+      return opts
     end,
   },
 }

@@ -1,28 +1,28 @@
-# ROSEPRIME
+#COFFEECAT
 # use in ~/.config/fish/conf.d/
 
-set -g orange a3b8b5 # color 16
-set -g alt bbbac1 # color 17
+set -g orange e3a968 # color 16
+set -g alt 9094de # color 17
 
 # Syntax Highlighting Colors
 set -g fish_color_normal bbbac1
-set -g fish_color_command 6b8f89
-set -g fish_color_keyword 6b8f89
-set -g fish_color_quote d2af98
-set -g fish_color_redirection ba7685
-set -g fish_color_end 6b8f89
-set -g fish_color_error ba5f60
+set -g fish_color_command b39581
+set -g fish_color_keyword b39581
+set -g fish_color_quote 8fc490
+set -g fish_color_redirection 9094de
+set -g fish_color_end b39581
+set -g fish_color_error d47b7d
 set -g fish_color_param bbbac1
-set -g fish_color_comment 555555
-set -g fish_color_selection --background=26262a
-set -g fish_color_search_match --background=26262a
-set -g fish_color_operator 838196
-set -g fish_color_escape ddadb4
-set -g fish_color_autosuggestion 555555
+set -g fish_color_comment 6e6a65
+set -g fish_color_selection --background=383737
+set -g fish_color_search_match --background=383737
+set -g fish_color_operator 9b99a3
+set -g fish_color_escape abbceb
+set -g fish_color_autosuggestion 6e6a65
 
 # Completion Pager Colors}
-set -g fish_pager_color_progress 555555
-set -g fish_pager_color_prefix a3849b
+set -g fish_pager_color_progress 6e6a65
+set -g fish_pager_color_prefix cfa1bf
 set -g fish_pager_color_completion bbbac1
-set -g fish_pager_color_description 555555
-set -g fish_pager_color_selected_background --background=26262a
+set -g fish_pager_color_description 6e6a65
+set -g fish_pager_color_selected_background --background=383737
