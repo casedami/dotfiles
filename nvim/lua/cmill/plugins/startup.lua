@@ -51,7 +51,7 @@ return {
               key = "g",
             },
             {
-              action = "SessionManager load_last_session",
+              action = "SessionManager load_current_dir_session",
               desc = " Restore Session",
               icon = " ",
               key = "s",
