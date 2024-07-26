@@ -4,7 +4,7 @@ return {
     config = function()
       require("neomodern").setup({
         toggle_style_key = "<leader>cc",
-        style = "coffeecat",
+        style = "iceclimber",
         code_style = {
           headings = "italic",
         },
