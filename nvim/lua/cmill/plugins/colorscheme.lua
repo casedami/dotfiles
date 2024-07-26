@@ -6,17 +6,21 @@ return {
         toggle_style_key = "<leader>cc",
         style = "coffeecat",
         code_style = {
-          headings = "none",
+          headings = "italic",
         },
         transparent = false,
         ui = {
           lualine = {
             plain = false,
           },
-          plain = true,
+          cmp = {
+            plain = true,
+          },
+          plain_search = true,
+          plain_float = true,
           show_eob = false,
           colored_docstrings = true,
-          telescope = "borderless",
+          telescope = "bordered",
         },
       })
       require("neomodern").load()

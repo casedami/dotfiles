@@ -28,13 +28,14 @@ return {
     { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
     { "hrsh7th/cmp-path", event = "InsertEnter" },
     { "hrsh7th/cmp-buffer", event = "InsertEnter" },
-    { "hrsh7th/cmp-omni", event = "InsertEnter" },
+    { "hrsh7th/cmp-omni", ft = "tex" },
   },
   config = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
     local defaults = require("cmp.config.default")()
     local lspkind = require("lspkind")
+    local cmp_window = require("cmp.config.window")
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,noinsert",
@@ -74,15 +75,21 @@ return {
         }),
       },
       experimental = {
+        native_menu = false,
         ghost_text = {
           hl_group = "CmpGhostText",
         },
       },
       window = {
         completion = {
+          border = "rounded",
+          winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None",
+          col_offset = -3,
           side_padding = 1,
           scrollbar = false,
+          scrolloff = 8,
         },
+        documentation = cmp_window.bordered(),
       },
       view = {
         docs = { auto_open = true },
