@@ -13,7 +13,7 @@ local state = "inactive"
 local session_start
 local break_start
 local sessions_completed = 0
-local uv_timer = vim.loop.new_timer()
+local uv_timer = vim.uv.new_timer()
 
 local function get_break_len()
   return sessions_completed == 0 and longbreak_len or break_len
@@ -59,7 +59,7 @@ end
 show_menu = function()
   local popup_opts = {
     border = {
-      style = "none",
+      style = "rounded",
       padding = { 1, 3 },
     },
     position = "50%",

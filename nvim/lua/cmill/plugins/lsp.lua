@@ -94,6 +94,7 @@ return {
       },
     },
     config = function(_, opts)
+      require("lspconfig.ui.windows").default_options.border = "rounded"
       local signs = { Error = "󰅖", Warn = "", Hint = "", Info = "i" }
       for name, icon in pairs(signs) do
         name = "DiagnosticSign" .. name
