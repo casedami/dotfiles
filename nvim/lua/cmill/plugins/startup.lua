@@ -19,63 +19,17 @@ return {
         },
         config = {
           header = vim.split(logo, "\n"),
+          -- stylua: ignore
           center = {
-            {
-              action = "Telescope find_files",
-              desc = " Find File",
-              icon = " ",
-              key = "f",
-            },
-            {
-              action = "lua require('cmill.core.util').new_file()",
-              desc = " New File",
-              icon = " ",
-              key = "n",
-            },
-            {
-              action = "Telescope oldfiles cwd_only=true",
-              desc = " Recent Files",
-              icon = " ",
-              key = "r",
-            },
-            {
-              action = "Oil",
-              desc = " Explorer",
-              icon = "󱏒 ",
-              key = "e",
-            },
-            {
-              action = "Telescope live_grep",
-              desc = " Grep",
-              icon = " ",
-              key = "g",
-            },
-            {
-              action = "SessionManager load_current_dir_session",
-              desc = " Restore Session",
-              icon = " ",
-              key = "s",
-            },
-            {
-              action = "lua require('cmill.core.util').config()",
-              desc = " Config",
-              icon = " ",
-              key = "c",
-            },
-            {
-              action = "Lazy",
-              desc = " Lazy",
-              icon = "󰒲 ",
-              key = "l",
-            },
-            {
-              action = function()
-                vim.api.nvim_input("<cmd>qa<cr>")
-              end,
-              desc = " Quit",
-              icon = " ",
-              key = "q",
-            },
+            { action = "Telescope find_files", desc = " Find File", icon = " ", key = "f", },
+            { action = "lua require('cmill.core.util').new_file()", desc = " New File", icon = " ", key = "n", },
+            { action = "Telescope oldfiles cwd_only=true", desc = " Recent Files", icon = " ", key = "r", },
+            { action = "Oil", desc = " Explorer", icon = "󱏒 ", key = "e", },
+            { action = "Telescope live_grep", desc = " Grep", icon = " ", key = "g", },
+            { action = "SessionManager load_current_dir_session", desc = " Restore Session", icon = " ", key = "s", },
+            { action = "lua require('cmill.core.util').config()", desc = " Config", icon = " ", key = "c", },
+            { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l", },
+            { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "q", },
           },
           footer = function()
             local stats = require("lazy").stats()
