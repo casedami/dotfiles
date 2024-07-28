@@ -3,7 +3,7 @@
 ==============================================================================
 CONTENTS                                                 	     *selfhelp*
 
-    1. Mappings ............................. |self-mappings|
+    Mappings ................................ |self-mappings|
       - Explorer ............................ |self-explorer|
       - Fzf ...................................... |self-fzf|
       - Code .................................... |self-code|
@@ -13,12 +13,9 @@ CONTENTS                                                 	     *selfhelp*
       - Term .................................... |self-term|
       - Notes .................................. |self-notes|
       - Custom ................................ |self-custom|
-    2. Outside nvim ..................... |self-outside-nvim|
-      - SKHD .................................... |self-skhd|
-      - TMUX .................................... |self-tmux|
 
 ==============================================================================
-1. Mappings                                                     *self-mappings*
+Mappings                                                        *self-mappings*
 
 EXPLORER                                                        *self-explorer*
 
@@ -62,6 +59,7 @@ CODE                                                                 *self-code*
   `<leader>cr`    show references for item under cursor
   `<leader>ld`    show line diagnostics
   `<leader>cd`    show telescope diagnostics
+  `<leader>dd`    toggle diagnostics
 
 The following keymaps are for diagnostics navigation:
 
@@ -217,65 +215,5 @@ CUSTOM								   *self-custom*
   `<leader>l`        open Lazy
   `<leader>ss`       start pomodoro
   `<leader>sq`       stop pomodoro
-
-==============================================================================
-2. Outside Nvim                                              *self-outside-nvim*
-
-SKHD                                                                 *self-skhd*
-
-  Key            Function ~
-
-  `<M-c>`          create new space
-  `<M-d>`          delete current space
-
-  `<M-h>`          focus left window
-  `<M-j>`          focus bottom window
-  `<M-k>`          focus top window
-  `<M-l>`          focus right window
-
-  `<M-w>`          focus left display
-  `<M-e>`          focus right display
-  `<Shift-M-w>`    move focused window to left display
-  `<Shift-M-e>`    move focused window to right display
-
-  `<Shift-M-h>`    move focused window left
-  `<Shift-M-j>`    move focused window bottom
-  `<Shift-M-k>`    move focused window top
-  `<Shift-M-l>`    move focused window right
-
-  `<M-r>`          rotate 90 degrees
-  `<M-y>`          toggle full screen
-  `<M-t>`          toggle managed
-
-  `<M-1>`          move to display 1
-  `<M-2>`          move to display 2
-  `<M-3>`          move to display 3
-  `<M-4>`          move to display 4
-
-  `<Shift-M-1>`    move focused window to display 1
-  `<Shift-M-2>`    move focused window to display 2
-  `<Shift-M-3>`    move focused window to display 3
-  `<Shift-M-4>`    move focused window to display 4
-
-  `<CMD-Shift-a>`  open kitty
-  `<CMD-Shift-m>`  open firefox
-  `<CMD-Shift-s>`  open spotify
-  `<CMD-Shift-o>`  open obsidian
-
-TMUX								     *self-tmux*
-
-  Key            Function ~
-
-  `<C-s>`          prefix
-  `<C-s>-`         horizontal split
-  `<C-s>|`         vertical split
-  `<M-Left>`       move focused window left
-  `<M-Down>`       move focused window down
-  `<M-Up>`         move focused window top
-  `<M-Right>`      move focused window right
-
-  `<C-s>b`         toggle statusbar
-  `<C-s>i`         run help script
-  `<C-s>!`         kill session
 
 vim:tw=78:ts=8:noet:ft=help:norl:
