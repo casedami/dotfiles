@@ -225,10 +225,7 @@ function M.new_file()
   local Event = require("nui.utils.autocmd").event
 
   local path = vim.fn.expand("%:p:h")
-  local is_note = false
-  if path:find("self/notes") then
-    is_note = true
-  end
+  local is_note = path:find("self/notes")
 
   local input = Input({
     position = "50%",
@@ -236,7 +233,7 @@ function M.new_file()
       width = math.floor(vim.api.nvim_win_get_width(0) * 0.20),
     },
     border = {
-      style = "single",
+      style = "rounded",
       text = {
         top = is_note and "New Note" or "New File",
         top_align = "center",
