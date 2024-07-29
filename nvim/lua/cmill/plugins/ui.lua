@@ -24,7 +24,7 @@ return {
         sections = {
           lualine_a = {},
           lualine_b = {
-            -- components.tabs,
+            components.tabs,
             components.branch,
           },
           lualine_c = {
