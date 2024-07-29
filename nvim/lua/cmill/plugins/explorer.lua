@@ -93,7 +93,9 @@ return {
           path_display = { "tail" },
           color_devicons = true,
           winblend = 0,
-          preview = false,
+          preview = {
+            hide_on_startup = true,
+          },
           layout_config = {
             width = function(_, max_columns)
               return math.max(math.floor(0.40 * max_columns), 60)
@@ -104,11 +106,12 @@ return {
           mappings = {
             n = {
               ["q"] = require("telescope.actions").close,
-              ["<C-d>"] = "delete_buffer",
+              ["<C-w>"] = "delete_buffer",
             },
             i = {
               ["PP"] = require("telescope.actions").close,
-              ["<C-d>"] = "delete_buffer",
+              ["<C-w>"] = "delete_buffer",
+              ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
             },
           },
         },
