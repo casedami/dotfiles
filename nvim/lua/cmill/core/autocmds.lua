@@ -61,9 +61,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>rr", vim.lsp.buf.rename, opts)
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
     map("n", "<leader>ld", vim.diagnostic.open_float, opts)
-    map("n", "<leader>I", builtins.lsp_implementations, opts)
-    map("n", "<leader>R", builtins.lsp_references, opts)
-    map("n", "<leader>D", builtins.diagnostics, opts)
+    map("n", "<localleader>i", builtins.lsp_implementations, opts)
+    map("n", "<localleader>wr", builtins.lsp_references, opts)
+    map("n", "<localleader>wd", builtins.diagnostics, opts)
     map("n", "<leader>dd", toggle_diagnostics, opts)
 
     -- diagnostics
