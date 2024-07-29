@@ -16,7 +16,6 @@ return {
           cmp = {
             plain = true,
           },
-          plain_search = true,
           plain_float = true,
           show_eob = false,
           colored_docstrings = true,
