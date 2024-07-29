@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
+    vim.opt_local.spell = false
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.signcolumn = "no"
@@ -59,10 +60,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gD", vim.lsp.buf.declaration, opts)
     map("n", "<leader>rr", vim.lsp.buf.rename, opts)
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-    map("n", "<leader>ci", builtins.lsp_implementations, opts)
-    map("n", "<leader>cr", builtins.lsp_references, opts)
     map("n", "<leader>ld", vim.diagnostic.open_float, opts)
-    map("n", "<leader>cd", builtins.diagnostics, opts)
+    map("n", "<leader>wi", builtins.lsp_implementations, opts)
+    map("n", "<leader>wr", builtins.lsp_references, opts)
+    map("n", "<leader>wd", builtins.diagnostics, opts)
     map("n", "<leader>dd", toggle_diagnostics, opts)
 
     -- diagnostics
@@ -73,6 +74,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         go({ severity = severity })
       end
     end
+    map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+    map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
     map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
     map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
     map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })

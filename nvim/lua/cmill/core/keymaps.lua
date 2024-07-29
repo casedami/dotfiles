@@ -104,7 +104,7 @@ local maps = {
   { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro
   { "n", "<leader>sq", "<cmd>Pstop<cr>", opts["silent"] }, -- stop pomodoro
   { "x", "<localleader>ff", ":!pandoc -t commonmark_x<cr>" }, -- auto format selected markdown table
-  { "n", "<cr>", "<cmd>noh<cr>" }, -- stop highlighting previous search matches
+  { "n", "<C-'>", "<Cmd>nohlsearch|diffupdate|normal! <C-l><CR>" }, -- stop highlighting previous search matches
   -- ABBREVIATIONS
   { "ca", "ws", "WriteSes" },
   { "ca", "ds", "DelSes" },
