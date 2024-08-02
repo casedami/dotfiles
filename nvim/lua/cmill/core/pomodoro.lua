@@ -104,7 +104,7 @@ show_menu = function()
   end, { noremap = true })
 end
 
-vim.api.nvim_create_user_command("Pstart", show_menu, { nargs = 0 })
-vim.api.nvim_create_user_command("Pstop", M.stop, { nargs = 0 })
+vim.api.nvim_create_user_command("Pomo", show_menu, { nargs = 0 })
+vim.api.nvim_create_user_command("Pomoq", M.stop, { nargs = 0 })
 
 return M

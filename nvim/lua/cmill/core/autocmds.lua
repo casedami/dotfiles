@@ -59,13 +59,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local opts = { buffer = bufnr }
     map("n", "gd", builtins.lsp_definitions, opts)
     map("n", "gD", vim.lsp.buf.declaration, opts)
-    map("n", "<leader>rr", vim.lsp.buf.rename, opts)
-    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-    map("n", "<leader>ld", vim.diagnostic.open_float, opts)
-    map("n", "<localleader>i", builtins.lsp_implementations, opts)
-    map("n", "<localleader>wr", builtins.lsp_references, opts)
-    map("n", "<localleader>wd", builtins.diagnostics, opts)
-    map("n", "<localleader>dd", toggle_diagnostics, opts)
+    map("n", "<leader>dr", vim.lsp.buf.rename, opts)
+    map({ "n", "v" }, "<leader>da", vim.lsp.buf.code_action, opts)
+    map("n", "<leader>D", vim.diagnostic.open_float, opts)
+    map("n", "<leader>di", builtins.lsp_implementations, opts)
+    map("n", "<leader>dr", builtins.lsp_references, opts)
+    map("n", "<leader>df", builtins.diagnostics, opts)
+    map("n", "<leader>dd", toggle_diagnostics, opts)
 
     -- lsp document highlighting for under cursor
     -- vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })

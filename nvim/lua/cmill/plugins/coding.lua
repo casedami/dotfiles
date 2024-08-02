@@ -85,16 +85,16 @@ return {
           end, { expr = true })
 
           -- actions
-          map("n", "<localleader>gs", gs.stage_hunk)
-          map("v", "<localleader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
-          map("n", "<localleader>gu", gs.undo_stage_hunk)
-          map("n", "<localleader>gr", gs.reset_hunk)
-          map("v", "<localleader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
-          map("n", "<localleader>gS", gs.stage_buffer)
-          map("n", "<localleader>gR", gs.reset_buffer)
-          map("n", "<localleader>gd", gs.diffthis)
-          map("n", "<localleader>gtd", gs.toggle_deleted)
-          map("n", "<localleader>gb", function() gs.blame_line({ full = true }) end)
+          map("n", "<leader>gs", gs.stage_hunk)
+          map("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
+          map("n", "<leader>gu", gs.undo_stage_hunk)
+          map("n", "<leader>gr", gs.reset_hunk)
+          map("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
+          map("n", "<leader>gS", gs.stage_buffer)
+          map("n", "<leader>gR", gs.reset_buffer)
+          map("n", "<leader>gd", gs.diffthis)
+          map("n", "<leader>gt", gs.toggle_deleted)
+          map("n", "<leader>gb", function() gs.blame_line({ full = true }) end)
         end,
       })
     end,
