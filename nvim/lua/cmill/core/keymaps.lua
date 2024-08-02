@@ -1,13 +1,3 @@
-local function del_marks()
-  vim.cmd("delm a-zA-Z")
-  vim.cmd("wviminfo!")
-  vim.cmd(
-    ([[echohl DiagnosticInfo | echomsg "%s" | echohl None]]):format(
-      " deleting marks..."
-    )
-  )
-end
-
 local function toggle_colorcolumn()
   if vim.o.colorcolumn == "" then
     vim.opt.colorcolumn = "88"
@@ -33,7 +23,6 @@ local opts = {
 local maps = {
   { "n", "<leader>l", "<cmd>Lazy<cr>", opts["silent"] }, -- open lazy
   { "n", "<leader>?", "<cmd>h selfhelp<cr>", opts["silent"] }, -- open selfhelp
-  { "n", "<localleader>?", ":h self-" }, -- start search help command
   -- MOVEMENT
   { "n", "0", "^" }, -- remap inline movement (beginning of line)
   { "n", "<C-d>", "<C-d>zz" }, -- center after page down
@@ -47,7 +36,7 @@ local maps = {
   { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
   { "n", "<localleader>bd", "<cmd>bd<cr>" }, -- delete buffer
   { "n", "<localleader>p", "<C-6>" }, -- previous buffer
-  { "n", "<leader>bb", "<cmd>ls<cr>:b<space>" }, -- change buffer via buflist preview
+  { "n", "<localleader>bb", "<cmd>ls<cr>:b<space>" }, -- change buffer via buflist preview
   -- TABS
   { "n", "<localleader>}", "<cmd>tabnext<cr>" }, -- next tab
   { "n", "<localleader>{", "<cmd>tabprevious<cr>" }, -- previous tab
@@ -67,15 +56,16 @@ local maps = {
   { "n", "<leader>|", "<C-W>v", opts["remap"] }, -- split window right
   { "n", "<leader>we", "<C-W>=", opts["remap"] }, -- split windows equally
   { "n", "<leader>wk", "<C-W>_", opts["remap"] }, -- maximize current window vertically
+  { "n", "<leader>wj", "<C-W>_", opts["remap"] }, -- maximize current window vertically
   { "n", "<leader>wh", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
   { "n", "<leader>wl", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
   -- QUICK FIX LIST
-  { "n", "<leader>qn", "<cmd>cnext<cr>" }, -- goto next item in qfix list
-  { "n", "<leader>qN", "<cmd>cnfile<cr>" }, -- goto first item in next file
-  { "n", "<leader>qp", "<cmd>cprev<cr>" }, -- goto previous item in qfix list
-  { "n", "<leader>qP", "<cmd>cpfile<cr>" }, -- goto last item in previous file
-  { "n", "<leader>qo", "<cmd>copen<cr>" }, -- open qfix list
-  { "n", "<leader>qc", "<cmd>copen<cr>" }, -- close qfix list
+  { "n", "<localleader>qnn", "<cmd>cnext<cr>" }, -- goto next item in qfix list
+  { "n", "<localleader>qnf", "<cmd>cnfile<cr>" }, -- goto first item in next file
+  { "n", "<localleader>qpp", "<cmd>cprev<cr>" }, -- goto previous item in qfix list
+  { "n", "<localleader>qpf", "<cmd>cpfile<cr>" }, -- goto last item in previous file
+  { "n", "<localleader>qo", "<cmd>copen<cr>" }, -- open qfix list
+  { "n", "<localleader>qc", "<cmd>cclose<cr>" }, -- close qfix list
   -- TERM KEYMAPS
   { "n", "<leader>t", "<cmd>split | resize 15 | terminal<cr>i" }, -- open term in hsplit
   { "n", "<leader>T", "<cmd>tabnew | term<cr>i" }, -- open term in new tab
@@ -85,35 +75,45 @@ local maps = {
   { "n", "<localleader>e", ":e <C-R>=expand('%:p:h') . '/' <CR>" }, -- edit new file in current dir
   { "n", "<localleader>es", ":sp <C-R>=expand('%:p:h') . '/' <CR>" }, -- edit new file in current dir (hsplit)
   { "n", "<localleader>ev", ":vsp <C-R>=expand('%:p:h') . '/' <CR>" }, --edit new file in current dir (vsplit)
-  { "n", "<localleader>s", ":s/" }, -- start search and replace
-  { "n", "<localleader>S", ":%s/" }, -- start global search and replace
+  { "n", "<leader>sr", ":s/" }, -- start search and replace
+  { "n", "<leader>S", ":%s/" }, -- start global search and replace
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
   { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
   { { "n", "v" }, "<leader>qq", "q:" }, -- remap to command history
-  { { "n", "v" }, "<leader>QQ", "q/" }, -- remap to search history
+  { { "n", "v" }, "<leader>Q", "q/" }, -- remap to search history
   { { "n", "v" }, "q", "<nop>" }, -- remove macro ...
   { { "n", "v" }, "Q", "<nop>" }, -- remove Q
   { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>)
-  { "n", "!", "<C-l>" }, -- clear cmd line
+  { "n", "<C-;>", "<C-l>" }, -- clear cmd line
   { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
   { "n", "<leader>!", toggle_colorcolumn }, -- toggle color column
-  { "n", "<leader>dm", del_marks, opts["silent"] }, -- delete user's marks
   { "n", "<leader>uc", toggle_lightdark, opts["silent"] }, -- toggle light/dark mode
   { "n", "<leader>ss", "<cmd>Pstart<cr>", opts["silent"] }, -- start pomodoro
   { "n", "<leader>sq", "<cmd>Pstop<cr>", opts["silent"] }, -- stop pomodoro
   { "x", "<localleader>ff", ":!pandoc -t commonmark_x<cr>" }, -- auto format selected markdown table
   { "n", "<C-'>", "<Cmd>nohlsearch|diffupdate|normal! <C-l><CR>" }, -- stop highlighting previous search matches
   -- ABBREVIATIONS
-  { "ca", "ws", "WriteSes" },
-  { "ca", "ds", "DelSes" },
+  { "ca", "ws", "WriteSes" }, -- save session for cwd
+  { "ca", "ds", "DelSes" }, -- delete session for cwd
+  { "ca", "dm", "DelMarks" }, -- delete all marks
 }
 
 for _, v in pairs(maps) do
   opts = v[4] or {}
   vim.keymap.set(v[1], v[2], v[3], opts)
 end
+
+vim.api.nvim_create_user_command("DelMarks", function()
+  vim.cmd("delm a-zA-Z")
+  vim.cmd("wviminfo!")
+  vim.cmd(
+    ([[echohl DiagnosticInfo | echomsg "%s" | echohl None]]):format(
+      " deleting marks..."
+    )
+  )
+end, {})
 
 -- SESSIONS
 vim.api.nvim_create_user_command("WriteSes", function()

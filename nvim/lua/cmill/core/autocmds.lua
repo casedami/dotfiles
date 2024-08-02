@@ -46,8 +46,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
+    local bufnr = ev.buf
     -- enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
     local builtins = require("telescope.builtin")
 
     local toggle_diagnostics = function()
@@ -55,7 +56,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     -- lsp
-    local opts = { buffer = ev.buf }
+    local opts = { buffer = bufnr }
     map("n", "gd", builtins.lsp_definitions, opts)
     map("n", "gD", vim.lsp.buf.declaration, opts)
     map("n", "<leader>rr", vim.lsp.buf.rename, opts)
@@ -64,7 +65,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<localleader>i", builtins.lsp_implementations, opts)
     map("n", "<localleader>wr", builtins.lsp_references, opts)
     map("n", "<localleader>wd", builtins.diagnostics, opts)
-    map("n", "<leader>dd", toggle_diagnostics, opts)
+    map("n", "<localleader>dd", toggle_diagnostics, opts)
+
+    -- lsp document highlighting for under cursor
+    -- vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    -- vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
+    -- vim.api.nvim_create_autocmd("CursorHold", {
+    --   callback = vim.lsp.buf.document_highlight,
+    --   buffer = bufnr,
+    --   group = "lsp_document_highlight",
+    --   desc = "Document Highlight",
+    -- })
+    -- vim.api.nvim_create_autocmd("CursorMoved", {
+    --   callback = vim.lsp.buf.clear_references,
+    --   buffer = bufnr,
+    --   group = "lsp_document_highlight",
+    --   desc = "Clear All the References",
+    -- })
 
     -- diagnostics
     local diagnostic_goto = function(next, severity)
