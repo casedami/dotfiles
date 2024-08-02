@@ -4,45 +4,40 @@
 CONTENTS                                                 	     *selfhelp*
 
     Mappings ................................ |self-mappings|
-      - Explorer ............................ |self-explorer|
-      - Fzf ...................................... |self-fzf|
+      - Files .................................. |self-files|
       - Code .................................... |self-code|
-      - Ex-commnds ................................ |self-ex|
       - Views .................................. |self-views|
       - QFix .................................... |self-qfix|
       - Term .................................... |self-term|
       - Notes .................................. |self-notes|
-      - Custom ................................ |self-custom|
+      - Other .................................. |self-other|
+      - Abbreviations ........................... |self-abbr|
 
 ==============================================================================
 Mappings                                                        *self-mappings*
 
-EXPLORER                                                        *self-explorer*
+FILES                                                               *self-files*
 
   Key           Function ~
 
-  `<leader>fe`    open file explorer
-  `<leader>fE`    open file explorer in cwd
-
-FZF                                                                   *self-fzf*
-
-  Key           Function ~
-
-  `<leader>ff`    search files
+  `<leader>,`     search buffers
+  `<leader>fb`    search current buffer
   `<leader>fc`    search nvim config files
   `<leader>fC`    search colorschemes
-  `<leader>fb`    search current buffer
-  `<leader>fl`    show lsp diagnostics for current buffer
+  `<leader>fe`    open file explorer
+  `<leader>fE`    open file explorer in cwd
+  `<leader>ff`    search files
   `<leader>fg`    live grep
+  `<leader>fG`    show git status
+  `<leader>fh`    search help
+  `<leader>fl`    show lsp diagnostics for current buffer
+  `<leader>fm`    search marks
+  `<leader>fn`    edit new file in current directory
+  `<leader>fns`   edit new file in current directory (h-split)
+  `<leader>fnv`   edit new file in current directory (v-split)
   `<leader>fr`    search recent files
   `<leader>fR`    resume last telescope search
-  `<leader>fh`    search help
-  `<leader>,`     search buffers
   `<leader>fs`    search registers
-  `<leader>fm`    search marks
-  `<leader>ld`    show line diagnostics
-  `<leader>gs`    show git status
-  `<leader>gc`    show git commits for current buffer
 
 CODE                                                                 *self-code*
 
@@ -51,14 +46,12 @@ CODE                                                                 *self-code*
   `K`             open float for item under cursor
   `gd`            goto definition
   `gD`            goto declaration
-  `<leader>gg`    open neogit (in new tab)
-  `<leader>gv`    open neogit (in split)
-  `<leader>rr`    refactor item under cursor
-  `<leader>ca`    show code actions
-  `<leader>ci`    show implementations for item under cursor
-  `<leader>cr`    show references for item under cursor
-  `<leader>ld`    show line diagnostics
-  `<leader>cd`    show telescope diagnostics
+  `<leader>D`     show line diagnostics
+  `<leader>dr`    refactor item under cursor
+  `<leader>da`    show code actions
+  `<leader>di`    show implementations for item under cursor
+  `<leader>dr`    show references for item under cursor
+  `<leader>df`    show telescope diagnostics
   `<leader>dd`    toggle diagnostics
 
 The following keymaps are for diagnostics navigation:
@@ -75,20 +68,22 @@ The following keymaps are for diagnostics navigation:
   `[t`            previous todo
   `<leader>xx`    open todo telescope
 
-The following keymaps are for gitsigns:
+The following keymaps are for git:
 
-  Key                 Function ~
+  Key           Function ~
 
-  `]h`                  next hunk
-  `[h`                  prev hunk
-  `<localleader>gs`     stage hunk
-  `<localleader>gu`     undo stage hunk
-  `<localleader>gr`     reset hunk
-  `<localleader>gS`     stage buffer
-  `<localleader>gR`     reset buffer
-  `<localleader>gd`     diff this
-  `<localleader>gtd`    toggle deleted
-  `<localleader>gb`     git blame current line
+  `]h`            next hunk
+  `[h`            prev hunk
+  `<leader>gb`    git blame current line
+  `<leader>gd`    diff this
+  `<leader>gg`    open neogit (in new tab)
+  `<leader>gr`    reset hunk
+  `<leader>gR`    reset buffer
+  `<leader>gs`    stage hunk
+  `<leader>gS`    stage buffer
+  `<leader>gt`    toggle deleted
+  `<leader>gu`    undo stage hunk
+  `<leader>gv`    open neogit (in split)
 
 The following keymaps are for treesitter:
 
@@ -106,20 +101,6 @@ The following keymaps are for treesitter:
   `ab`                  <motion> around block
   `ib`                  <motion> in block
 
-EX-COMMANDS                                                            *self-ex*
-
-  Key              Function ~
-
-  `<localleader>e`   edit new file in current directory
-  `<localleader>es`  edit new file in current directory (h-split)
-  `<localleader>ev`  edit new file in current directory (v-split)
-  `<localleader>s`   start seach and replace
-  `<localleader>S`   start global seach and replace
-  `)`                paste forward from 0 register
-  `(`                paste backward from 0 register
-  `<leader>dm`       delete marks
-  `@:`		   repeat last Ex command
-
 VIEWS                                                               *self-views*
 
 Buffers:
@@ -128,7 +109,7 @@ Buffers:
 
   `<localleader>]`   next buffer (in buffer list)
   `<localleader>[`   previous buffer (in buffer list)
-  `<localleader>bd`  delete buffer
+  `<localleader>d`   delete buffer
   `<localleader>p`   last buffer
 
 Tabs:
@@ -155,27 +136,21 @@ Windows:
   `<leader>wd`     delete window
   `<leader>we`     split windows equally
   `<leader>wk`     maximize window vertically
+  `<leader>wj`     maximize window vertically
   `<leader>wh`     maximize window horizontally
   `<leader>wl`     maximize window horizontally
   `<leader>-`      split window horizontal
   `<leader>|`      split window vertical
 
-Sessions:
-
-  Key   Function ~
-
-  `:ws`   save current session
-  `:ds`   delete session for cwd
-
 QUICK FIX LIST                                                       *self-qfix*
 
   Key          Function ~
 
-  `<leader>qn`   goto next item in qfix list
-  `<leader>qN`   goto first item in qfix list in next file
-  `<leader>qp`   goto previous item in qfix list
-  `<leader>qP`   goto last item in qfix list in prev file
-  `<leader>qo`   open qfix list
+  `<leader>cn`   goto next item in qfix list
+  `<leader>cnf`  goto first item in qfix list in next file
+  `<leader>cp`   goto previous item in qfix list
+  `<leader>cpf`  goto last item in qfix list in prev file
+  `<leader>co`   open qfix list
   `<leader>qc`   close qfix list
 
 TERM                                                                 *self-term*
@@ -200,20 +175,29 @@ keymaps inside (obsidian) markdown files:
   `<localleader>fl`   open backlinks
   `<localleader>fn`   edit new file with ID
   `<localleader>t`    open templates
-  `<abbr>ft`   	    start tag query
-  `<abbr>ff`   	    quick switch
-  `<abbr>fn`   	    edit new file without ID
+  `<abbr>ft`          start tag query
+  `<abbr>ff`          quick switch
+  `<abbr>fn`          edit new file without ID
 
-CUSTOM								   *self-custom*
+OTHER                                                                *self-other*
 
   Key              Function ~
 
   `<leader>?`        open self help
-  `<localleader>?`   start self help query
-  `<leader>!`        toggle color column
   `<leader>uc`       toggle light/dark colorscheme
   `<leader>l`        open Lazy
-  `<leader>ss`       start pomodoro
-  `<leader>sq`       stop pomodoro
+  `)`                paste forward from 0 register
+  `(`                paste backward from 0 register
+
+ABBREVIATIONS                                                        *self-abbr*
+
+  Key              Function ~
+
+  `P`                start pomodoro timer
+  `pq`               stop pomodoro timer
+  `dm`               delete marks
+  `ds`               delete session for cwd
+  `ws`               write session for cwd
+
 
 vim:tw=78:ts=8:noet:ft=help:norl:
