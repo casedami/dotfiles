@@ -66,22 +66,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>dr", builtins.lsp_references, opts)
     map("n", "<leader>df", builtins.diagnostics, opts)
     map("n", "<leader>dd", toggle_diagnostics, opts)
+    map("n", "<leader>dh", vim.lsp.buf.document_highlight, opts)
 
-    -- lsp document highlighting for under cursor
-    -- vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-    -- vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
-    -- vim.api.nvim_create_autocmd("CursorHold", {
-    --   callback = vim.lsp.buf.document_highlight,
-    --   buffer = bufnr,
-    --   group = "lsp_document_highlight",
-    --   desc = "Document Highlight",
-    -- })
-    -- vim.api.nvim_create_autocmd("CursorMoved", {
-    --   callback = vim.lsp.buf.clear_references,
-    --   buffer = bufnr,
-    --   group = "lsp_document_highlight",
-    --   desc = "Clear All the References",
-    -- })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      callback = vim.lsp.buf.clear_references,
+      buffer = bufnr,
+      group = "UserLspConfig",
+      desc = "Clear All the References",
+    })
 
     -- diagnostics
     local diagnostic_goto = function(next, severity)
