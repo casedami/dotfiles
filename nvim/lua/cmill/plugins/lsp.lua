@@ -16,11 +16,29 @@ return {
         underline = true,
         update_in_insert = false,
         severity_sort = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "󰅖",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            [vim.diagnostic.severity.INFO] = "i",
+          },
+        },
       },
       inlay_hints = {
         enabled = false,
       },
-      capabilities = {},
+      document_highlight = {
+        enabled = true,
+      },
+      capabilities = {
+        workspace = {
+          fileOperations = {
+            didRename = true,
+            willRename = true,
+          },
+        },
+      },
       format = {
         formatting_options = nil,
         timeout_ms = nil,
@@ -95,13 +113,7 @@ return {
     },
     config = function(_, opts)
       require("lspconfig.ui.windows").default_options.border = "rounded"
-      local signs = { Error = "󰅖", Warn = "", Hint = "", Info = "i" }
-      for name, icon in pairs(signs) do
-        name = "DiagnosticSign" .. name
-        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-      end
 
-      vim.lsp.inlay_hint.enable(false)
       vim.lsp.handlers["textDocument/hover"] =
         vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
