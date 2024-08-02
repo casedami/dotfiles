@@ -16,6 +16,9 @@ return {
         underline = true,
         update_in_insert = false,
         severity_sort = true,
+        float = {
+          border = "rounded",
+        },
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = "󰅖",

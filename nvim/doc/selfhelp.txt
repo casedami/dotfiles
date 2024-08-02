@@ -28,7 +28,6 @@ FILES                                                               *self-files*
   `<leader>fE`    open file explorer in cwd
   `<leader>ff`    search files
   `<leader>fg`    live grep
-  `<leader>fG`    show git status
   `<leader>fh`    search help
   `<leader>fl`    show lsp diagnostics for current buffer
   `<leader>fm`    search marks
@@ -76,10 +75,12 @@ The following keymaps are for git:
   `[h`            prev hunk
   `<leader>gb`    git blame current line
   `<leader>gd`    diff this
+  `<leader>gc`    show git commits for current buffer
   `<leader>gg`    open neogit (in new tab)
   `<leader>gr`    reset hunk
   `<leader>gR`    reset buffer
-  `<leader>gs`    stage hunk
+  `<leader>gs`    show git status
+  `<leader>gss`   stage hunk
   `<leader>gS`    stage buffer
   `<leader>gt`    toggle deleted
   `<leader>gu`    undo stage hunk

@@ -85,8 +85,8 @@ return {
           end, { expr = true })
 
           -- actions
-          map("n", "<leader>gs", gs.stage_hunk)
-          map("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
+          map("n", "<leader>gss", gs.stage_hunk)
+          map("v", "<leader>gss", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
           map("n", "<leader>gu", gs.undo_stage_hunk)
           map("n", "<leader>gr", gs.reset_hunk)
           map("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
