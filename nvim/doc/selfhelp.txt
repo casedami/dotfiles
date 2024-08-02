@@ -44,12 +44,12 @@ CODE                                                                 *self-code*
   `gd`            goto definition
   `gD`            goto declaration
   `<leader>D`     show line diagnostics
-  `<leader>dr`    refactor item under cursor
   `<leader>da`    show code actions
-  `<leader>di`    show implementations for item under cursor
-  `<leader>dr`    show references for item under cursor
-  `<leader>df`    show telescope diagnostics
   `<leader>dd`    toggle diagnostics
+  `<leader>di`    show implementations for item under cursor
+  `<leader>df`    show telescope diagnostics
+  `<leader>dr`    refactor item under cursor
+  `<leader>dR`    show references for item under cursor
 
 The following keymaps are for diagnostics navigation:
 
