@@ -86,14 +86,14 @@ local maps = {
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
   { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
-  { { "n", "v" }, "<leader>qq", "q:" }, -- remap to command history
-  { { "n", "v" }, "<leader>Q", "q/" }, -- remap to search history
+  { { "n", "v" }, "<leader>;", "q:" }, -- remap to command history
+  { { "n", "v" }, "<leader>/", "q/" }, -- remap to search history
   { { "n", "v" }, "q", "<nop>" }, -- remove macro ...
   { { "n", "v" }, "Q", "<nop>" }, -- remove Q
   { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>)
-  { "n", "<C-i>", "<C-i>" }, -- restore jump-forward keymap
-  { "n", "<C-;>", "<C-l>" }, -- clear cmd line
-  { "n", "<C-'>", "<Cmd>nohlsearch|diffupdate|normal! <C-l><CR>" }, -- clear previous search match highlights
+  { "n", "<C-i>", "<c-i>" }, -- restore jump-forward keymap (<c-i>)
+  { "n", "<C-;>", "<c-l>" }, -- clear cmd line
+  { "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>" }, -- clear previous search match highlights
   { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
   { "n", "<leader>uc", toggle_lightdark, opts["silent"] }, -- toggle light/dark mode

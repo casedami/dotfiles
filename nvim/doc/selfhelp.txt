@@ -150,7 +150,7 @@ QUICK FIX LIST                                                       *self-qfix*
   `<leader>cp`   goto previous item in qfix list
   `<leader>cpf`  goto last item in qfix list in prev file
   `<leader>co`   open qfix list
-  `<leader>qc`   close qfix list
+  `<leader>cc`   close qfix list
 
 TERM                                                                 *self-term*
 
@@ -185,6 +185,8 @@ OTHER                                                                *self-other
   `<leader>?`        open self help
   `<leader>uc`       toggle light/dark colorscheme
   `<leader>l`        open Lazy
+  `<leader>;`        open command history
+  `<leader>/`        open search history
   `)`                paste forward from 0 register
   `(`                paste backward from 0 register
 
