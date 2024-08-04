@@ -1,6 +1,7 @@
 return {
   {
     "cdmill/neomodern.nvim",
+    priority = 1000,
     config = function()
       require("neomodern").setup({
         toggle_style_key = "<leader>cc",
@@ -20,6 +21,9 @@ return {
           show_eob = false,
           colored_docstrings = true,
           telescope = "bordered",
+        },
+        highlights = {
+          ["LazyNormal"] = { bg = "none" },
         },
       })
       require("neomodern").load()

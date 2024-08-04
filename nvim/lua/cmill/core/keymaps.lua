@@ -88,8 +88,6 @@ local maps = {
   { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
   { { "n", "v" }, "<leader>;", "q:" }, -- remap to command history
   { { "n", "v" }, "<leader>/", "q/" }, -- remap to search history
-  { { "n", "v" }, "q", "<nop>" }, -- remove macro ...
-  { { "n", "v" }, "Q", "<nop>" }, -- remove Q
   { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>)
   { "n", "<C-i>", "<c-i>" }, -- restore jump-forward keymap (<c-i>)
   { "n", "<C-;>", "<c-l>" }, -- clear cmd line

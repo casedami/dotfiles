@@ -18,6 +18,11 @@ require("lazy").setup({
   defaults = {
     version = false,
   },
+  dev = {
+    path = "~/Developer/lua",
+    patterns = { "cdmill" },
+    fallback = false,
+  },
   checker = {
     enabled = false,
     notify = false,
@@ -28,5 +33,6 @@ require("lazy").setup({
   },
   ui = {
     backdrop = 100,
+    border = "rounded",
   },
 })
