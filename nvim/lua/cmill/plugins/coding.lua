@@ -30,6 +30,10 @@ return {
         TEST = { icon = "󱖫 ", alt = { "TESTING", "PASSED", "FAILED" } },
         MARK = { icon = " " },
       },
+      highlight = {
+        keyword = "fg",
+        after = "",
+      },
     },
   },
   {
