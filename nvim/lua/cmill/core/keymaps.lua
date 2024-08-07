@@ -37,7 +37,6 @@ local maps = {
   { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
   { "n", "<localleader>d", "<cmd>bd<cr>" }, -- delete buffer
   { "n", "<localleader>p", "<C-6>" }, -- previous buffer
-  { "n", "<localleader>bb", "<cmd>ls<cr>:b<space>" }, -- change buffer via buflist preview
   -- TABS
   { "n", "<localleader>}", "<cmd>tabnext<cr>" }, -- next tab
   { "n", "<localleader>{", "<cmd>tabprevious<cr>" }, -- previous tab
@@ -80,7 +79,7 @@ local maps = {
   { "ca", "ws", "WriteSes" }, -- save session for cwd
   { "ca", "ds", "DelSes" }, -- delete session for cwd
   { "ca", "dm", "DelMarks" }, -- delete all marks
-  { "ca", "P", "Pomo" }, -- start pomodoro
+  { "ca", "p", "Pomo" }, -- start pomodoro
   { "ca", "pq", "Pomoq" }, -- stop pomodoro
   -- MISC COMMAND SHORTCUTS
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register

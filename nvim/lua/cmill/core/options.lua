@@ -82,6 +82,7 @@ local opts = {
   splitbelow = true, -- put new windows below current
   splitkeep = "screen",
   splitright = true, -- put new windows right of current
+  textwidth = 88,
   timeoutlen = 300,
   undofile = true,
   undolevels = 200,
