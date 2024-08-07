@@ -16,7 +16,7 @@ alias ls="eza --icons --group-directories-first"
 alias lsl="eza -l -h --no-user --git"
 alias tree="eza -T"
 alias grep="grep --color=auto"
-alias top="top -n 25"
+alias top="top -n 25 -d 60"
 alias fd="fd -c never"
 alias timeit="/usr/bin/time -p"
 
@@ -29,10 +29,10 @@ alias conda+="conda activate"
 alias conda-="conda deactivate"
 alias pydb="python -m pdb"
 
-alias uni="cd ~/self/dev/uni/"
+alias uni="cd ~/self/Developer/uni/"
 alias notes="cd ~/self/notes/main/"
 alias conf="cd ~/.config/"
-alias ic="cd /Users/caseymiller/Library/Mobile Documents/com~apple~CloudDocs"
+alias ic="cd /Users/caseymiller/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 set -U fish_greeting
 set -gx LANG en_US.UTF-8
