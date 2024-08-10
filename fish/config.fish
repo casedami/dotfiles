@@ -16,7 +16,7 @@ alias ls="eza --icons --group-directories-first"
 alias lsl="eza -l -h --no-user --git"
 alias tree="eza -T"
 alias grep="grep --color=auto"
-alias top="top -n 25 -d 60"
+alias top="top -n 25 -s 3"
 alias fd="fd -c never"
 alias timeit="/usr/bin/time -p"
 
