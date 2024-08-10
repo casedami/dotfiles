@@ -141,19 +141,21 @@ function M.statusline_components()
       path = 3,
       fmt = function(str)
         local path = require("oil").get_current_dir() or ""
-        local fname = {
+        local ftype = {
           TelescopePrompt = "Telescope",
           oil = path:gsub("^/Users/caseymiller", "~"),
           lazy = "Lazy",
           fugitive = "Git",
         }
+        local btype = {
+          terminal = "terminal",
+          quickfix = "quickfix",
+        }
 
-        if vim.bo.buftype == "terminal" then
-          return "fish"
-        elseif vim.bo.filetype ~= "TelescopePrompt" and vim.bo.buftype == "prompt" then
+        if vim.bo.filetype ~= "TelescopePrompt" and vim.bo.buftype == "prompt" then
           return ""
         else
-          return fname[vim.bo.filetype] or str
+          return ftype[vim.bo.filetype] or btype[vim.bo.buftype] or str
         end
       end,
     },
