@@ -31,7 +31,7 @@ return {
         MARK = { icon = " " },
       },
       highlight = {
-        keyword = "fg",
+        keyword = "",
         after = "",
       },
     },

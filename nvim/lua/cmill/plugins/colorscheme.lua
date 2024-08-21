@@ -9,7 +9,7 @@ return {
         code_style = {
           headings = "italic",
         },
-        transparent = false,
+        transparent = true,
         ui = {
           lualine = {
             plain = false,
