@@ -12,7 +12,8 @@ outer.right = [{monitor."built-in" = 10}, {monitor."dell" = 20}, 10]
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open /Applications/WezTerm.app'
-alt-shift-m = 'exec-and-forget open /Applications/Firefox.app'
+alt-m = 'exec-and-forget open /Applications/Firefox.app'
+alt-s = 'exec-and-forget open /Applications/Spotify.app'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -27,9 +28,8 @@ alt-shift-l = 'move right'
 alt-y = 'fullscreen'
 
 alt-q = 'layout v_accordion'
-alt-w = 'layout tiles horizontal vertical'
-
-alt-shift-space = 'layout floating tiling'
+alt-w = 'layout h_tiles'
+alt-t = 'layout floating tiling'
 
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
