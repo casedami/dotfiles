@@ -33,6 +33,7 @@ alias uni="cd ~/self/Developer/uni/"
 alias notes="cd ~/self/notes/main/"
 alias conf="cd ~/.config/"
 alias ic="cd /Users/caseymiller/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias qn="vim ~/self/notes/main/inbox/qn.md"
 
 set -U fish_greeting
 set -gx LANG en_US.UTF-8

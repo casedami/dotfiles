@@ -7,53 +7,28 @@ local cfg = {
   automatically_reload_config = true,
   color_scheme_dirs = { "~/.config/wezterm/colors/" },
   color_scheme = "iceclimber",
-  colors = {
-    tab_bar = {
-      active_tab = {
-        bg_color = "#1d1d1f",
-        fg_color = "#55555e",
-      },
-      inactive_tab = {
-        bg_color = "#111111",
-        fg_color = "#55555e",
-      },
-    },
-  },
-  font = wezterm.font("MonaspiceAr Nerd Font"),
-  font_size = 13,
+  font = wezterm.font("JetBrainsMono Nerd Font"),
   font_rules = {
     {
       intensity = "Bold",
       italic = false,
       font = wezterm.font({
-        family = "MonaspiceXe Nerd Font",
+        family = "JetBrainsMono Nerd Font",
+        weight = "ExtraBold",
+        italic = false,
       }),
     },
     {
       intensity = "Bold",
       italic = true,
       font = wezterm.font({
-        family = "MonaspiceKr Nerd Font",
-        italic = true,
-      }),
-    },
-    {
-      intensity = "Normal",
-      italic = true,
-      font = wezterm.font({
-        family = "MonaspiceKr Nerd Font",
-        italic = true,
-      }),
-    },
-    {
-      intensity = "Half",
-      italic = true,
-      font = wezterm.font({
-        family = "MonaspiceKr Nerd Font",
+        family = "JetBrainsMono Nerd Font",
+        weight = "ExtraBold",
         italic = true,
       }),
     },
   },
+  font_size = 14,
   enable_tab_bar = false,
   visual_bell = {
     fade_in_duration_ms = 0,
@@ -61,12 +36,6 @@ local cfg = {
   },
   window_background_opacity = 1.0,
   window_close_confirmation = "NeverPrompt",
-  window_frame = {
-    active_titlebar_bg = "#171718",
-    font = wezterm.font({
-      family = "MonaspiceRn Nerd Font",
-    }),
-  },
   window_padding = {
     left = 2,
     right = 2,
@@ -82,5 +51,23 @@ end
 require("wezterm").on("format-window-title", function()
   return ""
 end)
+
+wezterm.on("toggle-opacity", function(window, _)
+  local overrides = window:get_config_overrides() or {}
+  if overrides.window_background_opacity == 1.0 then
+    overrides.window_background_opacity = 0.9
+  else
+    overrides.window_background_opacity = 1.0
+  end
+  window:set_config_overrides(overrides)
+end)
+
+config.keys = {
+  {
+    key = "B",
+    mods = "CTRL",
+    action = wezterm.action.EmitEvent("toggle-opacity"),
+  },
+}
 
 return config
