@@ -26,9 +26,7 @@ alt-shift-l = 'move right'
 
 alt-y = 'fullscreen'
 
-alt-q = 'layout v_accordion' # 'layout stacking' in i3
-alt-w = 'layout h_accordion' # 'layout tabbed' in i3
-alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
+alt-q = 'layout h_accordion' # 'layout tabbed' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
@@ -37,25 +35,12 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-
-cmd-shift-n = 'move-workspace-to-monitor next'
-cmd-shift-p = 'move-workspace-to-monitor prev'
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
 
 alt-shift-c = 'reload-config'
-
-alt-r = 'mode resize'
-
-[mode.resize.binding]
-h = 'resize width -50'
-j = 'resize height +50'
-k = 'resize height -50'
-l = 'resize width +50'
-enter = 'mode main'
-esc = 'mode main'
 
 [workspace-to-monitor-force-assignment]
 1 = 'main'

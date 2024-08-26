@@ -33,7 +33,9 @@ return {
         return prefix .. os.date("%Y%m%d%H%M")
       end,
       disable_frontmatter = function(note)
-        return string.find(note, "python") or string.find(note, "tasks")
+        return string.find(note, "python")
+          or string.find(note, "tasks")
+          or string.find(note, "qn")
       end,
       note_frontmatter_func = function(note)
         if note.title then
