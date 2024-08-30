@@ -42,9 +42,6 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     version = false,
-    dependencies = {
-      { "nvim-telescope/telescope-fzy-native.nvim" },
-    },
     -- stylua: ignore start
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Toggle Telescope", silent = true, },
@@ -131,7 +128,6 @@ return {
           },
         },
       })
-      require("telescope").load_extension("fzy_native")
     end,
   },
 }

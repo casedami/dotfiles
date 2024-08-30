@@ -30,7 +30,7 @@ alias conda-="conda deactivate"
 alias pydb="python -m pdb"
 
 alias uni="cd ~/self/Developer/uni/"
-alias notes="cd ~/self/notes/main/"
+alias notes="vim ~/self/notes/main/hedef.md"
 alias conf="cd ~/.config/"
 alias ic="cd /Users/caseymiller/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias qn="vim ~/self/notes/main/inbox/qn.md"
