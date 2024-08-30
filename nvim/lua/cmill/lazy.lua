@@ -20,7 +20,7 @@ require("lazy").setup({
   },
   dev = {
     path = "~/Developer/lua",
-    patterns = { "cdmill" },
+    patterns = { "neomodern" },
     fallback = false,
   },
   checker = {

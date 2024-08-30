@@ -4,7 +4,7 @@ return {
     priority = 1000,
     config = function()
       require("neomodern").setup({
-        toggle_style_key = "<leader>cc",
+        toggle_style_key = "<leader>uu",
         style = "iceclimber",
         code_style = {
           headings = "italic",

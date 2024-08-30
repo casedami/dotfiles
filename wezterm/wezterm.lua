@@ -7,28 +7,12 @@ local cfg = {
   automatically_reload_config = true,
   color_scheme_dirs = { "~/.config/wezterm/colors/" },
   color_scheme = "iceclimber",
-  font = wezterm.font("JetBrainsMono Nerd Font"),
-  font_rules = {
-    {
-      intensity = "Bold",
-      italic = false,
-      font = wezterm.font({
-        family = "JetBrainsMono Nerd Font",
-        weight = "ExtraBold",
-        italic = false,
-      }),
-    },
-    {
-      intensity = "Bold",
-      italic = true,
-      font = wezterm.font({
-        family = "JetBrainsMono Nerd Font",
-        weight = "ExtraBold",
-        italic = true,
-      }),
-    },
-  },
+  font = wezterm.font({
+    family = "CommitMono Nerd Font",
+    harfbuzz_features = { "ss03=1", "ss04=1", "ss05=1", "cv02=1", "cv08=1" },
+  }),
   font_size = 14,
+  line_height = 1.2,
   enable_tab_bar = false,
   visual_bell = {
     fade_in_duration_ms = 0,
@@ -62,11 +46,26 @@ wezterm.on("toggle-opacity", function(window, _)
   window:set_config_overrides(overrides)
 end)
 
+wezterm.on("toggle-colorscheme", function(window, _)
+  local overrides = window:get_config_overrides() or {}
+  if overrides.color_scheme == "iceclimber" then
+    overrides.color_scheme = "daylight"
+  else
+    overrides.color_scheme = "iceclimber"
+  end
+  window:set_config_overrides(overrides)
+end)
+
 config.keys = {
   {
     key = "B",
     mods = "CTRL",
     action = wezterm.action.EmitEvent("toggle-opacity"),
+  },
+  {
+    key = "C",
+    mods = "CTRL",
+    action = wezterm.action.EmitEvent("toggle-colorscheme"),
   },
 }
 
