@@ -12,8 +12,8 @@ outer.right = [{monitor."built-in" = 10}, {monitor."dell" = 20}, 10]
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open /Applications/WezTerm.app'
-alt-m = 'exec-and-forget open /Applications/Firefox.app'
-alt-s = 'exec-and-forget open /Applications/Spotify.app'
+alt-shift-b = 'exec-and-forget open /Applications/Firefox.app'
+alt-shift-m = 'exec-and-forget open /Applications/Spotify.app'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -48,3 +48,11 @@ alt-shift-c = 'reload-config'
 2 = 'main'
 3 = 'secondary'
 4 = 'secondary'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'wezterm'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'finder'
+run = 'layout floating'

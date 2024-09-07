@@ -9,7 +9,6 @@ return {
       fish = { "fish_indent" },
       c = { "clang-format" },
       tex = { "latexindent" },
-      swift = { "swift_format" },
       R = { "styler" },
       ["_"] = { "trim_whitespace" },
     },
