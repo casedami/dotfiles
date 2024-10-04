@@ -40,7 +40,6 @@ return {
           },
           lualine_y = {
             components.time,
-            components.pomodoro,
           },
           lualine_z = {},
         },
