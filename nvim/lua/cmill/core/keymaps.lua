@@ -79,8 +79,6 @@ local maps = {
   { "ca", "ws", "WriteSes" }, -- save session for cwd
   { "ca", "ds", "DelSes" }, -- delete session for cwd
   { "ca", "dm", "DelMarks" }, -- delete all marks
-  { "ca", "p", "Pomo" }, -- start pomodoro
-  { "ca", "pq", "Pomoq" }, -- stop pomodoro
   -- MISC COMMAND SHORTCUTS
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register

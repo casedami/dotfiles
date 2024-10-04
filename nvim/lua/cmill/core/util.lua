@@ -180,18 +180,6 @@ function M.statusline_components()
         return { fg = palette.green }
       end,
     },
-    pomodoro = {
-      require("cmill.core.pomodoro").statusline,
-      color = function()
-        local palette = require("neomodern.palette")
-        local style = vim.g.neomodern_config.style
-        return { fg = palette[style].property, bg = palette[style].line }
-      end,
-      separator = { left = "", right = "" },
-      cond = function()
-        return require("cmill.core.pomodoro").statusline() ~= "(inactive)"
-      end,
-    },
     progress = {
       "progress",
     },

@@ -194,8 +194,6 @@ ABBREVIATIONS                                                        *self-abbr*
 
   Key              Function ~
 
-  `P`                start pomodoro timer
-  `pq`               stop pomodoro timer
   `dm`               delete marks
   `ds`               delete session for cwd
   `ws`               write session for cwd
