@@ -23,23 +23,24 @@ return {
           },
         },
         sections = {
-          lualine_a = {},
+          lualine_a = {
+            -- components.modes,
+          },
           lualine_b = {
-            components.tabs,
             components.branch,
+            components.diff,
           },
           lualine_c = {
             components.nvim_icon,
+            components.diagnostics,
             components.filename,
           },
           lualine_x = {
-            components.lsp,
-            components.progress,
+            components.tabs,
             components.location,
-            components.diagnostics,
           },
           lualine_y = {
-            components.time,
+            components.progress,
           },
           lualine_z = {},
         },

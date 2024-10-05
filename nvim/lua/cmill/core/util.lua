@@ -132,9 +132,12 @@ function M.statusline_components()
       "diagnostics",
       sections = { "error", "warn" },
       symbols = {
-        error = "󰅖 ",
-        warn = " ",
+        error = "󰅖",
+        warn = "",
       },
+    },
+    diff = {
+      "diff",
     },
     filename = {
       "filename",
@@ -167,9 +170,9 @@ function M.statusline_components()
     },
     modes = {
       "mode",
-      fmt = function(str)
-        return str:sub(1, 3)
-      end,
+      -- fmt = function(str)
+      --   return str:sub(1, 3)
+      -- end,
     },
     nvim_icon = {
       function()
