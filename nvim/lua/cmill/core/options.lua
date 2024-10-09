@@ -55,7 +55,7 @@ local opts = {
     diff = "╱",
     eob = "~",
   },
-  list = true, -- show some invisible characters (tabs...
+  list = false, -- don't show some invisible characters (tabs...
   scrolloff = 10, -- lines of context
   shiftround = true,
   shiftwidth = 2, -- size of an indent
