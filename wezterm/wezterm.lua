@@ -3,21 +3,16 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 local cfg = {
-  audible_bell = "Disabled",
   automatically_reload_config = true,
-  color_scheme_dirs = { "~/.config/wezterm/colors/" },
-  color_scheme = "roseprime",
-  font = wezterm.font({
-    family = "CommitMono Nerd Font",
-    harfbuzz_features = { "ss03=1", "ss04=1", "ss05=1", "cv02=1", "cv08=1" },
-  }),
-  font_size = 14,
-  line_height = 1.2,
-  enable_tab_bar = false,
+  -- BELL
+  audible_bell = "Disabled",
   visual_bell = {
     fade_in_duration_ms = 0,
     fade_out_duration_ms = 0,
   },
+  -- UI
+  color_scheme_dirs = { "~/.config/wezterm/colors/" },
+  color_scheme = "roseprime",
   -- macos_window_background_blur = 100,
   window_background_opacity = 1.0,
   window_decorations = "RESIZE",
@@ -28,6 +23,15 @@ local cfg = {
     top = 10,
     bottom = 0,
   },
+  -- FONT
+  font_size = 14,
+  line_height = 1.2,
+  font = wezterm.font({
+    family = "CommitMono Nerd Font",
+    harfbuzz_features = { "ss03=1", "ss04=1", "ss05=1", "cv02=1", "cv08=1" },
+  }),
+  -- TAB BAR
+  enable_tab_bar = false,
 }
 
 for k, v in pairs(cfg) do
