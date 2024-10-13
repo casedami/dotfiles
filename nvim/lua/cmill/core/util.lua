@@ -170,9 +170,9 @@ function M.statusline_components()
     },
     modes = {
       "mode",
-      -- fmt = function(str)
-      --   return str:sub(1, 3)
-      -- end,
+      fmt = function(str)
+        return str:sub(1, 3)
+      end,
     },
     nvim_icon = {
       function()
@@ -202,6 +202,13 @@ function M.statusline_components()
   return components
 end
 
+function M.is_git_repo()
+  local dir = vim.loop.cwd()
+  local cmd = { "git", "-C", dir, "rev-parse", "--is-inside-work-tree" }
+  local result = vim.system(cmd):wait()
+  return result.code == 0
+end
+
 -- Opens telescope for searching .config files
 function M.config()
   return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
@@ -216,7 +223,7 @@ function M.new_file()
   local is_note = path:find("self/notes")
 
   local input = Input({
-    position = "50%",
+    position = { row = "25%", col = "50%" },
     size = {
       width = math.floor(vim.api.nvim_win_get_width(0) * 0.20),
     },
