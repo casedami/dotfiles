@@ -44,10 +44,10 @@ set -U EDITOR nvim
 
 set -gx __zoxide_zi cdi
 set -gx FZF_DEFAULT_OPTS '
---color=fg:#bbbac1,bg:#171718,hl:#d6a56f,gutter:#171718
---color=fg+:#bbbac1,bg+:#333336,hl+:#d6a56f
---color=info:#55555e,prompt:#559ba3,pointer:#559ba3
---color=marker:#8c8abd,spinner:#8c8abd,header:#8c8abd
+--color=fg:#afafdd,bg:#121315,hl:#9bbdb8,gutter:#121315
+--color=fg+:#afafdd,bg+:#1d1f26,hl+:#9bbdb8
+--color=info:#666a82,prompt:#ad82a2,pointer:#ad82a2
+--color=marker:#6397cf,spinner:#6397cf,header:#6397cf
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt=" "
 --marker=">"

@@ -6,7 +6,7 @@ local cfg = {
   audible_bell = "Disabled",
   automatically_reload_config = true,
   color_scheme_dirs = { "~/.config/wezterm/colors/" },
-  color_scheme = "iceclimber",
+  color_scheme = "roseprime",
   font = wezterm.font({
     family = "CommitMono Nerd Font",
     harfbuzz_features = { "ss03=1", "ss04=1", "ss05=1", "cv02=1", "cv08=1" },
