@@ -1,6 +1,6 @@
 return {
   {
-    "stevearc/oil.nvim",
+    "cdmill/oil.nvim",
     event = "VimEnter",
     keys = {
       { "<leader>fe", "<cmd>Oil<cr>" },
@@ -18,6 +18,7 @@ return {
         max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.45),
         max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.6),
       },
+      auto_close_last_buffer = true,
       keymaps = {
         ["q"] = "actions.close",
       },

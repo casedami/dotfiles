@@ -67,7 +67,8 @@ local maps = {
   { "n", "<leader>co", "<cmd>copen<cr>" }, -- open qfix list
   { "n", "<leader>cc", "<cmd>cclose<cr>" }, -- close qfix list
   -- TERM KEYMAPS
-  { "n", "<leader>t", "<cmd>split | resize 15 | terminal<cr>i" }, -- open term in hsplit
+  { "n", "<leader>tj", "<cmd>split | resize 15 | terminal<cr>i" }, -- open term in hsplit
+  { "n", "<leader>tl", "<cmd>vsplit | terminal<cr>i" }, -- open term in vsplit
   { "n", "<leader>T", "<cmd>tabnew | term<cr>i" }, -- open term in new tab
   { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
   { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell

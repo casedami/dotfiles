@@ -36,13 +36,14 @@ return {
             components.filename,
           },
           lualine_x = {
-            components.tabs,
             components.location,
           },
           lualine_y = {
             components.progress,
           },
-          lualine_z = {},
+          lualine_z = {
+            components.tabs,
+          },
         },
         extensions = {
           "man",

@@ -1,32 +1,6 @@
-local get_actions = function()
-  -- stylua: ignore
-  local actions = {
-    { action = "Telescope find_files", desc = " find file", icon = " ", key = "f", },
-    { action = "lua require('cmill.core.util').new_file()", desc = " new file", icon = " ", key = "n", },
-    { action = "Telescope oldfiles cwd_only=true", desc = " recent files", icon = " ", key = "r", },
-    { action = "Oil", desc = " explorer", icon = "󱏒 ", key = "e", },
-    { action = "Telescope live_grep", desc = " grep", icon = " ", key = "g", },
-    { action = "Sessionmanager load_current_dir_session", desc = " restore session", icon = " ", key = "s", },
-    { action = "lua require('cmill.core.util').config()", desc = " config", icon = " ", key = "c", },
-    { action = "Lazy", desc = " lazy", icon = "󰒲 ", key = "l", },
-    { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " quit", icon = " ", key = "q", },
-  }
-
-  local path = vim.loop.cwd() .. "/.git"
-  local ok, _ = vim.loop.fs_stat(path)
-  if ok then
-    table.insert(
-      actions,
-      6,
-      { action = "Neogit", desc = " git", icon = " ", key = "G" }
-    )
-  end
-  return actions
-end
-
 return {
   {
-    "nvimdev/dashboard-nvim",
+    "cdmill/dashboard-nvim",
     lazy = false,
     opts = function()
       local logo = "Neovim ["
@@ -45,8 +19,62 @@ return {
         },
         config = {
           header = vim.split(logo, "\n"),
-          -- stylua: ignore
-          center = get_actions(),
+          center = {
+            {
+              action = "Telescope find_files",
+              desc = " find file",
+              icon = " ",
+              key = "f",
+            },
+            {
+              action = "lua require('cmill.core.util').new_file()",
+              desc = " new file",
+              icon = " ",
+              key = "n",
+            },
+            {
+              action = "Telescope oldfiles cwd_only=true",
+              desc = " recent files",
+              icon = " ",
+              key = "r",
+            },
+            { action = "Oil", desc = " explorer", icon = "󱏒 ", key = "e" },
+            {
+              action = "Telescope live_grep",
+              desc = " grep",
+              icon = " ",
+              key = "g",
+            },
+            {
+              action = "Neogit",
+              desc = " git",
+              icon = " ",
+              key = "G",
+              cond = require("cmill.core.util").is_git_repo(),
+            },
+            {
+              action = "SessionManager load_current_dir_session",
+              desc = " restore session",
+              icon = " ",
+              key = "s",
+              cond = require("session_manager").current_dir_session_exists(),
+            },
+            {
+              action = "lua require('cmill.core.util').config()",
+              desc = " config",
+              icon = " ",
+              key = "c",
+            },
+            { action = "Lazy", desc = " lazy", icon = "󰒲 ", key = "l" },
+            {
+              action = function()
+                vim.api.nvim_input("<cmd>qa<cr>")
+              end,
+              desc = " quit",
+              icon = " ",
+              key = "q",
+            },
+          },
           footer = function()
             local stats = require("lazy").stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
