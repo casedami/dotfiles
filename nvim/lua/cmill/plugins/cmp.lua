@@ -5,27 +5,6 @@ return {
     event = "LspAttach",
     dependencies = {
       { "onsails/lspkind.nvim" },
-      {
-        "L3MON4D3/LuaSnip",
-        event = "InsertEnter",
-        commit = "1182638",
-        opts = {
-          history = true,
-          delete_check_events = "TextChanged",
-        },
-        -- stylua: ignore
-        keys = {
-          { "<tab>", function() return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end, expr = true, silent = true, mode = "i", },
-          { "<tab>", function() require("luasnip").jump(1) end, mode = "s", },
-          { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" }, },
-        },
-        config = function()
-          -- load custom snippets
-          require("luasnip.loaders.from_lua").lazy_load({
-            paths = "~/.config/nvim/snippets/",
-          })
-        end,
-      },
       { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
@@ -40,11 +19,6 @@ return {
       cmp.setup({
         completion = {
           completeopt = "menu,menuone,noinsert",
-        },
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
         },
         -- stylua: ignore
         mapping = cmp.mapping.preset.insert({
@@ -105,7 +79,6 @@ return {
       cmp.setup.filetype("tex", {
         sources = {
           { name = "omni", trigger_characters = { "{", "\\" } },
-          { name = "luasnip" },
           { name = "buffer" },
         },
       })
