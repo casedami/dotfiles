@@ -37,6 +37,7 @@ local maps = {
   { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
   { "n", "<localleader>d", "<cmd>bd<cr>" }, -- delete buffer
   { "n", "<localleader>p", "<C-6>" }, -- previous buffer
+  { "n", "<localleader>P", "<C-w><C-6>" }, -- previous buffer in hsplit
   -- TABS
   { "n", "<localleader>}", "<cmd>tabnext<cr>" }, -- next tab
   { "n", "<localleader>{", "<cmd>tabprevious<cr>" }, -- previous tab
@@ -53,10 +54,12 @@ local maps = {
   { "n", "<C-l>", "<C-w>l", opts["remap"] }, -- goto right window
   { "n", "<leader>wd", "<C-W>c", opts["remap"] }, -- delete window
   { "n", "<leader>we", "<C-W>=", opts["remap"] }, -- split windows equally
+  { "n", "<leader>wo", "<C-W><C-O>", opts["remap"] }, -- make buffer the only buffer on screen
   { "n", "<leader>wk", "<C-W>_", opts["remap"] }, -- maximize current window vertically
-  { "n", "<leader>wj", "<C-W>_", opts["remap"] }, -- maximize current window vertically
   { "n", "<leader>wh", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
-  { "n", "<leader>wl", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
+  { "n", "<leader>wK", "<C-W>K", opts["remap"] }, -- change hsplit layout to vsplit
+  { "n", "<leader>wH", "<C-W>H", opts["remap"] }, -- change vsplit layout to hsplit
+  { "n", "<leader>wr", "<C-W><C-R>", opts["remap"] }, -- rotate window layout (only works row-/column-wise)
   { "n", "<leader>-", "<C-W>s", opts["remap"] }, -- split window below
   { "n", "<leader>|", "<C-W>v", opts["remap"] }, -- split window right
   -- QUICK FIX LIST
