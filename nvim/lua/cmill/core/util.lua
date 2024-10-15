@@ -203,7 +203,7 @@ function M.statusline_components()
 end
 
 function M.is_git_repo()
-  local dir = vim.loop.cwd()
+  local dir = vim.uv.cwd()
   local cmd = { "git", "-C", dir, "rev-parse", "--is-inside-work-tree" }
   local result = vim.system(cmd):wait()
   return result.code == 0
@@ -216,48 +216,14 @@ end
 
 -- Opens a prompt for creating a new file or a new note if in ~/self/notes/
 function M.new_file()
-  local Input = require("nui.input")
-  local Event = require("nui.utils.autocmd").event
-
   local path = vim.fn.expand("%:p:h")
   local is_note = path:find("self/notes")
 
-  local input = Input({
-    position = { row = "25%", col = "50%" },
-    size = {
-      width = math.floor(vim.api.nvim_win_get_width(0) * 0.20),
-    },
-    border = {
-      style = "rounded",
-      text = {
-        top = is_note and "New Note" or "New File",
-        top_align = "center",
-      },
-    },
-  }, {
-    prompt = " ",
-    default_value = "",
-    on_close = function() end,
-    on_submit = function(newfile)
-      if newfile ~= nil then
-        if is_note then
-          path = vim.fn.expand("~") .. "/self/notes/main/inbox/" .. newfile .. ".md"
-        else
-          path = path .. "/" .. newfile
-        end
-        vim.cmd(([[e %s]]):format(path))
-      end
-    end,
-  })
+  if is_note then
+    path = vim.fn.expand("~") .. "/self/notes/main/inbox"
+  end
 
-  -- stylua: ignore
-  input:map("n", "<Esc>", function() input:unmount() end, { noremap = true })
-  -- stylua: ignore
-  input:map("n", "q", function() input:unmount() end, { noremap = true })
-
-  input:mount()
-  -- stylua: ignore
-  input:on(Event.BufLeave, function() input:unmount() end)
+  vim.api.nvim_input(":e " .. path .. "/")
 end
 
 return M

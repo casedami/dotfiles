@@ -76,9 +76,9 @@ local maps = {
   { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
   { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell
   -- FILES
-  { "n", "<leader>fn", "e <C-R>=expand('%:p:h') . '/'<CR>" }, -- edit new file in current dir
-  { "n", "<leader>fns", "sp <C-R>=expand('%:p:h') . '/'<CR>" }, -- edit new file in current dir (hsplit)
-  { "n", "<leader>fnv", "vsp <C-R>=expand('%:p:h') . '/'<CR>" }, --edit new file in current dir (vsplit)
+  { "ca", "new", "e %:h/" }, -- edit new file in current dir
+  { "ca", "newk", "sp %:h/" }, -- edit new file in current dir (hsplit)
+  { "ca", "newh", "vsp %:h/" }, --edit new file in current dir (vsplit)
   -- ABBREVIATIONS
   { "ca", "ws", "WriteSes" }, -- save session for cwd
   { "ca", "ds", "DelSes" }, -- delete session for cwd
