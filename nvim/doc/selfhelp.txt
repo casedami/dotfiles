@@ -110,6 +110,7 @@ Buffers:
   `<localleader>[`   previous buffer (in buffer list)
   `<localleader>d`   delete buffer
   `<localleader>p`   last buffer
+  `<localleader>p`   last buffer in hsplit
 
 Tabs:
 
@@ -134,10 +135,12 @@ Windows:
   `<C-l>`          goto right window
   `<leader>wd`     delete window
   `<leader>we`     split windows equally
+  `<leader>wo`     make buffer the only buffer on screen
   `<leader>wk`     maximize window vertically
-  `<leader>wj`     maximize window vertically
   `<leader>wh`     maximize window horizontally
-  `<leader>wl`     maximize window horizontally
+  `<leader>wK`     change hsplit layout to vsplit layout
+  `<leader>wH`     change vsplit layout to hsplit layout
+  `<leader>wr`     rotate window layout (only works row-/column-wise
   `<leader>-`      split window horizontal
   `<leader>|`      split window vertical
 
