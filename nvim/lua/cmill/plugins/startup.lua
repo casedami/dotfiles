@@ -27,7 +27,7 @@ return {
               key = "f",
             },
             {
-              action = "lua require('cmill.core.util').new_file()",
+              action = "lua require('cmill.core.util').new_file_prompt()",
               desc = " new file",
               icon = " ",
               key = "n",

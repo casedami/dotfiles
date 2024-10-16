@@ -214,4 +214,16 @@ function M.config()
   return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
 end
 
+-- Opens a prompt for creating a new file or a new note if in ~/self/notes/
+function M.new_file_prompt()
+  local path = vim.fn.expand("%:p:h")
+  local is_note = path:find("self/notes")
+
+  if is_note then
+    path = vim.fn.expand("~") .. "/self/notes/main/inbox"
+  end
+
+  vim.api.nvim_input(":e " .. path .. "/")
+end
+
 return M
