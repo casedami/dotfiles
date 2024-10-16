@@ -149,6 +149,7 @@ function M.statusline_components()
           oil = path:gsub("^/Users/caseymiller", "~"),
           lazy = "Lazy",
           fugitive = "Git",
+          dashboard = "Dashboard",
         }
         local btype = {
           terminal = "terminal",
