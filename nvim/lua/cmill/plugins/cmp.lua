@@ -5,7 +5,6 @@ return {
     event = "LspAttach",
     dependencies = {
       { "onsails/lspkind.nvim" },
-      { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
@@ -27,11 +26,10 @@ return {
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["W"] = cmp.mapping.abort(),
+          ["<C-w>"] = cmp.mapping.abort(),
           ["<tab>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
-          { name = "luasnip" },
           { name = "nvim_lsp" },
           { name = "buffer" },
           { name = "path" },
@@ -83,5 +81,29 @@ return {
         },
       })
     end,
+    keys = {
+      {
+        "<Tab>",
+        function()
+          return vim.snippet.active({ direction = 1 })
+              and "<cmd>lua vim.snippet.jump(1)<cr>"
+            or "<Tab>"
+        end,
+        expr = true,
+        silent = true,
+        mode = { "i", "s" },
+      },
+      {
+        "<S-Tab>",
+        function()
+          return vim.snippet.active({ direction = -1 })
+              and "<cmd>lua vim.snippet.jump(-1)<cr>"
+            or "<S-Tab>"
+        end,
+        expr = true,
+        silent = true,
+        mode = { "i", "s" },
+      },
+    },
   },
 }
