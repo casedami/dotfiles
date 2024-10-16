@@ -3,7 +3,6 @@ local toggle_spell = function()
 end
 
 local maps = {
-  { "n", "<localleader>e", ":e ~/self/notes/main/inbox/" },
   { "n", "<localleader>ll", "<cmd>ObsidianOpen<cr>" },
   { "n", "<localleader>gd", "<cmd>ObsidianFollowLink<cr>" },
   { "n", "<localleader>gs", "<cmd>ObsidianFollowLink hsplit<cr>" },

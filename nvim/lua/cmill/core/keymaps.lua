@@ -76,9 +76,9 @@ local maps = {
   { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
   { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell
   -- FILES
-  { "ca", "new", "e %:h/" }, -- edit new file in current dir
-  { "ca", "newk", "sp %:h/" }, -- edit new file in current dir (hsplit)
-  { "ca", "newh", "vsp %:h/" }, --edit new file in current dir (vsplit)
+  { "ca", "fn", "New" }, -- edit new file in current dir
+  { "ca", "fnk", "NewSplit" }, -- edit new file in current dir (hsplit)
+  { "ca", "fnh", "NewVsplit" }, --edit new file in current dir (vsplit)
   -- ABBREVIATIONS
   { "ca", "ws", "WriteSes" }, -- save session for cwd
   { "ca", "ds", "DelSes" }, -- delete session for cwd
@@ -124,3 +124,27 @@ vim.api.nvim_create_user_command("DelSes", function()
   local msg = vim.fn.getcwd() .. " session deleted"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
+
+-- FILE CREATION
+local new_file = function(comm, fname)
+  local path = vim.fn.expand("%:p:h")
+  local is_note = path:find("self/notes")
+
+  if is_note then
+    path = vim.fn.expand("~") .. "/self/notes/main/inbox"
+  end
+
+  vim.cmd(("%s %s"):format(comm, path .. "/" .. fname))
+end
+
+vim.api.nvim_create_user_command("New", function(inp)
+  new_file("edit", inp.args)
+end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("NewSplit", function(inp)
+  new_file("sp", inp.args)
+end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("NewVsplit", function(inp)
+  new_file("vsp", inp.args)
+end, { nargs = 1 })
