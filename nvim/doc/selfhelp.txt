@@ -29,12 +29,12 @@ FILES                                                               *self-files*
   `<leader>fh`    search help
   `<leader>fl`    show lsp diagnostics for current buffer
   `<leader>fm`    search marks
-  `<leader>fn`    edit new file in current directory
-  `<leader>fns`   edit new file in current directory (h-split)
-  `<leader>fnv`   edit new file in current directory (v-split)
   `<leader>fr`    search recent files
   `<leader>fR`    resume last telescope search
   `<leader>fs`    search registers
+  `<ca>fn`        edit new file in current directory
+  `<ca>fnk`       edit new file in current directory (h-split)
+  `<ca>fnh`       edit new file in current directory (v-split)
 
 CODE                                                                 *self-code*
 
@@ -169,7 +169,6 @@ keymaps inside (obsidian) markdown files:
 
   Key               Function ~
 
-  `<localleader>e`    edit new file in inbox folder
   `<localleader>ll`   open current file in obsidian
   `<localleader>gd`   follow link under cursor
   `<localleader>gs`   follow link under cursor (in hsplit)

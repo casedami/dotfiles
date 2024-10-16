@@ -54,5 +54,9 @@ if.app-name-regex-substring = 'wezterm'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'spotify'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'finder'
 run = 'layout floating'
