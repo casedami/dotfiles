@@ -5,9 +5,9 @@ return {
     opts = function()
       local logo = "Neovim ["
         .. tostring(vim.version())
-        .. "] by "
+        .. "] | "
         .. vim.uv.os_get_passwd()["username"]
-        .. " on "
+        .. " | "
         .. os.date("%a %B %d %Y")
 
       logo = string.rep("\n", 8) .. logo .. "\n\n"
