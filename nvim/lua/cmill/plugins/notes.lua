@@ -21,7 +21,44 @@ return {
         time_format = "%H:%M",
         substitutions = {},
       },
-      mappings = {},
+      mappings = {
+        ["gf"] = {
+          action = function()
+            return require("obsidian").util.gf_passthrough()
+          end,
+          opts = { noremap = false, expr = true, buffer = true },
+        },
+        ["<localleader>x"] = {
+          action = function()
+            return require("obsidian").util.toggle_checkbox()
+          end,
+          opts = { buffer = true },
+        },
+        ["<localleader>ll"] = {
+          action = function()
+            vim.cmd("ObsidianOpen")
+          end,
+          opts = { buffer = true },
+        },
+        ["<localleader>gh"] = {
+          action = function()
+            vim.cmd("ObsidianFollowLink hsplit")
+          end,
+          opts = { buffer = true },
+        },
+        ["<localleader>gk"] = {
+          action = function()
+            vim.cmd("ObsidianFollowLink vsplit")
+          end,
+          opts = { buffer = true },
+        },
+        ["<localleader>fl"] = {
+          action = function()
+            vim.cmd("ObsidianBacklinks")
+          end,
+          opts = { buffer = true },
+        },
+      },
       finder = "telescope.nvim",
       log_level = vim.log.levels.OFF,
       ui = {

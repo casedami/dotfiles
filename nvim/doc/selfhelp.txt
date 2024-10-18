@@ -1,204 +1,228 @@
-*selfhelp.txt* help file for my nvim config
+*selfhelp.txt*                                    Last change: 2024 October 17
 
 ==============================================================================
-CONTENTS                                                 	     *selfhelp*
+Table of Contents                                 *selfhelp-table-of-contents*
 
-  Files ........................................................ |self-files|
-  Code .......................................................... |self-code|
-  Views ........................................................ |self-views|
-  QFix .......................................................... |self-qfix|
-  Term .......................................................... |self-term|
-  Notes ........................................................ |self-notes|
-  Other ........................................................ |self-other|
-  Abbreviations ................................................. |self-abbr|
+1. INFO                                                        |selfhelp-info|
+2. FILES                                                      |selfhelp-files|
+  - FILE CREATION                               |selfhelp-files-file-creation|
+  - FILE EXPLORER                               |selfhelp-files-file-explorer|
+  - SESSIONS                                         |selfhelp-files-sessions|
+3. VIEWS                                                      |selfhelp-views|
+  - BUFFERS                                           |selfhelp-views-buffers|
+  - TABS                                                 |selfhelp-views-tabs|
+  - WINDOWS                                           |selfhelp-views-windows|
+4. QUICKFIX LIST                                      |selfhelp-quickfix-list|
+5. TERM                                                        |selfhelp-term|
+6. LSP                                                          |selfhelp-lsp|
+7. GIT                                                          |selfhelp-git|
+8. MISC                                                        |selfhelp-misc|
+  - NOTES                                                |selfhelp-misc-notes|
+  - COLORSCHEME                                    |selfhelp-misc-colorscheme|
+  - OTHER                                                |selfhelp-misc-other|
 
 ==============================================================================
+1. INFO                                                        *selfhelp-info*
 
-FILES                                                               *self-files*
+This selfhelp doc is primarily meant to be a reference for the keymaps that are
+defined in my neovim config.
 
-  Key           Function ~
+Keymaps generally use these prefixes:
 
-  `<leader>,`     search buffers
-  `<leader>fb`    search current buffer
-  `<leader>fc`    search nvim config files
-  `<leader>fC`    search colorschemes
-  `<leader>fe`    open file explorer
-  `<leader>fE`    open file explorer in cwd
-  `<leader>ff`    search files
-  `<leader>fg`    live grep
-  `<leader>fh`    search help
-  `<leader>fl`    show lsp diagnostics for current buffer
-  `<leader>fm`    search marks
-  `<leader>fr`    search recent files
-  `<leader>fR`    resume last telescope search
-  `<leader>fs`    search registers
-  `<ca>fn`        edit new file in current directory
-  `<ca>fnk`       edit new file in current directory (h-split)
-  `<ca>fnh`       edit new file in current directory (v-split)
+f -> files
 
-CODE                                                                 *self-code*
+g -> git
 
-  Key           Function ~
+c -> quickfix
 
-  `K`             open float for item under cursor
-  `gd`            goto definition
-  `gD`            goto declaration
-  `<leader>D`     show line diagnostics
-  `<leader>da`    show code actions
-  `<leader>dd`    toggle diagnostics
-  `<leader>di`    show implementations for item under cursor
-  `<leader>df`    show telescope diagnostics
-  `<leader>dr`    refactor item under cursor
-  `<leader>dR`    show references for item under cursor
+w -> windows
 
-The following keymaps are for diagnostics navigation:
+d -> diagnostics/lsp
 
-  Key           Function ~
+t -> terminal
 
-  `]d`            next diagnostic
-  `[d`            previous diagnostic
-  `]e`            next error
-  `[e`            previous error
-  `]w`            next warning
-  `[w`            previous warning
-  `]t`            next todo
-  `[t`            previous todo
-  `<leader>xx`    open todo telescope
+\ -> buffers/tabs
 
-The following keymaps are for git:
 
-  Key           Function ~
+==============================================================================
+2. FILES                                                      *selfhelp-files*
 
-  `]h`            next hunk
-  `[h`            prev hunk
-  `<leader>gb`    git blame current line
-  `<leader>gd`    diff this
-  `<leader>gc`    show git commits for current buffer
-  `<leader>gg`    open neogit (in new tab)
-  `<leader>gr`    reset hunk
-  `<leader>gR`    reset buffer
-  `<leader>gs`    show git status
-  `<leader>gss`   stage hunk
-  `<leader>gS`    stage buffer
-  `<leader>gt`    toggle deleted
-  `<leader>gu`    undo stage hunk
-  `<leader>gv`    open neogit (in split)
 
-The following keymaps are for treesitter:
+FILE CREATION                                   *selfhelp-files-file-creation*
 
-  Key                 Function ~
+  ABBREV   DESC
+  -------- ---------------------------------------
+  fn       edit new file in current dir
+  fnk      edit new file in current dir (hsplit)
+  fnh      edit new file in current dir (vsplit)
 
-  `]f`                  next function (repeat with `+`)
-  `[f`                  prev function (repeat with `-`)
-  `]c`                  next class (repeat with `+`)
-  `[c`                  prev class (repeat with `-`)
-  `]a`                  swap parameter rightwards
-  `[a`                  swap parameter leftwards
-  `af`                  <motion> around function
-  `if`                  <motion> in function
-  `ac`                  <motion> around class
-  `ab`                  <motion> around block
-  `ib`                  <motion> in block
+FILE EXPLORER                                   *selfhelp-files-file-explorer*
 
-VIEWS                                                               *self-views*
+  MAP          DESC
+  ------------ -------------------------------------------
+  <leader>fe   open file explorer in current dir
+  <leader>fE   open file explorer in cwd
+  <leader>Fe   open file explorer (float) in current dir
+  <leader>ff   open fuzzy finder
+  <leader>fb   open fuzzy finder for current buffer
+  <leader>fr   open fuzzy finder for recent files
+  <leader>,    open fuzzy finder for open buffers
+  <leader>fc   open fuzzy finder for config files
+  <leader>fR   resume previous fuzzy finder query
+  <leader>fg   open fuzzy finder (grep)
+  <leader>fh   open fuzzy finder (help)
 
-Buffers:
+SESSIONS                                             *selfhelp-files-sessions*
 
-  Key               Function ~
+  ABBREV   DESC
+  -------- ------------------------
+  sw       save session for cwd
+  sd       delete session for cwd
+  sl       load session for cwd
 
-  `<localleader>]`   next buffer (in buffer list)
-  `<localleader>[`   previous buffer (in buffer list)
-  `<localleader>d`   delete buffer
-  `<localleader>p`   last buffer
-  `<localleader>p`   last buffer in hsplit
+==============================================================================
+3. VIEWS                                                      *selfhelp-views*
 
-Tabs:
 
-  Key                  Function ~
+BUFFERS                                               *selfhelp-views-buffers*
 
-  `<localleader>}`       next tab
-  `<localleader>{`       previous tab
-  `<localleader><tab>c`  create tab
-  `<localleader><tab>d`  delete tab
+  MAP              DESC
+  ---------------- -------------------------------
+  <localleader>]   next buffer in bufferlist
+  <localleader>[   previous buffer in bufferlist
+  <localleader>d   delete buffer
+  <localleader>p   previous buffer
+  <localleader>P   previous buffer in hsplit
 
-Windows:
+TABS                                                     *selfhelp-views-tabs*
 
-  Key            Function ~
+  MAP                   DESC
+  --------------------- --------------
+  <localleader><tab>c   new tab
+  <localleader><tab>d   delete tab
+  <localleader>}        next tab
+  <localleader>{        previous tab
 
-  `<C-Up>`         increase window height
-  `<C-Down>`       decrease window height
-  `<C-Left>`       increase window width
-  `<C-Right>`      decrease window width
-  `<C-h>`          goto left window
-  `<C-j>`          goto bottom window
-  `<C-k>`          goto top window
-  `<C-l>`          goto right window
-  `<leader>wd`     delete window
-  `<leader>we`     split windows equally
-  `<leader>wo`     make buffer the only buffer on screen
-  `<leader>wk`     maximize window vertically
-  `<leader>wh`     maximize window horizontally
-  `<leader>wK`     change hsplit layout to vsplit layout
-  `<leader>wH`     change vsplit layout to hsplit layout
-  `<leader>wr`     rotate window layout (only works row-/column-wise
-  `<leader>-`      split window horizontal
-  `<leader>|`      split window vertical
+WINDOWS                                               *selfhelp-views-windows*
 
-QUICK FIX LIST                                                       *self-qfix*
+  MAP          DESC
+  ------------ -----------------------------------------------
+  <leader>\|   split window right
+  <leader>-    split window below
+  <leader>wd   delete window
+  <leader>we   split windows equally
+  <leader>wo   make current window the only window on screen
+  <leader>wk   maximize current window vertically
+  <leader>wh   maximize current window horizontally
+  <leader>wK   change hsplit layout vsplit layout
+  <leader>wH   change vsplit layout to hsplit layout
+  <leader>wr   rotate window layout
 
-  Key          Function ~
+==============================================================================
+4. QUICKFIX LIST                                      *selfhelp-quickfix-list*
 
-  `<leader>cn`   goto next item in qfix list
-  `<leader>cnf`  goto first item in qfix list in next file
-  `<leader>cp`   goto previous item in qfix list
-  `<leader>cpf`  goto last item in qfix list in prev file
-  `<leader>co`   open qfix list
-  `<leader>cc`   close qfix list
+  MAP           DESC
+  ------------- --------------------------------------------
+  <leader>co    open qf list
+  <leader>cc    close qf list
+  <leader>cn    goto next item in qf list
+  <leader>cnf   goto first item in next file in qf list
+  <leader>cp    goto previous item in qf list
+  <leader>cpf   goto last item in previous file in qf list
 
-TERM                                                                 *self-term*
+==============================================================================
+5. TERM                                                        *selfhelp-term*
 
-  Key         Function ~
+  MAP          DESC
+  ------------ -------------------------
+  <leader>tk   open terminal in hsplit
+  <leader>th   open terminal in vsplit
+  <leader>T    open terminal in tab
 
-  `<leader>t`   open terminal in hsplit
-  `<leader>T`   open terminal in new tab
-  `<C-v><esc>`  send esc key to shell
+==============================================================================
+6. LSP                                                          *selfhelp-lsp*
 
-NOTES                                                               *self-notes*
+  MAP          DESC
+  ------------ ----------------------------------------------------
+  gd           goto lsp definitions
+  <leader>D    show documentation float
+  <leader>di   show lsp implementations
+  <leader>dr   refactor item
+  <leader>da   show lsp code actions
+  <leader>dR   show lsp references
+  <leader>df   show lsp diagnostics
+  <leader>dd   toggle lsp diagnostics
+  <leader>dh   highlight current item references
+  ](d/e/w/t)   goto next (diagnostic/error/warning/todo item)
+  [(d/e/w/t)   goto previous (diagnostic/error/warning/todo item)
 
-keymaps inside (obsidian) markdown files:
+==============================================================================
+7. GIT                                                          *selfhelp-git*
 
-  Key               Function ~
+  MAP           DESC
+  ------------- ---------------------------------
+  <leader>gg    open neogit
+  <leader>gs    fuzzy find buffers (git status)
+  <leader>gc    fuzzy find git commits
+  <leader>gss   stage hunk
+  <leader>gss   stage hunk
+  <leader>gu    undo stage hunk
+  <leader>gr    reset hunk
+  <leader>gS    stage buffer
+  <leader>gR    reset buffer
+  <leader>gd    diff this
+  <leader>gt    toggle deleted
+  <leader>gb    show git blame
+  ]h            goto next hunk
+  [h            goto previous hunk
 
-  `<localleader>ll`   open current file in obsidian
-  `<localleader>gd`   follow link under cursor
-  `<localleader>gs`   follow link under cursor (in hsplit)
-  `<localleader>gv`   follow link under cursor (in vsplit)
-  `<localleader>fl`   open backlinks
-  `<localleader>fn`   edit new file with ID
-  `<localleader>t`    open templates
-  `<abbr>ft`          start tag query
-  `<abbr>ff`          quick switch
-  `<abbr>fn`          edit new file without ID
+==============================================================================
+8. MISC                                                        *selfhelp-misc*
 
-OTHER                                                                *self-other*
 
-  Key              Function ~
+NOTES                                                    *selfhelp-misc-notes*
 
-  `<leader>?`        open self help
-  `<leader>uc`       toggle light/dark colorscheme
-  `<leader>l`        open Lazy
-  `<leader>;`        open command history
-  `<leader>/`        open search history
-  `)`                paste forward from 0 register
-  `(`                paste backward from 0 register
+  MAP               DESC
+  ----------------- --------------------------------
+  <localleader>x    toggle checkbox
+  <localleader>ll   open obsidian
+  <localleader>gk   follow markdown link in hsplit
+  <localleader>gh   follow markdown link in vsplit
+  <localleader>fl   show obsidian backlinks
+  <localleader>ss   toggle spellcheck
+  ABBREV   DESC
+  -------- ---------------------------
+  ff       fuzzy find obsidian files
+  ft       fuzzy find obsidian tags
+  fn       create new obsidian file
 
-ABBREVIATIONS                                                        *self-abbr*
+COLORSCHEME                                        *selfhelp-misc-colorscheme*
 
-  Key              Function ~
+  MAP          DESC
+  ------------ ----------------------------------
+  <leader>uu   next color scheme
+  <leader>uc   toggle light/dark mode
+  <leader>fC   open fuzzy finder (colorschemes)
 
-  `dm`               delete marks
-  `ds`               delete session for cwd
-  `ws`               write session for cwd
+OTHER                                                    *selfhelp-misc-other*
 
+  ABBREV   DESC
+  -------- -------------------------------------
+  doc      genereate doc for item under cursor
+  dm       delete all marks
+  MAP          DESC
+  ------------ --------------------------------
+  )            forward paste from 0 register
+  (            backward paste from 0 register
+  <leader>;    open command history
+  <leader>/    open search history
+  <C-;>        clear command line
+  <C-'>        clear highlights
+  go           insert new line below
+  gO           insert new line above
+  <leader>fm   open fuzzy finder (marks)
+  <leader>fs   open fuzzy finder (registers)
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
 vim:tw=78:ts=8:noet:ft=help:norl:

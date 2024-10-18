@@ -1,7 +1,7 @@
 return {
   {
     "folke/todo-comments.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    event = "BufReadPost",
     -- stylua: ignore
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
@@ -11,7 +11,7 @@ return {
     opts = {
       keywords = {
         FIX = { icon = " ", alt = { "BUG", "ISSUE" } },
-        TODO = { icon = " " },
+        TODO = { icon = " " },
         HACK = { icon = "󰈻 " },
         WARN = { icon = "󰹆 ", alt = { "WARNING" } },
         PERF = { icon = " ", alt = { "PERFORMANCE", "OPTIMIZE" } },
@@ -24,6 +24,14 @@ return {
         after = "",
       },
     },
+  },
+  {
+    "danymat/neogen",
+    config = function()
+      require("neogen").setup({
+        snippet_engine = "nvim",
+      })
+    end,
   },
   {
     "NeogitOrg/neogit",

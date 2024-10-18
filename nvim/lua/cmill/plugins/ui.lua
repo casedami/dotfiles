@@ -10,7 +10,7 @@ return {
           theme = "neomodern",
           section_separators = { left = "", right = "" },
           -- section_separators = { left = "", right = "" },
-          component_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" },
           disabled_filetypes = {},
           ignore_focus = {},
           always_divide_middle = true,
@@ -26,26 +26,24 @@ return {
             components.modes,
           },
           lualine_b = {
-            components.branch,
-            components.diff,
+            components.git_branch,
+            components.git_diff,
           },
           lualine_c = {
             components.nvim_icon,
-            components.diagnostics,
-            components.filename,
+            components.errs,
+            components.fname,
           },
           lualine_x = {
-            components.location,
+            components.ftype,
           },
           lualine_y = {
-            components.progress,
+            components.loc,
+            components.prog,
           },
           lualine_z = {
             components.tabs,
           },
-        },
-        extensions = {
-          "man",
         },
       }
       return setup

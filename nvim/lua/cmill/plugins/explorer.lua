@@ -4,7 +4,13 @@ return {
     event = "VimEnter",
     keys = {
       { "<leader>fe", "<cmd>Oil<cr>" },
-      { "<leader>fE", "<cmd>Oil " .. vim.fn.getcwd() .. "<cr>" },
+      { "<leader>Fe", "<cmd>Oil --float<cr>" },
+      {
+        "<leader>fE",
+        function()
+          vim.cmd("Oil " .. vim.fn.getcwd())
+        end,
+      },
     },
     cmd = "Oil",
     opts = {
@@ -18,9 +24,12 @@ return {
         max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.45),
         max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.6),
       },
-      auto_close_last_buffer = true,
       keymaps = {
-        ["q"] = "actions.close",
+        ["q"] = {
+          "actions.close",
+          opts = { exit_if_last_buf = true },
+          desc = "Close oil, exit vim if oil is closed as last buffer",
+        },
       },
     },
   },
@@ -42,16 +51,18 @@ return {
       { "<leader>,", "<cmd>Telescope buffers sort_mru=true<cr>", desc = "Toggle Telescope buffers", silent = true, },
       { "<leader>fs", "<cmd>Telescope registers<cr>", desc = "Registers", silent = true, },
       { "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Marks", silent = true, },
-      { "<leader>fc", require("cmill.core.util").config, desc = "Open config files" },
+      { "<leader>fc", require("cmill.core.util").config_files, desc = "Open config files" },
       { "<leader>fC", "<cmd>Telescope colorscheme<cr>", desc = "Open colorschemes" },
     },
     -- stylua: ignore end
     config = function()
       -- stylua: ignore
-      require("telescope.pickers.layout_strategies").center_h = function( picker, max_columns, max_lines, layout_config)
-        local layout = require("telescope.pickers.layout_strategies").center(picker, max_columns, max_lines, layout_config)
-        layout.results.line = layout.results.line + 1
+      require("telescope.pickers.layout_strategies").dynamic_horizontal = function(picker, max_columns, max_lines, layout_config)
+        local layout = require("telescope.pickers.layout_strategies").horizontal(picker, max_columns, max_lines, layout_config)
         layout.results.title = ""
+        if layout.preview then
+          layout.preview.title = ""
+        end
         return layout
       end
       require("telescope").setup({
@@ -64,7 +75,7 @@ return {
           },
           prompt_prefix = " ",
           selection_caret = "󰘍 ",
-          layout_strategy = "center_h",
+          layout_strategy = "dynamic_horizontal",
           sorting_strategy = "ascending",
           scroll_strategy = "cycle",
           path_display = { "tail" },
@@ -75,10 +86,10 @@ return {
           },
           layout_config = {
             width = function(_, max_columns)
-              return math.max(math.floor(0.40 * max_columns), 60)
+              return math.max(math.floor(0.40 * max_columns), 100)
             end,
             height = 0.60,
-            prompt_position = "top",
+            prompt_position = "bottom",
           },
           mappings = {
             n = {
