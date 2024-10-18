@@ -12,26 +12,17 @@ local opts = {
   remap = { remap = true },
 }
 
--- Keymap namespaces:
--- f -> files
--- g -> git
--- c -> quickfix
--- w -> windows
--- d -> diagnostics/lsp
--- t -> terminal
--- \ -> buffers/tabs
-
 local maps = {
   { "n", "<leader>l", "<cmd>Lazy<cr>", opts["silent"] }, -- open lazy
-  { "n", "<leader>?", "<cmd>h selfhelp<cr>", opts["silent"] }, -- open selfhelp
+  { "n", "<leader>?", "<cmd>h selfhelp.txt<cr>", opts["silent"] }, -- open selfhelp
   -- MOVEMENT
   { "n", "0", "^" }, -- remap inline movement (beginning of line)
   { "n", "<C-d>", "<C-d>zz" }, -- center after page down
   { "n", "<C-u>", "<C-u>zz" }, -- center after page up
   { "v", "J", ":m '>+1<cr>gv=gv", opts["silent"] }, -- move line up
   { "v", "K", ":m '<-2<cr>gv=gv", opts["silent"] }, -- move line down
-  { "v", "<", "<gv" }, -- better indenting
-  { "v", ">", ">gv" }, -- better indenting
+  { "v", "<", "<gv" }, -- stay in visual mode when indenting
+  { "v", ">", ">gv" }, -- stay in visual mode when indenting
   -- BUFFERS
   { "n", "<localleader>]", "<cmd>bnext<cr>" }, -- next buffer in bufferlist
   { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
@@ -70,8 +61,8 @@ local maps = {
   { "n", "<leader>co", "<cmd>copen<cr>" }, -- open qfix list
   { "n", "<leader>cc", "<cmd>cclose<cr>" }, -- close qfix list
   -- TERM KEYMAPS
-  { "n", "<leader>tj", "<cmd>split | resize 15 | terminal<cr>i" }, -- open term in hsplit
-  { "n", "<leader>tl", "<cmd>vsplit | terminal<cr>i" }, -- open term in vsplit
+  { "n", "<leader>tk", "<cmd>split | resize 15 | terminal<cr>i" }, -- open term in hsplit
+  { "n", "<leader>th", "<cmd>vsplit | terminal<cr>i" }, -- open term in vsplit
   { "n", "<leader>T", "<cmd>tabnew | term<cr>i" }, -- open term in new tab
   { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
   { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell
@@ -79,11 +70,13 @@ local maps = {
   { "ca", "fn", "New" }, -- edit new file in current dir
   { "ca", "fnk", "NewSplit" }, -- edit new file in current dir (hsplit)
   { "ca", "fnh", "NewVsplit" }, --edit new file in current dir (vsplit)
-  -- ABBREVIATIONS
-  { "ca", "ws", "WriteSes" }, -- save session for cwd
-  { "ca", "ds", "DelSes" }, -- delete session for cwd
-  { "ca", "dm", "DelMarks" }, -- delete all marks
+  -- SESSIONS
+  { "ca", "sw", "SesWrite" }, -- save session for cwd
+  { "ca", "sd", "SesDel" }, -- delete session for cwd
+  { "ca", "sl", "SesLoad" }, -- load session for cwd
   -- MISC COMMAND SHORTCUTS
+  { "ca", "doc", "Neogen" }, -- generate docstring
+  { "ca", "dm", "DelMarks" }, -- delete all marks
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
   { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
@@ -106,22 +99,24 @@ end
 vim.api.nvim_create_user_command("DelMarks", function()
   vim.cmd("delm a-zA-Z")
   vim.cmd("wviminfo!")
-  vim.cmd(
-    ([[echohl DiagnosticInfo | echomsg "%s" | echohl None]]):format(
-      " deleting marks..."
-    )
-  )
+  vim.api.nvim_echo({ { " deleting marks...", "DiagnosticInfo" } }, false, {})
 end, {})
 
 -- SESSIONS
-vim.api.nvim_create_user_command("WriteSes", function()
+vim.api.nvim_create_user_command("SesWrite", function()
   vim.cmd("SessionManager save_current_session")
-  local msg = vim.fn.getcwd() .. " session saved"
+  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session saved"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
-vim.api.nvim_create_user_command("DelSes", function()
+vim.api.nvim_create_user_command("SesDel", function()
   vim.cmd("SessionManager delete_current_dir_session")
-  local msg = vim.fn.getcwd() .. " session deleted"
+  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session deleted"
+  vim.cmd("echo '" .. msg .. "'")
+end, {})
+
+vim.api.nvim_create_user_command("SesLoad", function()
+  vim.cmd("SessionManager load_current_dir_session")
+  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session loaded"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
 

@@ -3,12 +3,6 @@ local toggle_spell = function()
 end
 
 local maps = {
-  { "n", "<localleader>ll", "<cmd>ObsidianOpen<cr>" },
-  { "n", "<localleader>gd", "<cmd>ObsidianFollowLink<cr>" },
-  { "n", "<localleader>gs", "<cmd>ObsidianFollowLink hsplit<cr>" },
-  { "n", "<localleader>gv", "<cmd>ObsidianFollowLink vsplit<cr>" },
-  { "n", "<localleader>fl", "<cmd>ObsidianBacklinks<cr>" },
-  { "n", "<localleader>fn", "<cmd>ObsidianNew<cr>" },
   { "n", "<localleader>ss", toggle_spell },
   { "x", "<localleader>=", ":!pandoc -t commonmark_x<cr>" }, -- auto format selected table
   { "ca", "ff", "ObsidianQuickSwitch" },

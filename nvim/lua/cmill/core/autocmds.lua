@@ -32,6 +32,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
+-- set win opts when opening a term buf
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
     vim.opt_local.spell = false
@@ -42,7 +43,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
--- lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)

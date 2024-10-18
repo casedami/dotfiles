@@ -1,17 +1,15 @@
 local M = {}
 
----@alias Sign {name:string, text:string, texthl:string, priority:number}
+---@alias Sign { name:string, text:string, texthl:string, priority:number }
 
 -- Returns a list of regular and extmark signs sorted by priority (low to high)
 ---@return Sign[]
 ---@param buf number
 ---@param lnum number
 function M.get_signs(buf, lnum)
-  -- Get regular signs
   ---@type Sign[]
   local signs = {}
 
-  -- Get extmark signs
   local extmarks = vim.api.nvim_buf_get_extmarks(
     buf,
     -1,
@@ -28,7 +26,6 @@ function M.get_signs(buf, lnum)
     }
   end
 
-  -- Sort by priority
   table.sort(signs, function(a, b)
     return (a.priority or 0) < (b.priority or 0)
   end)
@@ -59,7 +56,6 @@ function M.icon(sign, len)
   return sign.texthl and ("%#" .. sign.texthl .. "#" .. text .. "%*") or text
 end
 
--- Build statuscoloumn of the form {diagnostics, marks}-linenumber-{gitsigns, folds}
 function M.statuscolumn()
   local win = vim.g.statusline_winid
   local buf = vim.api.nvim_win_get_buf(win)
@@ -104,7 +100,6 @@ function M.statuscolumn()
   return table.concat(components, "")
 end
 
--- Returns icon if an lsp client is attached to the current buffer, otherwise an empty string
 local lsp_client = function()
   local bufnr = vim.api.nvim_get_current_buf()
 
@@ -112,14 +107,13 @@ local lsp_client = function()
   if next(clients) == nil then
     return ""
   else
-    return "󱛀 "
+    return clients
   end
 end
 
--- Returns a table of lualine components with configs
 function M.statusline_components()
   local components = {
-    branch = {
+    git_branch = {
       "branch",
       icon = "",
     },
@@ -128,7 +122,7 @@ function M.statusline_components()
       style = "%Y-%m-%d",
       color = { fg = "#88888f" },
     },
-    diagnostics = {
+    errs = {
       "diagnostics",
       sections = { "error", "warn" },
       symbols = {
@@ -136,10 +130,10 @@ function M.statusline_components()
         warn = "",
       },
     },
-    diff = {
+    git_diff = {
       "diff",
     },
-    filename = {
+    fname = {
       "filename",
       path = 3,
       fmt = function(str)
@@ -163,7 +157,12 @@ function M.statusline_components()
         end
       end,
     },
-    location = {
+    ftype = {
+      "filetype",
+      colored = false,
+      icon_only = true,
+    },
+    loc = {
       "location",
     },
     lsp = {
@@ -184,7 +183,7 @@ function M.statusline_components()
         return { fg = palette.green }
       end,
     },
-    progress = {
+    prog = {
       "progress",
     },
     tabs = {
@@ -204,18 +203,15 @@ function M.statusline_components()
 end
 
 function M.is_git_repo()
-  local dir = vim.uv.cwd()
-  local cmd = { "git", "-C", dir, "rev-parse", "--is-inside-work-tree" }
+  local cmd = { "git", "rev-parse", "--is-inside-git-dir" }
   local result = vim.system(cmd):wait()
   return result.code == 0
 end
 
--- Opens telescope for searching .config files
-function M.config()
+function M.config_files()
   return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
 end
 
--- Opens a prompt for creating a new file or a new note if in ~/self/notes/
 function M.new_file_prompt()
   local path = vim.fn.expand("%:p:h")
   local is_note = path:find("self/notes")
@@ -227,4 +223,26 @@ function M.new_file_prompt()
   vim.api.nvim_input(":e " .. path .. "/")
 end
 
+function M.expand_snip(snippet)
+  local session = vim.snippet.active() and vim.snippet._session or nil
+
+  local ok, err = pcall(vim.snippet.expand, snippet)
+  if not ok then
+    local fixed = M.snippet_fix(snippet)
+    ok = pcall(vim.snippet.expand, fixed)
+
+    local msg = ok and "Failed to parse snippet,\nbut was able to fix it automatically."
+      or ("Failed to parse snippet.\n" .. err)
+
+    local outstr = ([[%s
+    ```%s
+    %s
+    ```]]):format(msg, vim.bo.filetype, snippet)
+    vim.api.nvim_echo({ { outstr, ok and "Warn" or "Error" } }, true, {})
+  end
+
+  if session then
+    vim.snippet._session = session
+  end
+end
 return M

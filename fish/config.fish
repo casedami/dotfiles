@@ -24,7 +24,7 @@ alias cade="ssh u1337847@lab1-13.eng.utah.edu"
 alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
 alias ssh="TERM=xterm-256color $(which ssh)"
 
-alias python="python3"
+alias python="python3.13"
 alias conda+="conda activate"
 alias conda-="conda deactivate"
 alias pydb="python -m pdb"

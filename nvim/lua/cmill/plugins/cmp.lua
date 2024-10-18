@@ -1,14 +1,20 @@
 return {
-  { "hrsh7th/cmp-omni", ft = "tex" },
   {
     "hrsh7th/nvim-cmp",
-    event = "LspAttach",
+    event = "InsertEnter",
     dependencies = {
       { "onsails/lspkind.nvim" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
     },
+    opts = function(_, opts)
+      opts.snippet = {
+        expand = function(item)
+          return require("cmill.core.util").expand_snip(item.body)
+        end,
+      }
+    end,
     config = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
@@ -72,13 +78,6 @@ return {
           },
         },
         sorting = defaults.sorting,
-      })
-
-      cmp.setup.filetype("tex", {
-        sources = {
-          { name = "omni", trigger_characters = { "{", "\\" } },
-          { name = "buffer" },
-        },
       })
     end,
     keys = {
