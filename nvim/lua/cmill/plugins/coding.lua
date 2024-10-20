@@ -1,5 +1,17 @@
 return {
   {
+    "stevearc/overseer.nvim",
+    event = "LspAttach",
+    config = function()
+      require("overseer").setup()
+      vim.keymap.set("ca", "run", "OverseerRun", { silent = true })
+      vim.keymap.set("ca", "res", "OverseerToggle! left", { silent = true })
+      vim.keymap.set("ca", "srun", "OverseerSaveBundle", { silent = true })
+      vim.keymap.set("ca", "lrun", "OverseerLoadBundle!", { silent = true })
+      vim.keymap.set("ca", "runt", "OverseerTaskAction", { silent = true })
+    end,
+  },
+  {
     "folke/todo-comments.nvim",
     event = "BufReadPost",
     -- stylua: ignore
@@ -27,6 +39,7 @@ return {
   },
   {
     "danymat/neogen",
+    event = "BufReadPost",
     config = function()
       require("neogen").setup({
         snippet_engine = "nvim",
@@ -62,6 +75,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufRead", "BufNewFile" },
     opts = {
+      culhl = true,
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 

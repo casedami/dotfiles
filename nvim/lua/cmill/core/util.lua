@@ -1,11 +1,12 @@
 local M = {}
+local culhl_cache = {}
 
----@alias Sign { name:string, text:string, texthl:string, priority:number }
+---@alias Sign { name:string, text:string, texthl:string, priority:number, culhl:string }
 
--- Returns a list of regular and extmark signs sorted by priority (low to high)
----@return Sign[]
+---Returns a list of regular and extmark signs sorted by priority (low to high)
 ---@param buf number
 ---@param lnum number
+---@return Sign[]
 function M.get_signs(buf, lnum)
   ---@type Sign[]
   local signs = {}
@@ -18,11 +19,17 @@ function M.get_signs(buf, lnum)
     { details = true, type = "sign" }
   )
   for _, extmark in pairs(extmarks) do
+    local groupname = extmark[4].sign_hl_group or ""
+    local culhl = nil
+    if groupname then
+      culhl = culhl_cache[groupname] or M.create_cul_hl(groupname)
+    end
     signs[#signs + 1] = {
-      name = extmark[4].sign_hl_group or "",
+      name = groupname,
       text = extmark[4].sign_text,
       texthl = extmark[4].sign_hl_group,
       priority = extmark[4].priority,
+      culhl = culhl or "CursorLineSign",
     }
   end
 
@@ -33,29 +40,73 @@ function M.get_signs(buf, lnum)
   return signs
 end
 
----@return Sign?
+--- Creates a cursorline highlight group for signs by merging the signs highlight group
+--- and the CursorLineSign highlight group
+---@param hlgroup string sign highlight group
+---@return string
+function M.create_cul_hl(hlgroup)
+  local newhl = {}
+  local signhl = vim.api.nvim_get_hl(0, {
+    name = hlgroup,
+    link = false,
+  })
+  if signhl then
+    for k, v in pairs(signhl) do
+      newhl[k] = v
+    end
+  end
+  local culhl = vim.api.nvim_get_hl(0, {
+    name = "CursorLineSign",
+    link = false,
+  })
+  if culhl then
+    for k, v in pairs(culhl) do
+      newhl[k] = v
+    end
+  end
+  newhl["bold"] = true
+  local merged = hlgroup .. "Cul"
+  vim.api.nvim_set_hl(0, merged, newhl)
+  culhl_cache[hlgroup] = merged
+  return merged
+end
+
+---Returns user-set marks given a buffer and a line number
 ---@param buf number
 ---@param lnum number
+---@return Sign?
 function M.get_mark(buf, lnum)
   local marks = vim.fn.getmarklist(buf)
   vim.list_extend(marks, vim.fn.getmarklist())
   for _, mark in ipairs(marks) do
     if mark.pos[1] == buf and mark.pos[2] == lnum and mark.mark:match("[a-zA-Z]") then
-      return { text = mark.mark:sub(2), texthl = "DiagnosticInfo" }
+      return {
+        text = mark.mark:sub(2),
+        texthl = "DiagnosticInfo",
+        culhl = M.create_cul_hl("DiagnosticInfo"),
+      }
     end
   end
 end
 
 ---@param sign? Sign
----@param len? number
-function M.icon(sign, len)
+---@param cul? boolean
+---@return string icon
+function M.icon(sign, cul)
   sign = sign or {}
-  len = len or 2
+  local len = 2
   local text = vim.fn.strcharpart(sign.text or "", 0, len) ---@type string
   text = text .. string.rep(" ", len - vim.fn.strchars(text))
-  return sign.texthl and ("%#" .. sign.texthl .. "#" .. text .. "%*") or text
+  if cul then
+    return sign.culhl and ("%#" .. sign.culhl .. "#" .. text .. "%*") or text
+  else
+    return sign.texthl and ("%#" .. sign.texthl .. "#" .. text .. "%*") or text
+  end
 end
 
+--- Builds and returns a status column of the form:
+--- [<diagnostics>, <marks>] [<linenr>] [<fold>, <gitsigns>]
+---@return string
 function M.statuscolumn()
   local win = vim.g.statusline_winid
   local buf = vim.api.nvim_win_get_buf(win)
@@ -80,10 +131,11 @@ function M.statuscolumn()
         fold = { text = vim.opt.fillchars:get().foldclose or "", texthl = "Folded" }
       end
     end)
+    local is_cul = vim.v.relnum == 0
     -- Left: mark or non-git sign
-    components[1] = " " .. M.icon(M.get_mark(buf, vim.v.lnum) or left)
+    components[1] = " " .. M.icon(M.get_mark(buf, vim.v.lnum) or left, is_cul)
     -- Right: fold icon or git sign
-    components[3] = M.icon(fold or right)
+    components[3] = M.icon(fold or right, is_cul)
   end
 
   local is_num = vim.wo[win].number
@@ -111,6 +163,8 @@ local lsp_client = function()
   end
 end
 
+--- Opts for lualine statusline components
+---@return table
 function M.statusline_components()
   local components = {
     git_branch = {
@@ -202,16 +256,21 @@ function M.statusline_components()
   return components
 end
 
+---Returns true if cwd is inside a git repo, false otherwise
+---@return boolean
 function M.is_git_repo()
   local cmd = { "git", "rev-parse", "--is-inside-git-dir" }
   local result = vim.system(cmd):wait()
   return result.code == 0
 end
 
+---Sets telescope to search for config files
+---@return function
 function M.config_files()
   return require("telescope.builtin")["find_files"]({ cwd = vim.fn.stdpath("config") })
 end
 
+---Convenient new file prompt expansion for startup screen
 function M.new_file_prompt()
   local path = vim.fn.expand("%:p:h")
   local is_note = path:find("self/notes")

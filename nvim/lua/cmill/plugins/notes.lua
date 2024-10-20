@@ -1,6 +1,7 @@
 return {
   {
     "lervag/vimtex",
+    ft = "tex",
   },
   {
     "epwalsh/obsidian.nvim",
@@ -12,7 +13,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    cmd = "ObsidianNew",
     opts = {
       dir = "~/self/notes/main/",
       templates = {
