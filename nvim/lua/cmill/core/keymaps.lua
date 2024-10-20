@@ -1,11 +1,3 @@
-local function toggle_lightdark()
-  if vim.o.background == "light" then
-    vim.opt.background = "dark"
-  else
-    vim.opt.background = "light"
-  end
-end
-
 local opts = {
   silent = { silent = true },
   noremap = { remap = false },
@@ -19,6 +11,8 @@ local maps = {
   { "n", "0", "^" }, -- remap inline movement (beginning of line)
   { "n", "<C-d>", "<C-d>zz" }, -- center after page down
   { "n", "<C-u>", "<C-u>zz" }, -- center after page up
+  { "n", "n", "nzzzv" }, -- center after next item in search
+  { "n", "N", "Nzzzv" }, -- center after prev item in search
   { "v", "J", ":m '>+1<cr>gv=gv", opts["silent"] }, -- move line up
   { "v", "K", ":m '<-2<cr>gv=gv", opts["silent"] }, -- move line down
   { "v", "<", "<gv" }, -- stay in visual mode when indenting
@@ -54,10 +48,10 @@ local maps = {
   { "n", "<leader>-", "<C-W>s", opts["remap"] }, -- split window below
   { "n", "<leader>|", "<C-W>v", opts["remap"] }, -- split window right
   -- QUICK FIX LIST
-  { "n", "<leader>cn", "<cmd>cnext<cr>" }, -- goto next item in qfix list
-  { "n", "<leader>cnf", "<cmd>cnfile<cr>" }, -- goto first item in next file
-  { "n", "<leader>cp", "<cmd>cprev<cr>" }, -- goto previous item in qfix list
-  { "n", "<leader>cpf", "<cmd>cpfile<cr>" }, -- goto last item in previous file
+  { "n", "<leader>cn", "<cmd>cnext<cr>zz" }, -- goto next item in qfix list
+  { "n", "<leader>cnf", "<cmd>cnfile<cr>zz" }, -- goto first item in next file
+  { "n", "<leader>cp", "<cmd>cprev<cr>zz" }, -- goto previous item in qfix list
+  { "n", "<leader>cpf", "<cmd>cpfile<cr>zz" }, -- goto last item in previous file
   { "n", "<leader>co", "<cmd>copen<cr>" }, -- open qfix list
   { "n", "<leader>cc", "<cmd>cclose<cr>" }, -- close qfix list
   -- TERM KEYMAPS
@@ -75,7 +69,7 @@ local maps = {
   { "ca", "sd", "SesDel" }, -- delete session for cwd
   { "ca", "sl", "SesLoad" }, -- load session for cwd
   -- MISC COMMAND SHORTCUTS
-  { "ca", "doc", "Neogen" }, -- generate docstring
+  { "ca", "doc", "Neogen", opts["silent"] }, -- generate docstring
   { "ca", "dm", "DelMarks" }, -- delete all marks
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
@@ -88,7 +82,6 @@ local maps = {
   { "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>" }, -- clear previous search match highlights
   { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
-  { "n", "<leader>uc", toggle_lightdark, opts["silent"] }, -- toggle light/dark mode
 }
 
 for _, v in pairs(maps) do
@@ -98,8 +91,7 @@ end
 
 vim.api.nvim_create_user_command("DelMarks", function()
   vim.cmd("delm a-zA-Z")
-  vim.cmd("wviminfo!")
-  vim.api.nvim_echo({ { " deleting marks...", "DiagnosticInfo" } }, false, {})
+  vim.notify(" deleting marks...", vim.log.levels.INFO, {})
 end, {})
 
 -- SESSIONS

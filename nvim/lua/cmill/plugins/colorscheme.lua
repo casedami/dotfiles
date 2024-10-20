@@ -5,6 +5,8 @@ return {
     config = function()
       require("neomodern").setup({
         toggle_style_key = "<leader>uu",
+        toggle_mode_key = "<leader>uc",
+        toggle_style_list = { "iceclimber", "coffeecat", "darkforest", "roseprime" },
         style = "roseprime",
         code_style = {
           headings = "italic",

@@ -60,7 +60,7 @@ return {
               cond = require("session_manager").current_dir_session_exists(),
             },
             {
-              action = "lua require('cmill.core.util').config()",
+              action = "lua require('cmill.core.util').config_files()",
               desc = " config",
               icon = " ",
               key = "c",

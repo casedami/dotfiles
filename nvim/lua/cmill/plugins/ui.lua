@@ -1,5 +1,17 @@
 return {
   {
+    "j-hui/fidget.nvim",
+    event = "BufReadPost",
+    config = function()
+      vim.notify = require("fidget").notify
+      require("fidget").setup({
+        logger = {
+          level = vim.log.levels.DEBUG,
+        },
+      })
+    end,
+  },
+  {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()

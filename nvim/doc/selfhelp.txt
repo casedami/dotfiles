@@ -190,6 +190,7 @@ NOTES                                                    *selfhelp-misc-notes*
   <localleader>gh   follow markdown link in vsplit
   <localleader>fl   show obsidian backlinks
   <localleader>ss   toggle spellcheck
+
   ABBREV   DESC
   -------- ---------------------------
   ff       fuzzy find obsidian files
@@ -208,8 +209,9 @@ OTHER                                                    *selfhelp-misc-other*
 
   ABBREV   DESC
   -------- -------------------------------------
-  doc      genereate doc for item under cursor
+  doc      generate doc for item under cursor
   dm       delete all marks
+
   MAP          DESC
   ------------ --------------------------------
   )            forward paste from 0 register
