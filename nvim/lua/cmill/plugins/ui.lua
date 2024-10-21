@@ -13,6 +13,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
       local components = require("cmill.core.util").statusline_components()

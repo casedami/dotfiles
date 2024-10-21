@@ -2,7 +2,11 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
-    opts = {},
+    opts = {
+      library = {
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
