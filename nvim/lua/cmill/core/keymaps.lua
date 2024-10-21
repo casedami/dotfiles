@@ -17,6 +17,8 @@ local maps = {
   { "v", "K", ":m '<-2<cr>gv=gv", opts["silent"] }, -- move line down
   { "v", "<", "<gv" }, -- stay in visual mode when indenting
   { "v", ">", ">gv" }, -- stay in visual mode when indenting
+  { "c", "<C-k>", "<up>" }, -- go backwards in cmdline history
+  { "c", "<C-j>", "<down>" }, -- go forwards in cmdline history
   -- BUFFERS
   { "n", "<localleader>]", "<cmd>bnext<cr>" }, -- next buffer in bufferlist
   { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
