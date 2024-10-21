@@ -39,7 +39,7 @@ return {
   },
   {
     "danymat/neogen",
-    event = "BufReadPost",
+    event = "LspAttach",
     config = function()
       require("neogen").setup({
         snippet_engine = "nvim",

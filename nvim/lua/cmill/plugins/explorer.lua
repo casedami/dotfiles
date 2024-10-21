@@ -1,7 +1,7 @@
 return {
   {
     "cdmill/oil.nvim",
-    event = "VimEnter",
+    event = "VeryLazy",
     keys = {
       { "<leader>fe", "<cmd>Oil<cr>" },
       { "<leader>Fe", "<cmd>Oil --float<cr>" },

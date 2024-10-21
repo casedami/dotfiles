@@ -1,19 +1,15 @@
 local global_opts = {
-  -- LEADER KEYS
   mapleader = " ",
   maplocalleader = "\\",
 
-  -- NETRW
   netrw_banner = 0,
   netrw_browse_split = 0,
   netrw_bufsettings = "noma nomod nu nobl nowrap ro",
 
-  -- MARKDOWN
   autoformat = true,
   markdown_recommended_style = 0,
   markdown_folding = 1,
 
-  -- TEX
   tex_flavor = "latex",
   vimtex_view_method = "sioyek",
   vimtex_view_sioyek_options = "--reuse-window",
@@ -46,8 +42,19 @@ local global_opts = {
 }
 
 local opts = {
-  -- TEXT
+  autoindent = true,
+  autowrite = true,
+  background = "dark",
+  clipboard = "unnamedplus",
+  colorcolumn = "",
+  completeopt = "menu,menuone,noselect",
+  conceallevel = 2,
+  confirm = true,
+  cursorline = true,
+  cursorlineopt = "number",
+  expandtab = true,
   fillchars = {
+    stl = " ",
     foldopen = "",
     foldclose = "",
     foldsep = " ",
@@ -55,69 +62,26 @@ local opts = {
     diff = "╱",
     eob = "~",
   },
-  list = false, -- don't show some invisible characters (tabs...
-  scrolloff = 10, -- lines of context
-  shiftround = true,
-  shiftwidth = 2, -- size of an indent
-  spelllang = { "en_us" },
-  tabstop = 2, -- number of spaces tabs count for
-  wrap = false,
-
-  -- UX
-  autoindent = true,
-  autowrite = true,
-  clipboard = "unnamedplus", -- sync with system clipboard
-  completeopt = "menu,menuone,noselect",
-  confirm = true, -- confirm to save changes before exiting modified buffer
-  expandtab = true, -- use spaces instead of tabs
+  foldcolumn = "1",
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
-  foldenable = false,
-  foldlevel = 99,
-  history = 100,
-  ignorecase = true,
-  inccommand = "nosplit", -- preview incremental substitute
-  jumpoptions = "stack,view",
-  smartcase = true,
-  smartindent = false,
-  splitbelow = true, -- put new windows below current
-  splitkeep = "screen",
-  splitright = true, -- put new windows right of current
-  textwidth = 88,
-  timeoutlen = 300,
-  undofile = true,
-  undolevels = 200,
-  virtualedit = "block", -- allow cursor to move where there is no text in visual block mode
-  wildmode = "longest:full,full", -- command-line completion mode
-
-  -- UI
-  background = "dark",
-  colorcolumn = "",
-  conceallevel = 2, -- hide * markup for bold and italic
-  cursorline = true,
-  cursorlineopt = "number",
-  foldcolumn = "1", -- always show fold column
-  hlsearch = true, -- highlight search matches
-  laststatus = 3, -- global statusline
-  number = true,
-  relativenumber = true,
-  pumblend = 0, -- popup blend
-  pumheight = 10, -- maximum number of entries in a popup
-  ruler = false,
-  showcmd = false,
-  showmode = false,
-  showtabline = 0,
-  sidescrolloff = 8, -- columns of context
-  signcolumn = "yes:1", -- always show the signcolumn
-  statuscolumn = "%!v:lua.require'cmill.core.util'.statuscolumn()",
-  termguicolors = true,
-  updatetime = 200,
-  winminwidth = 5,
-
-  -- MISC
+  foldenable = true,
+  foldlevel = 5,
   formatoptions = "jcroqlnt",
   grepformat = "%f:%l:%c:%m",
   grepprg = "rg --vimgrep",
+  hlsearch = true,
+  history = 100,
+  ignorecase = true,
+  inccommand = "nosplit",
+  jumpoptions = "stack,view",
+  laststatus = 3,
+  list = false,
+  number = true,
+  relativenumber = true,
+  ruler = false,
+  pumblend = 0,
+  pumheight = 10,
   sessionoptions = {
     "buffers",
     "curdir",
@@ -128,6 +92,33 @@ local opts = {
     "skiprtp",
     "folds",
   },
+  scrolloff = 10,
+  shiftround = true,
+  shiftwidth = 2,
+  showbreak = "> ",
+  showcmd = false,
+  showmode = false,
+  showtabline = 0,
+  sidescrolloff = 8,
+  signcolumn = "yes:1",
+  smartcase = true,
+  smartindent = false,
+  spelllang = { "en_us" },
+  splitbelow = true,
+  splitkeep = "screen",
+  splitright = true,
+  statuscolumn = "%!v:lua.require'cmill.core.util'.statuscolumn()",
+  termguicolors = true,
+  tabstop = 2,
+  textwidth = 88,
+  timeoutlen = 300,
+  undofile = true,
+  undolevels = 200,
+  updatetime = 200,
+  virtualedit = "block",
+  wildmode = "longest:full,full",
+  winminwidth = 5,
+  wrap = false,
 }
 
 for k, v in pairs(global_opts) do

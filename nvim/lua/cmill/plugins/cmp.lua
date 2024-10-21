@@ -1,12 +1,13 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    event = "VeryLazy",
     dependencies = {
       { "onsails/lspkind.nvim" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-cmdline" },
     },
     opts = function(_, opts)
       opts.snippet = {
@@ -21,6 +22,25 @@ return {
       local defaults = require("cmp.config.default")()
       local lspkind = require("lspkind")
       local cmp_window = require("cmp.config.window")
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
       cmp.setup({
         completion = {
           completeopt = "menu,menuone,noinsert",
@@ -73,7 +93,9 @@ return {
         view = {
           docs = { auto_open = true },
           entries = {
+            auto_open = "false",
             follow_cursor = true,
+            name = "custom",
             selection_order = "top_down",
           },
         },

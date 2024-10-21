@@ -82,6 +82,7 @@ local maps = {
   { "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>" }, -- clear previous search match highlights
   { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
+  { "ca", "nums", "set relativenumber!", { silent = true } },
 }
 
 for _, v in pairs(maps) do

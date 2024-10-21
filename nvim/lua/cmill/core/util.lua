@@ -19,13 +19,13 @@ function M.get_signs(buf, lnum)
     { details = true, type = "sign" }
   )
   for _, extmark in pairs(extmarks) do
-    local groupname = extmark[4].sign_hl_group or ""
+    local hlgroup = extmark[4].sign_hl_group or ""
     local culhl = nil
-    if groupname then
-      culhl = culhl_cache[groupname] or M.create_cul_hl(groupname)
+    if hlgroup then
+      culhl = culhl_cache[hlgroup] or M.create_cul_hl(hlgroup)
     end
     signs[#signs + 1] = {
-      name = groupname,
+      name = hlgroup,
       text = extmark[4].sign_text,
       texthl = extmark[4].sign_hl_group,
       priority = extmark[4].priority,
@@ -40,8 +40,8 @@ function M.get_signs(buf, lnum)
   return signs
 end
 
---- Creates a cursorline highlight group for signs by merging the signs highlight group
---- and the CursorLineSign highlight group
+---Creates a cursorline highlight group for signs by merging the signs highlight group
+---and the CursorLineSign highlight group
 ---@param hlgroup string sign highlight group
 ---@return string
 function M.create_cul_hl(hlgroup)
@@ -163,7 +163,7 @@ local lsp_client = function()
   end
 end
 
---- Opts for lualine statusline components
+---Opts for lualine statusline components
 ---@return table
 function M.statusline_components()
   local components = {
