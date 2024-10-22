@@ -15,6 +15,11 @@ return {
           return require("cmill.core.util").expand_snip(item.body)
         end,
       }
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = "lazydev",
+        group_index = 0,
+      })
     end,
     config = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })

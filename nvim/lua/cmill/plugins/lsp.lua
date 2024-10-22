@@ -5,9 +5,11 @@ return {
     opts = {
       library = {
         { path = "luvit-meta/library", words = { "vim%.uv" } },
+        "~/Developer/lua/neomodern.nvim/",
       },
     },
   },
+  { "Bilal2453/luvit-meta", lazy = true },
   {
     "neovim/nvim-lspconfig",
     event = { "BufRead", "BufNewFile" },
