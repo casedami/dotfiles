@@ -1,50 +1,11 @@
 local M = {}
 local culhl_cache = {}
 
----@alias Sign { name:string, text:string, texthl:string, priority:number, culhl:string }
-
----Returns a list of regular and extmark signs sorted by priority (low to high)
----@param buf number
----@param lnum number
----@return Sign[]
-function M.get_signs(buf, lnum)
-  ---@type Sign[]
-  local signs = {}
-
-  local extmarks = vim.api.nvim_buf_get_extmarks(
-    buf,
-    -1,
-    { lnum - 1, 0 },
-    { lnum - 1, -1 },
-    { details = true, type = "sign" }
-  )
-  for _, extmark in pairs(extmarks) do
-    local hlgroup = extmark[4].sign_hl_group or ""
-    local culhl = nil
-    if hlgroup then
-      culhl = culhl_cache[hlgroup] or M.create_cul_hl(hlgroup)
-    end
-    signs[#signs + 1] = {
-      name = hlgroup,
-      text = extmark[4].sign_text,
-      texthl = extmark[4].sign_hl_group,
-      priority = extmark[4].priority,
-      culhl = culhl or "CursorLineSign",
-    }
-  end
-
-  table.sort(signs, function(a, b)
-    return (a.priority or 0) < (b.priority or 0)
-  end)
-
-  return signs
-end
-
 ---Creates a cursorline highlight group for signs by merging the signs highlight group
 ---and the CursorLineSign highlight group
 ---@param hlgroup string sign highlight group
 ---@return string
-function M.create_cul_hl(hlgroup)
+local function create_cul_hl(hlgroup)
   local newhl = {}
   local signhl = vim.api.nvim_get_hl(0, {
     name = hlgroup,
@@ -71,6 +32,45 @@ function M.create_cul_hl(hlgroup)
   return merged
 end
 
+---@alias Sign { name:string, text:string, texthl:string, priority:number, culhl:string }
+
+---Returns a list of regular and extmark signs sorted by priority (low to high)
+---@param buf number
+---@param lnum number
+---@return Sign[]
+function M.get_signs(buf, lnum)
+  ---@type Sign[]
+  local signs = {}
+
+  local extmarks = vim.api.nvim_buf_get_extmarks(
+    buf,
+    -1,
+    { lnum - 1, 0 },
+    { lnum - 1, -1 },
+    { details = true, type = "sign" }
+  )
+  for _, extmark in pairs(extmarks) do
+    local hlgroup = extmark[4].sign_hl_group or ""
+    local culhl = nil
+    if hlgroup then
+      culhl = culhl_cache[hlgroup] or create_cul_hl(hlgroup)
+    end
+    signs[#signs + 1] = {
+      name = hlgroup,
+      text = extmark[4].sign_text,
+      texthl = extmark[4].sign_hl_group,
+      priority = extmark[4].priority,
+      culhl = culhl or "CursorLineSign",
+    }
+  end
+
+  table.sort(signs, function(a, b)
+    return (a.priority or 0) < (b.priority or 0)
+  end)
+
+  return signs
+end
+
 ---Returns user-set marks given a buffer and a line number
 ---@param buf number
 ---@param lnum number
@@ -83,7 +83,7 @@ function M.get_mark(buf, lnum)
       return {
         text = mark.mark:sub(2),
         texthl = "DiagnosticInfo",
-        culhl = M.create_cul_hl("DiagnosticInfo"),
+        culhl = create_cul_hl("DiagnosticInfo"),
       }
     end
   end
@@ -272,14 +272,14 @@ end
 
 ---Convenient new file prompt expansion for startup screen
 function M.new_file_prompt()
-  local path = vim.fn.expand("%:p:h")
-  local is_note = path:find("self/notes")
+  local path = ""
+  local is_note = vim.fn.getcwd():find("self/notes")
 
   if is_note then
-    path = vim.fn.expand("~") .. "/self/notes/main/inbox"
+    path = vim.fn.expand("~") .. "/self/notes/main/inbox/"
   end
 
-  vim.api.nvim_input(":e " .. path .. "/")
+  vim.api.nvim_input(":e " .. path)
 end
 
 function M.expand_snip(snippet)
