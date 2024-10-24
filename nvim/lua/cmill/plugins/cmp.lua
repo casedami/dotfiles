@@ -28,15 +28,34 @@ return {
       local lspkind = require("lspkind")
       local cmp_window = require("cmp.config.window")
       local maps = {
-        ["<C-n>"] = cmp.mapping.select_next_item({
-          behavior = cmp.SelectBehavior.Insert,
-        }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({
-          behavior = cmp.SelectBehavior.Insert,
-        }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-w>"] = cmp.mapping.abort(),
-        ["<tab>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-n>"] = {
+          c = cmp.mapping.select_next_item({
+            behavior = cmp.SelectBehavior.Insert,
+          }),
+          i = cmp.mapping.select_next_item({
+            behavior = cmp.SelectBehavior.Insert,
+          }),
+        },
+        ["<C-p>"] = {
+          c = cmp.mapping.select_prev_item({
+            behavior = cmp.SelectBehavior.Insert,
+          }),
+          i = cmp.mapping.select_prev_item({
+            behavior = cmp.SelectBehavior.Insert,
+          }),
+        },
+        ["<C-Space>"] = {
+          c = cmp.mapping.complete(),
+          i = cmp.mapping.complete(),
+        },
+        ["<C-w>"] = {
+          c = cmp.mapping.abort(),
+          i = cmp.mapping.abort(),
+        },
+        ["<Tab>"] = {
+          c = cmp.mapping.confirm({ select = true }),
+          i = cmp.mapping.confirm({ select = true }),
+        },
       }
       cmp.setup.cmdline("/", {
         mapping = maps,

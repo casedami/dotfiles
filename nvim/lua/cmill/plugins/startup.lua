@@ -10,7 +10,7 @@ return {
         .. "\non "
         .. os.date("%a %B %d %Y")
 
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
+      logo = string.rep("\n", 8) .. logo .. string.rep("\n", 2)
 
       local opts = {
         theme = "doom",

@@ -1,7 +1,7 @@
 return {
   {
     "cdmill/oil.nvim",
-    event = "VeryLazy",
+    event = "VimEnter",
     keys = {
       { "<leader>fe", "<cmd>Oil<cr>" },
       { "<leader>Fe", "<cmd>Oil --float<cr>" },
@@ -97,9 +97,9 @@ return {
               ["<C-w>"] = "delete_buffer",
             },
             i = {
-              ["PP"] = require("telescope.actions").close,
+              ["ww"] = require("telescope.actions").close,
               ["<C-w>"] = "delete_buffer",
-              ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
+              ["<C-\\>"] = require("telescope.actions.layout").toggle_preview,
             },
           },
         },

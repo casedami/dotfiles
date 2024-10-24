@@ -4,6 +4,7 @@ return {
     priority = 1000,
     config = function()
       require("neomodern").setup({
+        theme = "roseprime",
         toggle_style_key = "<leader>uu",
         toggle_mode_key = "<leader>uc",
         toggle_style_list = { "iceclimber", "coffeecat", "darkforest", "roseprime" },
@@ -14,7 +15,7 @@ return {
         transparent = false,
         plain_float = true,
         show_eob = false,
-        colored_docstrings = true,
+        colored_docstrings = false,
         plugin = {
           lualine = {
             plain = false,
