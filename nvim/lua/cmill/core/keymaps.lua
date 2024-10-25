@@ -35,10 +35,10 @@ local maps = {
   { "n", "<C-Down>", "<cmd>resize -2<cr>" }, -- decrease window height
   { "n", "<C-Left>", "<cmd>vertical resize +2<cr>" }, -- decrease window width
   { "n", "<C-Right>", "<cmd>vertical resize -2<cr>" }, -- increase window width
-  { "n", "<C-h>", "<C-w>h", opts["remap"] }, -- goto left window
-  { "n", "<C-j>", "<C-w>j", opts["remap"] }, -- goto lower window
-  { "n", "<C-k>", "<C-w>k", opts["remap"] }, -- goto upper window
-  { "n", "<C-l>", "<C-w>l", opts["remap"] }, -- goto right window
+  { { "n", "v" }, "<C-h>", "<C-w>h", opts["remap"] }, -- goto left window
+  { { "n", "v" }, "<C-j>", "<C-w>j", opts["remap"] }, -- goto lower window
+  { { "n", "v" }, "<C-k>", "<C-w>k", opts["remap"] }, -- goto upper window
+  { { "n", "v" }, "<C-l>", "<C-w>l", opts["remap"] }, -- goto right window
   { "n", "<leader>wd", "<C-W>c", opts["remap"] }, -- delete window
   { "n", "<leader>we", "<C-W>=", opts["remap"] }, -- split windows equally
   { "n", "<leader>wo", "<C-W><C-O>", opts["remap"] }, -- make buffer the only buffer on screen
@@ -76,8 +76,6 @@ local maps = {
   { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
   { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
   { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
-  { { "n", "v" }, "<leader>;", "q:" }, -- remap to command history
-  { { "n", "v" }, "<leader>/", "q/" }, -- remap to search history
   { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>)
   { "n", "<C-i>", "<c-i>" }, -- restore jump-forward keymap (<c-i>)
   { "n", "<C-;>", "<c-l>" }, -- clear cmd line
