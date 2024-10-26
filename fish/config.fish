@@ -10,7 +10,6 @@ abbr --add wrtg "cp -r ~/Developer/tex/templates/wrtg-template"
 
 alias vim="nvim"
 alias cd="z"
-alias tm="tmux"
 alias sed="sed -E"
 alias ls="eza --icons --group-directories-first"
 alias lsl="eza -l -h --no-user --git"
@@ -44,10 +43,10 @@ set -U EDITOR nvim
 
 set -gx __zoxide_zi cdi
 set -gx FZF_DEFAULT_OPTS '
---color=fg:#afafdd,bg:#121315,hl:#9bbdb8,gutter:#121315
---color=fg+:#afafdd,bg+:#1d1f26,hl+:#9bbdb8
---color=info:#666a82,prompt:#ad82a2,pointer:#ad82a2
---color=marker:#6397cf,spinner:#6397cf,header:#6397cf
+--color=fg:#bbbac1,bg:#181b1b,hl:#e69875,gutter:#181b1b 
+--color=fg+:#bbbac1,bg+:#313b35,hl+:#e69875 
+--color=info:#7a8478,prompt:#78b0a8,pointer:#78b0a8 
+--color=marker:#7da77e,spinner:#7da77e,header:#7da77e
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt=" "
 --marker=">"

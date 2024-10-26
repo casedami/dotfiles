@@ -4,7 +4,7 @@ return {
     priority = 1000,
     config = function()
       require("neomodern").setup({
-        theme = "roseprime",
+        theme = "darkforest",
         toggle_style_key = "<leader>uu",
         toggle_mode_key = "<leader>uc",
         toggle_style_list = { "iceclimber", "coffeecat", "darkforest", "roseprime" },
