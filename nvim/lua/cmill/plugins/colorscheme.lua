@@ -5,9 +5,9 @@ return {
     config = function()
       require("neomodern").setup({
         theme = "darkforest",
-        toggle_style_key = "<leader>uu",
+        cycle_theme_key = "<leader>cc",
+        cycle_theme_list = { "iceclimber", "coffeecat", "darkforest", "roseprime" },
         toggle_mode_key = "<leader>uc",
-        toggle_style_list = { "iceclimber", "coffeecat", "darkforest", "roseprime" },
         style = "roseprime",
         code_style = {
           headings = "italic",
