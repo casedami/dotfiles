@@ -4,12 +4,10 @@ abbr --add go git checkout
 abbr --add gc git commit
 abbr --add gp git push
 abbr --add gs git s
-abbr --add kitty "rm /var/folders/*/*/*/com.apple.dock.iconcache; killall Dock"
 abbr --add assgn "cp -r ~/Developer/tex/templates/assignment-template"
 abbr --add wrtg "cp -r ~/Developer/tex/templates/wrtg-template"
 
 alias vim="nvim"
-alias cd="z"
 alias sed="sed -E"
 alias ls="eza --icons --group-directories-first"
 alias lsl="eza -l -h --no-user --git"
@@ -32,7 +30,6 @@ alias uni="cd ~/self/Developer/uni/"
 alias notes="vim ~/self/notes/main/hedef.md"
 alias conf="cd ~/.config/"
 alias ic="cd /Users/caseymiller/Library/Mobile\ Documents/com~apple~CloudDocs"
-alias qn="vim ~/self/notes/main/inbox/qn.md"
 
 set -U fish_greeting
 set -gx LANG en_US.UTF-8
@@ -43,25 +40,26 @@ set -U EDITOR nvim
 
 set -gx __zoxide_zi cdi
 set -gx FZF_DEFAULT_OPTS '
---color=fg:#bbbac1,bg:#181b1b,hl:#e69875,gutter:#181b1b 
---color=fg+:#bbbac1,bg+:#313b35,hl+:#e69875 
---color=info:#7a8478,prompt:#78b0a8,pointer:#78b0a8 
+--color=fg:#bbbac1,bg:#181b1b,hl:#e69875,gutter:#181b1b
+--color=fg+:#78b0a8,bg+:#1e2323,hl+:#e69875
+--color=info:#7a8478,prompt:#e69875,pointer:#78b0a8
 --color=marker:#7da77e,spinner:#7da77e,header:#7da77e
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
---prompt=" "
---marker=">"
---pointer="󰘍"
+--prompt="> "
+--marker="*"
+--pointer=">"
 --cycle
 --multi
 --height 40%
---preview "cat {} 2> /dev/null"
---preview-window="right:60%:hidden"
+--preview "bat --style=numbers,changes --wrap auto --decorations always --color never {} || cat {} || tree -C {}"
+--preview-window="right:60%:hidden:noborder" 
 --bind="?:toggle-preview"
 --bind="ctrl-u:preview-page-up"
 --bind="ctrl-d:preview-page-down"'
+#--preview-window="right:60%:hidden" 
 
 fish_add_path $HOME/.local/bin/scripts/
-fish_add_path $HOME/Library/Python/3.11/bin
+fish_add_path $HOME/Library/Python/3.12/bin
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

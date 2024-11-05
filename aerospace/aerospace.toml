@@ -50,6 +50,10 @@ alt-shift-c = 'reload-config'
 4 = 'secondary'
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'firefox'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'wezterm'
 run = 'move-node-to-workspace 3'
 
