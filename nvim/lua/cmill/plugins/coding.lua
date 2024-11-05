@@ -56,9 +56,19 @@ return {
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
     keys = {
-      { "<leader>go", "<cmd>DiffviewOpen<cr>", desc = "Open diffview", silent = true },
       {
-        "<leader>gc",
+        "<leader>gg",
+        function()
+          vim.cmd("DiffviewOpen")
+          vim.cmd("vsplit")
+          vim.cmd("terminal")
+          vim.cmd("wincmd h")
+        end,
+        desc = "Open diffview",
+        silent = true,
+      },
+      {
+        "<leader>gw",
         "<cmd>DiffviewClose<cr>",
         desc = "Close diffview",
         silent = true,
