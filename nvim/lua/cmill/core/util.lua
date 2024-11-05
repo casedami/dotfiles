@@ -342,6 +342,16 @@ function M.is_git_repo()
   return result.code == 0
 end
 
+function M.git_local_changes_exists()
+  local cmd = { "git", "status", "--porcelain" }
+  local result = vim.system(cmd):wait()
+  return result.stdout and #result.stdout > 0
+end
+
+function M.show_diff()
+  return M.is_git_repo() and M.git_local_changes_exists()
+end
+
 ---Sets telescope to search for config files
 ---@return function
 function M.config_files()
