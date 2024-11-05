@@ -11,6 +11,12 @@
 	excludesfile = /Users/caseymiller/.config/git/.gitignore_global
 [diff]
 	tool = nvimdiff
+[merge]
+    tool = nvim
+[mergetool]
+    keepBackup = false
+[mergetool "nvim"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [alias]
 	glog = log --all --graph --decorate
 	glog1 = log --all --graph --decorate --oneline
