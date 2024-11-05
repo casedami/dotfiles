@@ -8,7 +8,6 @@ return {
         cycle_theme_key = "<leader>cc",
         cycle_theme_list = { "iceclimber", "coffeecat", "darkforest", "roseprime" },
         toggle_mode_key = "<leader>uc",
-        style = "roseprime",
         code_style = {
           headings = "italic",
         },
