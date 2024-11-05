@@ -75,41 +75,4 @@ config.keys = {
   },
 }
 
--- config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
--- config.keys = {
---     -- splitting
---     { mods = "LEADER", key = "-",          action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
---     { mods = "LEADER", key = "/",          action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
---     { mods = "LEADER", key = 'LeftArrow',  action = wezterm.action.ActivatePaneDirection 'Left' },
---     { mods = "LEADER", key = 'h',          action = wezterm.action.ActivatePaneDirection 'Left' },
---     { mods = "LEADER", key = 'RightArrow', action = wezterm.action.ActivatePaneDirection 'Right' },
---     { mods = "LEADER", key = 'l',          action = wezterm.action.ActivatePaneDirection 'Right' },
---     { mods = "LEADER", key = 'UpArrow',    action = wezterm.action.ActivatePaneDirection 'Up' },
---     { mods = "LEADER", key = 'k',          action = wezterm.action.ActivatePaneDirection 'Up' },
---     { mods = "LEADER", key = 'DownArrow',  action = wezterm.action.ActivatePaneDirection 'Down' },
---     { mods = "LEADER", key = 'j',          action = wezterm.action.ActivatePaneDirection 'Down' },
---     { mods = 'LEADER', key = 'p',          action = wezterm.action.ActivateTabRelative(-1) },
---     { mods = 'LEADER', key = 'n',          action = wezterm.action.ActivateTabRelative(1) },
---     { mods = 'LEADER', key = 'x',          action = wezterm.action.CloseCurrentPane { confirm = false }, },
---     { mods = 'LEADER', key = 'X',          action = wezterm.action.CloseCurrentTab { confirm = false }, },
---     { mods = 'LEADER', key = 'c',          action = wezterm.action.SpawnTab 'CurrentPaneDomain', },
---     {
---         mods = 'LEADER',
---         key = '!',
---         action = wezterm.action_callback(function(_win, pane)
---             local _tab, _ = pane
---                 :move_to_new_tab()
---         end),
---     }
--- }
---
--- for i = 1, 9 do
---     -- ALT + number to activate that tab
---     table.insert(config.keys, {
---         key = tostring(i),
---         mods = 'LEADER',
---         action = wezterm.action.ActivateTab(i - 1),
---     })
--- end
---
 return config
