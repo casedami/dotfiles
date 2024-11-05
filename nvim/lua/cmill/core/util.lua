@@ -7,19 +7,13 @@ local culhl_cache = {}
 ---@return string
 local function create_cul_hl(hlgroup)
   local newhl = {}
-  local signhl = vim.api.nvim_get_hl(0, {
-    name = hlgroup,
-    link = false,
-  })
+  local signhl = vim.api.nvim_get_hl(0, { name = hlgroup, link = false })
   if signhl then
     for k, v in pairs(signhl) do
       newhl[k] = v
     end
   end
-  local culhl = vim.api.nvim_get_hl(0, {
-    name = "CursorLineSign",
-    link = false,
-  })
+  local culhl = vim.api.nvim_get_hl(0, { name = "CursorLineSign", link = false })
   if culhl then
     for k, v in pairs(culhl) do
       newhl[k] = v
@@ -104,8 +98,89 @@ function M.icon(sign, cul)
   end
 end
 
---- Builds and returns a status column of the form:
---- [<diagnostics>, <marks>] [<linenr>] [<fold>, <gitsigns>]
+function M.char_on_pos(pos)
+  pos = pos or vim.fn.getpos(".")
+  return tostring(vim.fn.getline(pos[1])):sub(pos[2], pos[2])
+end
+
+function M.char_byte_count(s, i)
+  if not s or s == "" then
+    return 1
+  end
+
+  local char = string.byte(s, i or 1)
+
+  -- Get byte count of unicode character (RFC 3629)
+  if char > 0 and char <= 127 then
+    return 1
+  elseif char >= 194 and char <= 223 then
+    return 2
+  elseif char >= 224 and char <= 239 then
+    return 3
+  elseif char >= 240 and char <= 244 then
+    return 4
+  end
+end
+
+function M.get_visual_range()
+  local sr, sc = unpack(vim.fn.getpos("v"), 2, 3)
+  local er, ec = unpack(vim.fn.getpos("."), 2, 3)
+
+  -- To correct work with non-single byte chars
+  local byte_c = M.char_byte_count(M.char_on_pos({ er, ec }))
+  ec = ec + (byte_c - 1)
+
+  local range = {}
+
+  if sr == er then
+    local cols = sc >= ec and { ec, sc } or { sc, ec }
+    range = { sr, cols[1] - 1, er, cols[2] }
+  elseif sr > er then
+    range = { er, ec - 1, sr, sc }
+  else
+    range = { sr, sc - 1, er, ec }
+  end
+
+  return range
+end
+
+function M.hi_vis_range(is_cul)
+  local hi = require("neomodern.palette")[vim.g.neomodern_config.theme].alt
+  local visrangenr = { fg = hi }
+  if is_cul then
+    local bg = vim.api.nvim_get_hl(0, { name = "CursorLineSign", link = false }).bg
+    visrangenr["bg"] = bg
+    vim.api.nvim_set_hl(0, "VisualRangeNrCul", visrangenr)
+    culhl_cache["VisualRangeNrCul"] = visrangenr
+  else
+    vim.api.nvim_set_hl(0, "VisualRangeNr", visrangenr)
+    culhl_cache["VisualRangeNr"] = visrangenr
+  end
+end
+
+function M.is_selected(is_cul)
+  local v_hl = ""
+  local mode = vim.fn.strtrans(vim.fn.mode()):lower():gsub("%W", "")
+  if mode == "v" then
+    local v_range = M.get_visual_range()
+    local is_in_range = vim.v.lnum >= v_range[1] and vim.v.lnum <= v_range[3]
+    if is_cul then
+      if culhl_cache["VisualRangeNrCul"] == nil then
+        M.hi_vis_range(is_cul)
+      end
+      v_hl = is_in_range and "%#VisualRangeNrCul#" or ""
+    else
+      if culhl_cache["VisualRangeNr"] == nil then
+        M.hi_vis_range()
+      end
+      v_hl = is_in_range and "%#VisualRangeNr#" or ""
+    end
+  end
+  return v_hl
+end
+
+---Builds and returns a status column of the form:
+---[<diagnostics>, <marks>] [<linenr>] [<fold>, <gitsigns>]
 ---@return string
 function M.statuscolumn()
   local win = vim.g.statusline_winid
@@ -140,11 +215,14 @@ function M.statuscolumn()
 
   local is_num = vim.wo[win].number
   local is_relnum = vim.wo[win].relativenumber
+
   if (is_num or is_relnum) and vim.v.virtnum == 0 then
     if vim.v.relnum == 0 then
-      components[2] = is_num and "%l " or "%r " -- the current line
+      local num = is_num and "%l " or "%r " -- the current line
+      components[2] = M.is_selected(true) .. num
     else
-      components[2] = is_relnum and "%r" or "%l" -- other lines
+      local num = is_relnum and "%r" or "%l" -- other lines
+      components[2] = M.is_selected() .. num
     end
     components[2] = "%=" .. components[2] .. " " -- right align
   end
@@ -304,4 +382,5 @@ function M.expand_snip(snippet)
     vim.snippet._session = session
   end
 end
+
 return M
