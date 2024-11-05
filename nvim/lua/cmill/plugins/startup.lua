@@ -46,10 +46,10 @@ return {
               key = "g",
             },
             {
-              action = "Neogit",
-              desc = " git",
+              action = "DiffviewOpen",
+              desc = " diff",
               icon = " ",
-              key = "G",
+              key = "d",
               cond = require("cmill.core.util").is_git_repo(),
             },
             {

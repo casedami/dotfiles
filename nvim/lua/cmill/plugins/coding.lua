@@ -1,7 +1,13 @@
 return {
   {
     "stevearc/overseer.nvim",
-    event = "LspAttach",
+    cmd = {
+      "OverseerRun",
+      "OverseerToggle",
+      "OverseerSaveBundle",
+      "OverseerLoadBundle",
+      "OverseerTaskAction",
+    },
     config = function()
       require("overseer").setup()
       vim.keymap.set("ca", "run", "OverseerRun", { silent = true })
@@ -47,17 +53,26 @@ return {
     end,
   },
   {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-    },
-    cmd = "Neogit",
+    "sindrets/diffview.nvim",
+    cmd = "DiffviewOpen",
     keys = {
-      { "<leader>gg", "<cmd>Neogit<cr>" },
-      { "<leader>gv", "<cmd>Neogit kind=auto<cr>" },
+      { "<leader>go", "<cmd>DiffviewOpen<cr>", desc = "Open diffview", silent = true },
+      {
+        "<leader>gc",
+        "<cmd>DiffviewClose<cr>",
+        desc = "Close diffview",
+        silent = true,
+      },
     },
-    config = true,
+    opts = {
+      file_panel = {
+        listing_style = "list",
+        win_config = {
+          position = "bottom",
+          height = 10,
+        },
+      },
+    },
   },
   {
     "Shatur/neovim-session-manager",

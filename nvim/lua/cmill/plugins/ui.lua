@@ -1,5 +1,10 @@
 return {
   {
+    "cdmill/focus.nvim",
+    cmd = { "Focus", "Zen", "Narrow" },
+    opts = {},
+  },
+  {
     "j-hui/fidget.nvim",
     event = "BufReadPost",
     config = function()

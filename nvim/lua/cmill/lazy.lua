@@ -20,7 +20,13 @@ require("lazy").setup({
   },
   dev = {
     path = "~/Developer/lua",
-    patterns = { "neomodern", "neovim-session-manager", "oil.nvim", "dashboard-nvim" },
+    patterns = {
+      "focus.nvim",
+      "neomodern",
+      "neovim-session-manager",
+      "oil.nvim",
+      "dashboard-nvim",
+    },
     fallback = false,
   },
   checker = {

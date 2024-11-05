@@ -5,7 +5,6 @@ return {
     dependencies = {
       { "onsails/lspkind.nvim" },
       { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-cmdline" },
     },
@@ -84,8 +83,7 @@ return {
         mapping = cmp.mapping.preset.insert(maps),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "buffer" },
-          { name = "path" },
+          { name = "buffer", max_item_count = 3 },
         }),
         formatting = {
           expandable_indicator = false,

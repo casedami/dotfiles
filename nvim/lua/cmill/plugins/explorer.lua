@@ -35,6 +35,12 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+      },
+    },
     cmd = "Telescope",
     version = false,
     -- stylua: ignore start
@@ -73,21 +79,19 @@ return {
             "__pycache__",
             ".DS_Store",
           },
-          prompt_prefix = " ",
-          selection_caret = "󰘍 ",
           layout_strategy = "dynamic_horizontal",
           sorting_strategy = "ascending",
           scroll_strategy = "cycle",
-          path_display = { "tail" },
-          color_devicons = true,
+          path_display = { "filename_first" },
+          color_devicons = false,
           winblend = 0,
-          preview = {
-            hide_on_startup = true,
-          },
+          -- preview = {
+          --   hide_on_startup = true,
+          -- },
           layout_config = {
-            width = function(_, max_columns)
-              return math.max(math.floor(0.40 * max_columns), 100)
-            end,
+            -- width = function(_, max_columns)
+            --   return math.max(math.floor(0.40 * max_columns), 100)
+            -- end,
             height = 0.60,
             prompt_position = "bottom",
           },
@@ -95,6 +99,7 @@ return {
             n = {
               ["q"] = require("telescope.actions").close,
               ["<C-w>"] = "delete_buffer",
+              ["<C-\\>"] = require("telescope.actions.layout").toggle_preview,
             },
             i = {
               ["ww"] = require("telescope.actions").close,
@@ -106,6 +111,7 @@ return {
         pickers = {
           find_files = {
             disable_devicons = true,
+            show_hidden = true,
           },
           oldfiles = {
             disable_devicons = true,
@@ -121,6 +127,7 @@ return {
           },
         },
       })
+      require("telescope").load_extension("fzf")
     end,
   },
 }

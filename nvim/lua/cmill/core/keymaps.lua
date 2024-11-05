@@ -82,7 +82,8 @@ local maps = {
   { "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>" }, -- clear previous search match highlights
   { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
-  { "ca", "nums", "set relativenumber!", { silent = true } },
+  { "ca", "nums", "set relativenumber!", opts["silent"] },
+  { "ca", "cd.", "cd %:h", {} },
 }
 
 for _, v in pairs(maps) do
@@ -92,7 +93,7 @@ end
 
 vim.api.nvim_create_user_command("DelMarks", function()
   vim.cmd("delm a-zA-Z")
-  vim.notify(" deleting marks...", vim.log.levels.INFO, {})
+  vim.notify("deleting marks...", vim.log.levels.INFO, {})
 end, {})
 
 -- SESSIONS
@@ -113,7 +114,7 @@ vim.api.nvim_create_user_command("SesLoad", function()
   vim.cmd("echo '" .. msg .. "'")
 end, {})
 
--- FILE CREATION
+-- FILE CREATION FOR DASHBOARD
 local new_file = function(comm, fname)
   local path = vim.fn.expand("%:p:h")
   local is_note = path:find("self/notes")
