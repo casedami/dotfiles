@@ -50,7 +50,7 @@ return {
               desc = " diff",
               icon = " ",
               key = "d",
-              cond = require("cmill.core.util").is_git_repo(),
+              cond = require("cmill.core.util").show_diff(),
             },
             {
               action = "SessionManager load_current_dir_session",
