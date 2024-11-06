@@ -43,6 +43,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "OverseerList" },
+  callback = function()
+    vim.opt_local.statuscolumn = ""
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
