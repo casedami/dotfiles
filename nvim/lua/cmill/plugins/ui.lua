@@ -4,18 +4,18 @@ return {
     cmd = { "Focus", "Zen", "Narrow" },
     opts = {},
   },
-  {
-    "j-hui/fidget.nvim",
-    event = "BufReadPost",
-    config = function()
-      vim.notify = require("fidget").notify
-      require("fidget").setup({
-        logger = {
-          level = vim.log.levels.DEBUG,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     vim.notify = require("fidget").notify
+  --     require("fidget").setup({
+  --       logger = {
+  --         level = vim.log.levels.DEBUG,
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufRead", "BufNewFile" },
@@ -63,7 +63,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
       local components = require("cmill.core.util").statusline_components()
@@ -71,17 +71,15 @@ return {
         options = {
           icons_enabled = true,
           theme = "neomodern",
-          section_separators = { left = "", right = "" },
-          -- section_separators = { left = "", right = "" },
+          -- section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
           disabled_filetypes = {},
           ignore_focus = {},
           always_divide_middle = true,
           globalstatus = true,
           refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
+            statusline = 100,
           },
         },
         sections = {

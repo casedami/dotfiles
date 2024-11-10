@@ -43,6 +43,9 @@ alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
 
 alt-shift-c = 'reload-config'
 
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+
 [workspace-to-monitor-force-assignment]
 1 = 'main'
 2 = 'main'

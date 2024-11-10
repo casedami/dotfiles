@@ -17,11 +17,6 @@ return {
           max_width = 0.3,
         },
       })
-      vim.keymap.set("ca", "run", "OverseerRun", { silent = true })
-      vim.keymap.set("ca", "res", "OverseerToggle! right", { silent = true })
-      vim.keymap.set("ca", "srun", "OverseerSaveBundle", { silent = true })
-      vim.keymap.set("ca", "lrun", "OverseerLoadBundle!", { silent = true })
-      vim.keymap.set("ca", "runt", "OverseerTaskAction", { silent = true })
     end,
   },
   {
@@ -65,12 +60,7 @@ return {
     keys = {
       {
         "<leader>gg",
-        function()
-          vim.cmd("DiffviewOpen")
-          vim.cmd("vsplit")
-          vim.cmd("terminal")
-          vim.cmd("wincmd h")
-        end,
+        "<cmd>DiffviewOpen<cr>",
         desc = "Open diffview",
         silent = true,
       },

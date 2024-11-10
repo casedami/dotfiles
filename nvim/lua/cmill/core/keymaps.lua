@@ -83,7 +83,12 @@ local maps = {
   { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
   { "ca", "nums", "set relativenumber!", opts["silent"] },
-  { "ca", "cd.", "cd %:h", {} },
+  { "ca", "cd.", "cd %:h" },
+  { "ca", "run", "OverseerRun" },
+  { "ca", "res", "OverseerToggle! right" },
+  { "ca", "srun", "OverseerSaveBundle" },
+  { "ca", "runt", "OverseerTaskAction" },
+  { "ca", "lrun", "OverseerLoadBundle!" },
 }
 
 for _, v in pairs(maps) do
