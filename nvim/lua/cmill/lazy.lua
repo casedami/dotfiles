@@ -23,7 +23,6 @@ require("lazy").setup({
     patterns = {
       -- "focus.nvim",
       "neomodern",
-      "neovim-session-manager",
       "oil.nvim",
       "dashboard-nvim",
     },
