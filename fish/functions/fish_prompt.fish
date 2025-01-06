@@ -31,7 +31,7 @@ function fish_prompt
     end
 
     set -g fish_prompt_pwd_full_dirs 2
-    set -l cwd (set_color e3a1ab) (prompt_pwd)
+    set -l cwd (set_color a2bafa) (prompt_pwd)
 
     echo -n -s $cwd (fish_git_prompt) ' ' $promptchar (set_color normal)
 end

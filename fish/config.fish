@@ -1,6 +1,6 @@
 zoxide init fish | source
 fzf --fish | source
-abbr --add go git checkout
+abbr --add gC git checkout
 abbr --add gc git commit
 abbr --add gp git push
 abbr --add gs git s
@@ -40,10 +40,10 @@ set -U EDITOR nvim
 
 set -gx __zoxide_zi cdi
 set -gx FZF_DEFAULT_OPTS '
---color=fg:#adadcc,bg:#121315,hl:#ad82a2,gutter:#121315
---color=fg+:#adadcc,bg+:#16171b,hl+:#9bbdb8
---color=info:#666a82,prompt:#ad82a2,pointer:#ad82a2
---color=marker:#6397cf,spinner:#6397cf,header:#6397cf
+--color=fg:#bbbac1,bg:#1e1d1c,hl:#78bfc4,gutter:#1e1d1c
+--color=fg+:#ebabd5,bg+:#262524,hl+:#78bfc4
+--color=info:#6a6a6a,prompt:#78bfc4,pointer:#ebabd5
+--color=marker:#e8a85f,spinner:#e8a85f,header:#e8a85f"
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt="> "
 --marker="*"

@@ -27,6 +27,7 @@ local global_opts = {
   },
   vimtex_compiler_latexmk_engines = { ["_"] = "-lualatex" },
   vimtex_compiler_method = "latexmk",
+  vimtex_syntax_conceal_disable = 1,
   vimtex_compiler_latexmk = {
     callback = 1,
     continuous = 1,
@@ -51,7 +52,7 @@ local opts = {
   conceallevel = 2,
   confirm = true,
   cursorline = true,
-  cursorlineopt = "number",
+  cursorlineopt = "both",
   expandtab = true,
   fillchars = {
     stl = " ",

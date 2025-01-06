@@ -48,7 +48,7 @@ return {
             {
               action = "DiffviewOpen",
               desc = " diff",
-              icon = " ",
+              icon = " ",
               key = "d",
               cond = require("cmill.core.util").show_diff(),
             },

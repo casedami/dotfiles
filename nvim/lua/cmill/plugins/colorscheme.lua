@@ -4,21 +4,26 @@ return {
     priority = 1000,
     config = function()
       require("neomodern").setup({
-        theme = "roseprime",
+        theme = "coffeecat",
         cycle_theme_key = "<leader>cc",
-        cycle_theme_list = { "iceclimber", "coffeecat", "darkforest", "roseprime" },
+        cycle_theme_list = {
+          "iceclimber",
+          "coffeecat",
+          "darkforest",
+          "roseprime",
+        },
         toggle_mode_key = "<leader>uc",
         code_style = {
           headings = "italic",
         },
-        cursorline_gutter = false,
-        transparent = true,
+        cursorline_gutter = true,
+        transparent = false,
         plain_float = true,
         show_eob = false,
         colored_docstrings = false,
         plugin = {
           lualine = {
-            plain = true,
+            plain = false,
           },
           cmp = {
             plain = true,
@@ -27,7 +32,7 @@ return {
         },
         highlights = {
           ["LazyNormal"] = { bg = "none" },
-          ["CursorLine"] = { bg = "none" },
+          -- ["CursorLine"] = { bg = "none" },
         },
       })
       require("neomodern").load()

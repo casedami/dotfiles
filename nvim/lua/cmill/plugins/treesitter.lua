@@ -19,6 +19,7 @@ return {
       ensure_installed = {
         "json",
         "yaml",
+        "toml",
         "markdown",
         "markdown_inline",
         "latex",
@@ -27,9 +28,9 @@ return {
         "vimdoc",
         "gitignore",
         "c",
-        "cpp",
         "rust",
         "python",
+        "go",
       },
       incremental_selection = {
         enable = true,

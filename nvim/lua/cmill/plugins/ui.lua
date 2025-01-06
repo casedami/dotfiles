@@ -2,20 +2,24 @@ return {
   {
     "cdmill/focus.nvim",
     cmd = { "Focus", "Zen", "Narrow" },
-    opts = {},
+    opts = {
+      window = {
+        width = 95,
+      },
+    },
   },
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   event = "BufReadPost",
-  --   config = function()
-  --     vim.notify = require("fidget").notify
-  --     require("fidget").setup({
-  --       logger = {
-  --         level = vim.log.levels.DEBUG,
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "j-hui/fidget.nvim",
+    event = "BufReadPost",
+    config = function()
+      vim.notify = require("fidget").notify
+      require("fidget").setup({
+        logger = {
+          level = vim.log.levels.DEBUG,
+        },
+      })
+    end,
+  },
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufRead", "BufNewFile" },
@@ -71,9 +75,10 @@ return {
         options = {
           icons_enabled = true,
           theme = "neomodern",
-          -- section_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
+          -- section_separators = { left = "", right = "" },
+          -- component_separators = { left = "", right = "" },
           disabled_filetypes = {},
           ignore_focus = {},
           always_divide_middle = true,
