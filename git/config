@@ -1,6 +1,8 @@
 [user]
 	name = Casey Miller
 	email = cd.miller1230@gmail.com
+[init]
+  defaultBranch = main
 [color]
 	branch = auto
 	diff = auto

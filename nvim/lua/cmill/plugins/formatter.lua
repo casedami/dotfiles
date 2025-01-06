@@ -8,6 +8,7 @@ return {
       sh = { "shfmt" },
       fish = { "fish_indent" },
       c = { "clang-format" },
+      go = { "gofmt" },
       tex = { "latexindent" },
       R = { "styler" },
       ["_"] = { "trim_whitespace" },

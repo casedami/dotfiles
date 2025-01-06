@@ -12,9 +12,9 @@ local cfg = {
   },
   -- UI
   color_scheme_dirs = { "~/.config/wezterm/colors/" },
-  color_scheme = "roseprime",
-  macos_window_background_blur = 20,
-  window_background_opacity = 0.9,
+  color_scheme = "coffeecat",
+  -- macos_window_background_blur = 20,
+  window_background_opacity = 1.0,
   window_decorations = "RESIZE",
   window_close_confirmation = "NeverPrompt",
   window_padding = {
