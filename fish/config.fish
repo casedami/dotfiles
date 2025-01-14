@@ -27,7 +27,6 @@ alias conda-="conda deactivate"
 alias pydb="python -m pdb"
 
 alias uni="cd ~/self/Developer/uni/"
-alias notes="vim ~/self/notes/main/hedef.md"
 alias conf="cd ~/.config/"
 alias ic="cd /Users/caseymiller/Library/Mobile\ Documents/com~apple~CloudDocs"
 
@@ -37,13 +36,14 @@ set -gx TERM xterm-256color
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx RUST_BACKTRACE 1
 set -U EDITOR nvim
+set -gx NOTES_DIR ~/self/notes/main/
 
 set -gx __zoxide_zi cdi
 set -gx FZF_DEFAULT_OPTS '
 --color=fg:#bbbac1,bg:#1e1d1c,hl:#78bfc4,gutter:#1e1d1c
 --color=fg+:#ebabd5,bg+:#262524,hl+:#78bfc4
 --color=info:#6a6a6a,prompt:#78bfc4,pointer:#ebabd5
---color=marker:#e8a85f,spinner:#e8a85f,header:#e8a85f"
+--color=marker:#e8a85f,spinner:#e8a85f,header:#e8a85f
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt="> "
 --marker="*"
