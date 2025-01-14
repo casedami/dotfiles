@@ -17,7 +17,7 @@ return {
       dir = "~/self/notes/main/",
       templates = {
         subdir = "resources/templates",
-        date_format = "%Y-%m-%d",
+        date_format = "%Y-%B",
         time_format = "%H:%M",
         substitutions = {},
       },

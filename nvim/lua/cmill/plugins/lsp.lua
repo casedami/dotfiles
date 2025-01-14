@@ -132,12 +132,12 @@ return {
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local servers = opts.servers
-      local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local blink = require("blink.cmp")
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
         vim.lsp.protocol.make_client_capabilities(),
-        cmp_nvim_lsp.default_capabilities(),
+        blink.get_lsp_capabilities(),
         opts.capabilities or {}
       )
 
