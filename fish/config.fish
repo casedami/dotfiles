@@ -1,11 +1,11 @@
 zoxide init fish | source
 fzf --fish | source
+
 abbr --add gC git checkout
 abbr --add gc git commit
 abbr --add gp git push
 abbr --add gs git s
-abbr --add assgn "cp -r ~/Developer/tex/templates/assignment-template"
-abbr --add wrtg "cp -r ~/Developer/tex/templates/wrtg-template"
+abbr --add mm monthly
 
 alias vim="nvim"
 alias sed="sed -E"
@@ -25,10 +25,6 @@ alias python="python3.13"
 alias conda+="conda activate"
 alias conda-="conda deactivate"
 alias pydb="python -m pdb"
-
-alias uni="cd ~/self/Developer/uni/"
-alias conf="cd ~/.config/"
-alias ic="cd /Users/caseymiller/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 set -U fish_greeting
 set -gx LANG en_US.UTF-8
@@ -59,7 +55,7 @@ set -gx FZF_DEFAULT_OPTS '
 #--preview-window="right:60%:hidden" 
 
 fish_add_path $HOME/.local/bin/scripts/
-fish_add_path $HOME/Library/Python/3.12/bin
+fish_add_path $HOME/Library/Python/3.13/bin
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
