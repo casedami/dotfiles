@@ -86,8 +86,8 @@ return {
             winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
             draw = {
               columns = {
-                { "kind_icon", gap = 4 },
-                { "label", gap = 1 },
+                { "kind_icon" },
+                { "label", gap = 4 },
                 { "source_name" },
               },
               components = {
