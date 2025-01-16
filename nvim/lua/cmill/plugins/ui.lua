@@ -17,6 +17,11 @@ return {
         logger = {
           level = vim.log.levels.DEBUG,
         },
+        notification = {
+          window = {
+            winblend = 0,
+          },
+        },
       })
     end,
   },
