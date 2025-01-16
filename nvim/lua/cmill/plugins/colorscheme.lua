@@ -17,7 +17,7 @@ return {
           headings = "italic",
         },
         cursorline_gutter = true,
-        transparent = false,
+        transparent = true,
         plain_float = true,
         show_eob = false,
         colored_docstrings = false,
