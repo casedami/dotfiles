@@ -1,6 +1,7 @@
-enable-normalization-flatten-containers = false
-enable-normalization-opposite-orientation-for-nested-containers = false
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
 start-at-login = true
+automatically-unhide-macos-hidden-apps = true
 
 [gaps]
 inner.horizontal = [{monitor."built-in" = 10}, {monitor."dell" = 25}, 10]

@@ -1,25 +1,5 @@
 return {
   {
-    "stevearc/overseer.nvim",
-    cmd = {
-      "OverseerRun",
-      "OverseerToggle",
-      "OverseerSaveBundle",
-      "OverseerLoadBundle",
-      "OverseerTaskAction",
-    },
-    config = function()
-      require("overseer").setup({
-        form = {
-          max_width = 0.3,
-        },
-        confirm = {
-          max_width = 0.3,
-        },
-      })
-    end,
-  },
-  {
     "folke/todo-comments.nvim",
     event = "BufReadPost",
     -- stylua: ignore

@@ -1,5 +1,4 @@
 zoxide init fish | source
-fzf --fish | source
 
 abbr --add gC git checkout
 abbr --add gc git commit
@@ -35,24 +34,6 @@ set -U EDITOR nvim
 set -gx NOTES_DIR ~/self/notes/main/
 
 set -gx __zoxide_zi cdi
-set -gx FZF_DEFAULT_OPTS '
---color=fg:#bbbac1,bg:#1e1d1c,hl:#78bfc4,gutter:#1e1d1c
---color=fg+:#ebabd5,bg+:#262524,hl+:#78bfc4
---color=info:#6a6a6a,prompt:#78bfc4,pointer:#ebabd5
---color=marker:#e8a85f,spinner:#e8a85f,header:#e8a85f
---separator="─" --scrollbar="│" --layout="reverse" --info="right"
---prompt="> "
---marker="*"
---pointer=">"
---cycle
---multi
---height 40%
---preview "bat --style=numbers,changes --wrap auto --decorations always --color never {} || cat {} || tree -C {}"
---preview-window="right:60%:hidden:noborder" 
---bind="?:toggle-preview"
---bind="ctrl-u:preview-page-up"
---bind="ctrl-d:preview-page-down"'
-#--preview-window="right:60%:hidden" 
 
 fish_add_path $HOME/.local/bin/scripts/
 fish_add_path $HOME/Library/Python/3.13/bin
