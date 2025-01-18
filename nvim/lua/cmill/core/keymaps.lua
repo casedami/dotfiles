@@ -103,18 +103,18 @@ end, {})
 
 -- SESSIONS
 vim.api.nvim_create_user_command("SesWrite", function()
-  vim.cmd("SessionManager save_current_session")
+  require("cmill.core.session").save_session()
   local msg = '"' .. vim.fn.getcwd() .. '"' .. " session saved"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
 vim.api.nvim_create_user_command("SesDel", function()
-  vim.cmd("SessionManager delete_current_dir_session")
+  require("cmill.core.session").delete_session()
   local msg = '"' .. vim.fn.getcwd() .. '"' .. " session deleted"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
 
 vim.api.nvim_create_user_command("SesLoad", function()
-  vim.cmd("SessionManager load_current_dir_session")
+  require("cmill.core.session").load_session()
   local msg = '"' .. vim.fn.getcwd() .. '"' .. " session loaded"
   vim.cmd("echo '" .. msg .. "'")
 end, {})
