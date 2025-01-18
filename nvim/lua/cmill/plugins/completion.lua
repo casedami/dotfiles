@@ -4,7 +4,6 @@ return {
     event = "VeryLazy",
     dependencies = {
       { "rafamadriz/friendly-snippets" },
-      { "mikavilpas/blink-ripgrep.nvim" },
     },
     version = "*",
     config = function()
@@ -42,7 +41,6 @@ return {
             "snippets",
             "buffer",
             "lazydev",
-            "ripgrep",
           },
           providers = {
             lazydev = {
@@ -50,20 +48,12 @@ return {
               module = "lazydev.integrations.blink",
               fallbacks = { "lsp" },
             },
-            ripgrep = {
-              module = "blink-ripgrep",
-              name = "Ripgrep",
-              opts = {
-                prefix_min_len = 3,
-                context_size = 5,
-                max_filesize = "1M",
-              },
-            },
           },
         },
         appearance = {
           kind_icons = {
             Snippet = "",
+            Folder = " ",
           },
         },
         completion = {
@@ -86,7 +76,7 @@ return {
             winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
             draw = {
               columns = {
-                { "kind_icon" },
+                { "kind_icon", gap = 4 },
                 { "label", gap = 4 },
                 { "source_name" },
               },
@@ -95,7 +85,7 @@ return {
                   text = function(ctx)
                     local map = {
                       ["lsp"] = " ",
-                      ["path"] = "󰉋 ",
+                      ["path"] = " ",
                       ["snippets"] = " ",
                     }
 

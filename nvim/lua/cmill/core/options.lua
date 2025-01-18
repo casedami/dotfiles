@@ -11,14 +11,19 @@ local global_opts = {
   markdown_folding = 1,
 
   tex_flavor = "latex",
-  vimtex_view_method = "sioyek",
-  vimtex_view_sioyek_options = "--reuse-window",
+  vimtex_view_use_temp_files = true,
   vimtex_indent_on = 1,
   vimtex_fold_enabled = 1,
-  vimtex_complete_bib = {
-    abbr_fmt = "[@type] @author_short (@year)",
-    menu_fmt = "@title",
-  },
+  vimtex_complete_enabled = 0,
+  vimtex_mappings_enabled = 0,
+  vimtex_imaps_enabled = 0,
+  vimtex_indent_enabled = 0,
+  vimtex_text_obj_enabled = 0,
+  vimtex_matchparen_enabled = 0,
+  -- vimtex_complete_bib = {
+  --   abbr_fmt = "[@type] @author_short (@year)",
+  --   menu_fmt = "@title",
+  -- },
   vimtex_quickfix_open_on_warning = 0,
   vimtex_toc_config = {
     name = "ToC",
