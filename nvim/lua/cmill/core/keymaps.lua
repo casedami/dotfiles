@@ -104,19 +104,13 @@ end, {})
 -- SESSIONS
 vim.api.nvim_create_user_command("SesWrite", function()
   require("cmill.core.session").save_session()
-  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session saved"
-  vim.cmd("echo '" .. msg .. "'")
 end, {})
 vim.api.nvim_create_user_command("SesDel", function()
   require("cmill.core.session").delete_session()
-  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session deleted"
-  vim.cmd("echo '" .. msg .. "'")
 end, {})
 
 vim.api.nvim_create_user_command("SesLoad", function()
   require("cmill.core.session").load_session()
-  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session loaded"
-  vim.cmd("echo '" .. msg .. "'")
 end, {})
 
 -- FILE CREATION FOR DASHBOARD

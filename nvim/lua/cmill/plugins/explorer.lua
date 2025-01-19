@@ -1,5 +1,8 @@
 return {
   {
+    "nvim-lua/plenary.nvim",
+  },
+  {
     "stevearc/oil.nvim",
     event = "VimEnter",
     keys = {

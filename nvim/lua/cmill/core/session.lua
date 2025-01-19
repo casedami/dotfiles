@@ -1,31 +1,30 @@
 local M = {}
-M.active_session_filename = nil
 
 local Path = require("plenary.path")
-local path_replacer = "__"
-local colon_replacer = "++"
-local sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions")
+local PATH_SEP = "__"
+local COLON_SEP = "++"
+local SESSIONS_DIR = Path:new(vim.fn.stdpath("data"), "sessions")
 
 ---@private
-function M.session_filename_to_dir(filename)
-  local dir = filename:sub(#tostring(sessions_dir) + 2)
-  dir = dir:gsub(colon_replacer, ":")
-  dir = dir:gsub(path_replacer, Path.path.sep)
+function M.session_name_to_dir(fname)
+  local dir = fname:sub(#tostring(SESSIONS_DIR) + 2)
+  dir = dir:gsub(COLON_SEP, ":")
+  dir = dir:gsub(PATH_SEP, Path.path.sep)
   return Path:new(dir)
 end
 
 ---@private
-function M.dir_to_session_filename(dir)
-  local filename = dir:gsub(":", colon_replacer)
-  filename = filename:gsub(Path.path.sep, path_replacer)
-  return Path:new(sessions_dir):joinpath(filename)
+function M.dir_to_session_name(dir)
+  local fname = dir:gsub(":", COLON_SEP)
+  fname = fname:gsub(Path.path.sep, PATH_SEP)
+  return Path:new(SESSIONS_DIR):joinpath(fname)
 end
 
 ---@private
 function M.session_exists()
   local cwd = vim.uv.cwd()
   if cwd then
-    local session = M.dir_to_session_filename(cwd)
+    local session = M.dir_to_session_name(cwd)
     return session:exists()
   end
   return false
@@ -65,6 +64,14 @@ function M.is_restorable(bufnr)
 end
 
 function M.load_session()
+  if not M.session_exists() then
+    local msg = "no session found for cwd: " .. '"' .. vim.fn.getcwd() .. '"'
+    vim.notify("echo '" .. msg .. "'", vim.log.levels.WARN)
+    return
+  end
+
+  local fname = M.dir_to_session_name(vim.uv.cwd()).filename
+
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
       local choice = vim.fn.confirm(
@@ -72,25 +79,51 @@ function M.load_session()
         "&Yes\n&No\n&Cancel"
       )
       if choice == 3 or choice == 0 then
-        return -- Cancel.
+        return
       elseif choice == 1 then
         vim.api.nvim_command("silent wall")
       end
       break
     end
   end
+
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(buf) and buf ~= current_buf then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+  vim.api.nvim_buf_delete(current_buf, { force = true })
+
+  local swapfile = vim.o.swapfile
+  vim.o.swapfile = false
+  vim.api.nvim_command("silent source " .. fname)
+  vim.o.swapfile = swapfile
+
+  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session loaded"
+  vim.notify(msg, vim.log.levels.INFO, {})
 end
 
----@private
-local function save_session(filename)
-  sessions_dir = Path:new(tostring(sessions_dir))
-  if not sessions_dir:is_dir() then
-    sessions_dir:mkdir()
+function M.save_session()
+  local cwd = vim.uv.cwd()
+  if not cwd then
+    vim.notify(
+      "session: something went wrong (cwd not found)!",
+      vim.log.levels.ERROR,
+      {}
+    )
+    return false
   end
 
-  for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_valid(buffer) and not M.is_restorable(buffer) then
-      vim.api.nvim_buf_delete(buffer, { force = true })
+  local fname = M.dir_to_session_name(cwd).filename
+  SESSIONS_DIR = Path:new(tostring(SESSIONS_DIR))
+  if not SESSIONS_DIR:is_dir() then
+    SESSIONS_DIR:mkdir()
+  end
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(buf) and not M.is_restorable(buf) then
+      vim.api.nvim_buf_delete(buf, { force = true })
     end
   end
 
@@ -98,31 +131,22 @@ local function save_session(filename)
     vim.api.nvim_command("%argdel")
   end
 
-  M.active_session_filename = filename
+  vim.api.nvim_command("mksession! " .. fname)
 
-  vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePre" })
-  vim.api.nvim_command("mksession! " .. filename)
-  vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePost" })
-end
-
-function M.save_session()
-  local cwd = vim.uv.cwd()
-  if cwd then
-    save_session(M.dir_to_session_filename(cwd).filename)
-  end
+  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session saved"
+  vim.notify(msg, vim.log.levels.INFO, {})
 end
 
 function M.delete_session()
   local cwd = vim.uv.cwd()
   if cwd then
-    local session = M.dir_to_session_filename(cwd)
+    local session = M.dir_to_session_name(cwd)
     if session:exists() then
       Path:new(session.filename):rm()
-      if session.filename == M.active_session_filename then
-        M.active_session_filename = nil
-      end
     end
   end
+  local msg = '"' .. vim.fn.getcwd() .. '"' .. " session deleted"
+  vim.notify(msg, vim.log.levels.INFO, {})
 end
 
 return M
