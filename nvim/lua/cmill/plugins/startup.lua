@@ -4,19 +4,19 @@ return {
     opts = {
       dashboard = {
         preset = {
-          header = "Neovim [" .. tostring(vim.version()) .. "] in " .. vim.fn
-            .getcwd()
+          header = "Neovim [" .. tostring(vim.version()) .. "] in " .. vim.uv
+            .cwd()
             :gsub("^/Users/caseymiller", "~") .. "\non " .. os.date(
             "%a %B %d %Y"
           ),
           -- stylua: ignore
           keys = {
             { icon = " ", key = "f", desc = "find file", action = ":Telescope find_files" },
-            { icon = " ", key = "n", desc = "new File", action = ":lua require('cmill.core.util').new_file_prompt()" },
+            { icon = " ", key = "n", desc = "new file", action = ":lua require('cmill.core.util').new_file_prompt()" },
             { icon = " ", key = "r", desc = "recent files", action = ":Telescope oldfiles cwd_only=true" },
             { icon = "󱏒 ", key = "e", desc = "explorer", action = ":Oil" },
             { icon = " ", key = "g", desc = "grep", action = ":Telescope live_grep" },
-            { icon = " ", key = "s", desc = "restore session", action = ":SesLoad" },
+            { icon = " ", key = "s", desc = "restore session", action = ":SesLoad", enabled = require("cmill.core.session").session_exists() },
             { icon = " ", key = "c", desc = "config", action = ":lua require('cmill.core.util').config_files()" },
             { icon = "󰒲 ", key = "l", desc = "lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "quit", action = ":qa" },

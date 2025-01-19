@@ -20,7 +20,6 @@ function M.dir_to_session_name(dir)
   return Path:new(SESSIONS_DIR):joinpath(fname)
 end
 
----@private
 function M.session_exists()
   local cwd = vim.uv.cwd()
   if cwd then

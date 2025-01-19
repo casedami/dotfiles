@@ -4,7 +4,7 @@ return {
     priority = 1000,
     config = function()
       require("neomodern").setup({
-        theme = "coffeecat",
+        theme = "darkforest",
         cycle_theme_key = "<leader>cc",
         cycle_theme_list = {
           "iceclimber",
