@@ -65,8 +65,8 @@ end
 
 function M.load_session()
   if not M.session_exists() then
-    local msg = "no session found for cwd: " .. '"' .. vim.fn.getcwd() .. '"'
-    vim.notify("echo '" .. msg .. "'", vim.log.levels.WARN)
+    local msg = " session: no session found for cwd " .. '"' .. vim.fn.getcwd() .. '"'
+    vim.notify(msg, vim.log.levels.WARN)
     return
   end
 
