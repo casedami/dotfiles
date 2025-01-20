@@ -24,6 +24,7 @@ alias python="python3.13"
 alias conda+="conda activate"
 alias conda-="conda deactivate"
 alias pydb="python -m pdb"
+alias llama="ollama run llama3.2:1b"
 
 set -U fish_greeting
 set -gx LANG en_US.UTF-8

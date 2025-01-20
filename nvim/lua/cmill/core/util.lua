@@ -173,7 +173,7 @@ function M.is_selected(is_cul)
       if culhl_cache["VisualRangeNr"] == nil then
         M.hi_vis_range()
       end
-      v_hl = is_in_range and "%#VisualRangeNr#" or ""
+      v_hl = is_in_range and "%#VisualRangeNr#|" or ""
     end
   end
   return v_hl
@@ -294,6 +294,11 @@ function M.statusline_components()
       colored = false,
       icon_only = true,
     },
+    user = {
+      function()
+        return vim.uv.os_get_passwd()["username"]
+      end,
+    },
     loc = {
       "location",
     },
@@ -311,7 +316,7 @@ function M.statusline_components()
         return ""
       end,
       color = function()
-        local palette = require("neomodern.terminal").colors()
+        local palette = require("neomodern.terminal").colors(false)
         return { fg = palette.green }
       end,
     },
