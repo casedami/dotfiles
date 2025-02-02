@@ -1,10 +1,115 @@
+local lsp_client = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  if next(clients) == nil then
+    return ""
+  else
+    return clients
+  end
+end
+
+local components = {
+  git_branch = {
+    "branch",
+    icon = "",
+  },
+  date = {
+    "datetime",
+    style = "%Y-%m-%d",
+    color = { fg = "#88888f" },
+  },
+  errs = {
+    "diagnostics",
+    sections = { "error", "warn" },
+    symbols = {
+      error = "󰅖",
+      warn = "",
+    },
+  },
+  git_diff = {
+    "diff",
+  },
+  fname = {
+    "filename",
+    path = 3,
+    fmt = function(str)
+      local path = require("oil").get_current_dir() or ""
+      local ftype = {
+        TelescopePrompt = "Telescope",
+        oil = path:gsub("^/Users/caseymiller", "~"),
+        lazy = "Lazy",
+        fugitive = "Git",
+        dashboard = "Dashboard",
+        snacks_picker_list = "Explorer",
+      }
+      local btype = {
+        terminal = "terminal",
+        quickfix = "quickfix",
+      }
+
+      if vim.bo.filetype ~= "TelescopePrompt" and vim.bo.buftype == "prompt" then
+        return ""
+      else
+        return ftype[vim.bo.filetype] or btype[vim.bo.buftype] or str
+      end
+    end,
+  },
+  ftype = {
+    "filetype",
+    colored = false,
+    icon_only = true,
+  },
+  user = {
+    function()
+      return vim.uv.os_get_passwd()["username"]
+    end,
+  },
+  loc = {
+    "location",
+  },
+  lsp = {
+    lsp_client,
+  },
+  modes = {
+    "mode",
+    fmt = function(str)
+      return str:sub(1, 3)
+    end,
+  },
+  nvim_icon = {
+    function()
+      return ""
+    end,
+    color = function()
+      local palette = require("neomodern.terminal").colors(false)
+      return { fg = palette.green }
+    end,
+  },
+  prog = {
+    "progress",
+  },
+  tabs = {
+    function()
+      return vim.fn.tabpagenr()
+    end,
+    cond = function()
+      return vim.api.nvim_eval("len(gettabinfo())") > 1
+    end,
+  },
+  time = {
+    "datetime",
+    style = "%H:%M:%S",
+  },
+}
+
 return {
   {
     "cdmill/focus.nvim",
     cmd = { "Focus", "Zen", "Narrow" },
     opts = {
       window = {
-        width = 95,
+        width = 100,
       },
     },
   },
@@ -75,7 +180,6 @@ return {
     -- event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = function()
-      local components = require("cmill.core.util").statusline_components()
       local setup = {
         options = {
           icons_enabled = true,

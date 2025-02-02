@@ -75,6 +75,7 @@ return {
             "indent.log",
             "__pycache__",
             ".DS_Store",
+            "gcloud",
           },
           layout_strategy = "dynamic_horizontal",
           sorting_strategy = "ascending",

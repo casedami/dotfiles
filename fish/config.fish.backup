@@ -15,7 +15,6 @@ alias grep="grep --color=auto"
 alias top="top -n 25 -s 3"
 alias fd="fd -c never"
 alias timeit="/usr/bin/time -p"
-alias db5530="mysql -h atr.eng.utah.edu -u u1337847 -p"
 
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
 alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
@@ -25,6 +24,7 @@ alias python="python3.13"
 alias conda+="conda activate"
 alias conda-="conda deactivate"
 alias pydb="python -m pdb"
+alias llama="ollama run llama3.2"
 
 set -U fish_greeting
 set -gx LANG en_US.UTF-8
@@ -34,13 +34,10 @@ set -gx RUST_BACKTRACE 1
 set -U EDITOR nvim
 set -gx NOTES_DIR ~/self/notes/main/monthly/
 
-#set -gx __zoxide_zi cdi
+set -gx __zoxide_zi cdi
 
 fish_add_path $HOME/.local/bin/scripts/
 fish_add_path $HOME/Library/Python/3.13/bin
-
-
-source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

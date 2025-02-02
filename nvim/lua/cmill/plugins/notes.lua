@@ -16,7 +16,7 @@ return {
     opts = {
       dir = "~/self/notes/main/",
       templates = {
-        subdir = "resources/templates",
+        subdir = ".resources/templates",
         date_format = "%Y-%B",
         time_format = "%H:%M",
         substitutions = {},
@@ -79,7 +79,7 @@ return {
           note:add_alias(note.title)
         end
 
-        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+        local out = { id = note.id, aliases = note.aliases }
 
         if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
           for k, v in pairs(note.metadata) do

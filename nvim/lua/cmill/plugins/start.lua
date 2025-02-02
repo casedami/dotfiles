@@ -1,8 +1,11 @@
+vim.keymap.set("n", "<leader>FE", "<cmd>lua require('snacks.explorer').open()<cr>")
 return {
   {
     "folke/snacks.nvim",
     opts = {
+      explorer = { enabled = true },
       dashboard = {
+        enabled = true,
         preset = {
           header = "Neovim [" .. tostring(vim.version()) .. "] in " .. vim.uv
             .cwd()
@@ -17,7 +20,7 @@ return {
             { icon = "󱏒 ", key = "e", desc = "explorer", action = ":Oil" },
             { icon = " ", key = "g", desc = "grep", action = ":Telescope live_grep" },
             { icon = " ", key = "s", desc = "restore session", action = ":SesLoad", enabled = require("cmill.core.session").session_exists() },
-            { icon = " ", key = "c", desc = "config", action = ":lua require('cmill.core.util').config_files()" },
+            { icon = " ", key = "c", desc = "config", action = ":lua require('telescope.builtin')['find_files']({ cwd = vim.fn.stdpath('config') })" },
             { icon = "󰒲 ", key = "l", desc = "lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "quit", action = ":qa" },
           },

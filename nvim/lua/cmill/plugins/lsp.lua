@@ -35,7 +35,7 @@ return {
         },
       },
       inlay_hints = {
-        enabled = false,
+        enabled = true,
       },
       document_highlight = {
         enabled = true,
@@ -56,6 +56,11 @@ return {
         lua_ls = {
           settings = {
             Lua = {
+              diagnostics = {
+                globals = {
+                  "vim",
+                },
+              },
               hint = {
                 enable = true,
                 setType = false,
@@ -76,12 +81,11 @@ return {
             python = {
               analysis = {
                 -- Ignore all files for analysis to exclusively use Ruff for linting
-                -- ignore = { "*" },
+                ignore = { "*" },
               },
             },
           },
         },
-        clangd = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
@@ -94,43 +98,23 @@ return {
             },
           },
         },
-        r_language_server = {},
-        sourcekit = {
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = {
-                dynamicRegistration = true,
-              },
-            },
-          },
-        },
       },
       setup = {
         ruff = function()
-          local on_attach = function(client, _)
-            if client.name == "ruff_lsp" then
-              -- Disable hover in favor of Pyright
-              client.server_capabilities.hoverProvider = false
-            end
-          end
-
           require("lspconfig").ruff.setup({
-            on_attach = on_attach,
+            on_attach = function(client, _)
+              if client.name == "ruff_lsp" then
+                -- Disable hover in favor
+                client.server_capabilities.hoverProvider = false
+              end
+            end,
           })
         end,
       },
     },
     config = function(_, opts)
-      require("lspconfig.ui.windows").default_options.border = "rounded"
-
-      vim.lsp.handlers["textDocument/hover"] =
-        vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
-      vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
+      -- setup lsp capabilities
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-
       local servers = opts.servers
       local blink = require("blink.cmp")
       local capabilities = vim.tbl_deep_extend(
@@ -158,6 +142,7 @@ return {
         require("lspconfig")[server].setup(server_opts)
       end
 
+      -- setup lsp servers
       local mlsp = require("mason-lspconfig")
       local all_mslp_servers =
         vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
@@ -174,7 +159,19 @@ return {
         end
       end
 
-      mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+      mlsp.setup({
+        ensure_installed = ensure_installed,
+        handlers = { setup },
+        automatic_installation = false,
+      })
+
+      -- set appearance
+      require("lspconfig.ui.windows").default_options.border = "rounded"
+      vim.lsp.handlers["textDocument/hover"] =
+        vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+      vim.lsp.handlers["textDocument/signatureHelp"] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+      vim.diagnostic.config({ float = { source = true } })
     end,
   },
   {
@@ -185,10 +182,9 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
+        "lua-language-server",
         "pyright",
         "ruff",
-        "clangd",
-        "clang-format",
         "latexindent",
         "rust-analyzer",
       },
