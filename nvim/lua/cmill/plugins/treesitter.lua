@@ -8,7 +8,10 @@ return {
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
-      highlight = { enable = true, disable = { "latex" } },
+      highlight = {
+        enable = true,
+        disable = { "latex" },
+      },
       indent = {
         enable = true,
         disable = {
@@ -17,6 +20,8 @@ return {
       },
       autotag = { enable = true },
       ensure_installed = {
+        "regex",
+        "bash",
         "json",
         "yaml",
         "toml",
@@ -31,6 +36,9 @@ return {
         "rust",
         "python",
         "go",
+        "sql",
+        "ninja",
+        "rst",
       },
       incremental_selection = {
         enable = true,

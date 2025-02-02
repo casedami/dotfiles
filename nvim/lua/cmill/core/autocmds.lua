@@ -4,17 +4,17 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("cmill" .. name, { clear = true })
 end
 
--- highlight text on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
+  desc = "highlight text on yank",
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
--- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = augroup("last_loc"),
+  desc = "go to last loc when opening buffer",
   callback = function(event)
     local exclude = { "gitcommit" }
     local buf = event.buf
@@ -32,8 +32,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- set win opts when opening a term buf
 vim.api.nvim_create_autocmd("TermOpen", {
+  group = augroup("term"),
+  desc = "set win opts when opening term buf",
   callback = function()
     vim.opt_local.spell = false
     vim.opt_local.number = false
@@ -44,9 +45,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "OverseerList" },
-  callback = function()
-    vim.opt_local.statuscolumn = ""
+  group = augroup("close_with_q"),
+  desc = "Close with <q>",
+  pattern = {
+    "git",
+    "help",
+    "man",
+    "qf",
+    "query",
+  },
+  callback = function(args)
+    vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
   end,
 })
 
@@ -96,5 +105,59 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
     map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
     map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "set options for vimtex",
+  group = augroup("tex"),
+  pattern = {
+    "tex",
+  },
+  callback = function()
+    local opts = {
+      tex_flavor = "latex",
+      vimtex_view_use_temp_files = true,
+      vimtex_indent_on = 1,
+      vimtex_fold_enabled = 1,
+      vimtex_complete_enabled = 0,
+      vimtex_mappings_enabled = 0,
+      vimtex_imaps_enabled = 0,
+      vimtex_indent_enabled = 0,
+      vimtex_text_obj_enabled = 0,
+      vimtex_matchparen_enabled = 0,
+      -- vimtex_complete_bib = {
+      --   abbr_fmt = "[@type] @author_short (@year)",
+      --   menu_fmt = "@title",
+      -- },
+      vimtex_quickfix_open_on_warning = 0,
+      vimtex_toc_config = {
+        name = "ToC",
+        layers = { "content", "todo", "include" },
+        show_help = false,
+      },
+      vimtex_compiler_latexmk_engines = { ["_"] = "-lualatex" },
+      vimtex_compiler_method = "latexmk",
+      vimtex_syntax_conceal_disable = 1,
+      vimtex_compiler_latexmk = {
+        callback = 1,
+        continuous = 1,
+        executable = "latexmk",
+        options = {
+          "-shell-escape",
+          "-verbose",
+          "-file-line-error",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+        },
+      },
+    }
+
+    for k, v in pairs(opts) do
+      vim.g[k] = v
+    end
+
+    vim.opt.spell = true
+    vim.keymap.set("n", "<localleader>ll", "<cmd>VimtexCompile<cr>", { silent = true })
   end,
 })
