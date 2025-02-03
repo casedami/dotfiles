@@ -19,6 +19,7 @@ return {
             { icon = " ", key = "r", desc = "recent files", action = ":Telescope oldfiles cwd_only=true" },
             { icon = "󱏒 ", key = "e", desc = "explorer", action = ":Oil" },
             { icon = " ", key = "g", desc = "grep", action = ":Telescope live_grep" },
+            { icon = " ", key = "G", desc = "git", action = ":Neogit", enabled =  require("cmill.core.util").show_diff()},
             { icon = " ", key = "s", desc = "restore session", action = ":SesLoad", enabled = require("cmill.core.session").session_exists() },
             { icon = " ", key = "c", desc = "config", action = ":lua require('telescope.builtin')['find_files']({ cwd = vim.fn.stdpath('config') })" },
             { icon = "󰒲 ", key = "l", desc = "lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
