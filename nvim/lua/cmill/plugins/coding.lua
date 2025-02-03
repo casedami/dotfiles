@@ -26,6 +26,14 @@ return {
     },
   },
   {
+    "NeogitOrg/neogit",
+    keys = {
+      { "<leader>gg", "<cmd>Neogit kind=auto<cr>" },
+    },
+    cmd = "Neogit",
+    config = true,
+  },
+  {
     "danymat/neogen",
     event = "LspAttach",
     config = function()
@@ -39,13 +47,13 @@ return {
     cmd = "DiffviewOpen",
     keys = {
       {
-        "<leader>gg",
+        "<leader>gd",
         "<cmd>DiffviewOpen<cr>",
         desc = "Open diffview",
         silent = true,
       },
       {
-        "<leader>gw",
+        "<leader>gD",
         "<cmd>DiffviewClose<cr>",
         desc = "Close diffview",
         silent = true,

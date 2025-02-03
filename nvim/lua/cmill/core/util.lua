@@ -1,26 +1,21 @@
 local M = {}
 
-function M.expand_snip(snippet)
-  local session = vim.snippet.active() and vim.snippet._session or nil
+---Returns true if cwd is inside a git repo, false otherwise
+---@return boolean
+function M.is_git_repo()
+  local cmd = { "git", "rev-parse", "--is-inside-git-dir" }
+  local result = vim.system(cmd):wait()
+  return result.code == 0
+end
 
-  local ok, err = pcall(vim.snippet.expand, snippet)
-  if not ok then
-    local fixed = M.snippet_fix(snippet)
-    ok = pcall(vim.snippet.expand, fixed)
+function M.git_local_changes_exists()
+  local cmd = { "git", "status", "--porcelain" }
+  local result = vim.system(cmd):wait()
+  return result.stdout and #result.stdout > 0
+end
 
-    local msg = ok and "Failed to parse snippet,\nbut was able to fix it automatically."
-      or ("Failed to parse snippet.\n" .. err)
-
-    local outstr = ([[%s
-    ```%s
-    %s
-    ```]]):format(msg, vim.bo.filetype, snippet)
-    vim.api.nvim_echo({ { outstr, ok and "Warn" or "Error" } }, true, {})
-  end
-
-  if session then
-    vim.snippet._session = session
-  end
+function M.show_diff()
+  return M.is_git_repo() and M.git_local_changes_exists()
 end
 
 return M
