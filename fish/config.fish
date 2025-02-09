@@ -40,7 +40,7 @@ fish_add_path $HOME/.local/bin/scripts/
 fish_add_path $HOME/Library/Python/3.13/bin
 
 
-source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+#source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

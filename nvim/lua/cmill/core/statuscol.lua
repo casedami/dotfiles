@@ -172,8 +172,8 @@ function M.is_selected(is_cul)
     else
       if culhl_cache["VisualRangeNr"] == nil then
         M.hi_vis_range()
-        v_hl = is_in_range and "%#VisualRangeNr#" or ""
       end
+      v_hl = is_in_range and "%#VisualRangeNr#" or ""
     end
   end
   return v_hl
@@ -208,9 +208,9 @@ function M.render()
     end)
     local is_cul = vim.v.relnum == 0
     -- Left: mark or non-git sign
-    components[1] = " " .. M.icon(M.get_mark(buf, vim.v.lnum) or left, is_cul)
+    components[1] = " " .. M.icon(M.get_mark(buf, vim.v.lnum) or left or right, is_cul)
     -- Right: fold icon or git sign
-    components[3] = M.icon(fold or right, is_cul)
+    components[3] = M.icon(fold, is_cul)
   end
 
   local is_num = vim.wo[win].number
@@ -218,7 +218,7 @@ function M.render()
 
   if (is_num or is_relnum) and vim.v.virtnum == 0 then
     if vim.v.relnum == 0 then
-      local num = is_num and "%l " or "%r " -- the current line
+      local num = is_num and "%l" or "%r" -- the current line
       components[2] = M.is_selected(true) .. num
     else
       local num = is_relnum and "%r" or "%l" -- other lines
@@ -230,6 +230,6 @@ function M.render()
   return table.concat(components, "")
 end
 
-vim.o.statuscolumn = "%!v:lua.require'cmill.core.statuscol'.render()"
+vim.o.statuscolumn = "%!v:lua.require('cmill.core.statuscol').render()"
 
 return M

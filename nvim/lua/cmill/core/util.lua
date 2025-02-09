@@ -18,4 +18,10 @@ function M.show_diff()
   return M.is_git_repo() and M.git_local_changes_exists()
 end
 
+---Convenient new file prompt expansion for startup screen
+function M.new_file_prompt()
+  local inp = vim.fn.input("Name: ")
+  vim.cmd(("New %s"):format(inp))
+end
+
 return M

@@ -33,8 +33,8 @@ local maps = {
   -- WINDOWS
   { "n", "<C-Up>", "<cmd>resize +2<cr>" }, -- increase window height
   { "n", "<C-Down>", "<cmd>resize -2<cr>" }, -- decrease window height
-  { "n", "<C-Left>", "<cmd>vertical resize +2<cr>" }, -- decrease window width
-  { "n", "<C-Right>", "<cmd>vertical resize -2<cr>" }, -- increase window width
+  { "n", "<C-Left>", "<cmd>vertical resize -2<cr>" }, -- decrease window width
+  { "n", "<C-Right>", "<cmd>vertical resize +2<cr>" }, -- increase window width
   { { "n", "v" }, "<C-h>", "<C-w>h", opts["remap"] }, -- goto left window
   { { "n", "v" }, "<C-j>", "<C-w>j", opts["remap"] }, -- goto lower window
   { { "n", "v" }, "<C-k>", "<C-w>k", opts["remap"] }, -- goto upper window
@@ -84,11 +84,8 @@ local maps = {
   { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
   { "ca", "nums", "set relativenumber!", opts["silent"] },
   { "ca", "cd.", "cd %:h" },
-  { "ca", "run", "OverseerRun" },
-  { "ca", "res", "OverseerToggle! right" },
-  { "ca", "srun", "OverseerSaveBundle" },
-  { "ca", "runt", "OverseerTaskAction" },
-  { "ca", "lrun", "OverseerLoadBundle!" },
+  { "ca", "dopen", "DiffviewOpen" },
+  { "ca", "dclose", "DiffviewClose" },
 }
 
 for _, v in pairs(maps) do
