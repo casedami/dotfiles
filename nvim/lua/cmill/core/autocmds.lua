@@ -65,7 +65,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local bufnr = ev.buf
     -- enable completion triggered by <c-x><c-o>
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-    local builtins = require("telescope.builtin")
 
     local toggle_diagnostics = function()
       vim.diagnostic.enable(not vim.diagnostic.is_enabled())
@@ -73,14 +72,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- lsp
     local opts = { buffer = bufnr }
-    map("n", "gd", builtins.lsp_definitions, opts)
-    map("n", "gD", vim.lsp.buf.declaration, opts)
     map("n", "<leader>dr", vim.lsp.buf.rename, opts)
     map({ "n", "v" }, "<leader>da", vim.lsp.buf.code_action, opts)
     map("n", "<leader>D", vim.diagnostic.open_float, opts)
-    map("n", "<leader>di", builtins.lsp_implementations, opts)
-    map("n", "<leader>dR", builtins.lsp_references, opts)
-    map("n", "<leader>df", builtins.diagnostics, opts)
     map("n", "<leader>dd", toggle_diagnostics, opts)
     map("n", "<leader>dh", vim.lsp.buf.document_highlight, opts)
 
@@ -123,9 +117,7 @@ vim.api.nvim_create_autocmd("FileType", {
       vimtex_complete_enabled = 0,
       vimtex_mappings_enabled = 0,
       vimtex_imaps_enabled = 0,
-      vimtex_indent_enabled = 0,
       vimtex_text_obj_enabled = 0,
-      vimtex_matchparen_enabled = 0,
       -- vimtex_complete_bib = {
       --   abbr_fmt = "[@type] @author_short (@year)",
       --   menu_fmt = "@title",

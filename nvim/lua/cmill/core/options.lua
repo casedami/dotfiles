@@ -78,7 +78,6 @@ local opts = {
   splitbelow = true,
   splitkeep = "screen",
   splitright = true,
-  statuscolumn = "%!v:lua.require'cmill.core.statuscol'.render()",
   termguicolors = true,
   tabstop = 2,
   textwidth = 88,

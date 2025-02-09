@@ -1,3 +1,7 @@
+vim.keymap.set("", "<leader>fo", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end)
+
 vim.api.nvim_create_user_command("DelMarks", function()
   vim.cmd("delm a-zA-Z")
   vim.notify("deleting marks...", vim.log.levels.INFO, {})
@@ -19,7 +23,7 @@ local new_file = function(comm, fname)
   local is_note = path:find("self/notes")
 
   if is_note then
-    path = vim.fn.expand("~") .. "/self/notes/main/inbox"
+    path = vim.fn.expand("~") .. "/self/notes/main/_inbox"
   end
 
   vim.cmd(("%s %s"):format(comm, path .. "/" .. fname))

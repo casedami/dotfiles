@@ -59,6 +59,7 @@ return {
               diagnostics = {
                 globals = {
                   "vim",
+                  "Snacks",
                 },
               },
               hint = {

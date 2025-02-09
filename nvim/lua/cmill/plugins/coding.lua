@@ -34,6 +34,10 @@ return {
     config = true,
   },
   {
+    "nvim-lua/plenary.nvim",
+    lazy = true,
+  },
+  {
     "danymat/neogen",
     event = "LspAttach",
     config = function()
@@ -45,20 +49,6 @@ return {
   {
     "sindrets/diffview.nvim",
     cmd = "DiffviewOpen",
-    keys = {
-      {
-        "<leader>gd",
-        "<cmd>DiffviewOpen<cr>",
-        desc = "Open diffview",
-        silent = true,
-      },
-      {
-        "<leader>gD",
-        "<cmd>DiffviewClose<cr>",
-        desc = "Close diffview",
-        silent = true,
-      },
-    },
     opts = {
       file_panel = {
         listing_style = "list",
