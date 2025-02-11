@@ -36,8 +36,9 @@ return {
             },
           },
           recent = {
-            filter = {cwd = true},
+            filter = { cwd = true },
           },
+          explorer = { hidden = true, ignored = true },
         },
       },
       dashboard = {
@@ -127,9 +128,9 @@ return {
         -- picker.lsp
         { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
         { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-        { "<leader>lr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        { "<leader>lR", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
         { "<leader>lI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-        { "<leader>ly", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
+        { "<leader>lt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
         { "<leader>ls", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
         { "<leader>lS", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
       }

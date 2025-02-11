@@ -1,4 +1,4 @@
-*selfhelp.txt*                                    Last change: 2024 October 17
+*selfhelp.txt*                For                Last change: 2025 February 10
 
 ==============================================================================
 Table of Contents                                 *selfhelp-table-of-contents*
@@ -14,7 +14,7 @@ Table of Contents                                 *selfhelp-table-of-contents*
   - WINDOWS                                           |selfhelp-views-windows|
 4. QUICKFIX LIST                                      |selfhelp-quickfix-list|
 5. TERM                                                        |selfhelp-term|
-6. LSP                                                          |selfhelp-lsp|
+6. LSP & DIAGNOSTICS                              |selfhelp-lsp-&-diagnostics|
 7. GIT                                                          |selfhelp-git|
 8. MISC                                                        |selfhelp-misc|
   - NOTES                                                |selfhelp-misc-notes|
@@ -53,24 +53,27 @@ FILE CREATION                                   *selfhelp-files-file-creation*
   ABBREV   DESC
   -------- ---------------------------------------
   fn       edit new file in current dir
-  fnk      edit new file in current dir (hsplit)
-  fnh      edit new file in current dir (vsplit)
+  fnh      edit new file in current dir (hsplit)
+  fnk      edit new file in current dir (vsplit)
 
 FILE EXPLORER                                   *selfhelp-files-file-explorer*
 
   MAP          DESC
-  ------------ -------------------------------------------
-  <leader>fe   open file explorer in current dir
-  <leader>fE   open file explorer in cwd
-  <leader>Fe   open file explorer (float) in current dir
+  ------------ -------------------------------------
+  <leader>fe   open file explorer
   <leader>ff   open fuzzy finder
-  <leader>fb   open fuzzy finder for current buffer
-  <leader>fr   open fuzzy finder for recent files
-  <leader>,    open fuzzy finder for open buffers
-  <leader>fc   open fuzzy finder for config files
-  <leader>fR   resume previous fuzzy finder query
+  <leader>fr   open fuzzy finder (recent files)
+  <leader>f,   open fuzzy finder (buffers)
+  <leader>fc   open fuzzy finder (config files)
+  <leader>fC   open fuzzy finder (colorschemes)
   <leader>fg   open fuzzy finder (grep)
   <leader>fh   open fuzzy finder (help)
+  <leader>fH   open fuzzy finder (highlights)
+  <leader>ft   open fuzzy finder (todo comments)
+  <leader>f:   open fuzzy finder (command history)
+  <leader>f/   open fuzzy finder (search history)
+  <leader>fs   open fuzzy finder (registers)
+  <leader>fm   open fuzzy finder (marks)
 
 SESSIONS                                             *selfhelp-files-sessions*
 
@@ -140,21 +143,41 @@ WINDOWS                                               *selfhelp-views-windows*
   <leader>T    open terminal in tab
 
 ==============================================================================
-6. LSP                                                          *selfhelp-lsp*
+6. LSP & DIAGNOSTICS                              *selfhelp-lsp-&-diagnostics*
 
-  MAP          DESC
-  ------------ ----------------------------------------------------
-  gd           goto lsp definitions
-  <leader>D    show documentation float
-  <leader>di   show lsp implementations
-  <leader>dr   refactor item
-  <leader>da   show lsp code actions
-  <leader>dR   show lsp references
-  <leader>df   show lsp diagnostics
-  <leader>dd   toggle lsp diagnostics
-  <leader>dh   highlight current item references
-  ](d/e/w/t)   goto next (diagnostic/error/warning/todo item)
-  [(d/e/w/t)   goto previous (diagnostic/error/warning/todo item)
+  -----------------------------------------------------------------------
+  MAP             DESC
+  --------------- -------------------------------------------------------
+  gd              goto lsp definitions
+
+  gD              goto lsp declarations
+
+  <leader>D       show documentation float
+
+  <leader>li      show lsp implementations
+
+  <leader>lr      refactor item
+
+  <leader>la      show lsp code actions
+
+  <leader>lR      show lsp references
+
+  <leader>lh      highlight current item references
+
+  <leader>ls      show lsp workspace symbols
+
+  <leader>lS      show lsp symbols
+
+  <leader>fd      show lsp diagnostics
+
+  <leader>fD      show lsp diagnostics (buffer)
+
+  <leader>dd      toggle lsp diagnostics
+
+  ](d/e/w/t)      goto next (diagnostic/error/warning/todo item)
+
+  [(d/e/w/t)      goto previous (diagnostic/error/warning/todo item)
+  -----------------------------------------------------------------------
 
 ==============================================================================
 7. GIT                                                          *selfhelp-git*
@@ -163,14 +186,14 @@ WINDOWS                                               *selfhelp-views-windows*
   ------------- ---------------------------------
   <leader>gg    open neogit
   <leader>gs    fuzzy find buffers (git status)
-  <leader>gc    fuzzy find git commits
+  <leader>gd    git diff
+  <leader>gl    git log
   <leader>gss   stage hunk
   <leader>gss   stage hunk
   <leader>gu    undo stage hunk
   <leader>gr    reset hunk
   <leader>gS    stage buffer
   <leader>gR    reset buffer
-  <leader>gd    diff this
   <leader>gt    toggle deleted
   <leader>gb    show git blame
   ]h            goto next hunk
@@ -190,7 +213,6 @@ NOTES                                                    *selfhelp-misc-notes*
   <localleader>gh   follow markdown link in vsplit
   <localleader>fl   show obsidian backlinks
   <localleader>ss   toggle spellcheck
-
   ABBREV   DESC
   -------- ---------------------------
   ff       fuzzy find obsidian files
@@ -209,15 +231,16 @@ OTHER                                                    *selfhelp-misc-other*
 
   ABBREV   DESC
   -------- -------------------------------------
-  doc      generate doc for item under cursor
+  doc      genereate doc for item under cursor
   dm       delete all marks
-
+  dopen    open diff view
+  dclose   close diff view
+  cd.      cd to cwd
+  nums     toggle relativenumber
   MAP          DESC
   ------------ --------------------------------
-  )            forward paste from 0 register
-  (            backward paste from 0 register
-  <leader>;    open command history
-  <leader>/    open search history
+  \            forward paste from 0 register
+  \|           backward paste from 0 register
   <C-;>        clear command line
   <C-'>        clear highlights
   go           insert new line below

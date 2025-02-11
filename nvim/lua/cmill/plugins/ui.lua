@@ -46,6 +46,12 @@ local components = {
       }
       return ftype[vim.bo.filetype] or btype[vim.bo.buftype] or str
     end,
+    symbols = {
+      modified = " ",
+      readonly = " ",
+      unnamed = "󰄰 ",
+      newfile = "󱇬 ",
+    },
   },
   ftype = {
     "filetype",
