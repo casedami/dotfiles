@@ -72,11 +72,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- lsp
     local opts = { buffer = bufnr }
-    map("n", "<leader>dr", vim.lsp.buf.rename, opts)
-    map({ "n", "v" }, "<leader>da", vim.lsp.buf.code_action, opts)
+    map("n", "<leader>lr", vim.lsp.buf.rename, opts)
+    map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
     map("n", "<leader>D", vim.diagnostic.open_float, opts)
     map("n", "<leader>dd", toggle_diagnostics, opts)
-    map("n", "<leader>dh", vim.lsp.buf.document_highlight, opts)
+    map("n", "<leader>lh", vim.lsp.buf.document_highlight, opts)
 
     vim.api.nvim_create_autocmd("CursorMoved", {
       callback = vim.lsp.buf.clear_references,

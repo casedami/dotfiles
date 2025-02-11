@@ -6,7 +6,7 @@ return {
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-      { "<leader>xx", "<cmd>TodoTelescope<cr>", desc = "Todo (Trouble)" },
+      { "<leader>ft", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "WARN", "BUG" } }) end, desc = "Todo/Fix/Fixme" },
     },
     opts = {
       keywords = {

@@ -8,7 +8,8 @@ local maps = {
   { "n", "<leader>l", "<cmd>Lazy<cr>", opts["silent"] }, -- open lazy
   { "n", "<leader>?", "<cmd>h selfhelp.txt<cr>", opts["silent"] }, -- open selfhelp
   -- MOVEMENT
-  { "n", "--", "$" }, -- remap inline movement (beginning of line)
+  { "n", "0", "^" }, -- remap inline movement (beginning of line)
+  { "n", ")", "$" }, -- remap inline movement (beginning of line)
   { "n", "<C-d>", "<C-d>zz" }, -- center after page down
   { "n", "<C-u>", "<C-u>zz" }, -- center after page up
   { "n", "n", "nzzzv" }, -- center after next item in search
@@ -64,8 +65,8 @@ local maps = {
   { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell
   -- FILES
   { "ca", "fn", "New" }, -- edit new file in current dir
-  { "ca", "fnk", "NewSplit" }, -- edit new file in current dir (hsplit)
-  { "ca", "fnh", "NewVsplit" }, --edit new file in current dir (vsplit)
+  { "ca", "fnh", "NewSplit" }, -- edit new file in current dir (hsplit)
+  { "ca", "fnk", "NewVsplit" }, --edit new file in current dir (vsplit)
   -- SESSIONS
   { "ca", "sw", "SesWrite" }, -- save session for cwd
   { "ca", "sd", "SesDel" }, -- delete session for cwd
@@ -73,8 +74,8 @@ local maps = {
   -- MISC COMMAND SHORTCUTS
   { "ca", "doc", "Neogen", opts["silent"] }, -- generate docstring
   { "ca", "dm", "DelMarks" }, -- delete all marks
-  { { "n", "v" }, ")", '"0p' }, -- forward paste from 0 register
-  { { "n", "v" }, "(", '"0P' }, -- backward paste from 0 register
+  { { "n", "v" }, "\\", '"0p' }, -- forward paste from 0 register
+  { { "n", "v" }, "|", '"0P' }, -- backward paste from 0 register
   { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
   { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>)
   { "n", "<C-i>", "<c-i>" }, -- restore jump-forward keymap (<c-i>)

@@ -32,7 +32,7 @@ return {
         },
         highlights = {
           ["LazyNormal"] = { bg = "none" },
-          -- ["CursorLine"] = { bg = "none" },
+          ["Normal"] = { bg = "#131315" },
         },
       })
       require("neomodern").load()
