@@ -1,5 +1,5 @@
 [user]
-	name = Casey Miller
+	name = cdmill
 	email = cd.miller1230@gmail.com
 [init]
   defaultBranch = main
@@ -27,5 +27,3 @@
   aliases = config --get-regexp alias
   amend = commit --amend --reuse-message=HEAD
   whoami = config user.email
-[includeIf "gitdir:~/Developer/swift/Tabby/"]
-    path = ~/Developer/swift/Tabby/.gitconfig

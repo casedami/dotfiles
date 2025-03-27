@@ -19,6 +19,7 @@ return {
                     headings = "italic",
                 },
                 cursorline_gutter = false,
+                dark_gutter = false,
                 transparent = false,
                 plain_float = true,
                 show_eob = false,

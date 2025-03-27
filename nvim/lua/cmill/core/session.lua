@@ -1,23 +1,18 @@
-local M = {}
-
 local Path = require("plenary.path")
-local PATH_SEP = "__"
-local COLON_SEP = "++"
-local SESSIONS_DIR = Path:new(vim.fn.stdpath("data"), "sessions")
 
----@private
-function M.session_name_to_dir(fname)
-    local dir = fname:sub(#tostring(SESSIONS_DIR) + 2)
-    dir = dir:gsub(COLON_SEP, ":")
-    dir = dir:gsub(PATH_SEP, Path.path.sep)
-    return Path:new(dir)
-end
+local M = {
+    __sep = {
+        path = "__",
+        colon = "++",
+    },
+    __dir = Path:new(vim.fn.stdpath("data"), "sessions"),
+}
 
----@private
+---@package
+---@param dir string
 function M.dir_to_session_name(dir)
-    local fname = dir:gsub(":", COLON_SEP)
-    fname = fname:gsub(Path.path.sep, PATH_SEP)
-    return Path:new(SESSIONS_DIR):joinpath(fname)
+    dir = dir:gsub(Path.path.sep, M.__sep.path)
+    return Path:new(M.__dir):joinpath(dir)
 end
 
 function M.session_exists()
@@ -29,7 +24,7 @@ function M.session_exists()
     return false
 end
 
----@private
+---@package
 function M.is_restorable(bufnr)
     if #vim.api.nvim_get_option_value("bufhidden", { buf = bufnr }) ~= 0 then
         return false
@@ -121,9 +116,9 @@ function M.save_session()
     end
 
     local fname = M.dir_to_session_name(cwd).filename
-    SESSIONS_DIR = Path:new(tostring(SESSIONS_DIR))
-    if not SESSIONS_DIR:is_dir() then
-        SESSIONS_DIR:mkdir()
+    M.__dir = Path:new(tostring(M.__dir))
+    if not M.__dir:is_dir() then
+        M.__dir:mkdir()
     end
 
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -155,7 +150,7 @@ function M.delete_session()
 end
 
 function M.delete_all_sessions()
-    SESSIONS_DIR:rm({ recursive = true })
+    M.__dir:rm({ recursive = true })
     local msg = "All sessions deleted"
     vim.notify(msg, vim.log.levels.INFO, {})
 end

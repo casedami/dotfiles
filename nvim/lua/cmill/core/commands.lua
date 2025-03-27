@@ -2,7 +2,7 @@ vim.keymap.set("", "<leader>fo", function()
     require("conform").format({ async = true, lsp_fallback = true })
 end)
 
-vim.api.nvim_create_user_command("DelMarks", function()
+vim.api.nvim_create_user_command("DM", function()
     vim.cmd("delm a-zA-Z")
     vim.notify("deleting marks...", vim.log.levels.INFO, {})
 end, {})
@@ -22,7 +22,7 @@ vim.api.nvim_create_user_command("SesLoad", function()
     require("cmill.core.session").load_session()
 end, {})
 
-local new_file = function(comm, fname)
+local function new_file(comm, fname)
     local path = vim.fn.expand("%:p:h")
     local is_note = path:find("self/notes")
 
