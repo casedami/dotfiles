@@ -9,13 +9,11 @@ abbr --add mm monthly
 alias vim="nvim"
 alias sed="sed -E"
 alias ls="eza --icons --group-directories-first"
-alias lsl="eza -l -h --no-user --git"
-alias tree="eza -T"
-alias grep="grep --color=auto"
+alias ll="ls --long --header --git --binary --smart-group --time-style=iso --total-size"
+alias la="eza -tree 3"
+alias tree="eza -tree"
 alias top="top -n 25 -s 3"
 alias fd="fd -c never"
-alias timeit="/usr/bin/time -p"
-alias db5530="mysql -h atr.eng.utah.edu -u u1337847 -p"
 
 alias cade="ssh u1337847@lab1-13.eng.utah.edu"
 alias transfer="sftp u1337847@lab1-13.eng.utah.edu"
@@ -33,8 +31,6 @@ set -gx HOMEBREW_NO_ENV_HINTS 1
 set -gx RUST_BACKTRACE 1
 set -U EDITOR nvim
 set -gx NOTES_DIR ~/self/notes/main/monthly/
-
-#set -gx __zoxide_zi cdi
 
 fish_add_path $HOME/.local/bin/scripts/
 fish_add_path $HOME/Library/Python/3.13/bin
@@ -56,8 +52,6 @@ set -gx FZF_DEFAULT_OPTS '
 --bind="?:toggle-preview"
 --bind="ctrl-u:preview-page-up"
 --bind="ctrl-d:preview-page-down"'
-
-#source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

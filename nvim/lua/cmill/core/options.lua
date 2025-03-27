@@ -1,4 +1,4 @@
-local global_opts = {
+local globals = {
     mapleader = " ",
     maplocalleader = "\\",
 
@@ -78,7 +78,6 @@ local opts = {
     splitbelow = true,
     splitkeep = "screen",
     splitright = true,
-    statuscolumn = "%!v:lua.require('cmill.core.statuscol').render()",
     termguicolors = true,
     tabstop = 4,
     textwidth = 88,
@@ -93,7 +92,7 @@ local opts = {
     wrap = false,
 }
 
-for k, v in pairs(global_opts) do
+for k, v in pairs(globals) do
     vim.g[k] = v
 end
 

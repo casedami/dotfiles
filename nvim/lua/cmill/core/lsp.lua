@@ -21,5 +21,9 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.HINT] = "",
             [vim.diagnostic.severity.INFO] = "i",
         },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+            [vim.diagnostic.severity.WARN] = "WarningMsg",
+        },
     },
 })
