@@ -7,10 +7,10 @@ function fish_prompt
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showupstream auto
 
-    set -g __fish_git_prompt_color $alt
-    set -g __fish_git_prompt_color_prefix cyan
-    set -g __fish_git_prompt_color_suffix cyan
-    set -g __fish_git_prompt_color_dirtystate cyan
+    set -g __fish_git_prompt_color a8a6de
+    set -g __fish_git_prompt_color_prefix $alt
+    set -g __fish_git_prompt_color_suffix $alt
+    set -g __fish_git_prompt_color_dirtystate $alt
     set -g __fish_git_prompt_color_upstream yellow
     set -g __fish_git_prompt_color_merging red
 
@@ -31,7 +31,7 @@ function fish_prompt
     end
 
     set -g fish_prompt_pwd_full_dirs 2
-    set -l cwd (set_color 86a3f0) (prompt_pwd)
+    set -l cwd (set_color cc93b8) (prompt_pwd)
 
     echo -n -s $cwd (fish_git_prompt) ' ' $promptchar (set_color normal)
 end
