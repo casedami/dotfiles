@@ -27,3 +27,5 @@
   aliases = config --get-regexp alias
   amend = commit --amend --reuse-message=HEAD
   whoami = config user.email
+[includeIf "gitdir:~/Developer/swift/Tabby/"]
+    path = ~/Developer/swift/Tabby/.gitconfig

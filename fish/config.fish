@@ -39,6 +39,23 @@ set -gx NOTES_DIR ~/self/notes/main/monthly/
 fish_add_path $HOME/.local/bin/scripts/
 fish_add_path $HOME/Library/Python/3.13/bin
 
+set -gx FZF_DEFAULT_OPTS '
+--color=fg:#bbbac1,bg:#171719,hl:#a8a6de,gutter:#171719
+--color=fg+:#629da3,bg+:#1d1d22,hl+:#a8a6de
+--color=info:#555568,prompt:#a8a6de,pointer:#629da3
+--color=marker:#8a88db,spinner:#8a88db,header:#8a88db
+--separator="─" --scrollbar="│" --layout="reverse" --info="right"
+--prompt=" "
+--marker=">"
+--pointer="󰘍"
+--cycle
+--multi
+--height 40%
+--preview "cat {} 2> /dev/null"
+--preview-window="right:60%:hidden"
+--bind="?:toggle-preview"
+--bind="ctrl-u:preview-page-up"
+--bind="ctrl-d:preview-page-down"'
 
 #source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
 
