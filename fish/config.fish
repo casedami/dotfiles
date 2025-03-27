@@ -9,9 +9,9 @@ abbr --add mm monthly
 alias vim="nvim"
 alias sed="sed -E"
 alias ls="eza --icons --group-directories-first"
-alias ll="ls --long --header --git --binary --smart-group --time-style=iso --total-size"
-alias la="eza -tree 3"
-alias tree="eza -tree"
+alias ll="ls -a --long --header --git --binary --smart-group --time-style=iso --total-size"
+alias la="eza --tree --level=3"
+alias tree="eza --tree"
 alias top="top -n 25 -s 3"
 alias fd="fd -c never"
 
