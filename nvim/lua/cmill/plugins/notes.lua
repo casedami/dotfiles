@@ -12,6 +12,7 @@ return {
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
+      { "echasnovski/mini.pick", version = false },
     },
     opts = {
       dir = "~/self/notes/main/",
@@ -59,7 +60,9 @@ return {
           opts = { buffer = true },
         },
       },
-      finder = "telescope.nvim",
+      picker = {
+        name = "mini.pick",
+      },
       log_level = vim.log.levels.OFF,
       ui = {
         enable = true,

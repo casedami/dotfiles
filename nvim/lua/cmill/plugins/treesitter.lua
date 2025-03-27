@@ -23,6 +23,7 @@ return {
         "regex",
         "bash",
         "json",
+        "comment",
         "yaml",
         "toml",
         "markdown",
@@ -37,8 +38,6 @@ return {
         "python",
         "go",
         "sql",
-        "ninja",
-        "rst",
       },
       incremental_selection = {
         enable = true,
@@ -86,7 +85,6 @@ return {
     },
     config = function(_, opts)
       if type(opts.ensure_installed) == "table" then
-        ---@type table<string, boolean>
         local added = {}
         opts.ensure_installed = vim.tbl_filter(function(lang)
           if added[lang] then
@@ -97,11 +95,6 @@ return {
         end, opts.ensure_installed)
       end
       require("nvim-treesitter.configs").setup(opts)
-
-      local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-      -- Repeat movement with + and -
-      vim.keymap.set({ "n", "x", "o" }, "+", ts_repeat_move.repeat_last_move_next)
-      vim.keymap.set({ "n", "x", "o" }, "-", ts_repeat_move.repeat_last_move_previous)
     end,
   },
 }

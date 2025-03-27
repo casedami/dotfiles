@@ -1,54 +1,55 @@
 return {
-  {
-    "folke/snacks.nvim",
-    lazy = false,
-    opts = {
-      explorer = { enabled = true },
-      indent = { enabled = true },
-      picker = {
-        layout = {
-          layout = {
-            backdrop = false,
-          },
-        },
-        icons = {
-          files = {
-            enabled = false,
-          },
-        },
-        sources = {
-          command_history = {
-            layout = {
-              preview = false,
-              preset = "vertical",
+    {
+        "folke/snacks.nvim",
+        lazy = false,
+        opts = {
+            explorer = { enabled = true },
+            -- indent = { enabled = true },
+            picker = {
+                layout = {
+                    layout = {
+                        backdrop = false,
+                    },
+                },
+                icons = {
+                    files = {
+                        enabled = false,
+                    },
+                },
+                sources = {
+                    command_history = {
+                        layout = {
+                            preview = false,
+                            preset = "vertical",
+                        },
+                    },
+                    search_history = {
+                        layout = {
+                            preview = false,
+                            preset = "vertical",
+                        },
+                    },
+                    registers = {
+                        layout = {
+                            preview = false,
+                            preset = "vertical",
+                        },
+                    },
+                    recent = {
+                        filter = { cwd = true },
+                    },
+                    explorer = { hidden = true, ignored = true },
+                },
             },
-          },
-          search_history = {
-            layout = {
-              preview = false,
-              preset = "vertical",
-            },
-          },
-          registers = {
-            layout = {
-              preview = false,
-              preset = "vertical",
-            },
-          },
-          recent = {
-            filter = { cwd = true },
-          },
-          explorer = { hidden = true, ignored = true },
-        },
-      },
-      dashboard = {
-        enabled = true,
-        preset = {
-          header = "Neovim [" .. tostring(vim.version()) .. "] in " .. vim.uv
-            .cwd()
-            :gsub("^/Users/caseymiller", "~") .. "\non " .. os.date(
-            "%a %B %d %Y"
-          ),
+            dashboard = {
+                enabled = true,
+                preset = {
+                    header = "Neovim ["
+                        .. tostring(vim.version())
+                        .. "] in "
+                        .. vim.uv.cwd():gsub("^/Users/caseymiller", "~")
+                        .. "\non "
+                        .. os.date("%a %B %d %Y"),
           -- stylua: ignore
           keys = {
             { icon = " ", key = "f", desc = "find file", action = "<leader>ff" },
@@ -62,45 +63,45 @@ return {
             { icon = "󰒲 ", key = "l", desc = "lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "quit", action = ":qa" },
           },
+                },
+                sections = {
+                    { section = "header" },
+                    { section = "keys", gap = 1, padding = 1 },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Recent Files",
+                        section = "recent_files",
+                        indent = 2,
+                        padding = 2,
+                    },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Projects",
+                        section = "projects",
+                        indent = 2,
+                        padding = 2,
+                    },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Git Status",
+                        section = "terminal",
+                        enabled = function()
+                            return Snacks.git.get_root() ~= nil
+                        end,
+                        cmd = "git status --short --branch --renames",
+                        height = 5,
+                        padding = 1,
+                        ttl = 5 * 60,
+                        indent = 3,
+                    },
+                    { section = "startup" },
+                },
+            },
         },
-        sections = {
-          { section = "header" },
-          { section = "keys", gap = 1, padding = 1 },
-          {
-            pane = 2,
-            icon = " ",
-            title = "Recent Files",
-            section = "recent_files",
-            indent = 2,
-            padding = 2,
-          },
-          {
-            pane = 2,
-            icon = " ",
-            title = "Projects",
-            section = "projects",
-            indent = 2,
-            padding = 2,
-          },
-          {
-            pane = 2,
-            icon = " ",
-            title = "Git Status",
-            section = "terminal",
-            enabled = function()
-              return Snacks.git.get_root() ~= nil
-            end,
-            cmd = "git status --short --branch --renames",
-            height = 5,
-            padding = 1,
-            ttl = 5 * 60,
-            indent = 3,
-          },
-          { section = "startup" },
-        },
-      },
-    },
-    keys = function()
+        keys = function()
       -- stylua: ignore
       K = {
         -- explorer
@@ -111,6 +112,8 @@ return {
         { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent files"  },
         { "<leader>f,", function() Snacks.picker.buffers() end, desc = "Buffers" },
         { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader>fG", function() Snacks.picker.grep_word() end, desc = "Grep under cursor" },
+        { "<leader>ft", function() Snacks.picker.grep({ search = "(TODO|BUG|FIXME|WARN|NOTE):" }) end, desc = "Find TODO items" },
         -- picker.vim
         { "<leader>fh", function() Snacks.picker.help() end, desc = "Help" },
         { "<leader>fC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
@@ -134,7 +137,7 @@ return {
         { "<leader>ls", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
         { "<leader>lS", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
       }
-      return K
-    end,
-  },
+            return K
+        end,
+    },
 }
