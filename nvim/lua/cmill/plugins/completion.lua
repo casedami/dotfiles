@@ -53,11 +53,11 @@ return {
             },
             sources = {
                 default = {
+                    "lazydev",
                     "lsp",
                     "path",
                     "snippets",
                     "buffer",
-                    "lazydev",
                 },
                 providers = {
                     lazydev = {

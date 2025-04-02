@@ -59,7 +59,7 @@ return {
             { icon = "󱏒 ", key = "e", desc = "explorer", action = "<leader>fe" },
             { icon = " ", key = "g", desc = "grep", action = "<leader>fg" },
             { icon = " ", key = "G", desc = "git", action = ":Neogit", enabled = require("cmill.core.util").show_diff()},
-            { icon = " ", key = "s", desc = "restore session", action = ":SesLoad", enabled = require("cmill.core.session").session_exists() },
+            -- { icon = " ", key = "s", desc = "restore session", action = ":SesLoad", enabled = require("cmill.core.session").session_exists() },
             { icon = " ", key = "c", desc = "config", action = "<leader>fc" },
             { icon = "󰒲 ", key = "l", desc = "lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "quit", action = ":qa" },

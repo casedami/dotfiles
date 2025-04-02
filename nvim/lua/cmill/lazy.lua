@@ -23,6 +23,7 @@ require("lazy").setup({
         patterns = {
             "focus.nvim",
             "neomodern",
+            "sesh",
             "vault.nvim",
         },
         fallback = false,
