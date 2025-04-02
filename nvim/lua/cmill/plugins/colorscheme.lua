@@ -26,7 +26,6 @@ return {
                 highlights = {
                     ["LazyNormal"] = { bg = "none" },
                     ["Statusline"] = { bg = "$alt_bg" },
-                    -- ["FoldColumn"] = { bg = "#000000" },
                 },
             })
             require("neomodern").load()
