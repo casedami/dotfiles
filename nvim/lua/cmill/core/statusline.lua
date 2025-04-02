@@ -136,8 +136,33 @@ local function fileinfo(icon_tbl)
     local ft = get_opt("filetype", {})
     local lines = util.group_number(vim.api.nvim_buf_line_count(0), ",")
 
-    -- MARK: non text files
-    if not tools.text_ft[ft] then
+    -- MARK: text files
+    if tools.text_ft[ft] then
+        local wc_table = vim.fn.wordcount()
+        if not wc_table.visual_words or not wc_table.visual_chars then
+            -- MARK: normal mode
+            return table.concat({
+                icon_tbl.fileinfo,
+                " ",
+                lines,
+                " lines  ",
+                util.group_number(wc_table.words, ","),
+                " words ",
+            })
+        else
+            -- MARK: visual mode
+            return table.concat({
+                util.hl_str("DiagnosticInfo", "<>"),
+                vlines(),
+                "lines",
+                status_parts.pad,
+            }, " ")
+        end
+    -- MARK: special buffers (prompt, terminal, ...)
+    elseif tools.special_bt[vim.bo.buftype] then
+        return ""
+    -- MARK: source files
+    else
         local loc = vim.fn.getpos(".")[2]
         local idx = math.floor((loc - 1) / lines * #icons.location) + 1
         return table.concat({
@@ -151,28 +176,6 @@ local function fileinfo(icon_tbl)
             status_parts.pad,
             icon_tbl.location[idx],
             util.hl_str("@variable", "%P"),
-        }, " ")
-    end
-
-    -- MARK: text files
-    local wc_table = vim.fn.wordcount()
-    if not wc_table.visual_words or not wc_table.visual_chars then
-        -- MARK: normal mode
-        return table.concat({
-            icon_tbl.fileinfo,
-            " ",
-            lines,
-            " lines  ",
-            util.group_number(wc_table.words, ","),
-            " words ",
-        })
-    else
-        -- MARK: visual mode
-        return table.concat({
-            util.hl_str("DiagnosticInfo", "<>"),
-            vlines(),
-            "lines",
-            status_parts.pad,
         }, " ")
     end
 end

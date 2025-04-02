@@ -24,6 +24,11 @@ _G.tools = {
         ["txt"] = true,
         ["help"] = true,
     },
+    special_bt = {
+        ["terminal"] = true,
+        ["prompt"] = true,
+        ["nofile"] = true,
+    },
 }
 
 local branch_cache = {}
