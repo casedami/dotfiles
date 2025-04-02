@@ -20,12 +20,11 @@ local status_parts = {
 
 local status_order = {
     "pad",
-    "nvim",
+    "venv",
     "path",
     "mod",
     "readonly",
     "sep",
-    "venv",
     "sep",
     "diag",
     "fileinfo",
@@ -35,22 +34,16 @@ local status_order = {
 
 local icons = tools.ui.icons
 local hl_ui_icons = util.hl_icons({
-    ["branch"] = { "Type", icons["branch"] },
-    ["file"] = { "NonText", icons["file"] },
-    ["fileinfo"] = { "DiagnosticHint", icons["hamburger"] },
-    ["nomodifiable"] = { "DiagnosticWarn", icons["bullet"] },
-    ["modified"] = { "TODO", icons["modified"] },
-    ["readonly"] = { "DiagnosticHint", icons["readonly"] },
-    ["error"] = { "DiagnosticError", icons["error"] },
-    ["warn"] = { "DiagnosticWarn", icons["warning"] },
     ["binary"] = { "DiagnosticHint", icons["binary"] },
+    ["branch"] = { "Type", icons["branch"] },
+    ["error"] = { "DiagnosticError", icons["error"] },
+    ["fileinfo"] = { "DiagnosticHint", icons["hamburger"] },
+    ["modified"] = { "TODO", icons["modified"] },
+    ["nomodifiable"] = { "DiagnosticWarn", icons["lock"] },
+    ["readonly"] = { "DiagnosticHint", icons["readonly"] },
+    ["warn"] = { "DiagnosticWarn", icons["warning"] },
     ["location"] = { "@variable", icons["location"] },
 })
-
-local function escape_str(str)
-    local output = str:gsub("([%(%)%%%+%-%*%?%[%]%^%$])", "%%%1")
-    return output
-end
 
 ---Create a string containing info for the current git branch
 ---@param root? string
@@ -67,7 +60,7 @@ local function path_info(root, fname, icon_tbl)
     local tail_and_icon = table.concat({ tail, status_parts.pad, icon })
 
     if vim.bo.buftype == "help" then
-        return table.concat({ icon_tbl["file"], tail_and_icon })
+        return tail_and_icon
     end
 
     local branch = tools.git_branch(root)
@@ -83,7 +76,7 @@ local function path_info(root, fname, icon_tbl)
     local repo_info = ""
     if branch then
         if #branch >= max_repo_len then
-            branch = branch:gsub("^(%a%a%a%a%a%a%a%a%a%a)%a+", "%1...")
+            branch = branch:gsub("^(%a%a%a%a%a%a%a%a%a%a)%a+", "%1" .. icons.ellipses)
         end
         repo_info = table.concat({
             icon_tbl["branch"],
@@ -95,7 +88,7 @@ local function path_info(root, fname, icon_tbl)
     if #head + #tail > max_head_len then
         local _, _, grandparent, parent = string.find(head, "(%a+)/(%a+)/$")
         if grandparent and grandparent ~= "~" and parent then
-            head = table.concat({ "...", grandparent, parent }, "/") .. "/"
+            head = table.concat({ icons.ellipses, grandparent, parent }, "/") .. "/"
         elseif parent and parent ~= "~" then
             head = head:gsub("(%a)%a*/", "%1/")
         end
@@ -145,6 +138,8 @@ local function fileinfo(icon_tbl)
 
     -- MARK: non text files
     if not tools.text_ft[ft] then
+        local loc = vim.fn.getpos(".")[2]
+        local idx = math.floor((loc - 1) / lines * #icons.location) + 1
         return table.concat({
             icon_tbl.binary .. " ",
             vim.fn.getfsize(vim.fn.bufname()),
@@ -154,7 +149,7 @@ local function fileinfo(icon_tbl)
             lines,
             "lines",
             status_parts.pad,
-            icon_tbl.location,
+            icon_tbl.location[idx],
             util.hl_str("@variable", "%P"),
         }, " ")
     end
@@ -187,12 +182,12 @@ local pyenv = function()
     local venv = os.getenv("VIRTUAL_ENV")
     if venv then
         local name = vim.fn.fnamemodify(venv, ":t")
-        return string.format("'.venv': %s  ", name)
+        return util.hl_str("@property", name)
     end
 
     local conda = os.getenv("CONDA_DEFAULT_ENV")
     if conda then
-        return string.format("conda: %s  ", conda)
+        return util.hl_str("@property", conda)
     end
 
     return nil
@@ -219,7 +214,8 @@ M.render = function()
     -- MARK: left
     status_parts["path"] = path_info(root, fname, hl_ui_icons)
     if not get_opt("modifiable", { buf = buf_num }) then
-        status_parts["mod"] = hl_ui_icons["nomodifiable"]
+        status_parts["mod"] =
+            table.concat({ status_parts.pad, hl_ui_icons["nomodifiable"] })
     elseif get_opt("modified", { buf = buf_num }) then
         status_parts["mod"] = hl_ui_icons["modified"]
     else
