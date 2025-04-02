@@ -1,37 +1,46 @@
 function fish_prompt
-    set -l __last_command_exit_status $status
-    set -l yellow (set_color -o yellow)
-    set -l red (set_color -o red)
-    set -l cyan (set_color -o cyan)
-
+    # MARK: git prompt opts
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showupstream auto
-
+    # MARK: git prompt colors
     set -g __fish_git_prompt_color a8a6de
     set -g __fish_git_prompt_color_prefix $alt
     set -g __fish_git_prompt_color_suffix $alt
     set -g __fish_git_prompt_color_dirtystate $alt
-    set -g __fish_git_prompt_color_upstream yellow
+    set -g __fish_git_prompt_color_upstream $constant
     set -g __fish_git_prompt_color_merging red
-
+    # MARK: git prompt chars
     set -g __fish_git_prompt_char_upstream_ahead :↑
     set -g __fish_git_prompt_char_upstream_behind :↓
     set -g __fish_git_prompt_char_upstream_diverged :󰹹
     set -g __fish_git_prompt_char_upstream_equal ''
     set -g __fish_git_prompt_char_stateseparator ':'
 
+    # MARK: prompt char color based on last command status
     set -l promptchar_color (set_color normal)
-    if test $__last_command_exit_status != 0
-        set promptchar_color (set_color red)
+    if test $status != 0
+        set promptchar_color (set_color -o red)
     end
 
+    # MARK: prompt char based on user
     set -l promptchar "$promptchar_color> "
     if fish_is_root_user
         set promptchar "$promptchar_color# "
     end
 
-    set -g fish_prompt_pwd_full_dirs 2
-    set -l cwd (set_color cc93b8) (prompt_pwd)
+    # MARK: venv prompt
+    set -l venv ""
+    if set -q VIRTUAL_ENV
+        set venv (set_color $property --italics)'('(basename "$VIRTUAL_ENV")')'(set_color normal) ' '
+    end
 
-    echo -n -s $cwd (fish_git_prompt) ' ' $promptchar (set_color normal)
+    set -g fish_prompt_pwd_full_dirs 2
+    set -l cwd (set_color $str) (prompt_pwd)
+
+    echo -n -s $venv $cwd (fish_git_prompt) ' ' $promptchar (set_color normal)
+end
+
+function fish_right_prompt -d "Write out the right prompt"
+    set -l time (set_color 555568 --italics) (date '+%H:%M')
+    echo $time (set_color normal)
 end

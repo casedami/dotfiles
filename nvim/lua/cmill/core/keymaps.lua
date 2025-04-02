@@ -93,8 +93,6 @@ local maps = {
         { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
         { "ca", "nums", "set relativenumber!", opts["silent"] },
         { "ca", "cd.", "cd %:h" },
-        { "ca", "dopen", "DiffviewOpen" },
-        { "ca", "dclose", "DiffviewClose" },
     },
 }
 

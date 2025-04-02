@@ -16,6 +16,7 @@ local opts = {
     autowrite = true,
     background = "dark",
     clipboard = "unnamedplus",
+    cmdheight = 0,
     colorcolumn = "",
     completeopt = "menu,menuone,noselect",
     conceallevel = 2,

@@ -7,21 +7,21 @@ vim.api.nvim_create_user_command("DM", function()
     vim.notify("deleting marks...", vim.log.levels.INFO, {})
 end, {})
 
-vim.api.nvim_create_user_command("SesWrite", function()
-    require("cmill.core.session").save_session()
-end, {})
-vim.api.nvim_create_user_command("SesDel", function()
-    require("cmill.core.session").delete_session()
-end, {})
-
-vim.api.nvim_create_user_command("SesDelA", function()
-    require("cmill.core.session").delete_all_sessions()
-end, {})
-
-vim.api.nvim_create_user_command("SesLoad", function()
-    require("cmill.core.session").load_session()
-end, {})
-
+-- vim.api.nvim_create_user_command("SesWrite", function()
+--     require("cmill.core.session").save_session()
+-- end, {})
+-- vim.api.nvim_create_user_command("SesDel", function()
+--     require("cmill.core.session").delete_session()
+-- end, {})
+--
+-- vim.api.nvim_create_user_command("SesDelA", function()
+--     require("cmill.core.session").delete_all_sessions()
+-- end, {})
+--
+-- vim.api.nvim_create_user_command("SesLoad", function()
+--     require("cmill.core.session").load_session()
+-- end, {})
+--
 local function new_file(comm, fname)
     local path = vim.fn.expand("%:p:h")
     local is_note = path:find("self/notes")
