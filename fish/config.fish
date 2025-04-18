@@ -28,10 +28,10 @@ set -gx HOMEBREW_NO_ENV_HINTS 1
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
 
 set -gx FZF_DEFAULT_OPTS '
---color=fg:#bbbac1,bg:#171719,hl:#a8a6de,gutter:#171719
---color=fg+:#629da3,bg+:#1d1d22,hl+:#a8a6de
---color=info:#555568,prompt:#a8a6de,pointer:#629da3
---color=marker:#8a88db,spinner:#8a88db,header:#8a88db
+--color=fg:#adacac,bg:#111111,hl:#8a879c,gutter:#111111
+--color=fg+:#9c797d,bg+:#1b1c1d,hl+:#8a879c
+--color=info:#696969,prompt:#8a879c,pointer:#9c797d
+--color=marker:#a18b7f,spinner:#a18b7f,header:#a18b7f
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt=" "
 --marker=">"

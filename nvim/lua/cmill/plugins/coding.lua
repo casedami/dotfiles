@@ -1,6 +1,9 @@
 return {
     {
         "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
         keys = {
             { "<leader>gg", "<cmd>Neogit kind=auto<cr>" },
         },
@@ -22,7 +25,7 @@ return {
     {
         "cdmill/sesh.nvim",
         opts = {
-            autoload = true,
+            autoload = false,
             autosave = 2,
         },
     },
