@@ -3,6 +3,7 @@ _G.tools = {
         icons = {
             binary = "",
             branch = "",
+            diag = "",
             ellipses = "...",
             error = "",
             file = "",

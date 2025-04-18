@@ -12,7 +12,7 @@ local cfg = {
     },
     -- UI
     color_scheme_dirs = { "~/.config/wezterm/colors/" },
-    color_scheme = "iceclimber",
+    color_scheme = "hojicha",
     -- macos_window_background_blur = 20,
     window_background_opacity = 1.0,
     window_decorations = "RESIZE",

@@ -36,12 +36,12 @@ local icons = tools.ui.icons
 local hl_ui_icons = util.hl_icons({
     ["binary"] = { "DiagnosticHint", icons["binary"] },
     ["branch"] = { "Type", icons["branch"] },
-    ["error"] = { "DiagnosticError", icons["error"] },
+    ["error"] = { "DiagnosticError", icons["diag"] },
     ["fileinfo"] = { "DiagnosticHint", icons["hamburger"] },
     ["modified"] = { "TODO", icons["modified"] },
     ["nomodifiable"] = { "DiagnosticWarn", icons["lock"] },
     ["readonly"] = { "DiagnosticHint", icons["readonly"] },
-    ["warn"] = { "DiagnosticWarn", icons["warning"] },
+    ["warn"] = { "DiagnosticWarn", icons["diag"] },
     ["location"] = { "@variable", icons["location"] },
 })
 
@@ -113,16 +113,18 @@ local function diagnostics()
     local err_count = diag_count[1] or 0
     local warn_count = diag_count[2] or 0
 
-    return table.concat({
-        hl_ui_icons["error"],
-        " ",
-        util.pad_str(tostring(err_count), 3, "left"),
-        " ",
-        hl_ui_icons["warn"],
-        " ",
-        util.pad_str(tostring(warn_count), 3, "left"),
-        " ",
-    })
+    return (err_count > 0 or warn_count > 0)
+            and table.concat({
+                hl_ui_icons["error"],
+                " ",
+                util.pad_str(tostring(err_count), 3, "left"),
+                " ",
+                hl_ui_icons["warn"],
+                " ",
+                util.pad_str(tostring(warn_count), 3, "left"),
+                " ",
+            })
+        or ""
 end
 
 local function vlines()

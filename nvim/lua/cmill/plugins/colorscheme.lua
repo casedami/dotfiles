@@ -2,19 +2,19 @@ return {
     {
         "cdmill/neomodern.nvim",
         priority = 1000,
+        branch = "dev",
         config = function()
             require("neomodern").setup({
-                theme = "iceclimber",
-                favor_treesitter_hl = false,
-                toggle_mode_key = "<leader>uc",
+                theme = "hojicha",
+                toggle_variant_key = "<leader>uc",
+                alt_bg = false,
+                cursorline_gutter = false,
+                dark_gutter = false,
+                plain_float = true,
+                transparent = false,
                 code_style = {
                     headings = "italic",
                 },
-                cursorline_gutter = false,
-                transparent = false,
-                plain_float = true,
-                show_eob = true,
-                colored_docstrings = true,
                 plugin = {
                     lualine = {
                         plain = false,
