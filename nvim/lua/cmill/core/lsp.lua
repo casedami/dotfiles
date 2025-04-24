@@ -3,6 +3,7 @@ vim.lsp.enable({
     "ruff",
     "luals",
     "rust-analyzer",
+    "tinymist",
 })
 
 vim.diagnostic.config({

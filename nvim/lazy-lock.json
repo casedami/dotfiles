@@ -1,16 +1,17 @@
 {
   "blink.cmp": { "branch": "main", "commit": "cb5e346d9e0efa7a3eee7fd4da0b690c48d2a98e" },
-  "conform.nvim": { "branch": "master", "commit": "b1a75324ddf96b7bb84963a297b1ed334db087c0" },
+  "conform.nvim": { "branch": "master", "commit": "372fc521f8421b7830ea6db4d6ea3bae1c77548c" },
   "fidget.nvim": { "branch": "main", "commit": "d9ba6b7bfe29b3119a610892af67602641da778e" },
-  "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
-  "gitsigns.nvim": { "branch": "main", "commit": "3c76f7fabac723aa682365ef782f88a83ccdb4ac" },
+  "friendly-snippets": { "branch": "main", "commit": "fc8f183479a472df60aa86f00e295462f2308178" },
+  "gitsigns.nvim": { "branch": "main", "commit": "2149fc2009d1117d58e86e56836f70c969f60a82" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
   "luvit-meta": { "branch": "main", "commit": "1df30b60b1b4aecfebc785aa98943db6c6989716" },
   "mini.icons": { "branch": "main", "commit": "910db5df9724d65371182948f921fce23c2c881e" },
-  "neogit": { "branch": "master", "commit": "6d1bd94f7fca92a50a892f494920696b5defa8c8" },
-  "nvim-treesitter": { "branch": "master", "commit": "997288c55253e27f782d991099490f80205d65bf" },
-  "nvim-treesitter-textobjects": { "branch": "master", "commit": "9937e5e356e5b227ec56d83d0a9d0a0f6bc9cad4" },
+  "neogit": { "branch": "master", "commit": "9bb1e73c534f767607e0a888f3de4c942825c501" },
+  "nvim-treesitter": { "branch": "master", "commit": "684eeac91ed8e297685a97ef70031d19ac1de25a" },
+  "nvim-treesitter-textobjects": { "branch": "master", "commit": "205e3369bc83d8cb83f7409c36120e24611f8c5c" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
-  "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" }
+  "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
+  "typst-preview.nvim": { "branch": "master", "commit": "2503b188cd2a17ce44fdd21a944a93335e935215" }
 }

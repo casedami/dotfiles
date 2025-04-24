@@ -1,5 +1,16 @@
 return {
     {
+        "chomosuke/typst-preview.nvim",
+        ft = "typst",
+        version = "1.*",
+        opts = {
+            dependencies_bin = {
+                ["tinymist"] = "/opt/homebrew/bin/tinymist",
+            },
+            invert_colors = "auto",
+        },
+    },
+    {
         "NeogitOrg/neogit",
         dependencies = {
             "nvim-lua/plenary.nvim",

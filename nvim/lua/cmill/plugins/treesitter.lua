@@ -37,6 +37,7 @@ return {
                 "rust",
                 "python",
                 "go",
+                "typst",
                 "sql",
             },
             incremental_selection = {

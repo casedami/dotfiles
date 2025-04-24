@@ -19,7 +19,7 @@ require("lazy").setup({
         version = false,
     },
     dev = {
-        path = "~/Developer/lua",
+        path = "~/Self/Developer/lua",
         patterns = {
             "focus.nvim",
             "neomodern",

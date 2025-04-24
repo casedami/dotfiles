@@ -13,6 +13,7 @@ return {
             swift = { "swift_format" },
             rust = { "rustfmt" },
             go = { "gofmt" },
+            typst = { lsp_format = "fallback" },
             ["_"] = { "trim_whitespace" },
         },
         format_on_save = {
