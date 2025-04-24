@@ -7,15 +7,8 @@ abbr --add gs git s
 abbr --add mm monthly
 
 alias vim="nvim"
-alias ls="eza --icons --group-directories-first"
-alias ll="ls -a --long --header --git --binary --smart-group --time-style=iso --total-size"
-alias la="eza --tree --level=3"
-alias tree="eza --tree"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias python="python3.13"
-alias conda+="conda activate"
-alias conda-="conda deactivate"
-alias pydb="python -m pdb"
 
 set -gx NOTES_DIR ~/self/notes/main/monthly/
 
