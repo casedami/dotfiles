@@ -34,27 +34,29 @@ local status_order = {
 
 local icons = tools.ui.icons
 local hl_ui_icons = util.hl_icons({
-    ["binary"] = { "DiagnosticHint", icons["binary"] },
-    ["branch"] = { "Type", icons["branch"] },
-    ["error"] = { "DiagnosticError", icons["diag"] },
-    ["fileinfo"] = { "DiagnosticHint", icons["hamburger"] },
-    ["modified"] = { "TODO", icons["modified"] },
-    ["nomodifiable"] = { "DiagnosticWarn", icons["lock"] },
-    ["readonly"] = { "DiagnosticHint", icons["readonly"] },
-    ["warn"] = { "DiagnosticWarn", icons["diag"] },
-    ["location"] = { "@variable", icons["location"] },
+    ["binary"] = { "DiagnosticHint", icons.binary },
+    ["branch"] = { "Type", icons.branch },
+    ["error"] = { "DiagnosticError", icons.diag.error },
+    ["fileinfo"] = { "DiagnosticHint", icons.hamburger },
+    ["modified"] = { "TODO", icons.modified },
+    ["nomodifiable"] = { "DiagnosticWarn", icons.lock },
+    ["readonly"] = { "DiagnosticHint", icons.readonly },
+    ["warn"] = { "DiagnosticWarn", icons.diag.warning },
+    ["venv"] = { "@property", icons.venv },
+    ["location"] = { "@variable", icons.location },
 })
 
----Create a string containing info for the current git branch
+---Create a string with path and git info.
 ---@param root? string
 ---@param fname string
 ---@param icon_tbl table
 ---@return string|nil
 local function path_info(root, fname, icon_tbl)
+    local path = fname:gsub("^/Users/caseymiller/", "~/")
     if root == nil then
-        return fname
+        return path
     end
-    local tail = vim.fn.fnamemodify(fname, ":t")
+    local tail = vim.fn.fnamemodify(path, ":t")
     local icon, hl = require("mini.icons").get("file", tail)
     icon = tail ~= "" and util.hl_str(hl, icon) or ""
     local tail_and_icon = table.concat({ tail, status_parts.pad, icon })
@@ -64,19 +66,15 @@ local function path_info(root, fname, icon_tbl)
     end
 
     local branch = tools.git_branch(root)
-    local head = (vim.fn.fnamemodify(fname, ":h") .. "/"):gsub(
-        "^/Users/caseymiller/",
-        "~/"
-    )
-
+    local head = (vim.fn.fnamemodify(path, ":h") .. "/")
     local width = vim.api.nvim_win_get_width(0)
     local max_head_len = 15
     local max_repo_len = 10
 
     local repo_info = ""
     if branch then
-        if #branch >= max_repo_len then
-            branch = branch:gsub("^(%a%a%a%a%a%a%a%a%a%a)%a+", "%1" .. icons.ellipses)
+        if #branch > max_repo_len then
+            branch = branch:gsub("^(..........).+", "%1" .. icons.cdots)
         end
         repo_info = table.concat({
             icon_tbl["branch"],
@@ -88,9 +86,9 @@ local function path_info(root, fname, icon_tbl)
     if #head + #tail > max_head_len then
         local _, _, grandparent, parent = string.find(head, "(%a+)/(%a+)/$")
         if grandparent and grandparent ~= "~" and parent then
-            head = table.concat({ icons.ellipses, grandparent, parent }, "/") .. "/"
+            head = table.concat({ icons.ldots, grandparent, parent }, "/") .. "/"
         elseif parent and parent ~= "~" then
-            head = head:gsub("(%a)%a*/", "%1/")
+            head = head:gsub("(.).*/", "%1/")
         end
     end
 
@@ -167,9 +165,10 @@ local function fileinfo(icon_tbl)
     else
         local loc = vim.fn.getpos(".")[2]
         local idx = math.floor((loc - 1) / lines * #icons.location) + 1
+        local fsize = tostring(vim.fn.getfsize(vim.fn.bufname()))
         return table.concat({
             icon_tbl.binary .. " ",
-            vim.fn.getfsize(vim.fn.bufname()),
+            fsize:gsub("(%d+)%d%d%d$", "%1k"),
             "bytes",
             status_parts.pad,
             icon_tbl.fileinfo .. " ",
@@ -187,12 +186,22 @@ local pyenv = function()
     local venv = os.getenv("VIRTUAL_ENV")
     if venv then
         local name = vim.fn.fnamemodify(venv, ":t")
-        return util.hl_str("@property", name)
+        return table.concat({
+            hl_ui_icons.venv,
+            status_parts.pad,
+            util.hl_str("@property", name),
+            status_parts.pad,
+        })
     end
 
     local conda = os.getenv("CONDA_DEFAULT_ENV")
     if conda then
-        return util.hl_str("@property", conda)
+        return table.concat({
+            hl_ui_icons.venv,
+            status_parts.pad,
+            util.hl_str("@property", conda),
+            status_parts.pad,
+        })
     end
 
     return nil

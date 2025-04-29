@@ -17,10 +17,10 @@ vim.diagnostic.config({
     },
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = tools.ui.icons.error,
-            [vim.diagnostic.severity.WARN] = tools.ui.icons.warning,
-            [vim.diagnostic.severity.HINT] = tools.ui.icons.hint,
-            [vim.diagnostic.severity.INFO] = tools.ui.icons.info,
+            [vim.diagnostic.severity.ERROR] = tools.ui.icons.diag.gutter,
+            [vim.diagnostic.severity.WARN] = tools.ui.icons.diag.gutter,
+            [vim.diagnostic.severity.HINT] = tools.ui.icons.diag.hint,
+            [vim.diagnostic.severity.INFO] = tools.ui.icons.diag.info,
         },
         numhl = {
             [vim.diagnostic.severity.ERROR] = "ErrorMsg",
