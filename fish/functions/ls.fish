@@ -1,8 +1,7 @@
 function ls
-    set -l print_vert
-    if test (count *) -lt 15
-        set print_vert -1
+    if test (eza -a $argv | count) -lt 15
+        eza -a --icons --group-directories-first -1 $argv
+    else
+        eza -a --icons --group-directories-first $argv
     end
-
-    eza -a --icons --group-directories-first $print_vert
 end
