@@ -7,7 +7,7 @@ return {
             dependencies_bin = {
                 ["tinymist"] = "/opt/homebrew/bin/tinymist",
             },
-            invert_colors = "auto",
+            -- invert_colors = "auto",
         },
     },
     {

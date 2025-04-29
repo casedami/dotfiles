@@ -57,6 +57,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("typst"),
+    desc = "set win opts when opening typst buf",
+    pattern = {
+        "typst",
+    },
+    callback = function()
+        vim.opt_local.spell = true
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
     group = augroup("close_with_q"),
     desc = "Close with <q>",
     pattern = {
