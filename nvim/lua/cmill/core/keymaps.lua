@@ -19,6 +19,7 @@ local maps = {
         { "c", "<C-k>", "<up>" }, -- go backwards in cmdline history
         { "c", "<C-j>", "<down>" }, -- go forwards in cmdline history
     },
+
     buffers = {
         { "n", "<localleader>]", "<cmd>bnext<cr>" }, -- next buffer in bufferlist
         { "n", "<localleader>[", "<cmd>bprev<cr>" }, -- previous buffer in bufferlist
@@ -26,12 +27,14 @@ local maps = {
         { "n", "<localleader>p", "<C-6>" }, -- previous buffer
         { "n", "<localleader>P", "<C-w><C-6>" }, -- previous buffer in hsplit
     },
+
     tabs = {
         { "n", "<localleader>}", "<cmd>tabnext<cr>" }, -- next tab
         { "n", "<localleader>{", "<cmd>tabprevious<cr>" }, -- previous tab
         { "n", "<localleader><tab>c", "<cmd>tabnew %<cr>" }, -- new tab
         { "n", "<localleader><tab>d", "<cmd>tabclose<cr>" }, -- close tab
     },
+
     windows = {
         { "n", "<C-Up>", "<cmd>resize +2<cr>" }, -- increase window height
         { "n", "<C-Down>", "<cmd>resize -2<cr>" }, -- decrease window height
@@ -52,6 +55,7 @@ local maps = {
         { "n", "<leader>-", "<C-W>s", opts["remap"] }, -- split window below
         { "n", "<leader>|", "<C-W>v", opts["remap"] }, -- split window right
     },
+
     qf = {
         { "n", "<leader>cn", "<cmd>cnext<cr>zz" }, -- goto next item in qfix list
         { "n", "<leader>cnf", "<cmd>cnfile<cr>zz" }, -- goto first item in next file
@@ -60,6 +64,7 @@ local maps = {
         { "n", "<leader>co", "<cmd>copen<cr>" }, -- open qfix list
         { "n", "<leader>cc", "<cmd>cclose<cr>" }, -- close qfix list
     },
+
     term = {
         { "n", "<leader>tk", "<cmd>split | resize 15 | terminal<cr>i" }, -- open term in hsplit
         { "n", "<leader>th", "<cmd>vsplit | terminal<cr>i" }, -- open term in vsplit
@@ -67,24 +72,40 @@ local maps = {
         { "t", "<esc>", "<C-\\><C-n>" }, -- use esc key to switch normal mode from term mode
         { "t", "<C-v><esc>", "<esc>" }, -- send esc key to shell
     },
+
     files = {
         { "ca", "fn", "New" }, -- edit new file in current dir
         { "ca", "fnh", "NewSplit" }, -- edit new file in current dir (hsplit)
         { "ca", "fnk", "NewVsplit" }, --edit new file in current dir (vsplit)
     },
+
     sessions = {
         { "ca", "sw", "SesWrite" }, -- save session for cwd
         { "ca", "sd", "SesDel" }, -- delete session for cwd
         { "ca", "sda", "SesDelA" }, -- delete all saved sessions
         { "ca", "sl", "SesLoad" }, -- load session for cwd
     },
+
     misc = {
         { "n", "<leader>l", "<cmd>Lazy<cr>", opts["silent"] }, -- open lazy
         { "n", "<leader>?", "<cmd>h selfhelp.txt<cr>", opts["silent"] }, -- open selfhelp
-        { "ca", "doc", "Neogen", opts["silent"] }, -- generate docstring
-        { { "n", "v" }, "=", '"0p' }, -- forward paste from 0 register
-        { { "n", "v" }, "+", '"0P' }, -- backward paste from 0 register
-        { "i", "<C-p>", '"0p' }, -- paste from 0 register in insert mode
+        { "n", "=", '"0p' }, -- forward paste from 0 register
+        { "n", "+", '"0P' }, -- backward paste from 0 register
+        -- copy current line, comment it, and paste it below
+        {
+            "n",
+            "|",
+            "<cmd>normal yygccp<cr>",
+            { remap = true },
+        },
+        -- copy selected line(s), comment it, and paste it below
+        {
+            "v",
+            "|",
+            "<cmd>normal y`[V`]gc`]p<cr>",
+            { remap = true },
+        },
+        { "i", "<C-p>", '<C-o>"0p' }, -- paste from 0 register in insert mode
         { "n", "<tab>", "<nop>" }, -- remave tab (alias for <c-i>)
         { "n", "<C-i>", "<c-i>" }, -- restore jump-forward keymap (<c-i>)
         { "n", "<C-;>", "<c-l>" }, -- clear cmd line
