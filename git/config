@@ -1,5 +1,5 @@
 [user]
-	name = cdmill
+	name = Casey Miller
 	email = cd.miller1230@gmail.com
 [init]
   defaultBranch = main
@@ -13,6 +13,8 @@
 	excludesfile = /Users/caseymiller/.config/git/.gitignore_global
 [diff]
 	tool = nvimdiff
+[commit]
+    template = ~/.config/git/default_msg.txt
 [merge]
     tool = nvim
 [mergetool]
@@ -20,10 +22,9 @@
 [mergetool "nvim"]
     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [alias]
-	glog = log --all --graph --decorate
-	glog1 = log --all --graph --decorate --oneline
-	l = log --oneline
-  s = status -s
-  aliases = config --get-regexp alias
-  amend = commit --amend --reuse-message=HEAD
-  whoami = config user.email
+    ll = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset, %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset'
+    gl = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset, %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset' --graph
+    s = status -s
+    aliases = config --get-regexp alias
+    amend = commit --amend --reuse-message=HEAD
+    whoami = config user.email
