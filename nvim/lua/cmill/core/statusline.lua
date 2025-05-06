@@ -135,9 +135,9 @@ local function user_or_tab_info()
         info = vim.fn.tabpagenr()
     end
     return util.hl_str(
-        "@string",
+        "@lsp.typemod.keyword.documentation",
         info .. util.pad_str(vim.uv.os_get_passwd()["username"], 2, "left")
-    )
+    ) .. status_parts.pad
 end
 
 --- @return string word count
@@ -199,6 +199,7 @@ local function pyenv()
             icons_hl.venv,
             status_parts.pad,
             util.hl_str("@property", name),
+            status_parts.pad,
             status_parts.pad,
         })
     end

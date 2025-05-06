@@ -72,7 +72,7 @@ function M.ordered_tbl_concat(order_tbl, stl_part_tbl)
         end
     end
 
-    return table.concat(str_table, " ")
+    return table.concat(str_table)
 end
 
 function M.hl_str(hl, str)
