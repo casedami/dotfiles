@@ -22,8 +22,8 @@
 [mergetool "nvim"]
     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [alias]
-    ll = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset, %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset'
-    gl = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset, %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset' --graph
+    ll = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset'
+    gl = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset' --graph
     s = status -s
     aliases = config --get-regexp alias
     amend = commit --amend --reuse-message=HEAD
