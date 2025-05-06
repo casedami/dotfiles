@@ -32,11 +32,11 @@ return {
             shfmt = {
                 args = { "-i", "2" },
             },
-            -- ruff_format = {
-            --   condition = function(_, ctx)
-            --     return not string.find(ctx.filename, "trident")
-            --   end,
-            -- },
+            ruff_format = {
+                condition = function(_, ctx)
+                    return not string.find(ctx.filename, "trident")
+                end,
+            },
         },
     },
 }
