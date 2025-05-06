@@ -36,10 +36,10 @@ function M.pad_str(in_str, width, align)
     local spaces = string.rep(" ", num_spaces)
 
     if align == "left" then
-        return table.concat({ in_str, spaces })
+        return table.concat({ spaces, in_str })
     end
 
-    return table.concat({ spaces, in_str })
+    return table.concat({ in_str, spaces })
 end
 
 function M.hl_icons(icon_list)
