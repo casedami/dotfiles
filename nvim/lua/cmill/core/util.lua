@@ -20,13 +20,6 @@ function M.show_diff()
     return M.cwd_is_git_repo() and M.git_has_local_changes()
 end
 
----Convenient new file prompt expansion for startup screen
----@return nil
-function M.new_file_prompt()
-    local inp = vim.fn.input("Name: ")
-    vim.cmd(("New %s"):format(inp))
-end
-
 function M.pad_str(in_str, width, align)
     local num_spaces = width - #in_str
     if num_spaces < 1 then

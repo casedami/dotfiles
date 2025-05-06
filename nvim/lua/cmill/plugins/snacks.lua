@@ -54,7 +54,6 @@ return {
           -- stylua: ignore
           keys = {
             { icon = " ", key = "f", desc = "find file", action = "<leader>ff" },
-            { icon = " ", key = "n", desc = "new file", action = ":lua require('cmill.core.util').new_file_prompt()" },
             { icon = " ", key = "r", desc = "recent files", action = "<leader>fr" },
             { icon = "󱏒 ", key = "e", desc = "explorer", action = "<leader>fe" },
             { icon = " ", key = "g", desc = "grep", action = "<leader>fg" },
