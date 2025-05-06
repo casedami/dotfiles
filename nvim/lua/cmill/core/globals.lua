@@ -17,6 +17,7 @@ _G.tools = {
             location = { "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
             lock = "󰍁",
             modified = "* ",
+            neovim = "",
             newfile = " ",
             readonly = "󰛐 ",
             select = " ",
