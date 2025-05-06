@@ -4,11 +4,10 @@ local get_opt = vim.api.nvim_get_option_value
 local M = {}
 
 local status_parts = {
-    buf_info = nil,
+    usertabinfo = nil,
+    fileinfo = nil,
     diag = nil,
-    git_info = nil,
-    modifiable = nil,
-    modified = nil,
+    mod = nil,
     pad = " ",
     path = nil,
     readonly = nil,
@@ -20,6 +19,8 @@ local status_parts = {
 
 local status_order = {
     "pad",
+    "usertabinfo",
+    "pad",
     "venv",
     "path",
     "mod",
@@ -27,23 +28,24 @@ local status_order = {
     "sep",
     "sep",
     "diag",
+    "pad",
     "fileinfo",
     "fsize",
     "pad",
 }
 
-local icons = tools.ui.icons
-local hl_ui_icons = util.hl_icons({
-    ["binary"] = { "DiagnosticHint", icons.binary },
-    ["branch"] = { "Type", icons.branch },
-    ["error"] = { "DiagnosticError", icons.diag.error },
-    ["fileinfo"] = { "DiagnosticHint", icons.hamburger },
-    ["modified"] = { "TODO", icons.modified },
-    ["nomodifiable"] = { "DiagnosticWarn", icons.lock },
-    ["readonly"] = { "DiagnosticHint", icons.readonly },
-    ["warn"] = { "DiagnosticWarn", icons.diag.warning },
-    ["venv"] = { "@property", icons.venv },
-    ["location"] = { "@variable", icons.location },
+local icons_raw = tools.ui.icons
+local icons_hl = util.hl_icons({
+    binary = { "DiagnosticHint", icons_raw.binary },
+    branch = { "Type", icons_raw.branch },
+    error = { "DiagnosticError", icons_raw.diag.error },
+    fileinfo = { "DiagnosticHint", icons_raw.hamburger },
+    modified = { "TODO", icons_raw.modified },
+    nomodifiable = { "DiagnosticWarn", icons_raw.lock },
+    readonly = { "DiagnosticHint", icons_raw.readonly },
+    warn = { "DiagnosticWarn", icons_raw.diag.warning },
+    venv = { "@property", icons_raw.venv },
+    location = { "@variable", icons_raw.location },
 })
 
 ---Create a string with path and git info.
@@ -51,7 +53,7 @@ local hl_ui_icons = util.hl_icons({
 ---@param fname string
 ---@param icon_tbl table
 ---@return string|nil
-local function path_info(root, fname, icon_tbl)
+local function path_info(root, fname)
     local path = fname:gsub("^/Users/caseymiller/", "~/")
     if root == nil then
         return path
@@ -74,10 +76,10 @@ local function path_info(root, fname, icon_tbl)
     local repo_info = ""
     if branch then
         if #branch > max_repo_len then
-            branch = branch:gsub("^(..........).+", "%1" .. icons.cdots)
+            branch = branch:gsub("^(..........).+", "%1" .. icons_raw.cdots)
         end
         repo_info = table.concat({
-            icon_tbl["branch"],
+            icons_hl.branch,
             util.hl_str("Type", branch),
             status_parts.pad,
         }, " ")
@@ -86,7 +88,7 @@ local function path_info(root, fname, icon_tbl)
     if #head + #tail > max_head_len then
         local _, _, grandparent, parent = string.find(head, "(%a+)/(%a+)/$")
         if grandparent and grandparent ~= "~" and parent then
-            head = table.concat({ icons.ldots, grandparent, parent }, "/") .. "/"
+            head = table.concat({ icons_raw.ldots, grandparent, parent }, "/") .. "/"
         elseif parent and parent ~= "~" then
             head = head:gsub("(.).*/", "%1/")
         end
@@ -113,14 +115,10 @@ local function diagnostics()
 
     return (err_count > 0 or warn_count > 0)
             and table.concat({
-                hl_ui_icons["error"],
-                " ",
-                util.pad_str(tostring(err_count), 3, "left"),
-                " ",
-                hl_ui_icons["warn"],
-                " ",
-                util.pad_str(tostring(warn_count), 3, "left"),
-                " ",
+                util.pad_str(icons_hl.error, 4, "right"),
+                util.pad_str(tostring(err_count), 4, "right"),
+                util.pad_str(icons_hl.warn, 4, "right"),
+                tostring(warn_count),
             })
         or ""
 end
@@ -131,8 +129,19 @@ local function vlines()
     return util.group_number(math.abs(raw_count), ",")
 end
 
+local function user_or_tab_info()
+    local info = icons_raw.neovim
+    if vim.api.nvim_eval("len(gettabinfo())") > 1 then
+        info = vim.fn.tabpagenr()
+    end
+    return util.hl_str(
+        "@string",
+        info .. util.pad_str(vim.uv.os_get_passwd()["username"], 2, "left")
+    )
+end
+
 --- @return string word count
-local function fileinfo(icon_tbl)
+local function fileinfo()
     local ft = get_opt("filetype", {})
     local lines = util.group_number(vim.api.nvim_buf_line_count(0), ",")
 
@@ -142,7 +151,7 @@ local function fileinfo(icon_tbl)
         if not wc_table.visual_words or not wc_table.visual_chars then
             -- MARK: normal mode
             return table.concat({
-                icon_tbl.fileinfo,
+                icons_hl.fileinfo,
                 " ",
                 lines,
                 " lines  ",
@@ -164,30 +173,30 @@ local function fileinfo(icon_tbl)
     -- MARK: source files
     else
         local loc = vim.fn.getpos(".")[2]
-        local idx = math.floor((loc - 1) / lines * #icons.location) + 1
+        local idx = math.floor((loc - 1) / lines * #icons_raw.location) + 1
         local fsize = tostring(vim.fn.getfsize(vim.fn.bufname()))
         return table.concat({
-            icon_tbl.binary .. " ",
+            icons_hl.binary,
             fsize:gsub("(%d+)%d%d%d$", "%1k"),
             "bytes",
             status_parts.pad,
-            icon_tbl.fileinfo .. " ",
+            icons_hl.fileinfo,
             lines,
             "lines",
             status_parts.pad,
-            icon_tbl.location[idx],
+            icons_hl.location[idx],
             util.hl_str("@variable", "%P"),
         }, " ")
     end
 end
 
 --- @return string|nil
-local pyenv = function()
+local function pyenv()
     local venv = os.getenv("VIRTUAL_ENV")
     if venv then
         local name = vim.fn.fnamemodify(venv, ":t")
         return table.concat({
-            hl_ui_icons.venv,
+            icons_hl.venv,
             status_parts.pad,
             util.hl_str("@property", name),
             status_parts.pad,
@@ -197,7 +206,7 @@ local pyenv = function()
     local conda = os.getenv("CONDA_DEFAULT_ENV")
     if conda then
         return table.concat({
-            hl_ui_icons.venv,
+            icons_hl.venv,
             status_parts.pad,
             util.hl_str("@property", conda),
             status_parts.pad,
@@ -226,28 +235,27 @@ M.render = function()
     local buf_num = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 
     -- MARK: left
-    status_parts["path"] = path_info(root, fname, hl_ui_icons)
+    status_parts.usertabinfo = user_or_tab_info()
+    status_parts.path = path_info(root, fname, icons_hl)
     if not get_opt("modifiable", { buf = buf_num }) then
-        status_parts["mod"] =
-            table.concat({ status_parts.pad, hl_ui_icons["nomodifiable"] })
+        status_parts.mod = table.concat({ status_parts.pad, icons_hl.nomodifiable })
     elseif get_opt("modified", { buf = buf_num }) then
-        status_parts["mod"] = hl_ui_icons["modified"]
+        status_parts.mod = icons_hl.modified
     else
-        status_parts["mod"] = " "
+        status_parts.mod = " "
     end
 
-    status_parts["readonly"] = get_opt("readonly", { buf = buf_num })
-            and hl_ui_icons["readonly"]
+    status_parts.readonly = get_opt("readonly", { buf = buf_num }) and icons_hl.readonly
         or ""
 
     -- MARK: middle
     if vim.bo.filetype == "python" then
-        status_parts["venv"] = pyenv()
+        status_parts.venv = pyenv()
     end
 
     -- MARK: right
-    status_parts["diag"] = diagnostics()
-    status_parts["fileinfo"] = fileinfo(hl_ui_icons)
+    status_parts.diag = diagnostics()
+    status_parts.fileinfo = fileinfo()
 
     return util.ordered_tbl_concat(status_order, status_parts)
 end
