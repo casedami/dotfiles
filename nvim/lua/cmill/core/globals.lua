@@ -8,7 +8,7 @@ _G.tools = {
                 error = "",
                 hint = "",
                 info = "",
-                warning = "",
+                warning = "",
             },
             ldots = "...",
             cdots = "󰑀 ",
