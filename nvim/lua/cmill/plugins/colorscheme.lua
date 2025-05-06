@@ -26,6 +26,7 @@ return {
                 highlights = {
                     ["LazyNormal"] = { bg = "none" },
                     ["Statusline"] = { bg = "$alt_bg" },
+                    ["StatuslineTerm"] = { bg = "$alt_bg" },
                 },
             })
             require("neomodern").load()
