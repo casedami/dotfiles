@@ -37,7 +37,7 @@ return {
         "cdmill/sesh.nvim",
         opts = {
             autoload = false,
-            autosave = 2,
+            autosave = false,
         },
     },
 }
