@@ -7,7 +7,7 @@ return {
             dependencies_bin = {
                 ["tinymist"] = "/opt/homebrew/bin/tinymist",
             },
-            -- invert_colors = "auto",
+            invert_colors = "auto",
         },
     },
     {
@@ -35,9 +35,10 @@ return {
     { "Bilal2453/luvit-meta", ft = "lua" },
     {
         "cdmill/sesh.nvim",
+        branch = "dev",
         opts = {
-            autoload = false,
-            autosave = false,
+            autoload = true,
+            autosave = true,
         },
     },
 }
