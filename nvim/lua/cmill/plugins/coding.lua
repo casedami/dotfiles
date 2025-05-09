@@ -35,7 +35,7 @@ return {
     { "Bilal2453/luvit-meta", ft = "lua" },
     {
         "cdmill/sesh.nvim",
-        branch = "fix/autoload-new-file",
+        branch = "dev",
         opts = {
             autoload = true,
             autosave = 2,
