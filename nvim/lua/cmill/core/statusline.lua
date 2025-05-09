@@ -31,6 +31,7 @@ local status_order = {
     "sep",
     "diag",
     "pad",
+    "pad",
     "fileinfo",
     "fsize",
     "pad",
@@ -118,7 +119,7 @@ local function diagnostics()
     return (err_count > 0 or warn_count > 0)
             and table.concat({
                 util.pad_str(icons_hl.error, 4, "right"),
-                util.pad_str(tostring(err_count), 4, "right"),
+                util.pad_str(tostring(err_count), 2, "right"),
                 util.pad_str(icons_hl.warn, 4, "right"),
                 tostring(warn_count),
             })

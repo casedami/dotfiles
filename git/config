@@ -1,30 +1,112 @@
 [user]
 	name = Casey Miller
 	email = cd.miller1230@gmail.com
+    signingkey = BD959B3E51182316
+
+[core]
+    compression = 9
+    preloadindex = true
+	editor = nvim
+	excludesfile = /Users/caseymiller/.config/git/.gitignore_global
+
+[advice]
+    addEmptyPathspec = false
+    pushNonFastForward = false
+    statusHints = false
+
 [init]
   defaultBranch = main
+
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all
+
+[url "git@github.com:cdmill/"]
+    insteadOf = "cdm:"
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+
+[diff]
+	tool = nvimdiff
+    context = 3
+    renames = copies
+    interHunkContext = 10
+
+[pager]
+    diff = diff-so-fancy | $PAGER
+    branch = false
+    tag = false
+
+[diff-so-fancy]
+    markEmptyLines = false
+
+[commit]
+    template = ~/.config/git/template
+    gpgSign = true
+
+[push]
+    autoSetupRemote = true
+    default = current
+    followTags = true
+
+[pull]
+    default = current
+    rebase = true
+
+[rebase]
+    autoStash = true
+    missingCommitsCheck = true
+
+[merge]
+    tool = nvim
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "nvim"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[log]
+    abbrevCommit = true
+    graphColors = blue,yellow,cyan,magenta,green,red
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -taggerdate
+
+[alias]
+    ll = log --all --graph --pretty=format:'%C(yellow)%h %C(blue)%an %C(blue dim italic)%ar %C(auto)%D %C(green)%n%s%n'
+    s = status -s
+    aliases = config --get-regexp alias
+    amend = commit --amend --reuse-message=HEAD
+    whoami = config user.email
+
 [color]
 	branch = auto
 	diff = auto
 	status = auto
 	ui = auto
-[core]
-	editor = nvim
-	excludesfile = /Users/caseymiller/.config/git/.gitignore_global
-[diff]
-	tool = nvimdiff
-[commit]
-    template = ~/.config/git/default_msg.txt
-[merge]
-    tool = nvim
-[mergetool]
-    keepBackup = false
-[mergetool "nvim"]
-    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-[alias]
-    ll = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset'
-    gl = log --pretty=format:'%C(yellow)%h%Creset %C(normal dim)::%Creset %C(blue bold)%an%Creset %C(blue dim italic)%ar%Creset %C(normal dim)::%Creset %C(green)%s%Creset' --graph
-    s = status -s
-    aliases = config --get-regexp alias
-    amend = commit --amend --reuse-message=HEAD
-    whoami = config user.email
+
+[color "diff"]
+    meta = black bold
+    frag = magenta
+    context = white
+    whitespace = yellow reverse
+    old = red
+
+[color "decorate"]
+    HEAD = red
+    branch = magenta
+    tag = yellow
+    remoteBranch = cyan
+
+[color "branch"]
+    current = magenta
+    local = default
+    remote = cyan
+    upstream = green
+    plain = blue
