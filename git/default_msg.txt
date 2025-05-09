@@ -1,5 +1,0 @@
-type(scope): summary
-
-motivation
-
-* full list of changes

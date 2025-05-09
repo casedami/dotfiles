@@ -38,7 +38,7 @@ return {
         branch = "dev",
         opts = {
             autoload = true,
-            autosave = true,
+            autosave = 2,
         },
     },
 }
