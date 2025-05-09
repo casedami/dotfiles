@@ -8,6 +8,7 @@
     preloadindex = true
 	editor = nvim
 	excludesfile = /Users/caseymiller/.config/git/.gitignore_global
+    pager = diff-so-fancy | less --tabs=2 -RF
 
 [advice]
     addEmptyPathspec = false
@@ -35,7 +36,6 @@
     interHunkContext = 10
 
 [pager]
-    diff = diff-so-fancy | $PAGER
     branch = false
     tag = false
 
@@ -45,6 +45,7 @@
 [commit]
     template = ~/.config/git/template
     gpgSign = true
+    verbose = true
 
 [push]
     autoSetupRemote = true
@@ -86,17 +87,15 @@
     whoami = config user.email
 
 [color]
-	branch = auto
-	diff = auto
 	status = auto
-	ui = auto
 
 [color "diff"]
-    meta = black bold
+    meta = yellow bold
     frag = magenta
-    context = white
+    context = white dim
     whitespace = yellow reverse
-    old = red
+    old = red bold
+    new = green bold
 
 [color "decorate"]
     HEAD = red
