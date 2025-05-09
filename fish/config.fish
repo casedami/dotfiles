@@ -18,6 +18,8 @@ set -gx RUST_BACKTRACE 1
 set -gx HOMEBREW_NO_ENV_HINTS 1
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
 set -gx MANPAGER "nvim +Man!"
+set -gx GPG_TTY $(tty)
+set -x LESS (string replace -r 'X' '' $LESS)
 
 set -gx FZF_DEFAULT_OPTS '
 --color=fg:#adacac,bg:#111111,hl:#8a879c,gutter:#111111
