@@ -11,17 +11,6 @@ return {
         },
     },
     {
-        "NeogitOrg/neogit",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        keys = {
-            { "<leader>gg", "<cmd>Neogit kind=auto<cr>" },
-        },
-        cmd = "Neogit",
-        config = true,
-    },
-    {
         "folke/lazydev.nvim",
         ft = "lua",
         opts = {
@@ -38,7 +27,14 @@ return {
         branch = "dev",
         opts = {
             autoload = true,
-            autosave = 2,
+            autosave = {
+                enabled = true,
+                criteria = {
+                    buffers = 3,
+                    splits = 2,
+                    tabs = 2,
+                },
+            },
         },
     },
 }
