@@ -8,7 +8,7 @@
     preloadindex = true
 	editor = nvim
 	excludesfile = /Users/caseymiller/.config/git/ignore
-    pager = diff-so-fancy | less --tabs=2 -RF
+    pager = diff-so-fancy | less --tabs=2 -SRF
 
 [advice]
     addEmptyPathspec = false
@@ -83,7 +83,7 @@
     s = status -s
     aliases = config --get-regexp alias
     amend = commit --amend --reuse-message=HEAD
-    whoami = config user.email
+    whoami = !git config user.name && git config user.email
 
 [color]
 	status = auto
@@ -104,7 +104,11 @@
 
 [color "branch"]
     current = magenta
-    local = default
+    local = blue
     remote = cyan
     upstream = green
     plain = blue
+
+[color "interactive"]
+    prompt = magenta
+    header = yellow
