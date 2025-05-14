@@ -32,7 +32,7 @@ return {
             },
             ruff_format = {
                 condition = function(_, ctx)
-                    return not string.find(ctx.filename, "trident")
+                    return not string.find(ctx.filename, "work")
                 end,
             },
         },

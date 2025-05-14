@@ -3,7 +3,11 @@ return {
         "folke/snacks.nvim",
         lazy = false,
         opts = {
-            statuscolumn = { enabled = true },
+            statuscolumn = {
+                enabled = true,
+                left = { "git" },
+                right = { "sign", "fold", "mark" },
+            },
             explorer = { enabled = true },
             -- indent = { enabled = true },
             picker = {

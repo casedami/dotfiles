@@ -1,6 +1,6 @@
 local opts = {
     silent = { silent = true },
-    noremap = { remap = false },
+    noremap = { noremap = true },
     remap = { remap = true },
 }
 
@@ -12,8 +12,8 @@ local maps = {
         { "n", "<C-u>", "<C-u>zz" }, -- center after page up
         { "n", "n", "nzzzv" }, -- center after next item in search
         { "n", "N", "Nzzzv" }, -- center after prev item in search
-        { "v", "J", ":m '>+1<cr>gv=gv", opts["silent"] }, -- move line up
-        { "v", "K", ":m '<-2<cr>gv=gv", opts["silent"] }, -- move line down
+        { "v", "J", ":m '>+1<cr>gv=gv", opts.silent }, -- move line up
+        { "v", "K", ":m '<-2<cr>gv=gv", opts.silent }, -- move line down
         { "v", "<", "<gv" }, -- stay in visual mode when indenting
         { "v", ">", ">gv" }, -- stay in visual mode when indenting
         { "c", "<C-k>", "<up>" }, -- go backwards in cmdline history
@@ -40,20 +40,20 @@ local maps = {
         { "n", "<C-Down>", "<cmd>resize -2<cr>" }, -- decrease window height
         { "n", "<C-Left>", "<cmd>vertical resize -2<cr>" }, -- decrease window width
         { "n", "<C-Right>", "<cmd>vertical resize +2<cr>" }, -- increase window width
-        { { "n", "v" }, "<C-h>", "<C-w>h", opts["remap"] }, -- goto left window
-        { { "n", "v" }, "<C-j>", "<C-w>j", opts["remap"] }, -- goto lower window
-        { { "n", "v" }, "<C-k>", "<C-w>k", opts["remap"] }, -- goto upper window
-        { { "n", "v" }, "<C-l>", "<C-w>l", opts["remap"] }, -- goto right window
-        { "n", "<leader>wd", "<C-W>c", opts["remap"] }, -- delete window
-        { "n", "<leader>we", "<C-W>=", opts["remap"] }, -- split windows equally
-        { "n", "<leader>wo", "<C-W><C-O>", opts["remap"] }, -- make buffer the only buffer on screen
-        { "n", "<leader>wk", "<C-W>_", opts["remap"] }, -- maximize current window vertically
-        { "n", "<leader>wh", "<C-W>|", opts["remap"] }, -- maximize current window horizontally
-        { "n", "<leader>wK", "<C-W>K", opts["remap"] }, -- change hsplit layout to vsplit
-        { "n", "<leader>wH", "<C-W>H", opts["remap"] }, -- change vsplit layout to hsplit
-        { "n", "<leader>wr", "<C-W><C-R>", opts["remap"] }, -- rotate window layout (only works row-/column-wise)
-        { "n", "<leader>-", "<C-W>s", opts["remap"] }, -- split window below
-        { "n", "<leader>|", "<C-W>v", opts["remap"] }, -- split window right
+        { { "n", "v" }, "<C-h>", "<C-w>h", opts.remap }, -- goto left window
+        { { "n", "v" }, "<C-j>", "<C-w>j", opts.remap }, -- goto lower window
+        { { "n", "v" }, "<C-k>", "<C-w>k", opts.remap }, -- goto upper window
+        { { "n", "v" }, "<C-l>", "<C-w>l", opts.remap }, -- goto right window
+        { "n", "<leader>wd", "<C-W>c", opts.remap }, -- delete window
+        { "n", "<leader>we", "<C-W>=", opts.remap }, -- split windows equally
+        { "n", "<leader>wo", "<C-W><C-O>", opts.remap }, -- make buffer the only buffer on screen
+        { "n", "<leader>wk", "<C-W>_", opts.remap }, -- maximize current window vertically
+        { "n", "<leader>wh", "<C-W>|", opts.remap }, -- maximize current window horizontally
+        { "n", "<leader>wK", "<C-W>K", opts.remap }, -- change hsplit layout to vsplit
+        { "n", "<leader>wH", "<C-W>H", opts.remap }, -- change vsplit layout to hsplit
+        { "n", "<leader>wr", "<C-W><C-R>", opts.remap }, -- rotate window layout (only works row-/column-wise)
+        { "n", "<leader>-", "<C-W>s", opts.remap }, -- split window below
+        { "n", "<leader>|", "<C-W>v", opts.remap }, -- split window right
     },
 
     qf = {
@@ -87,8 +87,8 @@ local maps = {
     },
 
     misc = {
-        { "n", "<leader>l", "<cmd>Lazy<cr>", opts["silent"] }, -- open lazy
-        { "n", "<leader>?", "<cmd>h selfhelp.txt<cr>", opts["silent"] }, -- open selfhelp
+        { "n", "<leader>l", "<cmd>Lazy<cr>", opts.silent }, -- open lazy
+        { "n", "<leader>?", "<cmd>h selfhelp.txt<cr>", opts.silent }, -- open selfhelp
         { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
         { "n", "=", '"0p' }, -- forward paste from 0 register
         { "n", "+", '"0P' }, -- backward paste from 0 register
@@ -113,8 +113,10 @@ local maps = {
         { "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>" }, -- clear previous search match highlights
         { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>" }, -- insert empty newline below
         { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
-        { "ca", "nums", "set relativenumber!", opts["silent"] },
+        { "ca", "nums", "set relativenumber!", opts.silent },
         { "ca", "cd.", "cd %:h" },
+        { "c", "s/", "s/\\v", opts.noremap },
+        { "c", "S", "%s/\\v", opts.noremap },
     },
 }
 
