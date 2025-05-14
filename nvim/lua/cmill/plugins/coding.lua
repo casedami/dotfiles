@@ -21,7 +21,6 @@ return {
             },
         },
     },
-    { "Bilal2453/luvit-meta", ft = "lua" },
     {
         "cdmill/sesh.nvim",
         branch = "dev",

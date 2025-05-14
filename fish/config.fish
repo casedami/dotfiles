@@ -1,17 +1,22 @@
 abbr --add gC git checkout
 abbr --add gc git commit
 abbr --add gp git push
+abbr --add ga git add
 abbr --add gs git s
+abbr --add gl git ll
+abbr --add gr git rebase
 abbr --add mm monthly
 
+alias v="nvim"
 alias vim="nvim"
+alias C="clear"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias python="python3.13"
 
 set -gx NOTES_DIR ~/self/notes/main/monthly/
 
 set -U fish_greeting
-set -U EDITOR nvim
+set -Ux EDITOR nvim
 set -gx LANG en_US.UTF-8
 set -gx TERM xterm-256color
 set -gx RUST_BACKTRACE 1
