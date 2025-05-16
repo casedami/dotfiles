@@ -1,9 +1,11 @@
+abbr --add gb git branch -a
 abbr --add gC git checkout
 abbr --add gc git commit
 abbr --add gp git push
 abbr --add ga git add
 abbr --add gs git status -s
 abbr --add gl git ll
+abbr --add gd git diff
 abbr --add gr git rebase
 abbr --add mm monthly
 
