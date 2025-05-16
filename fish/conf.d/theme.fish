@@ -1,50 +1,54 @@
-# name: HOJICHA
-# upstream: https://github.com/cdmill/neomodern.nvim/raw/main/extras/fish/hojicha.fish
+# name: GYOKURO colors for Fish
+# url: https://fishshell.com/docs/current/index.html
+# upstream: ${upstream}
 # author: Casey Miller
 
 # use in ~/.config/fish/conf.d/
 
-# preferred bg: 161616
-# alt background: 161616
+# preferred bg: 1b1c1d
+# alt background: 161617
 
-### full palette. colors defined in neomdern/palette/HOJICHA.lua
-set -g alt a7ab93
-set -g constant b0b58a
-set -g comment 696969
-set -g fg adacac
-set -g func 808796
-set -g keyword a18b7f
-set -g number b5ae84
-set -g operator 856b6c
-set -g property 9c797d
-set -g str 8a968f
-set -g type 8a879c
+### Full palette. 
+### Colors defined in neomdern/palette/GYOKURO.lua
+set -g alt a69e6f
+set -g constant 868db5
+set -g comment 767777
+set -g fg bbbac1
+set -g func 8bab85
+set -g keyword 72966c
+set -g number d6a9b3
+set -g operator b08c7d
+set -g property 748fa6
+set -g str a2ad7b
+set -g type bbc7b1
 
 # Syntax Highlighting Colors
-set -g fish_color_normal adacac
-set -g fish_color_command 808796
-set -g fish_color_keyword a18b7f
-set -g fish_color_quote 8a968f
-set -g fish_color_redirection b0b58a
-set -g fish_color_end 856b6c
+set -g fish_color_normal bbbac1
+set -g fish_color_command 8bab85
+set -g fish_color_keyword 72966c
+set -g fish_color_quote a2ad7b
+set -g fish_color_redirection 868db5
+set -g fish_color_end b08c7d
 set -g fish_color_error 9e5560
-set -g fish_color_param adacac
-set -g fish_color_valid_path 8a879c
-set -g fish_color_option a7ab93
-set -g fish_color_comment 696969
-set -g fish_color_selection --background=1b1c1d
-set -g fish_color_operator 856b6c
-set -g fish_color_escape a18b7f
-set -g fish_color_autosuggestion 696969
-set -g fish_color_cwd 808796
-set -g fish_color_hostname 8a879c
+set -g fish_color_param bbbac1
+set -g fish_color_valid_path bbc7b1
+set -g fish_color_option a69e6f
+set -g fish_color_comment 767777
+set -g fish_color_selection --background=222324
+set -g fish_color_operator b08c7d
+set -g fish_color_escape 72966c
+set -g fish_color_autosuggestion 767777
+set -g fish_color_cwd a2ad7b
+set -g fish_color_hostname d6a9b3
 set -g fish_color_status 9e5560
-set -g fish_color_cancel b5ae84
-set -g fish_color_search_match --background=1b1c1d
+set -g fish_color_cancel d6a9b3
+set -g fish_color_search_match --background=222324
 
-# Completion Pager Colors}
-set -g fish_pager_color_progress a7ab93
-set -g fish_pager_color_prefix 696969
-set -g fish_pager_color_completion 8a879c
-set -g fish_pager_color_description 696969
-set -g fish_pager_color_selected_background --background=1b1c1d
+# Completion Pager Colors
+set -g fish_pager_color_progress a69e6f
+set -g fish_pager_color_prefix bbc7b1
+set -g fish_pager_color_completion bbbac1
+set -g fish_pager_color_description 767777
+set -g fish_pager_color_selected_prefix a69e6f
+set -g fish_pager_color_selected_completion a69e6f
+set -g fish_pager_color_selected_background --background=222324

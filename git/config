@@ -80,9 +80,8 @@
 
 [alias]
     ll = log --all --graph --pretty=format:'%C(yellow)%h %C(blue)%an %C(blue dim italic)%ar %C(auto)%D %C(green)%n%s%n'
-    s = status -s
     aliases = config --get-regexp alias
-    amend = commit --amend --reuse-message=HEAD
+    amend = commit --amend --no-edit
     whoami = !git config user.name && git config user.email
 
 [color]

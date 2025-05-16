@@ -3,7 +3,7 @@ function fish_prompt
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showupstream auto
     # MARK: git prompt colors
-    set -g __fish_git_prompt_color a8a6de
+    set -g __fish_git_prompt_color $type
     set -g __fish_git_prompt_color_prefix $alt
     set -g __fish_git_prompt_color_suffix $alt
     set -g __fish_git_prompt_color_dirtystate $alt
@@ -41,6 +41,6 @@ function fish_prompt
 end
 
 function fish_right_prompt -d "Write out the right prompt"
-    set -l time (set_color 555568 --italics) (date '+%H:%M')
+    set -l time (set_color $comment --italics) (date '+%H:%M')
     echo $time (set_color normal)
 end

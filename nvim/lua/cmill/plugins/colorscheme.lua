@@ -5,7 +5,7 @@ return {
         branch = "dev",
         config = function()
             require("neomodern").setup({
-                theme = "hojicha",
+                theme = "gyokuro",
                 toggle_variant_key = "<leader>uc",
                 alt_bg = false,
                 cursorline_gutter = false,

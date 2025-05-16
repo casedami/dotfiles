@@ -116,7 +116,7 @@ local maps = {
         { "ca", "nums", "set relativenumber!", opts.silent },
         { "ca", "cd.", "cd %:h" },
         { "c", "s/", "s/\\v", opts.noremap },
-        { "c", "S", "%s/\\v", opts.noremap },
+        { "c", "S/", "%s/\\v", opts.noremap },
     },
 }
 

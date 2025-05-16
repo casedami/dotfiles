@@ -29,7 +29,7 @@ return {
             autosave = {
                 enabled = true,
                 criteria = {
-                    buffers = 3,
+                    buffers = false,
                     splits = 2,
                     tabs = 2,
                 },
