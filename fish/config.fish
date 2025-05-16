@@ -2,7 +2,7 @@ abbr --add gC git checkout
 abbr --add gc git commit
 abbr --add gp git push
 abbr --add ga git add
-abbr --add gs git s
+abbr --add gs git status -s
 abbr --add gl git ll
 abbr --add gr git rebase
 abbr --add mm monthly
@@ -27,10 +27,10 @@ set -gx GPG_TTY $(tty)
 set -x LESS (string replace -r 'X' '' $LESS)
 
 set -gx FZF_DEFAULT_OPTS '
---color=fg:#adacac,bg:#111111,hl:#8a879c,gutter:#111111
---color=fg+:#9c797d,bg+:#1b1c1d,hl+:#8a879c
---color=info:#696969,prompt:#8a879c,pointer:#9c797d
---color=marker:#a18b7f,spinner:#a18b7f,header:#a18b7f
+--color=fg:#bbbac1,bg:#161617,hl:#bbc7b1,gutter:#161617
+--color=fg+:#748fa6,bg+:#222324,hl+:#bbc7b1
+--color=info:#767777,prompt:#bbc7b1,pointer:#748fa6
+--color=marker:#72966c,spinner:#72966c,header:#72966c
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt=" "
 --marker=">"

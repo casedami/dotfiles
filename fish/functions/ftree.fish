@@ -1,3 +1,3 @@
-function fulltree
+function ftree
     eza --tree
 end

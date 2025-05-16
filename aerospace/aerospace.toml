@@ -13,7 +13,7 @@ outer.right = [{monitor."built-in" = 10}, {monitor."dell" = 20}, {monitor."phl" 
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget open /Applications/WezTerm.app'
-alt-shift-b = 'exec-and-forget open /Applications/Firefox.app'
+alt-shift-b = 'exec-and-forget open /Applications/Zen.app'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
