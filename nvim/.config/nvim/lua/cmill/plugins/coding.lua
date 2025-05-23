@@ -5,7 +5,7 @@ return {
         version = "1.*",
         opts = {
             dependencies_bin = {
-                ["tinymist"] = "/opt/homebrew/bin/tinymist",
+                -- ["tinymist"] = "/opt/homebrew/bin/tinymist",
             },
             invert_colors = "auto",
         },
@@ -16,8 +16,6 @@ return {
         opts = {
             library = {
                 { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-                "~/Developer/lua/neomodern.nvim",
-                "~/Developer/lua/sesh.nvim",
             },
         },
     },

@@ -52,22 +52,4 @@ wezterm.on("toggle-opacity", function(window, _)
     window:set_config_overrides(overrides)
 end)
 
-wezterm.on("toggle-colorscheme", function(window, _)
-    local overrides = window:get_config_overrides() or {}
-    if overrides.color_scheme == "iceclimber" then
-        overrides.color_scheme = "daylight"
-    else
-        overrides.color_scheme = "iceclimber"
-    end
-    window:set_config_overrides(overrides)
-end)
-
-config.keys = {
-    {
-        key = "C",
-        mods = "CTRL",
-        action = wezterm.action.EmitEvent("toggle-colorscheme"),
-    },
-}
-
 return config

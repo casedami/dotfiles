@@ -7,7 +7,7 @@
     compression = 9
     preloadindex = true
 	editor = nvim
-	excludesfile = /home/caseymiller/.config/git/ignore
+	excludesfile = ~/.config/git/ignore
     pager = diff-so-fancy | less --tabs=2 -SRF
 
 [advice]
@@ -22,9 +22,6 @@
     branch = true
     showStash = true
     showUntrackedFiles = all
-
-[url "https://github.com/cdmill/"]
-    insteadOf = "cdm:"
 
 [url "https://github.com/"]
     insteadOf = "gh:"
