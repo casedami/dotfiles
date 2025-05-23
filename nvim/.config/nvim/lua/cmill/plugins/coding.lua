@@ -5,7 +5,7 @@ return {
         version = "1.*",
         opts = {
             dependencies_bin = {
-                -- ["tinymist"] = "/opt/homebrew/bin/tinymist",
+                ["tinymist"] = "~/bin/tinymist",
             },
             invert_colors = "auto",
         },
