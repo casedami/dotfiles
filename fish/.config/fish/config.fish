@@ -7,15 +7,11 @@ abbr --add gs git status -s
 abbr --add gl git ll
 abbr --add gd git diff
 abbr --add gr git rebase
-abbr --add mm monthly
 
 alias vim="nvim"
 alias C="clear"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias python="python3.13"
-
-bind alt-k history-token-search-backward
-bind alt-j history-token-search-forward
 
 set -U fish_greeting
 set -Ux EDITOR nvim

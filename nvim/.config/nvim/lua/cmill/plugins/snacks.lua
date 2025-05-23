@@ -52,7 +52,7 @@ return {
                     header = "Neovim ["
                         .. tostring(vim.version())
                         .. "] in "
-                        .. vim.uv.cwd():gsub("^/Users/caseymiller", "~")
+                        .. vim.uv.cwd():gsub("^/home/$USER", "~")
                         .. "\non "
                         .. os.date("%a %B %d %Y"),
           -- stylua: ignore

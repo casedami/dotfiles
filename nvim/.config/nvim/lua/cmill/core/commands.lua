@@ -9,12 +9,6 @@ end, {})
 
 local function new_file(comm, fname)
     local path = vim.fn.expand("%:p:h")
-    local is_note = path:find("self/notes")
-
-    if is_note then
-        path = vim.fn.expand("~") .. "/self/notes/main/_inbox"
-    end
-
     vim.cmd(("%s %s"):format(comm, path .. "/" .. fname))
 end
 
