@@ -12,19 +12,19 @@ local cfg = {
     },
     -- UI
     color_scheme_dirs = { "~/.config/wezterm/colors/" },
-    color_scheme = "hojicha",
+    color_scheme = "GYOKURO",
     -- macos_window_background_blur = 20,
     window_background_opacity = 1.0,
-    window_decorations = "RESIZE",
+    window_decorations = "NONE",
     window_close_confirmation = "NeverPrompt",
     window_padding = {
         left = 6,
-        right = 2,
-        top = 10,
+        right = 0,
+        top = 0,
         bottom = 0,
     },
     -- FONT
-    font_size = 14,
+    font_size = 12,
     line_height = 1.2,
     font = wezterm.font({
         family = "CommitMono Nerd Font",
@@ -63,11 +63,6 @@ wezterm.on("toggle-colorscheme", function(window, _)
 end)
 
 config.keys = {
-    {
-        key = "B",
-        mods = "CTRL",
-        action = wezterm.action.EmitEvent("toggle-opacity"),
-    },
     {
         key = "C",
         mods = "CTRL",
