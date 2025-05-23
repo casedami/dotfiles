@@ -61,7 +61,7 @@ return {
             { icon = " ", key = "r", desc = "recent files", action = "<leader>fr" },
             { icon = "󱏒 ", key = "e", desc = "explorer", action = "<leader>fe" },
             { icon = " ", key = "g", desc = "grep", action = "<leader>fg" },
-            { icon = " ", key = "s", desc = "restore session", action = ":Sesh load", enabled = require("sesh").exists() },
+            -- { icon = " ", key = "s", desc = "restore session", action = ":Sesh load", enabled = require("sesh").exists() },
             { icon = " ", key = "c", desc = "config", action = "<leader>fc" },
             { icon = "󰒲 ", key = "l", desc = "lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "quit", action = ":qa!" },

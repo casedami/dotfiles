@@ -1,13 +1,13 @@
 [user]
 	name = Casey Miller
 	email = cd.miller1230@gmail.com
-    signingkey = BD959B3E51182316
+    signingkey = 29EE715A25873502
 
 [core]
     compression = 9
     preloadindex = true
 	editor = nvim
-	excludesfile = /Users/caseymiller/.config/git/ignore
+	excludesfile = /home/caseymiller/.config/git/ignore
     pager = diff-so-fancy | less --tabs=2 -SRF
 
 [advice]
@@ -23,10 +23,10 @@
     showStash = true
     showUntrackedFiles = all
 
-[url "git@github.com:cdmill/"]
+[url "https://github.com/cdmill/"]
     insteadOf = "cdm:"
 
-[url "git@github.com:"]
+[url "https://github.com/"]
     insteadOf = "gh:"
 
 [diff]
@@ -111,3 +111,9 @@
 [color "interactive"]
     prompt = magenta
     header = yellow
+
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
