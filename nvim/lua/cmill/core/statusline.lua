@@ -57,7 +57,7 @@ local icons_hl = util.hl_icons({
 ---@param icon_tbl table
 ---@return string|nil
 local function path_info(root, fname)
-    local path = fname:gsub("^/Users/caseymiller/", "~/")
+    local path = fname:gsub("^/.+/caseymiller/", "~/")
     if root == nil then
         return path
     end

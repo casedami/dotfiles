@@ -9,20 +9,19 @@ abbr --add gd git diff
 abbr --add gr git rebase
 abbr --add mm monthly
 
-alias v="nvim"
 alias vim="nvim"
 alias C="clear"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias python="python3.13"
 
-set -gx NOTES_DIR ~/self/notes/main/monthly/
+bind alt-k history-token-search-backward
+bind alt-j history-token-search-forward
 
 set -U fish_greeting
 set -Ux EDITOR nvim
 set -gx LANG en_US.UTF-8
 set -gx TERM xterm-256color
 set -gx RUST_BACKTRACE 1
-set -gx HOMEBREW_NO_ENV_HINTS 1
 set -Ux VIRTUAL_ENV_DISABLE_PROMPT 1
 set -gx MANPAGER "nvim +Man!"
 set -gx GPG_TTY $(tty)

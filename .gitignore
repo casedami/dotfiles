@@ -1,12 +1,6 @@
-.DS_Store
-rstudio/
 gh/
 nvim.bak/
-alacritty/themes/
-.zshrc-e
-cabal/
 Session.vim
 fish_variables
-todo
-flutter/
-gcloud*
+lazy-lock.json
+tmux/plugins

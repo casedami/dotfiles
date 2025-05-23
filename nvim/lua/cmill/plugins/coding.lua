@@ -25,15 +25,8 @@ return {
         "cdmill/sesh.nvim",
         branch = "dev",
         opts = {
-            autoload = true,
-            autosave = {
-                enabled = true,
-                criteria = {
-                    buffers = false,
-                    splits = 2,
-                    tabs = 2,
-                },
-            },
+            autoload = false,
+            autosave = false,
         },
     },
 }
