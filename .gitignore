@@ -3,4 +3,4 @@ nvim.bak/
 Session.vim
 fish_variables
 lazy-lock.json
-tmux/plugins
+**/tmux/plugins/**
