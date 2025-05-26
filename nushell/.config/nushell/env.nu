@@ -23,28 +23,29 @@ def get-git-info [] {
                 }
                 else { "" }
             )
-            let first_line = ($git_status.stdout | lines | first)
-            let ab_info = (
-                if ($first_line | str contains "ahead") {
-                    let ahead = (
-                        $first_line
-                        | parse --regex 'ahead (\d+)'
-                        | get capture0.0?
-                        | default 0
-                    )
-                    $"↑($ahead)"
-                } else if ($first_line | str contains "behind") {
-                    let behind = (
-                        $first_line
-                        | parse --regex 'behind (\d+)'
-                        | get capture0.0?
-                        | default 0
-                    )
-                    $"↓($behind)"
-                } else {
-                    ""
-                }
-            )
+            let ab_info = ""
+            # let first_line = ($git_status.stdout | lines | first)
+            # let ab_info = (
+            #     if ($first_line | str contains "ahead") {
+            #         let ahead = (
+            #             $first_line
+            #             | parse --regex 'ahead (\d+)'
+            #             | get capture0.0?
+            #             | default 0
+            #         )
+            #         $"↑($ahead)"
+            #     } else if ($first_line | str contains "behind") {
+            #         let behind = (
+            #             $first_line
+            #             | parse --regex 'behind (\d+)'
+            #             | get capture0.0?
+            #             | default 0
+            #         )
+            #         $"↓($behind)"
+            #     } else {
+            #         ""
+            #     }
+            # )
             let ab_info = $"(ansi $theme.property)($ab_info)(ansi reset)"
             $" ($dirty)($branch)($ab_info)"
         }
@@ -118,8 +119,10 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-$env.path ++= ["~/.local/bin"]
-$env.path ++= ["~/.cargo/bin"]
+$env.path ++= [
+    "~/.local/bin",
+    "~/.cargo/bin"
+]
 
 $env.RUST_BACKTRACE = 1
 $env.VIRTUAL_ENV_DISABLE_PROMPT = 1

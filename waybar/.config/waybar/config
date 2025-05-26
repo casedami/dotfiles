@@ -11,6 +11,7 @@
     "temperature",
     "network",
     "battery",
+    "custom/time",
     "clock"
   ],
   // Modules configuration
@@ -25,8 +26,14 @@
       "*": [1, 2, 3]
     }
   },
+  "custom/time": {
+    "exec": "date '+%H:%M'",
+    "interval": 1,
+    "format": "{}",
+    "class": "time-bold"
+  },
   "clock": {
-    "format": "<b>{:%H:%M}</b> {:%Y-%m-%d}",
+    "format": "{:%Y-%m-%d}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",

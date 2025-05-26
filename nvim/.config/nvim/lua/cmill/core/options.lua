@@ -67,6 +67,7 @@ local opts = {
     scrolloff = 10,
     shiftround = true,
     shiftwidth = 4,
+    shell = "/usr/bin/nu",
     showbreak = "> ",
     showcmd = false,
     showmode = false,
