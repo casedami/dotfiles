@@ -26,7 +26,7 @@
     }
   },
   "clock": {
-    "format": "{:%H:%M %Y-%m-%d}",
+    "format": "<b>{:%H:%M}</b> {:%Y-%m-%d}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",

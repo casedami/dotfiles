@@ -108,12 +108,11 @@ tools.git_branch = function(root)
     if branch ~= nil then
         return branch
     end
-
     local cmd = table.concat({
-        "git",
-        "-C",
-        root,
-        "rev-parse --abbrev-ref HEAD || git rev-parse --short HEAD",
+        "do -i { git branch --show-current }",
+        "| complete",
+        "| get stdout",
+        "| str trim",
     }, " ")
 
     branch = vim.fn.system(cmd)
