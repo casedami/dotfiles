@@ -30,7 +30,7 @@ let theme = {
 }
 
 $env.config.color_config = {
-        separator: $theme.comment
+        separator: $theme.operator
         leading_trailing_space_bg: { attr: n }
         header: { fg: $theme.func attr: b}
         empty: $theme.property
@@ -65,7 +65,7 @@ $env.config.color_config = {
         shape_filepath: $theme.type
         shape_flag: { fg: $theme.alt attr: b }
         shape_float: $theme.number
-        shape_garbage: { fg: $theme.fg bg: "#9e5560" attr: b }
+        shape_garbage: { fg: $theme.diag_red  attr: ib }
         shape_globpattern: { fg: $theme.type attr: b }
         shape_int: $theme.number
         shape_internalcall: $theme.func

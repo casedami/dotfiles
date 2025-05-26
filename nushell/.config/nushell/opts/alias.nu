@@ -12,10 +12,18 @@ alias gb = git branch -a
 alias gc = git commit
 alias gC = git checkout
 alias gd = git diff
-alias gl = git ll
 alias gp = git push
 alias gr = git rebase
 alias gs = git status -s
+
+def gl [n: int = 10] {
+    git log --pretty=%h»¦«%s»¦«%an»¦«%aD -n $n
+    | lines
+    | split column "»¦«" commit subject name date
+    | upsert date {|d| $d.date | into datetime}
+    | sort-by date
+    | reverse
+}
 
 # MARK: custom commands
 def --env y [...args] {

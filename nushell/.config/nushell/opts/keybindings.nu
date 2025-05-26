@@ -4,7 +4,7 @@ $env.config.keybindings = [
         name: completion_menu
         modifier: none
         keycode: tab
-        mode: [vi_normal vi_insert]
+        mode: [vi_normal]
         event: {
             until: [
                 { send: menu name: completion_menu }
@@ -12,6 +12,13 @@ $env.config.keybindings = [
                 { edit: complete }
             ]
         }
+    }
+    {
+        name: complete_history_word
+        modifier: none
+        keycode: tab
+        mode: [vi_insert]
+        event: { send: historyhintcomplete }
     }
     {
         name: completion_previous_menu
