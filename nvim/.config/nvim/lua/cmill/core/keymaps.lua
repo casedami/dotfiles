@@ -90,8 +90,8 @@ local maps = {
         { "n", "<leader>l", "<cmd>Lazy<cr>", opts.silent }, -- open lazy
         { "n", "<leader>?", "<cmd>h selfhelp.txt<cr>", opts.silent }, -- open selfhelp
         { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
-        { "n", "=", '"0p' }, -- forward paste from 0 register
-        { "n", "+", '"0P' }, -- backward paste from 0 register
+        { { "n", "v" }, "=", '"0p' }, -- forward paste from 0 register
+        { { "n", "v" }, "+", '"0P' }, -- backward paste from 0 register
         -- copy current line, comment it, and paste it below
         {
             "n",
