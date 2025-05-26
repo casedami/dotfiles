@@ -1,6 +1,6 @@
 # name: GYOKURO colors for Fish
 # url: https://fishshell.com/docs/current/index.html
-# upstream: ${upstream}
+# upstream: https://github.com/cdmill/neomodern.nvim/raw/main/extras/fish/gyokuro.fish
 # author: Casey Miller
 
 # use in ~/.config/fish/conf.d/
@@ -10,17 +10,17 @@
 
 ### Full palette. 
 ### Colors defined in neomdern/palette/GYOKURO.lua
-set -g alt a69e6f
-set -g constant 868db5
-set -g comment 767777
-set -g fg bbbac1
-set -g func 8bab85
-set -g keyword 72966c
-set -g number d6a9b3
-set -g operator b08c7d
-set -g property 748fa6
-set -g str a2ad7b
-set -g type bbc7b1
+set -g alt a69e6f 
+set -g constant 868db5 
+set -g comment 767777 
+set -g fg bbbac1 
+set -g func 8bab85 
+set -g keyword 72966c 
+set -g number d6a9b3 
+set -g operator b08c7d 
+set -g property 748fa6 
+set -g str a2ad7b 
+set -g type bbc7b1 
 
 # Syntax Highlighting Colors
 set -g fish_color_normal bbbac1

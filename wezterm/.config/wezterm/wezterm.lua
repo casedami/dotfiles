@@ -11,9 +11,9 @@ local cfg = {
         fade_out_duration_ms = 0,
     },
     -- UI
-    color_scheme_dirs = { "~/.config/wezterm/colors/" },
-    color_scheme = "GYOKURO",
-    -- macos_window_background_blur = 20,
+    color_scheme_dirs = { "~/.config/wezterm/colors" },
+    color_scheme = "gyokuro",
+    default_prog = { "nu" },
     window_background_opacity = 1.0,
     window_decorations = "NONE",
     window_close_confirmation = "NeverPrompt",

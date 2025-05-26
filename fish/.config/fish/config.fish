@@ -1,5 +1,5 @@
 abbr --add gb git branch -a
-abbr --add gC git checkout
+abbr --add gc git checkout
 abbr --add gc git commit
 abbr --add gp git push
 abbr --add ga git add
@@ -12,6 +12,7 @@ alias vim="nvim"
 alias C="clear"
 alias ssh="TERM=xterm-256color $(which ssh)"
 alias python="python3.13"
+alias cat="bat"
 
 set -U fish_greeting
 set -Ux EDITOR nvim
@@ -24,7 +25,7 @@ set -gx GPG_TTY $(tty)
 set -x LESS (string replace -r 'X' '' $LESS)
 
 set -gx FZF_DEFAULT_OPTS '
---color=fg:#bbbac1,bg:#161617,hl:#bbc7b1,gutter:#161617
+--color=fg:#767777,bg:#161617,hl:#bbc7b1,gutter:#161617
 --color=fg+:#748fa6,bg+:#222324,hl+:#bbc7b1
 --color=info:#767777,prompt:#bbc7b1,pointer:#748fa6
 --color=marker:#72966c,spinner:#72966c,header:#72966c
