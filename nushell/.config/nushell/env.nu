@@ -1,3 +1,7 @@
+const NU_LIB_DIRS = [
+    "~/.config/nushell/opts"
+]
+
 source ~/.config/nushell/themes/gyokuro.nu
 def get-git-info [] {
     let git_status = (do -i { git status --porcelain } | complete)
@@ -8,27 +12,41 @@ def get-git-info [] {
             | get stdout
             | str trim
         )
-        let status = ($git_status.stdout | lines | length)
-        let ahead_behind = (
-            do -i { git status -b --porcelain }
-            | complete
-            | get stdout
-            | lines
-            | first
-            | parse --regex '\[(.+)\]'
-            | get capture0.0?
-            | default ""
-        )
+        let branch = $"(ansi i)(ansi b)(ansi $theme.type)($branch)(ansi reset)"
 
         if ($branch | is-empty) {
             ""
         } else {
-            let dirty = if $status > 0 { "*" } else { "" }
-            let ab_info = (
-                if ($ahead_behind | is-empty) { "" }
-                else { $"[($ahead_behind)]" }
+            let dirty = (
+                if ($git_status.stdout | lines | length) > 0 {
+                    $"(ansi $theme.alt)*(ansi reset)"
+                }
+                else { "" }
             )
-            $" (ansi $theme.alt)($dirty)(ansi reset)(ansi i)(ansi b)(ansi $theme.type)($branch)(ansi reset)(ansi $theme.property)($ab_info)(ansi reset)"
+            let first_line = ($git_status.stdout | lines | first)
+            let ab_info = (
+                if ($first_line | str contains "ahead") {
+                    let ahead = (
+                        $first_line
+                        | parse --regex 'ahead (\d+)'
+                        | get capture0.0?
+                        | default 0
+                    )
+                    $"↑($ahead)"
+                } else if ($first_line | str contains "behind") {
+                    let behind = (
+                        $first_line
+                        | parse --regex 'behind (\d+)'
+                        | get capture0.0?
+                        | default 0
+                    )
+                    $"↓($behind)"
+                } else {
+                    ""
+                }
+            )
+            let ab_info = $"(ansi $theme.property)($ab_info)(ansi reset)"
+            $" ($dirty)($branch)($ab_info)"
         }
     } else { "" }
 }
@@ -100,7 +118,9 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-$env.path ++= ["~/bin"]
+$env.path ++= ["~/.local/bin"]
+$env.path ++= ["~/.cargo/bin"]
+
 $env.RUST_BACKTRACE = 1
 $env.VIRTUAL_ENV_DISABLE_PROMPT = 1
 $env.MANPAGER = "nvim +Man!"
