@@ -11,7 +11,6 @@ abbr --add gr git rebase
 alias vim="nvim"
 alias C="clear"
 alias ssh="TERM=xterm-256color $(which ssh)"
-alias python="python3.13"
 alias cat="bat"
 
 set -U fish_greeting

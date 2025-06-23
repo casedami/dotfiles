@@ -87,8 +87,8 @@ local maps = {
     },
 
     misc = {
-        { "n", "<leader>l", "<cmd>Lazy<cr>", opts.silent }, -- open lazy
-        { "n", "<leader>?", "<cmd>h selfhelp.txt<cr>", opts.silent }, -- open selfhelp
+        { "n", "<localleader>l", "<cmd>Lazy<cr>", opts.silent }, -- open lazy
+        { "n", "<localleader>?", "<cmd>h selfhelp.txt<cr>", opts.silent }, -- open selfhelp
         { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
         { { "n", "v" }, "=", '"0p' }, -- forward paste from 0 register
         { { "n", "v" }, "+", '"0P' }, -- backward paste from 0 register
@@ -115,8 +115,6 @@ local maps = {
         { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>" }, -- insert empty newline above
         { "ca", "nums", "set relativenumber!", opts.silent },
         { "ca", "cd.", "cd %:h" },
-        { "c", "s/", "s/\\v", opts.noremap },
-        { "c", "S/", "%s/\\v", opts.noremap },
     },
 }
 

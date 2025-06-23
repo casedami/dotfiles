@@ -25,7 +25,7 @@ vim.api.nvim_create_user_command("NewVsplit", function(inp)
 end, { nargs = 1 })
 
 vim.api.nvim_create_user_command("Todo", function()
-    Snacks.picker.grep({ search = "(TODO|BUG|FIXME|WARN|NOTE):" })
+    Snacks.picker.grep({ search = "(TODO|BUG|FIXME|WARN|NOTE|MARK):" })
 end, { desc = "Grep TODOs", nargs = 0 })
 
 vim.api.nvim_create_user_command("CC", function()

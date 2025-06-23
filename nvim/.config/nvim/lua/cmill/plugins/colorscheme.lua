@@ -23,6 +23,9 @@ return {
                         plain = true,
                     },
                 },
+                -- colors = {
+                --     fg = "#bbb8ba",
+                -- },
                 highlights = {
                     ["LazyNormal"] = { bg = "none" },
                     ["Statusline"] = { bg = "$alt_bg" },

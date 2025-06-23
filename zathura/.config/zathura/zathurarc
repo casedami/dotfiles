@@ -1,0 +1,54 @@
+set adjust-open "best-fit"
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+#zoom settings
+set zoom-min 10
+set guioptions ""
+
+# zathurarc-dark
+
+set font "Commit Mono Nerd Font 10"
+set default-bg "#161617"
+set default-fg "#bfbbb1"
+
+set statusbar-fg "#767777"
+set statusbar-bg "#1b1c1d"
+
+set inputbar-bg "#151515"
+set inputbar-fg "#bfbbb1"
+
+set notification-error-bg "#222324"
+set notification-error-fg "#9e5560"
+
+set notification-warning-bg "#222324"
+set notification-warning-fg "#9c9167"
+
+set highlight-color "#a69e6f"
+set highlight-active-color "#bbc7b1"
+
+set completion-highlight-fg "#bbc7b1"
+set completion-highlight-bg "#323334"
+
+set completion-bg "#323334"
+set completion-fg "#bbc7b1"
+
+set notification-bg "#222324"
+set notification-fg "#748fa6"
+
+set recolor "true"
+set recolor-lightcolor "#161617"
+set recolor-darkcolor "#bfbbb1"
+set recolor-reverse-video "true"
+set recolor-keephue "true"
+
+set render-loading "false"
+set scroll-step 50
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen

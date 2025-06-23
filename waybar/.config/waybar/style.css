@@ -71,7 +71,6 @@ window#waybar {
 }
 
 #clock {
-    /* border-bottom: 2px solid rgba(114, 150, 108, 1.0); */
     padding-right: 16px;
 }
 
