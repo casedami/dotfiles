@@ -18,17 +18,24 @@ local cfg = {
     window_decorations = "NONE",
     window_close_confirmation = "NeverPrompt",
     window_padding = {
-        left = 6,
+        left = 10,
         right = 0,
-        top = 0,
+        top = 10,
         bottom = 0,
     },
     -- FONT
-    font_size = 12,
+    font_size = 11,
     line_height = 1.2,
     font = wezterm.font({
         family = "CommitMono Nerd Font",
-        harfbuzz_features = { "ss03=1", "ss04=1", "ss05=1", "cv02=1", "cv08=1" },
+        harfbuzz_features = {
+            "ss02=1",
+            "ss03=1",
+            "ss04=1",
+            "ss05=1",
+            "cv06=1",
+            "cv08=1",
+        },
     }),
     -- TAB BAR
     enable_tab_bar = false,

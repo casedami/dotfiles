@@ -68,6 +68,17 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("rust"),
+    desc = "set win opts when opening rust buf",
+    pattern = {
+        "rust",
+    },
+    callback = function()
+        vim.opt.textwidth = 74
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
     group = augroup("close_with_q"),
     desc = "Close with <q>",
     pattern = {

@@ -95,7 +95,5 @@ $env.config = {
 }
 
 source ~/.zoxide.nu
-source alias.nu
-source keybindings.nu
-source menus.nu
-
+source opts/alias.nu
+source opts/keybindings.nu

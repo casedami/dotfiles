@@ -12,7 +12,8 @@ alias gb = git branch -a
 alias gc = git commit
 alias gC = git checkout
 alias gd = git diff
-alias gp = git push
+alias gp = git pull
+alias gP = git push
 alias gr = git rebase
 alias gs = git status -s
 
@@ -26,7 +27,7 @@ def gl [n: int = 10] {
 }
 
 # MARK: custom commands
-def --env y [...args] {
+def --env P [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
 	yazi ...$args --cwd-file $tmp
 	let cwd = (open $tmp)

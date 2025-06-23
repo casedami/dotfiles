@@ -1,6 +1,6 @@
 return {
     cmd = { "ruff", "server", "--preview" },
-    root_markers = { ".venv" },
+    root_markers = { "requirements.txt" },
     filetypes = { "python" },
     on_attach = function(client, _)
         if client.name == "ruff_lsp" then

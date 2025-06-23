@@ -1,8 +1,8 @@
 const NU_LIB_DIRS = [
-    "~/.config/nushell/opts"
+    "~/.config/nushell/"
 ]
+source themes/gyokuro.nu
 
-source ~/.config/nushell/themes/gyokuro.nu
 def get-git-info [] {
     let git_status = (do -i { git status --porcelain } | complete)
     if ($git_status.exit_code == 0) {
@@ -98,6 +98,7 @@ $env.PROMPT_INDICATOR_VI_INSERT = {|| $"(ansi $theme.operator)>(ansi reset) " }
 $env.PROMPT_INDICATOR_VI_NORMAL = {|| $"(ansi $theme.operator):(ansi reset) " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| $"(ansi $theme.operator):::(ansi reset) " }
 $env.TRANSIENT_PROMPT_COMMAND = ""
+$env.EDITOR = "nvim"
 
 $env.ENV_CONVERSIONS = {
     "PATH": {

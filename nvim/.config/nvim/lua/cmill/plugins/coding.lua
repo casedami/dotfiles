@@ -4,10 +4,11 @@ return {
         ft = "typst",
         version = "1.*",
         opts = {
-            dependencies_bin = {
-                ["tinymist"] = "~/bin/tinymist",
-            },
+            debug = true,
             invert_colors = "auto",
+            dependencies_bin = {
+                ["websocat"] = "/home/caseymiller/.cargo/bin/websocat",
+            },
         },
     },
     {
