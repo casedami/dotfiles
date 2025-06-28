@@ -93,6 +93,13 @@ $env.config.keybindings = [
         event: { send: clearscreen }
     }
     {
+        name: file_manager
+        modifier: control
+        keycode: char_p
+        mode: [vi_normal, vi_insert]
+        event: { send: executehostcommand cmd: "P" }
+    }
+    {
         name: search_history
         modifier: none
         keycode: char_/

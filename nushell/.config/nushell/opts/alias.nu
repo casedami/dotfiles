@@ -41,3 +41,11 @@ def ":q" [] {
     exit
 }
 
+# git branch completions
+# def git_branch_completions [] {
+#     git branch --format='%(refname:short)' | str trim
+# }
+# alias checkout = { |branch| git checkout $branch }
+# complete checkout {
+#     git_branch_completions
+# }
