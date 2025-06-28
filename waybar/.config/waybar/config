@@ -14,12 +14,11 @@
     "custom/time",
     "clock"
   ],
-  // Modules configuration
   "hyprland/workspaces": {
     "all-outputs": true,
-    "format": "",
+    "format": "{icon}{name}",
     "format-icons": {
-      "active": "",
+      "active": "",
       "default": ""
     },
     "persistent-workspaces": {

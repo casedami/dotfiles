@@ -18,36 +18,36 @@ window#waybar {
 
 #workspaces button {
     padding: 0px 0px;
-    margin: 4px 4px;
+    margin: 6px 4px;
     border-radius: 50%;
-    background-color: #767777;
+    color: #767777;
     transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.hover {
-    background-color: #a69e6f;
+    color: #a69e6f;
     background-size: 100% 100%;
     border-radius: 12px;
     min-width: 25px;
 }
 
 #workspaces button.active {
-    background-color: #bbbac1;
+    color: #bbbac1;
     background-size: 100% 100%;
     border-radius: 12px;
     min-width: 25px;
 }
 
 #workspaces button.urgent {
-    background-color: #9e5560;
+    color: #9e5560;
 }
 
 #workspaces button.empty {
-    background-color: alpha(#767777,.4);
+    color: alpha(#767777,.4);
 }
 
 #workspaces button.empty.active {
-    background-color: #748fa6;
+    color: #748fa6;
 }
 
 #clock,
