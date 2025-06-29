@@ -1,0 +1,13 @@
+key_up=Control+k
+key_down=Control+j
+key_left=Control+h
+key_right=Control+l
+key_forward=Tab
+key_backward=Shift+Tab
+key_submit=Return
+key_exit=Escape
+key_pgup=Control+u
+key_pgdn=Control+d
+key_home=Control+g
+key_end=Control+G
+

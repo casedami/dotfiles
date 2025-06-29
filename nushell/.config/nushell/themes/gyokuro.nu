@@ -30,66 +30,66 @@ let theme = {
 }
 
 $env.config.color_config = {
-        separator: $theme.operator
-        leading_trailing_space_bg: { attr: n }
-        header: { fg: $theme.func attr: b}
-        empty: $theme.property
-        bool: $theme.number
-        int: $theme.number
-        float: $theme.number
-        filesize: $theme.type
-        duration: $theme.type
-        date: $theme.property
-        range: $theme.string
-        string: $theme.string
-        nothing: $theme.comment
-        binary: $theme.constant
-        cellpath: $theme.property
-        row_index: { fg: $theme.func attr: b }
-        record: $theme.property
-        list: $theme.property
-        block: $theme.property
-        hints: $theme.comment
-        search_result: { fg: $theme.property bg: $theme.visual }
+    separator: $theme.operator
+    leading_trailing_space_bg: { attr: "n" }
+    header: { fg: $theme.func attr: "b"}
+    empty: $theme.property
+    bool: $theme.number
+    int: $theme.number
+    float: $theme.number
+    filesize: $theme.type
+    duration: $theme.type
+    date: $theme.property
+    range: $theme.string
+    string: $theme.string
+    nothing: $theme.comment
+    binary: $theme.constant
+    cell-path: $theme.property
+    row_index: { fg: $theme.func attr: "b" }
+    record: $theme.property
+    list: $theme.property
+    block: $theme.property
+    hints: $theme.comment
+    search_result: { fg: $theme.property bg: $theme.visual }
 
-        shape_and: { fg: $theme.keyword }
-        shape_binary: $theme.operator
-        shape_block: $theme.property
-        shape_bool: $theme.number
-        shape_closure: $theme.func
-        shape_custom: $theme.func
-        shape_datetime: { fg: $theme.string attr: b }
-        shape_directory: $theme.string
-        shape_external: $theme.func
-        shape_externalarg: $theme.alt
-        shape_filepath: $theme.type
-        shape_flag: { fg: $theme.alt attr: b }
-        shape_float: $theme.number
-        shape_garbage: { fg: $theme.diag_red  attr: ib }
-        shape_globpattern: { fg: $theme.type attr: b }
-        shape_int: $theme.number
-        shape_internalcall: $theme.func
-        shape_keyword: $theme.keyword
-        shape_list: $theme.string
-        shape_literal: $theme.string
-        shape_match_pattern: $theme.type
-        shape_matching_brackets: { fg: $theme.fg attr: b }
-        shape_nothing: $theme.comment
-        shape_operator: $theme.operator
-        shape_or: $theme.keyword
-        shape_pipe: $theme.operator
-        shape_range: $theme.string
-        shape_record: $theme.string
-        shape_redirection: $theme.operator
-        shape_signature: $theme.func
-        shape_string: $theme.string
-        shape_string_interpolation: $theme.alt
-        shape_table: { fg: $theme.property attr: b }
-        show_variable: $theme.fg
-        shape_vardec1: { fg: $theme.fg attr: u }
+    shape_and: { fg: $theme.keyword }
+    shape_binary: $theme.operator
+    shape_block: $theme.property
+    shape_bool: $theme.number
+    shape_closure: $theme.func
+    shape_custom: $theme.func
+    shape_datetime: { fg: $theme.string attr: "b" }
+    shape_directory: $theme.string
+    shape_external: $theme.func
+    shape_externalarg: $theme.alt
+    shape_filepath: $theme.type
+    shape_flag: { fg: $theme.alt attr: "b" }
+    shape_float: $theme.number
+    shape_garbage: { fg: $theme.diag_red attr: "ib" }
+    shape_glob: { fg: $theme.type attr: "b" }
+    shape_int: $theme.number
+    shape_internalcall: $theme.func
+    shape_keyword: $theme.keyword
+    shape_list: $theme.string
+    shape_literal: $theme.string
+    shape_match_pattern: $theme.type
+    shape_matching_brackets: { fg: $theme.fg attr: "b" }
+    shape_nothing: $theme.comment
+    shape_operator: $theme.operator
+    shape_or: $theme.keyword
+    shape_pipe: $theme.operator
+    shape_range: $theme.string
+    shape_record: $theme.string
+    shape_redirection: $theme.operator
+    shape_signature: $theme.func
+    shape_string: $theme.string
+    shape_string_interpolation: $theme.alt
+    shape_table: { fg: $theme.property attr: "b" }
+    shape_variable: $theme.fg
+    shape_vardecl: { fg: $theme.fg attr: "u" }
 }
 
-$env.config.highlight_resolved_externals = true
+$env.config.show_banner = false
 $env.config.explore = {
     status_bar_background: { fg: $theme.fg, bg: $theme.line },
     command_bar_text: { fg: $theme.fg },
@@ -100,7 +100,19 @@ $env.config.explore = {
         info: $theme.diag_blue,
     },
     selected_cell: { bg: $theme.line fg: $theme.type },
+}
 
+$env.config.completions = {
+    case_sensitive: false
+    quick: true
+    partial: true
+    algorithm: "prefix"
+    external: {
+        enable: true
+        max_results: 100
+        completer: null
+    }
+    use_ls_colors: true
 }
 
 $env.config.menus = [
@@ -119,7 +131,7 @@ $env.config.menus = [
             selected_text: {
                 fg: $theme.type
                 bg: $theme.line
-                attr: b
+                attr: "b"
             }
             description_text: $theme.comment
         }
@@ -137,7 +149,7 @@ $env.config.menus = [
             selected_text: {
                 fg: $theme.bg
                 bg: $theme.property
-                attr: b
+                attr: "b"
             }
             description_text: $theme.comment
         }
@@ -159,42 +171,9 @@ $env.config.menus = [
             selected_text: {
                 fg: $theme.bg
                 bg: $theme.diag_blue
-                attr: b
+                attr: "b"
             }
             description_text: $theme.string
-        }
-    }
-    {
-        name: ide_completion_menu
-        only_buffer_difference: false
-        marker: "| "
-        type: {
-            layout: ide
-            min_completion_width: 0,
-            max_completion_width: 50,
-            max_completion_height: 10, # will be limited by the available lines in the terminal
-            padding: 0,
-            border: true,
-            cursor_offset: 0,
-            description_mode: "prefer_right"
-            min_description_width: 0
-            max_description_width: 50
-            max_description_height: 10
-            description_offset: 1
-            # If true, the cursor pos will be corrected, so the suggestions match up with the typed text
-            #
-            # C:\> str
-            #      str join
-            #      str trim
-            #      str split
-            correct_cursor_pos: false
-        }
-        style: {
-            text: green
-            selected_text: { attr: r }
-            description_text: yellow
-            match_text: { attr: u }
-            selected_match_text: { attr: ur }
         }
     }
 ]

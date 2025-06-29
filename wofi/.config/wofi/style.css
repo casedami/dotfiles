@@ -1,3 +1,8 @@
+* {
+    font-family: "CommitMono Nerd Font", sans-serif;
+    font-size: 16px;
+}
+
 /* The name of the window itself */
 #window {
   background-color: rgba(24, 24, 24, 0.95);

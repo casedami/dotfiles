@@ -1,0 +1,135 @@
+output * scale 1.4
+
+# MARK: variables
+set $terminal wezterm
+set $menu wofi --show drun --prompt Applications
+set $browser ~/.local/bin/zen
+set $mod Mod4
+set $power ~/.config/wofi/modi/power.nu
+set $wifi ~/.config/wofi/modi/wifi.nu
+
+# MARK: autostart
+bar {
+     swaybar_command waybar
+}
+exec swaybg -i ~/wallpapers/dark/house-1.png
+exec swaylock
+exec swayidle
+exec swaync
+
+# MARK: appearance
+font pango:CommitMono Nerd Font 13
+gaps inner 5
+gaps outer 20
+default_border pixel 1
+# hide_edge_borders smart
+# smart_gaps on
+client.focused #a69e6f #a69e6f #ffffff #a69e6f #a69e6f
+
+# MARK: input
+input type:keyboard {
+    xkb_layout us
+    xkb_options caps:escape,ctrl:ralt_rctrl
+}
+
+input type:touchpad {
+    natural_scroll enabled
+    tap enabled
+}
+
+input type:pointer {
+    accel_profile flat
+}
+
+# MARK: bindings
+bindsym $mod+Return exec $terminal
+bindsym $mod+q kill
+bindsym $mod+Shift+m exit
+bindsym $mod+Shift+c reload
+bindsym $mod+v floating toggle
+bindsym $mod+o exec $menu
+bindsym $mod+b exec $browser
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+q exec swaylock
+bindsym $mod+Escape exec $power
+bindsym $mod+Shift+w exec $wifi
+
+# Focus movement
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+k focus up
+bindsym $mod+j focus down
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+j move down
+
+# Workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move to workspaces
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+assign [app_id="org.wezfurlong.wezterm"] 1
+assign [app_id="^zen$"] 2
+
+# Workspace navigation
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Layout toggles
+bindsym $mod+r layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+e layout tabbed
+bindsym $mod+Shift+space focus mode_toggle
+
+# Mouse bindings
+floating_modifier $mod normal
+
+# Media keys
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym Shift+XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 10%-
+
+# Lid switch (requires swayidle configuration)
+bindswitch --reload lid:on exec 'swaymsg "output * dpms off" && swaylock'
+bindswitch --reload lid:off exec 'swaymsg "output * dpms on"'
+
+# MARK: window rules
+for_window [shell="xwayland"] title_format "%title [XWayland]"
+
+# MARK: idle configuration
+exec swayidle -w \
+    timeout 300 'swaylock -f' \
+    timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f'
+
+exec_always ~/.config/waybar/waybar.sh
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

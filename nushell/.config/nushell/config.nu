@@ -47,11 +47,6 @@ $env.config = {
         use_ls_colors: true
     }
 
-    filesize: {
-        metric: true
-        format: "auto"
-    }
-
     cursor_shape: {
         vi_insert: line
         vi_normal: block
@@ -95,5 +90,5 @@ $env.config = {
 }
 
 source ~/.zoxide.nu
-source opts/alias.nu
-source opts/keybindings.nu
+source $"($nu.home-path)/.cargo/env.nu"
+source themes/gyokuro.nu

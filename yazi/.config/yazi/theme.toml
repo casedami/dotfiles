@@ -3,7 +3,7 @@
 # upstream: https://github.com/cdmill/neomodern.nvim/raw/main/extras/yazi/gyokuro.toml
 # author: Casey Miller
 
-[manager]
+[mgr]
 cwd = { fg = "#8bab85" }
 
 hovered         = { fg = "#bbc7b1", bg = "#222324" }

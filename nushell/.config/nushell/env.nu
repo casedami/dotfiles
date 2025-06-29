@@ -1,6 +1,3 @@
-const NU_LIB_DIRS = [
-    "~/.config/nushell/"
-]
 source themes/gyokuro.nu
 
 def get-git-info [] {
@@ -54,7 +51,7 @@ def get-git-info [] {
 
 def create_left_prompt [] {
     let dir = match (
-        do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }
+        do -i { $env.PWD | path relative-to $nu.home-path }
     ) {
         null => $env.PWD
         '' => '~'
@@ -125,11 +122,17 @@ $env.path ++= [
     "~/.cargo/bin"
 ]
 
+$env.XDG_SESSION_TYPE = 'wayland'
+$env.XDG_CURRENT_DESKTOP = 'sway'
+$env.XDG_SESSION_DESKTOP = 'sway'
+$env.__zoxide_hooked = true
 $env.RUST_BACKTRACE = 1
 $env.VIRTUAL_ENV_DISABLE_PROMPT = 1
-$env.MANPAGER = "nvim +Man!"
 $env.GPG_TTY = (tty)
+$env.MANPAGER = "nvim +Man!"
+$env.PAGER = "less"
 $env.LESS = ($env.LESS? | default "" | str replace --regex 'X' '')
+$env.APPIMAGE_EXTRACT_AND_RUN = 1
 $env.FZF_DEFAULT_OPTS = '
 --color=fg:#767777,bg:#161617,hl:#bbc7b1,gutter:#161617
 --color=fg+:#748fa6,bg+:#222324,hl+:#bbc7b1
@@ -149,3 +152,4 @@ $env.FZF_DEFAULT_OPTS = '
 --bind="ctrl-d:preview-page-down"'
 
 zoxide init nushell | save -f ~/.zoxide.nu
+source $"($nu.home-path)/.cargo/env.nu"
