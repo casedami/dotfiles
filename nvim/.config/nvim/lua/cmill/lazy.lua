@@ -18,15 +18,6 @@ require("lazy").setup({
     defaults = {
         version = false,
     },
-    dev = {
-        path = "~/Developer/plugins/",
-        patterns = {
-            -- "focus.nvim",
-            "neomodern",
-            -- "sesh",
-        },
-        fallback = false,
-    },
     checker = {
         enabled = false,
         notify = false,

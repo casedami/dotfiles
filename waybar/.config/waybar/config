@@ -1,11 +1,16 @@
 // -*- mode: jsonc -*-
 {
+ "layer": "top",
+  "position": "top",
   "height": 20,
   "spacing": 12,
   "reload_style_on_change": true,
-  "modules-left": [
-    "hyprland/workspaces"
-  ],
+    "modules-left": [
+        "sway/workspaces",
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
   "modules-right": [
     "cpu",
     "temperature",
@@ -14,17 +19,27 @@
     "custom/time",
     "clock"
   ],
-  "hyprland/workspaces": {
-    "all-outputs": true,
-    "format": "{icon}{name}",
-    "format-icons": {
-      "active": "",
-      "default": ""
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+        "persistant-workspaces": {
+            "1": "",
+            "2": "",
+            "3": "",
+        }
     },
-    "persistent-workspaces": {
-      "*": [1, 2, 3]
-    }
-  },
   "custom/time": {
     "exec": "date '+%H:%M'",
     "interval": 1,
@@ -33,20 +48,20 @@
   },
   "clock": {
     "format": "{:%Y-%m-%d}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "year",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1,
-      "format": {
-        "months": "<span color='#bbbac1'><b>{}</b></span>",
-        "days": "<span color='#bbc7b1'>{}</span>",
-        "weeks": "<span color='#a69e6f'>W{}</span>",
-        "weekdays": "<span color='#72966c'><b>{}</b></span>",
-        "today": "<span bgcolor='#9e5560' color='#161617'><b>{}</b></span>"
-      }
-    }
+    // "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    // "calendar": {
+    //   "mode": "year",
+    //   "mode-mon-col": 3,
+    //   "weeks-pos": "right",
+    //   "on-scroll": 1,
+    //   "format": {
+    //     "months": "<span color='#bbbac1'><b>{}</b></span>",
+    //     "days": "<span color='#bbc7b1'>{}</span>",
+    //     "weeks": "<span color='#a69e6f'>W{}</span>",
+    //     "weekdays": "<span color='#72966c'><b>{}</b></span>",
+    //     "today": "<span bgcolor='#9e5560' color='#161617'><b>{}</b></span>"
+    //   }
+    // }
   },
   "cpu": {
     "format": " {usage}%",

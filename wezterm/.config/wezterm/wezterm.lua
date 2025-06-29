@@ -13,7 +13,7 @@ local cfg = {
     -- UI
     color_scheme_dirs = { "~/.config/wezterm/colors" },
     color_scheme = "gyokuro",
-    default_prog = { "nu" },
+    default_prog = { "/home/cdm/.cargo/bin/nu" },
     window_background_opacity = 1.0,
     window_decorations = "NONE",
     window_close_confirmation = "NeverPrompt",
