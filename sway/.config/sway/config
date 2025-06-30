@@ -3,7 +3,7 @@ output * scale 1.4
 # MARK: variables
 set $terminal wezterm
 set $menu wofi --show drun --prompt Applications
-set $browser ~/.local/bin/zen
+set $browser firefox
 set $mod Mod4
 set $power ~/.config/wofi/modi/power.nu
 set $wifi ~/.config/wofi/modi/wifi.nu
