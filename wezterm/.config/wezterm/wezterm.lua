@@ -45,9 +45,9 @@ for k, v in pairs(cfg) do
     config[k] = v
 end
 
-require("wezterm").on("format-window-title", function()
-    return ""
-end)
+-- require("wezterm").on("format-window-title", function()
+--     return ""
+-- end)
 
 wezterm.on("toggle-opacity", function(window, _)
     local overrides = window:get_config_overrides() or {}

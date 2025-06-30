@@ -7,7 +7,6 @@
 window#waybar {
     background-color: #161617;
     color: #bbbac1;
-    transition-property: background-color;
     transition-duration: .5s;
 }
 
@@ -31,7 +30,7 @@ window#waybar {
     min-width: 25px;
 }
 
-#workspaces button.active {
+#workspaces button.focused {
     color: #bbbac1;
     background-size: 100% 100%;
     border-radius: 12px;
@@ -46,7 +45,7 @@ window#waybar {
     color: alpha(#767777,.4);
 }
 
-#workspaces button.empty.active {
+#workspaces button.occupied {
     color: #748fa6;
 }
 
@@ -77,4 +76,3 @@ window#waybar {
 label:focus {
     background-color: #000000;
 }
-

@@ -1,5 +1,6 @@
 vim.lsp.enable({
     "basedpyright",
+    "clangd",
     "ruff",
     "luals",
     "rust-analyzer",

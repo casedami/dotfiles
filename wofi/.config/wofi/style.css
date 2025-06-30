@@ -21,7 +21,7 @@
   border: none;
   border-bottom: 1px solid rgba(24, 24, 24, 0.2);
   padding: 0.8rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   border-radius: 1rem 1rem 0 0;
 }
 #window #outer-box #input:focus, #window #outer-box #input:focus-visible, #window #outer-box #input:active {
@@ -41,6 +41,7 @@
   color: #fff;
   background-color: rgba(24, 24, 24, 0.1);
   padding: 0.6rem 1rem;
+  font-size: 1.2rem;
   /* The name of all images in entries displayed in image mode */
   /* The name of all the text in entries */
 }

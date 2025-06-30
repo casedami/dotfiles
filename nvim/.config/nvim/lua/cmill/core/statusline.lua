@@ -253,6 +253,7 @@ M.render = function()
         or ""
 
     -- MARK: middle
+    -- BUG:
     if vim.bo.filetype == "python" then
         status_parts.venv = pyenv()
     end
