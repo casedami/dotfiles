@@ -57,7 +57,7 @@ $env.config.color_config = {
     shape_block: $theme.property
     shape_bool: $theme.number
     shape_closure: $theme.func
-    shape_custom: $theme.func
+    shape_custom: { fg: $theme.func attr: "b" }
     shape_datetime: { fg: $theme.string attr: "b" }
     shape_directory: $theme.string
     shape_external: $theme.func
@@ -68,7 +68,8 @@ $env.config.color_config = {
     shape_garbage: { fg: $theme.diag_red attr: "ib" }
     shape_glob: { fg: $theme.type attr: "b" }
     shape_int: $theme.number
-    shape_internalcall: $theme.func
+    shape_internalarg: $theme.alt
+    shape_internalcall: { fg: $theme.func attr: "b" }
     shape_keyword: $theme.keyword
     shape_list: $theme.string
     shape_literal: $theme.string
