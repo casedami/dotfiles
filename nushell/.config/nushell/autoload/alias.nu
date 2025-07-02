@@ -1,14 +1,12 @@
 
-# MARK: misc
 alias cat = bat
 alias la = ls -a
 alias ll = ls -l
-alias python = python3.13
 alias vim = nvim
+alias fg = job unfreeze
 
-# MARK: git
 alias ga = git add
-alias gb = git branch -a
+alias gb = git branch
 alias gc = git commit
 alias gC = git checkout
 alias gd = git diff
@@ -26,7 +24,6 @@ def gl [n: int = 10] {
     | reverse
 }
 
-# MARK: custom commands
 def --env P [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
 	yazi ...$args --cwd-file $tmp
@@ -40,12 +37,3 @@ def --env P [...args] {
 def ":q" [] {
     exit
 }
-
-# git branch completions
-# def git_branch_completions [] {
-#     git branch --format='%(refname:short)' | str trim
-# }
-# alias checkout = { |branch| git checkout $branch }
-# complete checkout {
-#     git_branch_completions
-# }

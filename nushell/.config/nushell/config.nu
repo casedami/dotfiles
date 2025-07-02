@@ -1,4 +1,3 @@
-
 $env.config = {
     show_banner: false
     ls: { use_ls_colors: true }
@@ -90,5 +89,5 @@ $env.config = {
 }
 
 source ~/.zoxide.nu
-source $"($nu.home-path)/.cargo/env.nu"
 source themes/gyokuro.nu
+source completions/git/cmp.nu

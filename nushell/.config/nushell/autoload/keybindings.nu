@@ -1,4 +1,3 @@
-
 $env.config.keybindings = [
     {
         name: completion_menu
@@ -111,7 +110,7 @@ $env.config.keybindings = [
         modifier: control
         keycode: char_o
         mode: [emacs, vi_normal, vi_insert]
-        event: { send: openeditor }
+        event: { send: executehostcommand cmd: "vim" }
     }
 ]
 

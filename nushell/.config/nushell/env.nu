@@ -21,28 +21,6 @@ def get-git-info [] {
                 else { "" }
             )
             let ab_info = ""
-            # let first_line = ($git_status.stdout | lines | first)
-            # let ab_info = (
-            #     if ($first_line | str contains "ahead") {
-            #         let ahead = (
-            #             $first_line
-            #             | parse --regex 'ahead (\d+)'
-            #             | get capture0.0?
-            #             | default 0
-            #         )
-            #         $"↑($ahead)"
-            #     } else if ($first_line | str contains "behind") {
-            #         let behind = (
-            #             $first_line
-            #             | parse --regex 'behind (\d+)'
-            #             | get capture0.0?
-            #             | default 0
-            #         )
-            #         $"↓($behind)"
-            #     } else {
-            #         ""
-            #     }
-            # )
             let ab_info = $"(ansi $theme.property)($ab_info)(ansi reset)"
             $" ($dirty)($branch)($ab_info)"
         }
@@ -66,9 +44,15 @@ def create_left_prompt [] {
         if (is-admin) { ansi light_red }
         else { ansi light_green })
     let path_segment = $"($path_color)($dir)(ansi reset)"
+    let overlay_info = if (overlay list | length) > 1 {
+        let current_overlays = overlay list | skip 1 | str join ", "
+        $"(ansi light_magenta)\((ansi light_cyan)($current_overlays)(ansi light_magenta)\)(ansi reset) "
+    } else {
+        ""
+    }
 
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
-    $"($path_segment)($git_info)"
+    $"($overlay_info)($path_segment)($git_info)"
 }
 
 def create_right_prompt [] {
