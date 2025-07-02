@@ -2,12 +2,15 @@ local blink = require("blink.cmp")
 return {
     cmd = { "clangd" },
     root_markers = { 
-        "compile_commands.json", 
-        "compile_flags.txt", 
-        ".clangd", 
-        "CMakeLists.txt",
+        ".clangd",
+        ".clang-tidy",
+        ".clang-format",
+        "compile_commands.json",
+        "compile_flags.txt",
+        "configure.ac",
+        ".git" 
     },
-    filetypes = { "c", "cpp", "objc", "objcpp" },
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
     init_options = {
         usePlaceholders = true,
         completeUnimported = true,
@@ -34,7 +37,7 @@ return {
                     editsNearCursor = true,
                 },
             },
-            offsetEncoding = { "utf-16" },
+            offsetEncoding = { 'utf-8', 'utf-16' },
         }
     ),
     on_attach = function(client, bufnr)

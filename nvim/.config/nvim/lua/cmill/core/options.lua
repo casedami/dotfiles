@@ -23,6 +23,16 @@ local opts = {
     confirm = true,
     cursorline = true,
     cursorlineopt = "number",
+    diffopt = {
+        "internal",
+        "filler",
+        "closeoff",
+        "hiddenoff",
+        "vertical",
+        "algorithm:patience",
+        "linematch:60",
+        "indent-heuristic",
+    },
     expandtab = true,
     fillchars = {
         stl = " ",
