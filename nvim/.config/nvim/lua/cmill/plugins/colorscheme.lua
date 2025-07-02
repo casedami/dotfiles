@@ -23,15 +23,13 @@ return {
                         plain = true,
                     },
                 },
-                -- colors = {
-                --     fg = "#bbb8ba",
-                -- },
                 highlights = {
                     ["LazyNormal"] = { bg = "none" },
                     ["Statusline"] = { bg = "$alt_bg" },
                     ["StatuslineTerm"] = { bg = "$alt_bg" },
                     ["FloatBorder"] = { fg = "$operator" },
                     ["WinSeparator"] = { fg = "$operator" },
+                    ["DiffText"] = { fg = "$diag_blue", bg = "#24282b", fmt = "bold" },
                 },
             })
             require("neomodern").load()
