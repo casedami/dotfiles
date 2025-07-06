@@ -71,13 +71,6 @@ $env.config.keybindings = [
         }
     }
     {
-        name: escape
-        modifier: none
-        keycode: escape
-        mode: [emacs, vi_normal, vi_insert]
-        event: { send: esc }    # NOTE: does not appear to work
-    }
-    {
         name: cancel_command
         modifier: control
         keycode: char_c
