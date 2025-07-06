@@ -104,43 +104,33 @@ return {
                 },
             },
         },
-        keys = function()
-      -- stylua: ignore
-      K = {
-        -- explorer
-        { "<leader>fe", function() Snacks.explorer.open() end, desc = "Open file explorer" },
-        -- picker.files
-        { "<leader>ff", function() Snacks.picker.smart() end, desc = "Files" },
-        { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Config files" },
-        { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent files"  },
-        { "<leader>f,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-        { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
-        { "<leader>fG", function() Snacks.picker.grep_word() end, desc = "Grep under cursor" },
-        { "<leader>ft", function() Snacks.picker.grep({ search = "(TODO|BUG|FIXME|WARN|NOTE):" }) end, desc = "Find TODO items" },
-        -- picker.vim
-        { "<leader>fh", function() Snacks.picker.help() end, desc = "Help" },
-        { "<leader>fC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-        { "<leader>fH", function() Snacks.picker.highlights() end, desc = "Highlights" },
-        { "<leader>f:", function() Snacks.picker.command_history() end, desc = "Command history" },
-        { "<leader>f/", function() Snacks.picker.search_history() end, desc = "Search history" },
-        { "<leader>fs", function() Snacks.picker.registers() end, desc = "Registers" },
-        { "<leader>fm", function() Snacks.picker.marks() end, desc = "Marks" },
-        -- picker.git
-        { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git status" },
-        { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git log" },
-        { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git diff" },
-        { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-        { "<leader>fD", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics for current buffer" },
-        -- picker.lsp
-        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-        { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-        { "<leader>lR", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-        { "<leader>lI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-        { "<leader>lt", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
-        { "<leader>ls", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
-        { "<leader>lS", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
-      }
-            return K
-        end,
+        -- stylua: ignore
+        keys = {
+            -- explorer
+            { "<leader>fe", function() Snacks.explorer.open() end, desc = "open file explorer" },
+            -- picker.files
+            { "<leader>ff", function() Snacks.picker.smart() end, desc = "search files" },
+            { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "search config files" },
+            { "<leader>fr", function() Snacks.picker.recent() end, desc = "search recent files"  },
+            { "<leader>f,", function() Snacks.picker.buffers() end, desc = "search open buffers" },
+            { "<leader>fg", function() Snacks.picker.grep() end, desc = "grep" },
+            { "<leader>fG", function() Snacks.picker.grep_word() end, desc = "grep under cursor" },
+            { "<leader>ft", function() Snacks.picker.grep({ search = "(TODO|BUG|FIXME|WARN|NOTE|MARK):" }) end, desc = "find TODO items" },
+            -- picker.vim
+            { "<leader>fh", function() Snacks.picker.help() end, desc = "search help" },
+            { "<leader>fC", function() Snacks.picker.colorschemes() end, desc = "search colorschemes" },
+            { "<leader>fH", function() Snacks.picker.highlights() end, desc = "search highlights" },
+            { "<leader>f:", function() Snacks.picker.command_history() end, desc = "search command history" },
+            { "<leader>f/", function() Snacks.picker.search_history() end, desc = "search search history" },
+            { "<leader>f\"", function() Snacks.picker.registers() end, desc = "search registers" },
+            { "<leader>fm", function() Snacks.picker.marks() end, desc = "search marks" },
+            -- picker.git
+            { "<leader>gs", function() Snacks.picker.git_status() end, desc = "open git status" },
+            { "<leader>gl", function() Snacks.picker.git_log() end, desc = "open git log" },
+            { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "open git diff" },
+            -- picker.lsp
+            { "gd", function() Snacks.picker.lsp_definitions() end, desc = "show/goto definition(s)" },
+            { "gD", function() Snacks.picker.lsp_declarations() end, desc = "show/goto declaration(s)" },
+        },
     },
 }
