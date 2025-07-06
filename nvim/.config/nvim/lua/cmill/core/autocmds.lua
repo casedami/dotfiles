@@ -105,12 +105,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         -- lsp
-        local opts = { buffer = bufnr }
-        map("n", "<leader>lr", vim.lsp.buf.rename, opts)
-        map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
-        map("n", "<leader>D", vim.diagnostic.open_float, opts)
-        map("n", "<leader>dd", toggle_diagnostics, opts)
-        map("n", "<leader>lh", vim.lsp.buf.document_highlight, opts)
+        -- stylua: ignore start
+        map( "n", "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "lsp rename" })
+        map( { "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "show code actions" })
+        map( "n", "<leader>D", vim.diagnostic.open_float, { buffer = bufnr, desc = "Open current line diagnostic as float" })
+        map( "n", "<leader>dd", toggle_diagnostics, { buffer = bufnr, desc = "toggle diagnostics" })
+        map( "n", "<leader>lh", vim.lsp.buf.document_highlight, { buffer = bufnr, desc = "highlight current lsp symbol" })
+        -- stylua: ignore end
 
         vim.api.nvim_create_autocmd("CursorMoved", {
             callback = vim.lsp.buf.clear_references,
@@ -127,11 +128,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 go({ severity = severity })
             end
         end
-        map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
-        map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
-        map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-        map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-        map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-        map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+        map("n", "]d", diagnostic_goto(true), { desc = "next diagnostic" })
+        map("n", "[d", diagnostic_goto(false), { desc = "prev diagnostic" })
+        map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "next error" })
+        map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "prev error" })
+        map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "next warning" })
+        map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "prev warning" })
     end,
 })
