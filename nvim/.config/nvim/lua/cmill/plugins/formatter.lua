@@ -6,7 +6,7 @@ return {
             lua = { "stylua" },
             python = { "ruff_format" },
             sh = { "shfmt" },
-            fish = { "fish_indent" },
+            toml = { "pyproject-fmt" },
             -- c = { "clang-format" },
             -- cpp = { "clang-format" },
             jsonc = { "deno_fmt" },

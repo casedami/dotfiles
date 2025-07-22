@@ -39,6 +39,13 @@ local cfg = {
     }),
     -- TAB BAR
     enable_tab_bar = false,
+    keys = {
+        {
+            key = "P",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.DisableDefaultAssignment,
+        },
+    },
 }
 
 for k, v in pairs(cfg) do

@@ -1,12 +1,8 @@
 local blink = require("blink.cmp")
 return {
-    cmd = { "/home/cdm/.local/share/nvim/typst-preview/tinymist-linux-x64" },
-    filetypes = { "typst" },
-    settings = {
-        ["tinymist.preview.background.enabled"] = true,
-        formatterMode = "typstyle",
-        formatterPrintWidth = 79,
-    },
+    cmd = { "yaml-language-server", "--stdio" },
+    filetypes = { "yaml" },
+    settings = {},
     capabilities = vim.tbl_deep_extend(
         "force",
         {},

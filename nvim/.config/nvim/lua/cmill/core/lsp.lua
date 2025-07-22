@@ -1,10 +1,11 @@
 vim.lsp.enable({
     "basedpyright",
     "clangd",
-    "ruff",
     "luals",
+    "ruff",
     "rust-analyzer",
     "tinymist",
+    "yamlls",
 })
 
 vim.diagnostic.config({

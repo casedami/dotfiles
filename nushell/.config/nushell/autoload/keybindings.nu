@@ -85,6 +85,13 @@ $env.config.keybindings = [
         event: { send: clearscreen }
     }
     {
+        name: search_history
+        modifier: none
+        keycode: char_/
+        mode: vi_normal
+        event: { send: searchhistory }
+    }
+    {
         name: file_manager
         modifier: control
         keycode: char_p
@@ -92,11 +99,11 @@ $env.config.keybindings = [
         event: { send: executehostcommand cmd: "P" }
     }
     {
-        name: search_history
-        modifier: none
-        keycode: char_/
-        mode: vi_normal
-        event: { send: searchhistory }
+        name: file_manager_no_cd
+        modifier: control_shift
+        keycode: char_p
+        mode: [vi_normal, vi_insert]
+        event: { send: executehostcommand cmd: "yazi" }
     }
     {
         name: open_command_editor
