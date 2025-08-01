@@ -30,6 +30,16 @@ return {
                     ["FloatBorder"] = { fg = "$operator" },
                     ["WinSeparator"] = { fg = "$operator" },
                     ["DiffText"] = { fg = "$diag_blue", bg = "#24282b", fmt = "bold" },
+                    ["FzfLuaBorder"] = { fg = "$operator" },
+                    ["FzfLuaBufFlagCur"] = { fg = "$alt" },
+                    ["FzfLuaBufFlagAlt"] = { fg = "$alt" },
+                    ["FzfLuaTitleFlags"] = { fg = "$alt" },
+                    ["FzfLuaHeaderText"] = { fg = "$alt" },
+                    ["FzfLuaHeaderBind"] = { fg = "$number" },
+                    ["FzfLuaLiveSym"] = { fg = "$type" },
+                    ["FzfLuaLivePrompt"] = { fg = "$type" },
+                    ["FzfLuaPathLineNr"] = { fg = "$alt" },
+                    ["FzfLuaPathColNr"] = { fg = "$fg" },
                 },
             })
             require("neomodern").load()

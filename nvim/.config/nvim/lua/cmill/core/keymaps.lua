@@ -74,21 +74,6 @@ local maps = {
     },
 
     -- stylua: ignore
-    files = {
-        { "ca", "fn", "New", { desc = "edit new file in current dir" } },
-        { "ca", "fnh", "NewSplit", { desc = "edit new file in current dir (hsplit)" } },
-        { "ca", "fnk", "NewVsplit", { desc = "edit new file in current dir (vsplit)" } },
-    },
-
-    -- stylua: ignore
-    sessions = {
-        { "ca", "sw", "SesWrite", { desc = "save session for cwd" } },
-        { "ca", "sd", "SesDel", { desc = "delete session for cwd" } },
-        { "ca", "sda", "SesDelA", { desc = "delete all saved sessions" } },
-        { "ca", "sl", "SesLoad", { desc = "load session for cwd" } },
-    },
-
-    -- stylua: ignore
     misc = {
         { "n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "open lazy" } },
         { "n", "<localleader>?", "<cmd>h selfhelp.txt<cr>", { desc = "open selfhelp" }, },
@@ -98,8 +83,8 @@ local maps = {
         { "n", "|", "<cmd>normal yygccp<cr>", { desc = "copy current line, comment it, and paste it below" } },
         { "v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "copy selected line(s), comment it, and paste it below" } },
         { "i", "<C-p>", '<C-o>"0p', { desc = "paste from 0 register in insert mode" } },
-        { "n", "<tab>", "<nop>", { desc = "i>)" } },
-        { "n", "<C-i>", "<c-i>", { desc = "i>)" } },
+        -- { "n", "<C-i>", "<c-i>", { desc = "i>)" } },
+        -- { "n", "<tab>", "<nop>", { desc = "i>)" } },
         { "n", "<C-;>", "<c-l>", { desc = "clear cmd line" } },
         { "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>", { desc = "clear previous search match highlights" } },
         { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>", { desc = "insert empty newline below" } },

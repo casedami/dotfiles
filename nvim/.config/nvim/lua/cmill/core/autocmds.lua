@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+local ns_marks = vim.api.nvim_create_namespace("marksigns_")
 
 local function augroup(name)
     return vim.api.nvim_create_augroup("cmill" .. name, { clear = true })
@@ -12,6 +12,29 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     },
     callback = function()
         require("lazydev").find_workspace()
+    end,
+})
+
+vim.api.nvim_create_autocmd("CursorMoved", {
+    group = augroup("marksigns"),
+    desc = "add marks to signcolumn",
+    callback = function()
+        local buf = vim.api.nvim_win_get_buf(0)
+        local marks = vim.fn.getmarklist(buf)
+        vim.api.nvim_buf_clear_namespace(buf, ns_marks, 0, -1)
+        vim.list_extend(marks, vim.fn.getmarklist())
+        for _, mark in ipairs(marks) do
+            if mark.pos[1] == buf and mark.mark:match("[a-zA-Z]") then
+                local lnum = mark.pos[2]
+                vim.api.nvim_buf_set_extmark(buf, ns_marks, lnum - 1, 0, {
+                    id = lnum,
+                    sign_text = mark.mark:sub(2),
+                    priority = 1,
+                    sign_hl_group = "DiagnosticInfo",
+                    cursorline_hl_group = "DiagnosticInfo",
+                })
+            end
+        end
     end,
 })
 
@@ -78,6 +101,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.api.nvim_create_autocmd("BufLeave", {
+    group = augroup("start"),
+    desc = "restore laststatus when leaving starter",
+    pattern = "*",
+    callback = function()
+        if vim.bo.filetype == "ministarter" then
+            vim.opt.laststatus = 3
+        end
+    end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("close_with_q"),
     desc = "Close with <q>",
@@ -106,11 +140,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- lsp
         -- stylua: ignore start
-        map( "n", "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "lsp rename" })
-        map( { "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "show code actions" })
-        map( "n", "<leader>D", vim.diagnostic.open_float, { buffer = bufnr, desc = "Open current line diagnostic as float" })
-        map( "n", "<leader>dd", toggle_diagnostics, { buffer = bufnr, desc = "toggle diagnostics" })
-        map( "n", "<leader>lh", vim.lsp.buf.document_highlight, { buffer = bufnr, desc = "highlight current lsp symbol" })
+        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { buffer = bufnr, desc = "lsp rename" })
+        vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "show code actions" })
+        vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float, { buffer = bufnr, desc = "Open current line diagnostic as float" })
+        vim.keymap.set("n", "<leader>dd", toggle_diagnostics, { buffer = bufnr, desc = "toggle diagnostics" })
+        vim.keymap.set("n", "<leader>lh", vim.lsp.buf.document_highlight, { buffer = bufnr, desc = "highlight current lsp symbol" })
         -- stylua: ignore end
 
         vim.api.nvim_create_autocmd("CursorMoved", {
@@ -128,11 +162,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 go({ severity = severity })
             end
         end
-        map("n", "]d", diagnostic_goto(true), { desc = "next diagnostic" })
-        map("n", "[d", diagnostic_goto(false), { desc = "prev diagnostic" })
-        map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "next error" })
-        map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "prev error" })
-        map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "next warning" })
-        map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "prev warning" })
+        -- stylua: ignore start
+        vim.keymap.set("n", "]d", diagnostic_goto(true), { desc = "next diagnostic" })
+        vim.keymap.set("n", "[d", diagnostic_goto(false), { desc = "prev diagnostic" })
+        vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "next error" })
+        vim.keymap.set("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "prev error" })
+        vim.keymap.set("n", "]w", diagnostic_goto(true, "WARN"), { desc = "next warning" })
+        vim.keymap.set("n", "[w", diagnostic_goto(false, "WARN"), { desc = "prev warning" })
+        -- stylua: ignore end
     end,
 })

@@ -40,7 +40,7 @@ $env.config.keybindings = [
     {
         name: history_menu
         modifier: control
-        keycode: char_/
+        keycode: char_r
         mode: vi_normal
         event: { send: menu name: history_menu }
     }
@@ -100,7 +100,7 @@ $env.config.keybindings = [
     }
     {
         name: file_manager_no_cd
-        modifier: control_shift
+        modifier: alt
         keycode: char_p
         mode: [vi_normal, vi_insert]
         event: { send: executehostcommand cmd: "yazi" }
@@ -111,6 +111,20 @@ $env.config.keybindings = [
         keycode: char_o
         mode: [emacs, vi_normal, vi_insert]
         event: { send: executehostcommand cmd: "vim" }
+    }
+    {
+        name: dirs_cycle_next
+        modifier: control
+        keycode: char_j
+        mode: [emacs, vi_normal, vi_insert]
+        event: { send: executehostcommand cmd: "dirs next" }
+    }
+    {
+        name: dirs_cycle_prev
+        modifier: control
+        keycode: char_k
+        mode: [emacs, vi_normal, vi_insert]
+        event: { send: executehostcommand cmd: "dirs prev" }
     }
 ]
 

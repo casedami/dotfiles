@@ -244,9 +244,8 @@ M.render = function()
     local root = nil
     local fname = vim.api.nvim_buf_get_name(0)
     local cases = {
-        terminal = "terminal",
-        nofile = vim.bo.ft:gsub(".*snacks.*", "explorer"),
-        prompt = vim.bo.ft:gsub(".*snacks.*", "explorer"),
+        terminal = "",
+        nofile = "",
         help = "help pages",
     }
     if cases[vim.bo.buftype] then
