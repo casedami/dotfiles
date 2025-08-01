@@ -23,57 +23,27 @@ return {
     },
     {
         "cdmill/sesh.nvim",
-        branch = "dev",
+        cmd = "Sesh",
         opts = {
             autoload = false,
-            autosave = false,
-        },
-    },
-    {
-        "folke/trouble.nvim",
-        opts = {
-            focus = true,
-            modes = {
-                lsp = {
-                    win = { position = "bottom" },
-                },
-                symbols = {
-                    win = { position = "bottom" },
+            autosave = {
+                enabled = false,
+                criteria = {
+                    splits = 2,
                 },
             },
+            use_branch = true,
         },
-        cmd = "Trouble",
         keys = {
+            { "<leader>S", "<cmd>Sesh<cr>", { desc = "select session" } },
+            { "<leader>ss", "<cmd>Sesh save<cr>", { desc = "save session for cwd" } },
+            { "<leader>sd", "<cmd>Sesh del<cr>", { desc = "delete session for cwd" } },
             {
-                "<leader>fD",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "show all diagnostics",
+                "<leader>sD",
+                "<cmd>Sesh clean<cr>",
+                { desc = "delete all saved sessions" },
             },
-            {
-                "<leader>fd",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "show buffer diagnostics",
-            },
-            {
-                "<leader>fs",
-                "<cmd>Trouble symbols toggle<cr>",
-                desc = "show lsp symbols",
-            },
-            {
-                "<leader>lf",
-                "<cmd>Trouble lsp toggle<cr>",
-                desc = "show lsp defiitions, references, etc.",
-            },
-            {
-                "<leader>xl",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "show qf location list",
-            },
-            {
-                "<leader>xq",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "show qf list",
-            },
+            { "<leader>sl", "<cmd>Sesh load<cr>", { desc = "load session for cwd" } },
         },
     },
 }

@@ -103,7 +103,9 @@ $env.NU_PLUGIN_DIRS = [
 
 $env.path ++= [
     "~/.local/bin",
-    "~/.cargo/bin"
+    "~/.cargo/bin",
+    "/home/linuxbrew/.linuxbrew/bin"
+
 ]
 
 $env.XDG_SESSION_TYPE = 'wayland'
@@ -121,11 +123,11 @@ $env.FZF_DEFAULT_OPTS = '
 --color=fg:#767777,bg:#161617,hl:#bbc7b1,gutter:#161617
 --color=fg+:#748fa6,bg+:#222324,hl+:#bbc7b1
 --color=info:#767777,prompt:#bbc7b1,pointer:#748fa6
---color=marker:#72966c,spinner:#72966c,header:#72966c
+--color=marker:#748fa6,spinner:#72966c,header:#72966c
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
---prompt=" "
---marker=">"
---pointer="󰘍"
+--prompt="$ "
+--marker="*"
+--pointer=">"
 --cycle
 --multi
 --height 40%

@@ -32,7 +32,7 @@ let theme = {
 $env.config.color_config = {
     separator: $theme.operator
     leading_trailing_space_bg: { attr: "n" }
-    header: { fg: $theme.func attr: "b"}
+    header: { fg: $theme.func }
     empty: $theme.property
     bool: $theme.number
     int: $theme.number
@@ -45,7 +45,7 @@ $env.config.color_config = {
     nothing: $theme.comment
     binary: $theme.constant
     cell-path: $theme.property
-    row_index: { fg: $theme.func attr: "b" }
+    row_index: { fg: $theme.comment }
     record: $theme.property
     list: $theme.property
     block: $theme.property

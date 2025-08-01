@@ -4,4 +4,4 @@ Session.vim
 fish_variables
 lazy-lock.json
 **/tmux/plugins/**
-history.txt
+history.*
