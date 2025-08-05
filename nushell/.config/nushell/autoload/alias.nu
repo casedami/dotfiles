@@ -9,7 +9,8 @@ alias fg = job unfreeze
 alias ga = git add
 alias gb = git branch
 alias gc = git commit
-alias gd = git branch -d
+alias gd = git diff
+alias gD = git branch -d
 alias gm = git merge
 alias gp = git pull
 alias gP = git push
@@ -63,8 +64,15 @@ def --env gdc [] {
     }
 }
 
-def --env gl [n: int = 10] {
-    git log --pretty=%h»¦«%s»¦«%an»¦«%aD -n $n
+def --env gl [n: int = 10, --all(-a)] {
+    mut flags = ""
+    if $all {
+        $flags = "-a"
+    } else {
+        $flags = $"-n ($n)"
+    }
+
+    git log --pretty=%h»¦«%s»¦«%an»¦«%aD $flags
     | lines
     | split column "»¦«" commit subject name date
     | upsert date {|d| $d.date | into datetime}
