@@ -1,8 +1,28 @@
-local util = require("cmill.core.util")
-local get_opt = vim.api.nvim_get_option_value
+local function hl_str(hl, str)
+    return "%#" .. hl .. "#" .. str .. "%*"
+end
+
+local function hl_icons(icon_list)
+    local icons = {}
+
+    for name, list in pairs(icon_list) do
+        local val = nil
+        if type(list[2]) == "table" then
+            val = {}
+            for i, icon in ipairs(list[2]) do
+                val[i] = hl_str(list[1], icon)
+            end
+        else
+            val = hl_str(list[1], list[2])
+        end
+        icons[name] = val
+    end
+
+    return icons
+end
 
 local icons_raw = tools.ui.icons
-local icons_hl = util.hl_icons({
+local icons_hl = hl_icons({
     binary = { "DiagnosticHint", icons_raw.binary },
     branch = { "Type", icons_raw.branch },
     error = { "DiagnosticError", icons_raw.diag.error },
@@ -53,11 +73,11 @@ function SLSectionBuilder:diagnostics()
 
     if err_count > 0 or warn_count > 0 then
         local mod = table.concat({
-            util.pad_str(icons_hl.error, 4, "right"),
-            util.pad_str(tostring(err_count), 2, "right"),
-            util.pad_str(icons_hl.warn, 4, "right"),
+            icons_hl.error,
+            tostring(err_count),
+            icons_hl.warn,
             tostring(warn_count),
-        })
+        }, " ")
         self:add(mod)
     end
     return self
@@ -74,7 +94,7 @@ function SLSectionBuilder:git(root)
         end
         local mod = table.concat({
             icons_hl.branch,
-            util.hl_str("Type", branch),
+            hl_str("Type", branch),
         }, " ")
         self:add(mod)
     end
@@ -83,8 +103,7 @@ end
 
 function SLSectionBuilder:flines()
     local nlines = vim.fn.line("$")
-    local lines = util.group_number(nlines, ",")
-    local mod = icons_hl.fileinfo .. " " .. lines
+    local mod = icons_hl.fileinfo .. " " .. nlines
     self:add(mod)
     return self
 end
@@ -108,7 +127,7 @@ function SLSectionBuilder:floc()
 
     local mod = table.concat({
         icons_hl.location[idx],
-        util.hl_str("@variable", "%P"),
+        hl_str("@variable", "%P"),
     }, " ")
     self:add(mod)
     return self
@@ -116,8 +135,10 @@ end
 
 function SLSectionBuilder:fmeta()
     local buf_num = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-    local readonly = get_opt("readonly", { buf = buf_num }) and icons_hl.readonly or ""
-    local nomod = get_opt("modifiable", { buf = buf_num }) and ""
+    local readonly = vim.api.nvim_get_option_value("readonly", { buf = buf_num })
+            and icons_hl.readonly
+        or ""
+    local nomod = vim.api.nvim_get_option_value("modifiable", { buf = buf_num }) and ""
         or icons_hl.nomodifiable
     local mod = table.concat({
         readonly,
@@ -139,8 +160,11 @@ function SLSectionBuilder:fsize()
     return self
 end
 
-function SLSectionBuilder:pad()
-    self:add(self._pad)
+function SLSectionBuilder:pad(count)
+    count = count or 1
+    for _ = 1, count do
+        self:add(self._pad)
+    end
     return self
 end
 
@@ -151,10 +175,12 @@ function SLSectionBuilder:path(root, fname)
         return self
     end
     local buf_num = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-    local modified = get_opt("modified", { buf = buf_num }) and icons_hl.modified or ""
+    local modified = vim.api.nvim_get_option_value("modified", { buf = buf_num })
+            and icons_hl.modified
+        or ""
     local tail = vim.fn.fnamemodify(path, ":t")
     local icon, hl = require("mini.icons").get("file", tail)
-    icon = tail ~= "" and util.hl_str(hl, icon) or ""
+    icon = tail ~= "" and hl_str(hl, icon) or ""
     local tail_and_icon = table.concat({ tail, self._pad, icon, self._pad, modified })
 
     if vim.bo.buftype == "help" then
@@ -193,7 +219,7 @@ function SLSectionBuilder:prefix()
     if vim.api.nvim_eval("len(gettabinfo())") > 1 then
         mod = vim.fn.tabpagenr()
     end
-    mod = util.hl_str("@lsp.typemod.keyword.documentation", mod)
+    mod = hl_str("@lsp.typemod.keyword.documentation", mod)
     self:add(mod)
     return self
 end
@@ -215,10 +241,7 @@ end
 
 function SLSectionBuilder:user()
     self:add(
-        util.hl_str(
-            "@lsp.typemod.keyword.documentation",
-            util.pad_str(vim.uv.os_get_passwd()["username"], 2, "left")
-        )
+        hl_str("@lsp.typemod.keyword.documentation", vim.uv.os_get_passwd()["username"])
     )
     return self
 end
@@ -229,7 +252,7 @@ function SLSectionBuilder:venv()
         local name = vim.fn.fnamemodify(venv, ":t")
         local mod = table.concat({
             icons_hl.venv,
-            util.hl_str("@property", name),
+            hl_str("@property", name),
         })
         self:add(mod)
     end
