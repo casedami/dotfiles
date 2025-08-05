@@ -5,9 +5,20 @@ use std repeat
 let text_width = 78
 let SEARCH_DIR = ($env.HOME | path join ".config/nvim/lua")
 
+# Expecting keymap declaration in the following format:
+# set MODE MAP desc=DESC
+#
+# where:
+#   MODE(str|table<str>) := vim mode(s)
+#   MAP(str) := keymap
+#   DESC(str) := description of the keymap. can be inside the opts table or as a comment
+#
+#  NOTE:
+#  requires keymaps to be formatted as a single line
+
 let mode = '[^"{]+(?P<mode>"\w"|{[^}]+})' # ex: "n" or { "n", "v" }
 let map = '[^"]+"(?P<map>[^"]+)"' # ex: "<leader>a"
-let tag_and_desc = '.+desc = "(?P<tag>\S+): (?P<desc>[^"]+)"' # ex: desc = "TAG: desc"
+let tag_and_desc = '.+desc\s?=\s?"(?P<tag>\S+): (?P<desc>[^"]+)"' # ex: desc = "TAG: desc"
 let tag_ignored = "Extend"
 
 def parse-keymaps [files: list] {
@@ -18,7 +29,7 @@ def parse-keymaps [files: list] {
         | each { |line|
             let parsed = (
                 $line
-                | parse --regex $"set\(($mode)($map)($tag_and_desc)\)"
+                | parse --regex $"set($mode)($map)($tag_and_desc)"
             )
             if ($parsed | is-not-empty) {
                 {
@@ -76,7 +87,7 @@ def format-content [c] {
     | ansi strip
 }
 
-let formatted = (
+let formatted_groups = (
     glob $"($SEARCH_DIR)/**/*.lua"
     | parse-keymaps $in
     | transpose group items
@@ -92,6 +103,6 @@ let formatted = (
 let meta = format-meta
 let footer = format-footer
 
-[ $meta, $formatted, $footer ] | str join "\n" | save -f doc/selfhelp.txt
+[ $meta, $formatted_groups, $footer ] | str join "\n" | save -f doc/selfhelp.txt
 cd doc
 nvim -c "helptags ." -c "q"
