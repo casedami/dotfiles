@@ -2,15 +2,16 @@ return {
     "mikavilpas/yazi.nvim",
     lazy = false,
     cmd = "Yazi",
-    -- stylua: ignore
-    keys = {
-        { "<leader>fe", mode = { "n", "v" }, "<cmd>Yazi<cr>", desc = "Open yazi at the current file", },
-        { "<leader>fE", "<cmd>Yazi cwd<cr>", desc = "Open yazi in nvim's working directory", },
-        { "<C-p>", "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", },
-    },
     opts = {
         open_for_directories = true,
     },
+    config = function()
+        -- stylua: ignore start
+        vim.keymap.set("n", "<leader>fe", "<cmd>Yazi<cr>", { desc = "Explorer: open at the current file" })
+        vim.keymap.set("n", "<leader>fE", "<cmd>Yazi cwd<cr>", { desc = "Explorer: open in cwd" })
+        vim.keymap.set("n", "<C-p>", "<cmd>Yazi toggle<cr>", { desc = "Explorer: resume" })
+        -- stylua: ignore end
+    end,
     init = function()
         vim.g.loaded_netrwPlugin = 1
     end,

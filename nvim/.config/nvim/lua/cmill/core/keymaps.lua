@@ -1,101 +1,80 @@
-local maps = {
-    -- stylua: ignore
-    movement = {
-        { "n", "0", "^", { desc = "remap inline movement (beginning of line)" } },
-        { "n", ")", "$", { desc = "remap inline movement (beginning of line)" } },
-        { "n", "<C-d>", "<C-d>zz", { desc = "center after page down" } },
-        { "n", "<C-u>", "<C-u>zz", { desc = "center after page up" } },
-        { "n", "n", "nzzzv", { desc = "center after next item in search" } },
-        { "n", "N", "Nzzzv", { desc = "center after prev item in search" } },
-        { "v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "move line up" } },
-        { "v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "move line down" } },
-        { "v", "<", "<gv", { desc = "stay in visual mode when indenting" } },
-        { "v", ">", ">gv", { desc = "stay in visual mode when indenting" } },
-        { "c", "<C-k>", "<up>", { desc = "go backwards in cmdline history" } },
-        { "c", "<C-j>", "<down>", { desc = "go forwards in cmdline history" } },
-    },
+local set = vim.keymap.set
 
-    -- stylua: ignore
-    buffers = {
-        { "n", "<localleader>]", "<cmd>bnext<cr>", { desc = "next buffer in bufferlist" }, },
-        { "n", "<localleader>[", "<cmd>bprev<cr>", { desc = "previous buffer in bufferlist" }, },
-        { "n", "<localleader>d", "<cmd>bd<cr>", { desc = "delete buffer" } },
-        { "n", "<localleader>p", "<C-6>", { desc = "previous buffer" } },
-        { "n", "<localleader>P", "<C-w><C-6>", { desc = "previous buffer in hsplit" } },
-    },
+-- stylua: ignore start
+-- MOVEMENT
+set("n", "0", "^", { desc = "Movement: goto beginning of line" })
+set("n", ")", "$", { desc = "Movement: goto end of line" })
+set("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Movement: move line up" })
+set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Movement: move line down" })
+set("c", "<C-k>", "<up>", { desc = "Movement: go backwards in cmd history" })
+set("c", "<C-j>", "<down>", { desc = "Movement: go forwards in cmd history" })
+set("n", "<C-d>", "<C-d>zz", { desc = "Extend: center after page down" })
+set("n", "<C-u>", "<C-u>zz", { desc = "Extend: after page up" })
+set("n", "n", "nzzzv", { desc = "Extend: center after next item in search" })
+set("n", "N", "Nzzzv", { desc = "Extend: center after prev item in search" })
+set("v", "<", "<gv", { desc = "Extend: stay in visual mode when indenting" })
+set("v", ">", ">gv", { desc = "Extend: stay in visual mode when indenting" })
 
-    -- stylua: ignore
-    tabs = {
-        { "n", "<localleader>}", "<cmd>tabnext<cr>", { desc = "next tab" } },
-        { "n", "<localleader>{", "<cmd>tabprevious<cr>", { desc = "previous tab" } },
-        { "n", "<localleader><tab>c", "<cmd>tabnew %<cr>", { desc = "new tab" } },
-        { "n", "<localleader><tab>d", "<cmd>tabclose<cr>", { desc = "close tab" } },
-    },
+-- BUFFERS
+set( "n", "<localleader>]", "<cmd>bnext<cr>", { desc = "Buffer: next" })
+set( "n", "<localleader>[", "<cmd>bprev<cr>", { desc = "Buffer: previous" })
+set( "n", "<localleader>d", "<cmd>bd<cr>", { desc = "Buffer: close" })
+set( "n", "<localleader>p", "<C-6>", { desc = "Buffer: previous" })
+set( "n", "<localleader>P", "<C-w><C-6>", { desc = "Buffer: previous buffer in hsplit" })
 
-    -- stylua: ignore
-    windows = {
-        { "n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "increase window height" } },
-        { "n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "decrease window height" } },
-        { "n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "decrease window width" }, },
-        { "n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "increase window width" }, },
-        { { "n", "v" }, "<C-h>", "<C-w>h", { desc = "goto left window" } },
-        { { "n", "v" }, "<C-j>", "<C-w>j", { desc = "goto lower window" } },
-        { { "n", "v" }, "<C-k>", "<C-w>k", { desc = "goto upper window" } },
-        { { "n", "v" }, "<C-l>", "<C-w>l", { desc = "goto right window" } },
-        { "n", "<leader>wd", "<C-W>c", { desc = "delete window" } },
-        { "n", "<leader>we", "<C-W>=", { desc = "split windows equally" } },
-        { "n", "<leader>wo", "<C-W><C-O>", { desc = "make buffer the only buffer on screen" }, },
-        { "n", "<leader>wk", "<C-W>_", { desc = "maximize current window vertically" }, },
-        { "n", "<leader>wh", "<C-W>|", { desc = "maximize current window horizontally" }, },
-        { "n", "<leader>wK", "<C-W>K", { desc = "change hsplit layout to vsplit" } },
-        { "n", "<leader>wH", "<C-W>H", { desc = "change vsplit layout to hsplit" } },
-        { "n", "<leader>wr", "<C-W><C-R>", { desc = "rotate window layout (only works row-/column-wise)" }, },
-        { "n", "<leader>-", "<C-W>s", { desc = "split window below" } },
-        { "n", "<leader>|", "<C-W>v", { desc = "split window right" } },
-    },
+-- TABS
+set( "n", "<localleader>}", "<cmd>tabnext<cr>", { desc = "Tab: next" })
+set( "n", "<localleader>{", "<cmd>tabprevious<cr>", { desc = "Tab: previous" })
+set( "n", "<localleader><tab>c", "<cmd>tabnew %<cr>", { desc = "Tab: new" })
+set( "n", "<localleader><tab>d", "<cmd>tabclose<cr>", { desc = "Tab: close" })
 
-    -- stylua: ignore
-    qf = {
-        { "n", "<leader>cn", "<cmd>cnext<cr>zz", { desc = "goto next item in qfix list" } },
-        { "n", "<leader>cnf", "<cmd>cnfile<cr>zz", { desc = "goto first item in next file" } },
-        { "n", "<leader>cp", "<cmd>cprev<cr>zz", { desc = "goto previous item in qfix list" } },
-        { "n", "<leader>cpf", "<cmd>cpfile<cr>zz", { desc = "goto last item in previous file" } },
-        { "n", "<leader>co", "<cmd>copen<cr>", { desc = "open qfix list" } },
-        { "n", "<leader>cc", "<cmd>cclose<cr>", { desc = "close qfix list" } },
-    },
+-- WINDOWS
+set( "n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Window: increase height" })
+set( "n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Window: decrease height" })
+set( "n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Window: decrease width" })
+set( "n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Window: increase width" })
+set( { "n", "v" }, "<C-h>", "<C-w>h", { desc = "Window: focus left" })
+set( { "n", "v" }, "<C-j>", "<C-w>j", { desc = "Window: focus down" })
+set( { "n", "v" }, "<C-k>", "<C-w>k", { desc = "Window: focus up" })
+set( { "n", "v" }, "<C-l>", "<C-w>l", { desc = "Window: focus right" })
+set( "n", "<leader>wd", "<C-W>c", { desc = "Window: close" })
+set( "n", "<leader>we", "<C-W>=", { desc = "Window: split equally" })
+set( "n", "<leader>wo", "<C-W><C-O>", { desc = "Window: focus" })
+set( "n", "<leader>wk", "<C-W>_", { desc = "Window: maximize current window vertically" })
+set( "n", "<leader>wh", "<C-W>|", { desc = "Window: maximize current window horizontally" })
+set( "n", "<leader>wK", "<C-W>K", { desc = "Window: hsplit to vsplit" })
+set( "n", "<leader>wH", "<C-W>H", { desc = "Window: vsplit to hsplit" })
+set( "n", "<leader>wr", "<C-W><C-R>", { desc = "Window: rotate (single-axis only)" })
+set( "n", "<leader>-", "<C-W>s", { desc = "Window: vsplit" })
+set( "n", "<leader>|", "<C-W>v", { desc = "Window: hsplit" })
 
-    -- stylua: ignore
-    term = {
-        { "n", "<leader>tk", "<cmd>split | resize 15 | terminal<cr>i", { desc = "open term in hsplit" }, },
-        { "n", "<leader>th", "<cmd>vsplit | terminal<cr>i", { desc = "open term in vsplit" }, },
-        { "n", "<leader>T", "<cmd>tabnew | term<cr>i", { desc = "open term in new tab" }, },
-        { "t", "<esc>", "<C-\\><C-n>", { desc = "use esc key to switch normal mode from term mode" }, },
-        { "t", "<C-v><esc>", "<esc>", { desc = "send esc key to shell" } },
-    },
+-- QUICKFIX
+set( "n", "<leader>cn", "<cmd>cnext<cr>zz", { desc = "QuickFix: next" })
+set( "n", "<leader>cp", "<cmd>cprev<cr>zz", { desc = "QuickFix: previous" })
+set( "n", "<leader>co", "<cmd>copen<cr>", { desc = "QuickFix: open" })
+set( "n", "<leader>cc", "<cmd>cclose<cr>", { desc = "QuickFix: close" })
+set( "n", "<leader>cnf", "<cmd>cnfile<cr>zz", { desc = "QuickFix: goto first item in next file" })
+set( "n", "<leader>cpf", "<cmd>cpfile<cr>zz", { desc = "QuickFix: goto last item in previous file" })
 
-    -- stylua: ignore
-    misc = {
-        { "n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "open lazy" } },
-        { "n", "<localleader>?", "<cmd>h selfhelp.txt<cr>", { desc = "open selfhelp" }, },
-        { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
-        { { "n", "v" }, "=", '"0p', { desc = "forward paste from 0 register" } },
-        { { "n", "v" }, "+", '"0P', { desc = "backward paste from 0 register" } },
-        { "n", "|", "<cmd>normal yygccp<cr>", { desc = "copy current line, comment it, and paste it below" } },
-        { "v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "copy selected line(s), comment it, and paste it below" } },
-        { "i", "<C-p>", '<C-o>"0p', { desc = "paste from 0 register in insert mode" } },
-        -- { "n", "<C-i>", "<c-i>", { desc = "i>)" } },
-        -- { "n", "<tab>", "<nop>", { desc = "i>)" } },
-        { "n", "<C-;>", "<c-l>", { desc = "clear cmd line" } },
-        { "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>", { desc = "clear previous search match highlights" } },
-        { "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>", { desc = "insert empty newline below" } },
-        { "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "insert empty newline above" } },
-        { "ca", "nums", "set relativenumber!", { desc = "togggle relative number" } },
-        { "ca", "cd.", "cd %:h", { desc = "cwd expansion" } },
-    },
-}
+-- TERM
+set( "n", "<leader>tk", "<cmd>split | resize 15 | terminal<cr>i", { desc = "Term: open in hsplit" })
+set( "n", "<leader>th", "<cmd>vsplit | terminal<cr>i", { desc = "Term: open in vsplit" })
+set( "n", "<leader>T", "<cmd>tabnew | term<cr>i", { desc = "Term: open in new tab" })
+set( "t", "<esc>", "<C-\\><C-n>", { desc = "Extend: use esc key to switch normal mode from term mode" })
+set( "t", "<C-v><esc>", "<esc>", { desc = "Extend: send esc key to shell" })
 
-for _, group in pairs(maps) do
-    for _, v in pairs(group) do
-        vim.keymap.set(v[1], v[2], v[3], v[4] or {})
-    end
-end
+-- MISC
+set( "n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "Misc: open pacman" })
+set( "n", "<localleader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open selfhelp" })
+-- { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
+set( { "n", "v" }, "=", '"0p', { desc = "Misc: paste 0 register (forward)" })
+set( { "n", "v" }, "+", '"0P', { desc = "Misc: paste 0 register (backward)" })
+set( "i", "<C-p>", '<C-o>"0p', { desc = "Misc: paste 0 register (insert mode)" })
+set( "n", "|", "<cmd>normal yygccp<cr>", { desc = "Misc: scratch line" })
+set( "v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected lines" })
+set( "n", "<C-;>", "<c-l>", { desc = "Misc: clear cmd line" })
+set( "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>", { desc = "Misc: clear search highlights" })
+set( "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>", { desc = "Misc: insert empty newline below" })
+set( "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Misc: insert empty newline above" })
+set( "ca", "nums", "set relativenumber!", { desc = "Misc: togggle relative number" })
+set( "ca", "cwd", "cd %:h", { desc = "Misc: cwd expansion" })

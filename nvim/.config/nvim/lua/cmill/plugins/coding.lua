@@ -34,16 +34,14 @@ return {
             },
             use_branch = true,
         },
-        keys = {
-            { "<leader>S", "<cmd>Sesh<cr>", { desc = "select session" } },
-            { "<leader>ss", "<cmd>Sesh save<cr>", { desc = "save session for cwd" } },
-            { "<leader>sd", "<cmd>Sesh del<cr>", { desc = "delete session for cwd" } },
-            {
-                "<leader>sD",
-                "<cmd>Sesh clean<cr>",
-                { desc = "delete all saved sessions" },
-            },
-            { "<leader>sl", "<cmd>Sesh load<cr>", { desc = "load session for cwd" } },
-        },
+        config = function()
+            -- stylua: ignore start
+            vim.keymap.set("n", "<leader>S", "<cmd>Sesh<cr>", { desc = "Session: select" })
+            vim.keymap.set("n", "<leader>ss", "<cmd>Sesh save<cr>", { desc = "Session: save for cwd" })
+            vim.keymap.set("n", "<leader>sd", "<cmd>Sesh del<cr>", { desc = "Session: delete for cwd" })
+            vim.keymap.set("n", "<leader>sl", "<cmd>Sesh load<cr>", { desc = "Session: load session for cwd" })
+            vim.keymap.set("n", "<leader>sD", "<cmd>Sesh clean<cr>", { desc = "Session: delete all" })
+            -- stylua: ignore end
+        end,
     },
 }

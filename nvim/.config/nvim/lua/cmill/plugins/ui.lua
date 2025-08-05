@@ -43,39 +43,22 @@ return {
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
-                local function kmap(mode, l, r, opts)
-                    opts = opts or {}
-                    opts.buffer = bufnr
-                    vim.keymap.set(mode, l, r, opts)
-                end
-
+                -- stylua: ignore start
                 -- navigation
-                -- stylua: ignore
-                kmap("n", "]h", function()
-                    if vim.wo.diff then return "[h" end
-                    vim.schedule(function() gs.next_hunk() end)
-                    return "<Ignore>"
-                end, { expr = true })
-
-                -- stylua: ignore
-                kmap("n", "[h", function()
-                    if vim.wo.diff then return "]h" end
-                    vim.schedule(function() gs.prev_hunk() end)
-                    return "<Ignore>"
-                end, { expr = true })
+                vim.keymap.set("n", "]h", function() if vim.wo.diff then return "[h" end vim.schedule(function() gs.next_hunk() end) return "<Ignore>" end, { expr = true, desc = "Git: next hunk", buffer = bufnr })
+                vim.keymap.set("n", "[h", function() if vim.wo.diff then return "]h" end vim.schedule(function() gs.prev_hunk() end) return "<Ignore>" end, { expr = true, desc = "Git: previous hunk", buffer = bufnr })
 
                 -- actions
-                -- stylua: ignore start
-                kmap("n", "<leader>gs", gs.stage_hunk)
-                kmap("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
-                kmap("n", "<leader>gu", gs.undo_stage_hunk)
-                kmap("n", "<leader>gr", gs.reset_hunk)
-                kmap("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end)
-                kmap("n", "<leader>gS", gs.stage_buffer)
-                kmap("n", "<leader>gR", gs.reset_buffer)
-                kmap("n", "<leader>gd", gs.diffthis)
-                kmap("n", "<leader>gt", gs.toggle_deleted)
-                kmap("n", "<leader>gb", function() gs.blame_line({ full = true }) end)
+                vim.keymap.set("n", "<leader>gs", gs.stage_hunk, { desc = "Git: stage hunk", buffer = bufnr })
+                vim.keymap.set("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Git: stage hunk", buffer = bufnr })
+                vim.keymap.set("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Git: undo stage", buffer = bufnr })
+                vim.keymap.set("n", "<leader>gr", gs.reset_hunk,{ desc = "Git: reset hunk", buffer = bufnr })
+                vim.keymap.set("v", "<leader>gr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Git: reset hunk", buffer = bufnr })
+                vim.keymap.set("n", "<leader>gS", gs.stage_buffer, { desc = "Git: stage buffer", buffer = bufnr })
+                vim.keymap.set("n", "<leader>gR", gs.reset_buffer, { desc = "Git: reset buffer", buffer = bufnr })
+                vim.keymap.set("n", "<leader>gd", gs.diffthis, { desc = "Git: diff this", buffer = bufnr })
+                vim.keymap.set("n", "<leader>gt", gs.toggle_deleted, { desc = "Git: toggle deleted", buffer = bufnr })
+                vim.keymap.set("n", "<leader>gb", function() gs.blame_line({ full = true }) end, { desc = "Git: blame line", buffer = bufnr })
                 -- stylua: ignore end
             end,
         },
