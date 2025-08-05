@@ -22,7 +22,7 @@ venv_info() {
     fi
 }
 
-PS1="${CYAN}\$(venv_info)${RESET}${BLUE}\u${RESET}@${GREEN}\W${RESET} ${MAGENTA}\$(git_branch)${RESET}\$ "
+PS1="${CYAN}\$(venv_info)${RESET}${BLUE}\u${RESET}:${GREEN}\W${RESET} ${MAGENTA}\$(git_branch)${RESET}\$ "
 
 # Basic aliases for convenience
 alias ll='eza -la'
