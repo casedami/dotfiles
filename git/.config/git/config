@@ -29,6 +29,9 @@
 [url "https://github.com/"]
     insteadOf = "gh:"
 
+[url "https://github.com/Trident-Sensing/"]
+    insteadOf = "trident:"
+
 [diff]
 	tool = nvimdiff
     context = 3
