@@ -1,253 +1,212 @@
-*selfhelp.txt*                For                Last change: 2025 February 10
+*selfhelp.txt*                                                      2025-08-05
 
 ==============================================================================
-Table of Contents                                 *selfhelp-table-of-contents*
+1. Buffer                                                    *selfhelp-buffer*
 
-1. INFO                                                        |selfhelp-info|
-2. FILES                                                      |selfhelp-files|
-  - FILE CREATION                               |selfhelp-files-file-creation|
-  - FILE EXPLORER                               |selfhelp-files-file-explorer|
-  - SESSIONS                                         |selfhelp-files-sessions|
-3. VIEWS                                                      |selfhelp-views|
-  - BUFFERS                                           |selfhelp-views-buffers|
-  - TABS                                                 |selfhelp-views-tabs|
-  - WINDOWS                                           |selfhelp-views-windows|
-4. QUICKFIX LIST                                      |selfhelp-quickfix-list|
-5. TERM                                                        |selfhelp-term|
-6. LSP & DIAGNOSTICS                              |selfhelp-lsp-&-diagnostics|
-7. GIT                                                          |selfhelp-git|
-8. MISC                                                        |selfhelp-misc|
-  - NOTES                                                |selfhelp-misc-notes|
-  - COLORSCHEME                                    |selfhelp-misc-colorscheme|
-  - OTHER                                                |selfhelp-misc-other|
+╭──────┬────────────────┬───────────────────────────╮
+│ mode │      map       │           desc            │
+├──────┼────────────────┼───────────────────────────┤
+│ n    │ <localleader>] │ next                      │
+│ n    │ <localleader>[ │ previous                  │
+│ n    │ <localleader>d │ close                     │
+│ n    │ <localleader>p │ previous                  │
+│ n    │ <localleader>P │ previous buffer in hsplit │
+╰──────┴────────────────┴───────────────────────────╯
 
 ==============================================================================
-1. INFO                                                        *selfhelp-info*
+2. Diagnostic                                            *selfhelp-diagnostic*
 
-This selfhelp doc is primarily meant to be a reference for the keymaps that are
-defined in my neovim config.
-
-Keymaps generally use these prefixes:
-
-f -> files
-
-g -> git
-
-c -> quickfix
-
-w -> windows
-
-d -> diagnostics/lsp
-
-t -> terminal
-
-\ -> buffers/tabs
-
+╭──────┬────────────┬────────────────╮
+│ mode │    map     │      desc      │
+├──────┼────────────┼────────────────┤
+│ n    │ <leader>D  │ current line   │
+│ n    │ <leader>dd │ toggle         │
+│ n    │ ]d         │ next           │
+│ n    │ [d         │ prev           │
+│ n    │ ]e         │ next (error)   │
+│ n    │ [e         │ prev (error)   │
+│ n    │ ]w         │ next (warning) │
+│ n    │ [w         │ prev (warning) │
+╰──────┴────────────┴────────────────╯
 
 ==============================================================================
-2. FILES                                                      *selfhelp-files*
+3. Explorer                                                *selfhelp-explorer*
 
-
-FILE CREATION                                   *selfhelp-files-file-creation*
-
-  ABBREV   DESC
-  -------- ---------------------------------------
-  fn       edit new file in current dir
-  fnh      edit new file in current dir (hsplit)
-  fnk      edit new file in current dir (vsplit)
-
-FILE EXPLORER                                   *selfhelp-files-file-explorer*
-
-  MAP          DESC
-  ------------ -------------------------------------
-  <leader>fe   open file explorer
-  <leader>ff   open fuzzy finder
-  <leader>fr   open fuzzy finder (recent files)
-  <leader>f,   open fuzzy finder (buffers)
-  <leader>fc   open fuzzy finder (config files)
-  <leader>fC   open fuzzy finder (colorschemes)
-  <leader>fg   open fuzzy finder (grep)
-  <leader>fh   open fuzzy finder (help)
-  <leader>fH   open fuzzy finder (highlights)
-  <leader>ft   open fuzzy finder (todo comments)
-  <leader>f:   open fuzzy finder (command history)
-  <leader>f/   open fuzzy finder (search history)
-  <leader>fs   open fuzzy finder (registers)
-  <leader>fm   open fuzzy finder (marks)
-
-SESSIONS                                             *selfhelp-files-sessions*
-
-  ABBREV   DESC
-  -------- ------------------------
-  sw       save session for cwd
-  sd       delete session for cwd
-  sl       load session for cwd
+╭──────┬────────────┬──────────────────────────╮
+│ mode │    map     │           desc           │
+├──────┼────────────┼──────────────────────────┤
+│ n    │ <leader>fe │ open at the current file │
+│ n    │ <leader>fE │ open in cwd              │
+│ n    │ <C-p>      │ resume                   │
+╰──────┴────────────┴──────────────────────────╯
 
 ==============================================================================
-3. VIEWS                                                      *selfhelp-views*
+4. Finder                                                    *selfhelp-finder*
 
-
-BUFFERS                                               *selfhelp-views-buffers*
-
-  MAP              DESC
-  ---------------- -------------------------------
-  <localleader>]   next buffer in bufferlist
-  <localleader>[   previous buffer in bufferlist
-  <localleader>d   delete buffer
-  <localleader>p   previous buffer
-  <localleader>P   previous buffer in hsplit
-
-TABS                                                     *selfhelp-views-tabs*
-
-  MAP                   DESC
-  --------------------- --------------
-  <localleader><tab>c   new tab
-  <localleader><tab>d   delete tab
-  <localleader>}        next tab
-  <localleader>{        previous tab
-
-WINDOWS                                               *selfhelp-views-windows*
-
-  MAP          DESC
-  ------------ -----------------------------------------------
-  <leader>\|   split window right
-  <leader>-    split window below
-  <leader>wd   delete window
-  <leader>we   split windows equally
-  <leader>wo   make current window the only window on screen
-  <leader>wk   maximize current window vertically
-  <leader>wh   maximize current window horizontally
-  <leader>wK   change hsplit layout vsplit layout
-  <leader>wH   change vsplit layout to hsplit layout
-  <leader>wr   rotate window layout
+╭──────┬────────────┬────────────────────────╮
+│ mode │    map     │          desc          │
+├──────┼────────────┼────────────────────────┤
+│ n    │ <leader>F  │ global                 │
+│ n    │ <leader>ff │ files                  │
+│ n    │ <leader>fr │ recent files           │
+│ n    │ <leader>f, │ open buffers           │
+│ n    │ <leader>fR │ resume                 │
+│ n    │ <leader>fg │ grep                   │
+│ n    │ <leader>fG │ grep word under cursor │
+│ n    │ <leader>fh │ help                   │
+│ n    │ <leader>fH │ highlights             │
+│ n    │ <leader>fm │ marks                  │
+│ n    │ <leader>f: │ command history        │
+│ n    │ <leader>f/ │ search history         │
+╰──────┴────────────┴────────────────────────╯
 
 ==============================================================================
-4. QUICKFIX LIST                                      *selfhelp-quickfix-list*
+5. Git                                                          *selfhelp-git*
 
-  MAP           DESC
-  ------------- --------------------------------------------
-  <leader>co    open qf list
-  <leader>cc    close qf list
-  <leader>cn    goto next item in qf list
-  <leader>cnf   goto first item in next file in qf list
-  <leader>cp    goto previous item in qf list
-  <leader>cpf   goto last item in previous file in qf list
-
-==============================================================================
-5. TERM                                                        *selfhelp-term*
-
-  MAP          DESC
-  ------------ -------------------------
-  <leader>tk   open terminal in hsplit
-  <leader>th   open terminal in vsplit
-  <leader>T    open terminal in tab
-
-==============================================================================
-6. LSP & DIAGNOSTICS                              *selfhelp-lsp-&-diagnostics*
-
-  -----------------------------------------------------------------------
-  MAP             DESC
-  --------------- -------------------------------------------------------
-  gd              goto lsp definitions
-
-  gD              goto lsp declarations
-
-  <leader>D       show documentation float
-
-  <leader>li      show lsp implementations
-
-  <leader>lr      refactor item
-
-  <leader>la      show lsp code actions
-
-  <leader>lR      show lsp references
-
-  <leader>lh      highlight current item references
-
-  <leader>ls      show lsp workspace symbols
-
-  <leader>lS      show lsp symbols
-
-  <leader>fd      show lsp diagnostics
-
-  <leader>fD      show lsp diagnostics (buffer)
-
-  <leader>dd      toggle lsp diagnostics
-
-  ](d/e/w/t)      goto next (diagnostic/error/warning/todo item)
-
-  [(d/e/w/t)      goto previous (diagnostic/error/warning/todo item)
-  -----------------------------------------------------------------------
+╭──────┬────────────┬────────────────╮
+│ mode │    map     │      desc      │
+├──────┼────────────┼────────────────┤
+│ n    │ <leader>G  │ status         │
+│ n    │ <leader>GL │ log            │
+│ n    │ <leader>GD │ diff           │
+│ n    │ ]h         │ next hunk      │
+│ n    │ [h         │ previous hunk  │
+│ n    │ <leader>gs │ stage hunk     │
+│ v    │ <leader>gs │ stage hunk     │
+│ n    │ <leader>gu │ undo stage     │
+│ n    │ <leader>gr │ reset hunk     │
+│ v    │ <leader>gr │ reset hunk     │
+│ n    │ <leader>gS │ stage buffer   │
+│ n    │ <leader>gR │ reset buffer   │
+│ n    │ <leader>gd │ diff this      │
+│ n    │ <leader>gt │ toggle deleted │
+│ n    │ <leader>gb │ blame line     │
+╰──────┴────────────┴────────────────╯
 
 ==============================================================================
-7. GIT                                                          *selfhelp-git*
+6. LSP                                                          *selfhelp-lsp*
 
-  MAP           DESC
-  ------------- ---------------------------------
-  <leader>gg    open neogit
-  <leader>gs    fuzzy find buffers (git status)
-  <leader>gd    git diff
-  <leader>gl    git log
-  <leader>gss   stage hunk
-  <leader>gss   stage hunk
-  <leader>gu    undo stage hunk
-  <leader>gr    reset hunk
-  <leader>gS    stage buffer
-  <leader>gR    reset buffer
-  <leader>gt    toggle deleted
-  <leader>gb    show git blame
-  ]h            goto next hunk
-  [h            goto previous hunk
+╭──────┬────────────┬───────────────────────────────╮
+│ mode │    map     │             desc              │
+├──────┼────────────┼───────────────────────────────┤
+│ n    │ gd         │ definitions                   │
+│ n    │ <leader>lr │ search references             │
+│ n    │ <leader>ls │ search workspace symbols      │
+│ n    │ <leader>li │ search incoming calls         │
+│ n    │ <leader>lo │ search outgoing calls         │
+│ n    │ <leader>ld │ search workspace diagnostics  │
+│ n    │ <leader>lr │ rename symbol under cursor    │
+│ n,v  │ <leader>la │ code actions                  │
+│ n    │ <leader>lh │ highlight symbol under cursor │
+╰──────┴────────────┴───────────────────────────────╯
 
 ==============================================================================
-8. MISC                                                        *selfhelp-misc*
+7. Misc                                                        *selfhelp-misc*
 
+╭──────┬────────────────┬────────────────────────────────╮
+│ mode │      map       │              desc              │
+├──────┼────────────────┼────────────────────────────────┤
+│ n    │ <localleader>l │ open pacman                    │
+│ n    │ <localleader>? │ open selfhelp                  │
+│ n,v  │ =              │ paste 0 register (forward)     │
+│ n,v  │ +              │ paste 0 register (backward)    │
+│ i    │ <C-p>          │ paste 0 register (insert mode) │
+│ n    │ |              │ scratch line                   │
+│ v    │ |              │ scratch selected lines         │
+│ n    │ <C-;>          │ clear cmd line                 │
+│ n    │ <C-'>          │ clear search highlights        │
+│ n    │ go             │ insert empty newline below     │
+│ n    │ gO             │ insert empty newline above     │
+╰──────┴────────────────┴────────────────────────────────╯
 
-NOTES                                                    *selfhelp-misc-notes*
+==============================================================================
+8. Movement                                                *selfhelp-movement*
 
-  MAP               DESC
-  ----------------- --------------------------------
-  <localleader>x    toggle checkbox
-  <localleader>ll   open obsidian
-  <localleader>gk   follow markdown link in hsplit
-  <localleader>gh   follow markdown link in vsplit
-  <localleader>fl   show obsidian backlinks
-  <localleader>ss   toggle spellcheck
-  ABBREV   DESC
-  -------- ---------------------------
-  ff       fuzzy find obsidian files
-  ft       fuzzy find obsidian tags
-  fn       create new obsidian file
+╭──────┬───────┬─────────────────────────────╮
+│ mode │  map  │            desc             │
+├──────┼───────┼─────────────────────────────┤
+│ n    │ 0     │ goto beginning of line      │
+│ n    │ )     │ goto end of line            │
+│ v    │ J     │ move line up                │
+│ v    │ K     │ move line down              │
+│ c    │ <C-k> │ go backwards in cmd history │
+│ c    │ <C-j> │ go forwards in cmd history  │
+╰──────┴───────┴─────────────────────────────╯
 
-COLORSCHEME                                        *selfhelp-misc-colorscheme*
+==============================================================================
+9. QuickFix                                                *selfhelp-quickfix*
 
-  MAP          DESC
-  ------------ ----------------------------------
-  <leader>uu   next color scheme
-  <leader>uc   toggle light/dark mode
-  <leader>fC   open fuzzy finder (colorschemes)
+╭──────┬─────────────┬─────────────────────────────────╮
+│ mode │     map     │              desc               │
+├──────┼─────────────┼─────────────────────────────────┤
+│ n    │ <leader>cn  │ next                            │
+│ n    │ <leader>cp  │ previous                        │
+│ n    │ <leader>co  │ open                            │
+│ n    │ <leader>cc  │ close                           │
+│ n    │ <leader>cnf │ goto first item in next file    │
+│ n    │ <leader>cpf │ goto last item in previous file │
+╰──────┴─────────────┴─────────────────────────────────╯
 
-OTHER                                                    *selfhelp-misc-other*
+==============================================================================
+10. Session                                                 *selfhelp-session*
 
-  ABBREV   DESC
-  -------- -------------------------------------
-  doc      genereate doc for item under cursor
-  dm       delete all marks
-  dopen    open diff view
-  dclose   close diff view
-  cd.      cd to cwd
-  nums     toggle relativenumber
-  MAP          DESC
-  ------------ --------------------------------
-  \            forward paste from 0 register
-  \|           backward paste from 0 register
-  <C-;>        clear command line
-  <C-'>        clear highlights
-  go           insert new line below
-  gO           insert new line above
-  <leader>fm   open fuzzy finder (marks)
-  <leader>fs   open fuzzy finder (registers)
+╭──────┬────────────┬──────────────────────╮
+│ mode │    map     │         desc         │
+├──────┼────────────┼──────────────────────┤
+│ n    │ <leader>S  │ select               │
+│ n    │ <leader>ss │ save for cwd         │
+│ n    │ <leader>sd │ delete for cwd       │
+│ n    │ <leader>sl │ load session for cwd │
+│ n    │ <leader>sD │ delete all           │
+╰──────┴────────────┴──────────────────────╯
 
-Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+==============================================================================
+11. Tab                                                         *selfhelp-tab*
+
+╭──────┬─────────────────────┬──────────╮
+│ mode │         map         │   desc   │
+├──────┼─────────────────────┼──────────┤
+│ n    │ <localleader>}      │ next     │
+│ n    │ <localleader>{      │ previous │
+│ n    │ <localleader><tab>c │ new      │
+│ n    │ <localleader><tab>d │ close    │
+╰──────┴─────────────────────┴──────────╯
+
+==============================================================================
+12. Term                                                       *selfhelp-term*
+
+╭──────┬────────────┬─────────────────╮
+│ mode │    map     │      desc       │
+├──────┼────────────┼─────────────────┤
+│ n    │ <leader>tk │ open in hsplit  │
+│ n    │ <leader>th │ open in vsplit  │
+│ n    │ <leader>T  │ open in new tab │
+╰──────┴────────────┴─────────────────╯
+
+==============================================================================
+13. Window                                                   *selfhelp-window*
+
+╭──────┬────────────┬──────────────────────────────────────╮
+│ mode │    map     │                 desc                 │
+├──────┼────────────┼──────────────────────────────────────┤
+│ n    │ <C-Up>     │ increase height                      │
+│ n    │ <C-Down>   │ decrease height                      │
+│ n    │ <C-Left>   │ decrease width                       │
+│ n    │ <C-Right>  │ increase width                       │
+│ n,v  │ <C-h>      │ focus left                           │
+│ n,v  │ <C-j>      │ focus down                           │
+│ n,v  │ <C-k>      │ focus up                             │
+│ n,v  │ <C-l>      │ focus right                          │
+│ n    │ <leader>wd │ close                                │
+│ n    │ <leader>we │ split equally                        │
+│ n    │ <leader>wo │ focus                                │
+│ n    │ <leader>wk │ maximize current window vertically   │
+│ n    │ <leader>wh │ maximize current window horizontally │
+│ n    │ <leader>wK │ hsplit to vsplit                     │
+│ n    │ <leader>wH │ vsplit to hsplit                     │
+│ n    │ <leader>wr │ rotate (single-axis only)            │
+│ n    │ <leader>-  │ vsplit                               │
+│ n    │ <leader>|  │ hsplit                               │
+╰──────┴────────────┴──────────────────────────────────────╯
 
 vim:tw=78:ts=8:noet:ft=help:norl:
