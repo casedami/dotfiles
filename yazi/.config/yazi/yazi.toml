@@ -6,5 +6,13 @@ tab_size = 2
 
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+  { run = '$EDITOR "$@"', block = true, for = "unix" },
+]
+pdf = [
+  { run = 'zathura "$@"', desc = "Open with zathura" },
+]
+
+[open]
+rules = [
+  { mime = "application/pdf", use = "pdf" },
 ]
