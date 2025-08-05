@@ -60,8 +60,6 @@ return {
             end,
             footer = "",
         }
-        vim.cmd("autocmd User MiniStarterOpened setlocal laststatus=0")
-        vim.cmd("autocmd User MiniStarterOpened setlocal fillchars=eob:\\ ")
 
         return config
     end,
