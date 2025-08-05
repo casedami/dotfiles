@@ -17,6 +17,24 @@ alias gP = git push
 alias gr = git rebase
 alias gx = git checkout
 
+def str-color [c, s: string] {
+    match ($c | describe) {
+        "string" => $"(ansi ($c))($s)(ansi reset)",
+        "list<string>" => {
+            $s
+            | split chars
+            | enumerate
+            | each { |item|
+                let idx = ($item.index mod ($c | length))
+                let color = ($c | get $idx)
+                $"(ansi $color)($item.item)(ansi reset)"
+            }
+            | str join ""
+        }
+        _ => $s
+    }
+}
+
 def --env gxc [] {
     let branch = (
         git branch
@@ -134,15 +152,17 @@ def --env gs [] {
     $status
     | lines
     | skip 1
-    | parse --regex '^\s*(?P<status>\S+)\s+(?P<file>.+)$'
+    | parse --regex '(?P<status>\s*[A-Z?]{1,2})\s+(?P<file>.+)$'
     | update status { |row|
         match $row.status {
-            "A" => $"(ansi green)($row.status)(ansi reset)",
-            "D" => $"(ansi red)($row.status)(ansi reset)",
-            "M" => $"(ansi light_blue)($row.status)(ansi reset)",
-            "MD" => $"(ansi purple)($row.status)(ansi reset)",
-            "??" => $"(ansi light_yellow)($row.status)(ansi reset)",
-            _ => $"(ansi white)($row.status)(ansi reset)"
+            "A" => (str-color "green" ($row.status | str trim)),
+            "D" => (str-color "red" ($row.status | str trim)),
+            "M" => (str-color "green" ($row.status | str trim)),
+            " M" => (str-color "light_blue" ($row.status | str trim)),
+            "MM" => (str-color ["green", "red"] ($row.status | str trim)),
+            "MD" => (str-color ["green", "red"] ($row.status | str trim)),
+            "??" => (str-color "light_yellow" ($row.status | str trim)),
+            _ => (str-color "white" ($row.status | str trim))
         }
     }
 }
