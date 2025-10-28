@@ -1,4 +1,4 @@
-source themes/gyokuro.nu
+source themes/iceclimber.nu
 
 def get-git-info [] {
     let git_status = (do -i { git status --porcelain } | complete)
@@ -38,15 +38,16 @@ def create_left_prompt [] {
 
     let git_info = (get-git-info)
     let path_color = (
-        if (is-admin) { ansi red }
-        else { ansi light_green })
+        if (is-admin) { ansi $theme.diag_red }
+        else { ansi $theme.string })
     let separator_color = (
-        if (is-admin) { ansi light_red }
-        else { ansi light_green })
+        if (is-admin) { ansi $theme.diag_red }
+        else { ansi $theme.string })
     let path_segment = $"($path_color)($dir)(ansi reset)"
-    let overlay_info = if (overlay list | length) > 1 {
-        let current_overlays = overlay list | skip 1 | str join ", "
-        $"(ansi light_magenta)\((ansi light_cyan)($current_overlays)(ansi light_magenta)\)(ansi reset) "
+    let overlays = (overlay list | where name != zero | where active)
+    let overlay_info = if ($overlays | length) > 0 {
+        let current_overlays = $overlays | where active == true | get name | str join ", "
+        $"(ansi $theme.operator)\((ansi $theme.constant)($current_overlays)(ansi $theme.operator)\)(ansi reset) "
     } else {
         ""
     }
@@ -60,8 +61,8 @@ def create_right_prompt [] {
         (ansi reset)
         (ansi magenta)
         (date now | format date '%H:%M') # try to respect user's locale
-    ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
-        str replace --regex --all "([AP]M)" $"(ansi magenta_underline)${1}")
+    ] | str join | str replace --regex --all "([/:])" $"(ansi $theme.diag_green)${1}(ansi $theme.operator)" |
+        str replace --regex --all "([AP]M)" $"(ansi $theme.operator)${1}")
 
     let last_exit_code = if ($env.LAST_EXIT_CODE != 0) {([
         (ansi rb)
@@ -104,9 +105,11 @@ $env.NU_PLUGIN_DIRS = [
 $env.path ++= [
     "~/.local/bin",
     "~/.cargo/bin",
-    "/home/linuxbrew/.linuxbrew/bin"
-
+    "/home/linuxbrew/.linuxbrew/bin",
+    "~/.nvm",
 ]
+
+$env.PYTHONPATH = "/usr/lib/python3/dist-packages"
 
 $env.XDG_SESSION_TYPE = 'wayland'
 $env.XDG_CURRENT_DESKTOP = 'sway'
@@ -120,10 +123,10 @@ $env.PAGER = "less"
 $env.LESS = ($env.LESS? | default "" | str replace --regex 'X' '')
 $env.APPIMAGE_EXTRACT_AND_RUN = 1
 $env.FZF_DEFAULT_OPTS = '
---color=fg:#767777,bg:#161617,hl:#bbc7b1,gutter:#161617
---color=fg+:#748fa6,bg+:#222324,hl+:#bbc7b1
---color=info:#767777,prompt:#bbc7b1,pointer:#748fa6
---color=marker:#748fa6,spinner:#72966c,header:#72966c
+--color=fg:#555568,bg:#171719,hl:#a8a6de,gutter:#171719
+--color=fg+:#629da3,bg+:#1d1d22,hl+:#a8a6de
+--color=info:#abbceb,prompt:#a8a6de,pointer:#629da3
+--color=marker:#8a88db,spinner:#8a88db,header:#8a88db
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt="$ "
 --marker="*"

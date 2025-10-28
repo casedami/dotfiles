@@ -89,7 +89,10 @@ $env.config.keybindings = [
         modifier: none
         keycode: char_/
         mode: vi_normal
-        event: { send: searchhistory }
+        event: [
+            { send: searchhistory }
+            { send: vichangemode mode: insert}
+        ]
     }
     {
         name: file_manager

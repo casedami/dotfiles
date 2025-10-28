@@ -4,6 +4,7 @@ alias la = ls -a
 alias ll = ls -l
 alias vim = nvim
 alias fg = job unfreeze
+# alias tiles = cd ~/mbtileserver; ./mbtileserver --dir ~/mbtileserver/tilesets/ --port 8001 &; cd -
 
 # MARK: git
 alias ga = git add
@@ -37,7 +38,7 @@ def str-color [c, s: string] {
 
 def --env gxc [] {
     let branch = (
-        git branch
+        git branch -a
         | lines
         | str trim
         | where ($it !~ '\*')
@@ -46,7 +47,7 @@ def --env gxc [] {
         | fzf --no-multi
     )
     if ($branch | is-not-empty) {
-        git checkout $branch
+        git checkout ($branch | str replace "remotes/origin/" "")
     }
 }
 
@@ -156,7 +157,7 @@ def --env gs [] {
     | update status { |row|
         match $row.status {
             "A" => (str-color "green" ($row.status | str trim)),
-            "D" => (str-color "red" ($row.status | str trim)),
+            " D" => (str-color "red" ($row.status | str trim)),
             "M" => (str-color "green" ($row.status | str trim)),
             " M" => (str-color "light_blue" ($row.status | str trim)),
             "MM" => (str-color ["green", "red"] ($row.status | str trim)),
@@ -165,6 +166,15 @@ def --env gs [] {
             _ => (str-color "white" ($row.status | str trim))
         }
     }
+}
+
+def --env glb [] {
+    git log --pretty=%h»¦«%aN»¦«%s»¦«%aD
+    | lines
+    | split column "»¦«" sha1 committer desc merged_at
+    | histogram committer merger
+    | sort-by merger
+    | reverse
 }
 
 def --env gac [] {

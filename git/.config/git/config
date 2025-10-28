@@ -23,7 +23,7 @@
     showStash = true
     showUntrackedFiles = all
 
-[url "https://github.com/cdmill/"]
+[url "https://github.com/casedami/"]
     insteadOf = "cdm:"
 
 [url "https://github.com/"]

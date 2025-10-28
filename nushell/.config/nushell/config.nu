@@ -1,9 +1,5 @@
 use std/dirs
 
-def save_dirs [] {
-    dirs | uniq | to json | save -f ($nu.data-dir | path join "dirs.json")
-}
-
 $env.config = {
     show_banner: false
     ls: { use_ls_colors: true }
@@ -86,25 +82,12 @@ $env.config = {
     hooks: {
         pre_prompt: [{ null }] # run before the prompt is shown
         pre_execution: [{ null }] # run before the repl input is run
-        env_change: {
-            PWD: [
-                { |before| save_dirs }
-            ]
-        }
+        env_change: {}
         display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
         command_not_found: { null } # return an error message when a command is not found
     }
 }
 
 source ~/.zoxide.nu
-source themes/gyokuro.nu
+source themes/iceclimber.nu
 source completions/git/cmp.nu
-
-# Load directory stack on startup
-if (($nu.data-dir | path join "dirs.json") | path exists) {
-    let old_dirs = open ($nu.data-dir | path join "dirs.json")
-    let curr_dir = (dirs | get path)
-    for $dir in ($old_dirs | get path | uniq ) {
-        if ($dir | path exists) and ($dir not-in $curr_dir) and ($dir not-in (pwd)) { dirs add $dir }
-    }
-}
