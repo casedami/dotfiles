@@ -1,6 +1,20 @@
 local set = vim.keymap.set
 
 -- stylua: ignore start
+-- MISC
+set( "n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "Misc: open pacman" })
+set( "n", "<localleader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open selfhelp" })
+-- { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
+set( { "n", "v" }, "=", '"0p', { desc = "Misc: paste 0 register (forward)" })
+set( { "n", "v" }, "+", '"0P', { desc = "Misc: paste 0 register (backward)" })
+set( "i", "<C-p>", '<C-o>"0p', { desc = "Misc: paste 0 register (insert mode)" })
+set( "n", "|", "<cmd>normal yygccp<cr>", { desc = "Misc: scratch line" })
+set( "v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected lines" })
+set( "n", "<C-;>", "<C-l>", { desc = "Misc: clear cmd line" })
+set( "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>", { desc = "Misc: clear search highlights" })
+set( "ca", "nums", "set relativenumber!", { desc = "Misc: togggle relative number" })
+set( "ca", "currdir", "cd %:h", { desc = "Misc: cwd expansion" })
+
 -- MOVEMENT
 set("n", "0", "^", { desc = "Movement: goto beginning of line" })
 set("n", ")", "$", { desc = "Movement: goto end of line" })
@@ -63,18 +77,10 @@ set( "n", "<leader>T", "<cmd>tabnew | term<cr>i", { desc = "Term: open in new ta
 set( "t", "<esc>", "<C-\\><C-n>", { desc = "Extend: use esc key to switch normal mode from term mode" })
 set( "t", "<C-v><esc>", "<esc>", { desc = "Extend: send esc key to shell" })
 
--- MISC
-set( "n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "Misc: open pacman" })
-set( "n", "<localleader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open selfhelp" })
--- { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
-set( { "n", "v" }, "=", '"0p', { desc = "Misc: paste 0 register (forward)" })
-set( { "n", "v" }, "+", '"0P', { desc = "Misc: paste 0 register (backward)" })
-set( "i", "<C-p>", '<C-o>"0p', { desc = "Misc: paste 0 register (insert mode)" })
-set( "n", "|", "<cmd>normal yygccp<cr>", { desc = "Misc: scratch line" })
-set( "v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected lines" })
-set( "n", "<C-;>", "<c-l>", { desc = "Misc: clear cmd line" })
-set( "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>", { desc = "Misc: clear search highlights" })
-set( "n", "go", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>", { desc = "Misc: insert empty newline below" })
-set( "n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Misc: insert empty newline above" })
-set( "ca", "nums", "set relativenumber!", { desc = "Misc: togggle relative number" })
-set( "ca", "cwd", "cd %:h", { desc = "Misc: cwd expansion" })
+-- BOOKMARKS
+set("n", "<leader>qa", function() vim.cmd("argadd %") vim.cmd("argdedup") end, { desc = "Bookmarks: add current file" })
+set("n", "<leader>qd", function() vim.cmd("argdelete %") end, { desc = "Bookmarks: remove current file from bookmark list" })
+set("n", "<leader>q1", function() vim.cmd("silent! 1argument") end, { desc = "Bookmarks: goto first" })
+set("n", "<leader>q2", function() vim.cmd("silent! 2argument") end, { desc = "Bookmarks: goto second" })
+set("n", "<leader>q3", function() vim.cmd("silent! 3argument") end, { desc = "Bookmarks: goto third" })
+set("n", "<leader>q4", function() vim.cmd("silent! 4argument") end, { desc = "Bookmarks: goto fourth" })

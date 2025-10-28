@@ -1,13 +1,4 @@
 return {
-    {
-        "cdmill/focus.nvim",
-        cmd = { "Focus", "Zen", "Narrow" },
-        opts = {
-            window = {
-                width = 100,
-            },
-        },
-    },
     { "echasnovski/mini.icons", version = "*" },
     {
         "j-hui/fidget.nvim",
@@ -38,10 +29,11 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         event = { "BufRead", "BufNewFile" },
-        opts = {
-            culhl = false,
-            on_attach = function(bufnr)
-                local gs = package.loaded.gitsigns
+        config = function()
+            require("gitsigns").setup({
+                culhl = false,
+                on_attach = function(bufnr)
+                    local gs = package.loaded.gitsigns
 
                 -- stylua: ignore start
                 -- navigation
@@ -59,8 +51,9 @@ return {
                 vim.keymap.set("n", "<leader>gd", gs.diffthis, { desc = "Git: diff this", buffer = bufnr })
                 vim.keymap.set("n", "<leader>gt", gs.toggle_deleted, { desc = "Git: toggle deleted", buffer = bufnr })
                 vim.keymap.set("n", "<leader>gb", function() gs.blame_line({ full = true }) end, { desc = "Git: blame line", buffer = bufnr })
-                -- stylua: ignore end
-            end,
-        },
+                    -- stylua: ignore end
+                end,
+            })
+        end,
     },
 }

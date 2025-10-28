@@ -2,7 +2,7 @@ return {
     "echasnovski/mini.starter",
     version = "*",
     event = "VimEnter",
-    opts = function()
+    config = function()
         local new_section = function(name, action, section)
             section = section or ""
             return { name = name, action = action, section = section }
@@ -34,7 +34,7 @@ return {
                 local version = vim.version()
 
                 local greeting = ("Good %s, %s"):format(day_part, username)
-                local nvim = ("using Neovim %s.%s.%s"):format(
+                local nvim = ("using Neovim v.%s.%s.%s"):format(
                     version.major,
                     version.minor,
                     version.patch
@@ -48,12 +48,12 @@ return {
                     return string.rep(" ", offset) .. s
                 end
 
-                local sep = string.rep("", #greeting)
+                local sep = string.rep("", center_ref)
                 local header = {
                     center(greeting),
-                    center(sep),
-                    center(nvim),
-                    center(context),
+                    sep,
+                    nvim,
+                    context,
                 }
 
                 return table.concat(header, "\n")
@@ -61,6 +61,6 @@ return {
             footer = "",
         }
 
-        return config
+        require("mini.starter").setup(config)
     end,
 }
