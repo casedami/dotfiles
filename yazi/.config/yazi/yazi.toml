@@ -14,5 +14,8 @@ pdf = [
 
 [open]
 rules = [
-  { mime = "application/pdf", use = "pdf" },
+  { name = "*/", use = [ "edit", "open" ] },
+  { mime = "text/*", use = [ "edit" ] },
+  { mime = "application/pdf", use = [ "pdf" ] },
+  { name = "*", use = [ "open" ] },
 ]
