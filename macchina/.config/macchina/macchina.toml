@@ -1,0 +1,9 @@
+theme = "neomodern"
+show = [
+  "Machine",
+  "Distribution",
+  "OperatingSystem",
+  "DesktopEnvironment",
+  "WindowManager",
+  "Packages",
+]
