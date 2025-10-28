@@ -84,3 +84,6 @@ set("n", "<leader>q1", function() vim.cmd("silent! 1argument") end, { desc = "Bo
 set("n", "<leader>q2", function() vim.cmd("silent! 2argument") end, { desc = "Bookmarks: goto second" })
 set("n", "<leader>q3", function() vim.cmd("silent! 3argument") end, { desc = "Bookmarks: goto third" })
 set("n", "<leader>q4", function() vim.cmd("silent! 4argument") end, { desc = "Bookmarks: goto fourth" })
+
+-- Sessions
+set("n", "<leader>ls", "<cmd>LoadSessionQuiet", { desc = "Sessions: load session if exists" })

@@ -1,4 +1,4 @@
-*selfhelp.txt*                                                      2025-10-27
+*selfhelp.txt*                                                      2025-10-28
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
@@ -8,7 +8,6 @@
 ├──────┼────────────┼────────────────────────────────────────┤
 │ n    │ <leader>qq │ search bookmarks                       │
 │ n    │ <leader>qa │ add current file                       │
-│ n    │ <leader>qn │ edit file in bookmark list             │
 │ n    │ <leader>qd │ remove current file from bookmark list │
 │ n    │ <leader>q1 │ goto first                             │
 │ n    │ <leader>q2 │ goto second                            │
@@ -162,17 +161,13 @@
 ╰──────┴─────────────┴─────────────────────────────────╯
 
 ==============================================================================
-11. Session                                                 *selfhelp-session*
+11. Sessions                                               *selfhelp-sessions*
 
-╭──────┬────────────┬──────────────────────╮
-│ mode │    map     │         desc         │
-├──────┼────────────┼──────────────────────┤
-│ n    │ <leader>S  │ select               │
-│ n    │ <leader>ss │ save for cwd         │
-│ n    │ <leader>sd │ delete for cwd       │
-│ n    │ <leader>sl │ load session for cwd │
-│ n    │ <leader>sD │ delete all           │
-╰──────┴────────────┴──────────────────────╯
+╭──────┬────────────┬────────────────────────╮
+│ mode │    map     │          desc          │
+├──────┼────────────┼────────────────────────┤
+│ n    │ <leader>ls │ load session if exists │
+╰──────┴────────────┴────────────────────────╯
 
 ==============================================================================
 12. Tab                                                         *selfhelp-tab*
