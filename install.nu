@@ -150,7 +150,5 @@ def main [] {
     if $inp in ["y", "yes"] {
         stow_tools
     }
-
-    print "Setup complete!"
 }
 
