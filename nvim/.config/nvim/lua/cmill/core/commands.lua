@@ -7,7 +7,7 @@ end, {})
 -- grep for todo items
 vim.api.nvim_create_user_command("Todo", function()
     vim.cmd(
-        [[ lua require("fzf-lua").live_grep({no_esc=true, search="(TODO|BUG|FIXME|WARN|NOTE|MARK):"}) ]]
+        [[ lua require("fzf-lua").live_grep({no_esc=true, search="(TODO|BUG|FIXME|WARN|NOTE|MARK)"}) ]]
     )
 end, { desc = "Grep TODOs", nargs = 0 })
 

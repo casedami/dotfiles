@@ -1,11 +1,11 @@
 return {
     {
-        "cdmill/neomodern.nvim",
+        "casedami/neomodern.nvim",
         priority = 1000,
         branch = "dev",
         config = function()
             require("neomodern").setup({
-                theme = "gyokuro",
+                theme = "iceclimber",
                 toggle_variant_key = "<leader>uc",
                 alt_bg = false,
                 cursorline_gutter = false,
@@ -16,9 +16,6 @@ return {
                     headings = "italic",
                 },
                 plugin = {
-                    lualine = {
-                        plain = false,
-                    },
                     cmp = {
                         plain = true,
                     },

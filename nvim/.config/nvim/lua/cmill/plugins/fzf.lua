@@ -34,7 +34,7 @@ return {
             vim.keymap.set("n", "<leader>GD", "<cmd>FzfLua git_diff<cr>", { desc = "Git: diff", silent = true })
 
             vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", { desc = "LSP: definitions", silent = true })
-            vim.keymap.set("n", "<leader>lr", "<cmd>FzfLua lsp_references<cr>", { desc = "LSP: search references", silent = true })
+            vim.keymap.set("n", "<leader>lR", "<cmd>FzfLua lsp_references<cr>", { desc = "LSP: search references", silent = true })
             vim.keymap.set("n", "<leader>ls", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", { desc = "LSP: search workspace symbols", silent = true })
             vim.keymap.set("n", "<leader>li", "<cmd>FzfLua lsp_incoming_calls<cr>", { desc = "LSP: search incoming calls", silent = true })
             vim.keymap.set("n", "<leader>lo", "<cmd>FzfLua lsp_outgoing_calls<cr>", { desc = "LSP: search outgoing calls", silent = true })
@@ -45,6 +45,7 @@ return {
             vim.keymap.set("n", "<leader>fm", "<cmd>FzfLua marks<cr>", { desc = "Finder: marks", silent = true })
             vim.keymap.set("n", "<leader>f:", "<cmd>FzfLua command_history<cr>", { desc = "Finder: command history", silent = true })
             vim.keymap.set("n", "<leader>f/", "<cmd>FzfLua search_history<cr>", { desc = "Finder: search history", silent = true })
+            vim.keymap.set("n", "<leader>qq", "<cmd>FzfLua args<cr>", { desc = "Bookmarks: search bookmarks", silent = true })
             -- stylua: ignore end
         end,
     },

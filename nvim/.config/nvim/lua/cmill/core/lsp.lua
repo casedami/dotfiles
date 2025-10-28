@@ -6,6 +6,7 @@ vim.lsp.enable({
     "rust-analyzer",
     "tinymist",
     "yamlls",
+    "typescript-ls",
 })
 
 vim.diagnostic.config({

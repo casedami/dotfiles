@@ -2,10 +2,10 @@ return {
     "mikavilpas/yazi.nvim",
     lazy = false,
     cmd = "Yazi",
-    opts = {
-        open_for_directories = true,
-    },
     config = function()
+        require("yazi").setup({
+            open_for_directories = true,
+        })
         -- stylua: ignore start
         vim.keymap.set("n", "<leader>fe", "<cmd>Yazi<cr>", { desc = "Explorer: open at the current file" })
         vim.keymap.set("n", "<leader>fE", "<cmd>Yazi cwd<cr>", { desc = "Explorer: open in cwd" })
