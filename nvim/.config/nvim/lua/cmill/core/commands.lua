@@ -15,3 +15,10 @@ end, { desc = "Grep TODOs", nargs = 0 })
 vim.api.nvim_create_user_command("CC", function()
     vim.cmd("TypstPreview")
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("LoadSessionQuiet", function()
+    local session = vim.fs.find({ "Session.vim" }, { limit = 1, type = "file" })
+    if #session == 1 then
+        vim.cmd(string.format("source %s", session[1]))
+    end
+end, { nargs = 0 })
