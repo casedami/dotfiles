@@ -1,5 +1,5 @@
 * {
-    font-family: Commit Mono Nerd Font;
+    font-family: LilexNerdFont;
     font-size: 13px;
     min-height: 0;
 }
@@ -63,7 +63,7 @@ window#waybar {
 }
 
 #custom-time {
-    color: #bbc7b1;
+    color: #a8a6de;
     font-weight: bold;
     margin-right: 4px;
     margin-left: 8px;

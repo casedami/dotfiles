@@ -55,10 +55,10 @@
       "on-scroll": 1,
       "format": {
         "months": "<span color='#bbbac1'><b>{}</b></span>",
-        "days": "<span color='#bbc7b1'>{}</span>",
-        "weeks": "<span color='#a69e6f'>W{}</span>",
-        "weekdays": "<span color='#72966c'><b>{}</b></span>",
-        "today": "<span bgcolor='#9e5560' color='#161617'><b>{}</b></span>"
+        "days": "<span color='#a8a6de'>{}</span>",
+        "weeks": "<span color='#abbceb'>W{}</span>",
+        "weekdays": "<span color='#8a88db'><b>{}</b></span>",
+        "today": "<span bgcolor='#e67e80' color='#161617'><b>{}</b></span>"
       }
     }
   },

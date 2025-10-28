@@ -12,7 +12,7 @@ local cfg = {
     },
     -- UI
     color_scheme_dirs = { "~/.config/wezterm/colors" },
-    color_scheme = "gyokuro",
+    color_scheme = "iceclimber",
     default_prog = { "/home/cdm/.cargo/bin/nu" },
     window_background_opacity = 1.0,
     window_decorations = "NONE",
@@ -25,16 +25,14 @@ local cfg = {
     },
     -- FONT
     font_size = 11,
-    line_height = 1.2,
+    line_height = 1.0,
     font = wezterm.font({
-        family = "CommitMono Nerd Font",
+        family = "LilexNerdFont",
         harfbuzz_features = {
+            "zero=1",
             "ss02=1",
-            "ss03=1",
-            "ss04=1",
-            "ss05=1",
-            "cv06=1",
-            "cv08=1",
+            "cv02=1",
+            "cv09=1",
         },
     }),
     -- TAB BAR

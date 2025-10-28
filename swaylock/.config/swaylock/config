@@ -6,39 +6,13 @@ font-size=24
 hide-keyboard-layout
 
 # Background
-image=~/wallpapers/dark/house-1.png
+image=~/wallpapers/dark/city-2.png
 scaling=fill
 color=191414
 
-# Ring colors (input field equivalent)
-ring-color=a69e6f
-ring-ver-color=a69e6f
-ring-wrong-color=a69e6f
-ring-clear-color=a69e6f
-
-# Interior colors
-inside-color=1b1c1d
-inside-ver-color=1b1c1d
-inside-wrong-color=1b1c1d
-inside-clear-color=1b1c1d
-
-# Key highlight colors
-key-hl-color=748fa6
-
-# Text colors
-text-color=8f8f8f
-text-ver-color=bbbac1
-text-wrong-color=9e5560
-text-clear-color=bbbac1
-
-# Separator (line between ring and interior)
-separator-color=00000000
-
-# Ring thickness (similar to outline_thickness)
-ring-thickness=4
-
 # Indicator radius (similar to input field size)
-indicator-radius=80
+indicator-radius=0
+indicator-thickness=0
 
 # Position indicator in center
 indicator-x-position=960
