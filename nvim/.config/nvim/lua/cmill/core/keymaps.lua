@@ -4,7 +4,6 @@ local set = vim.keymap.set
 -- MISC
 set( "n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "Misc: open pacman" })
 set( "n", "<localleader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open selfhelp" })
--- { { "n", "v" }, "<leader>fo", "<cmd>lua require('conform').format()<cr>" },
 set( { "n", "v" }, "=", '"0p', { desc = "Misc: paste 0 register (forward)" })
 set( { "n", "v" }, "+", '"0P', { desc = "Misc: paste 0 register (backward)" })
 set( "i", "<C-p>", '<C-o>"0p', { desc = "Misc: paste 0 register (insert mode)" })
@@ -12,7 +11,6 @@ set( "n", "|", "<cmd>normal yygccp<cr>", { desc = "Misc: scratch line" })
 set( "v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected lines" })
 set( "n", "<C-;>", "<C-l>", { desc = "Misc: clear cmd line" })
 set( "n", "<C-'>", "<cmd>nohlsearch|diffupdate|normal! <c-l><cR>", { desc = "Misc: clear search highlights" })
-set( "ca", "nums", "set relativenumber!", { desc = "Misc: togggle relative number" })
 set( "ca", "currdir", "cd %:h", { desc = "Misc: cwd expansion" })
 
 -- MOVEMENT
@@ -23,7 +21,7 @@ set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Movement: move line d
 set("c", "<C-k>", "<up>", { desc = "Movement: go backwards in cmd history" })
 set("c", "<C-j>", "<down>", { desc = "Movement: go forwards in cmd history" })
 set("n", "<C-d>", "<C-d>zz", { desc = "Extend: center after page down" })
-set("n", "<C-u>", "<C-u>zz", { desc = "Extend: after page up" })
+set("n", "<C-u>", "<C-u>zz", { desc = "Extend: center after page up" })
 set("n", "n", "nzzzv", { desc = "Extend: center after next item in search" })
 set("n", "N", "Nzzzv", { desc = "Extend: center after prev item in search" })
 set("v", "<", "<gv", { desc = "Extend: stay in visual mode when indenting" })
@@ -62,14 +60,6 @@ set( "n", "<leader>wr", "<C-W><C-R>", { desc = "Window: rotate (single-axis only
 set( "n", "<leader>-", "<C-W>s", { desc = "Window: vsplit" })
 set( "n", "<leader>|", "<C-W>v", { desc = "Window: hsplit" })
 
--- QUICKFIX
-set( "n", "<leader>cn", "<cmd>cnext<cr>zz", { desc = "QuickFix: next" })
-set( "n", "<leader>cp", "<cmd>cprev<cr>zz", { desc = "QuickFix: previous" })
-set( "n", "<leader>co", "<cmd>copen<cr>", { desc = "QuickFix: open" })
-set( "n", "<leader>cc", "<cmd>cclose<cr>", { desc = "QuickFix: close" })
-set( "n", "<leader>cnf", "<cmd>cnfile<cr>zz", { desc = "QuickFix: goto first item in next file" })
-set( "n", "<leader>cpf", "<cmd>cpfile<cr>zz", { desc = "QuickFix: goto last item in previous file" })
-
 -- TERM
 set( "n", "<leader>tk", "<cmd>split | resize 15 | terminal<cr>i", { desc = "Term: open in hsplit" })
 set( "n", "<leader>th", "<cmd>vsplit | terminal<cr>i", { desc = "Term: open in vsplit" })
@@ -84,6 +74,3 @@ set("n", "<leader>q1", function() vim.cmd("silent! 1argument") end, { desc = "Bo
 set("n", "<leader>q2", function() vim.cmd("silent! 2argument") end, { desc = "Bookmarks: goto second" })
 set("n", "<leader>q3", function() vim.cmd("silent! 3argument") end, { desc = "Bookmarks: goto third" })
 set("n", "<leader>q4", function() vim.cmd("silent! 4argument") end, { desc = "Bookmarks: goto fourth" })
-
--- Sessions
-set("n", "<leader>ls", "<cmd>LoadSessionQuiet", { desc = "Sessions: load session if exists" })
