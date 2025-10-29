@@ -200,6 +200,29 @@ def --env gac [] {
     }
 }
 
+def git-conflicts [] {
+    let tmpfile = (mktemp -t git-conflicts.XXXXXX.qf)
+    ^git ls-files -u
+        | lines
+        | parse "{mode} {hash} {stage}\t{file}"
+        | get file
+        | uniq
+        | each { |file|
+            open $file
+                | lines
+                | enumerate
+                | where { |it| $it.item | str contains '<<<<<<<' }
+                | each { |it|
+                    $"($file):($it.index + 1):1:conflict"
+                }
+        }
+        | flatten
+        | str join "\n"
+        | save -f $tmpfile
+    $tmpfile
+}
+alias gq = nvim -q (git-conflicts)
+
 # MARK: dir stack
 alias dlist = dirs
 alias dadd = dirs add
@@ -240,3 +263,4 @@ def --env ":q" [] {
     dclear
     cd
 }
+
