@@ -46,6 +46,7 @@ vim.api.nvim_create_user_command("Commit", function()
         local result = vim.fn.system("git commit -F " .. vim.fn.shellescape(tmpfile))
 
         vim.fn.delete(tmpfile)
+        vim.cmd("bd")
 
         if vim.v.shell_error == 0 then
             vim.notify("Commit successful!", vim.log.levels.INFO)
