@@ -47,6 +47,7 @@ vim.api.nvim_create_user_command("Commit", function()
 
         vim.fn.delete(tmpfile)
         vim.cmd("bd")
+        vim.cmd("echo ''")
 
         if vim.v.shell_error == 0 then
             vim.notify("Commit successful!", vim.log.levels.INFO)
