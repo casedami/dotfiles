@@ -58,16 +58,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end,
 })
-
--- set opts when opening term buffer
-vim.api.nvim_create_autocmd("TermOpen", {
-    group = augroup("term"),
-    desc = "set win opts when opening term buf",
-    callback = function()
-        vim.opt_local.spell = false
-        vim.opt_local.number = false
-        vim.opt_local.relativenumber = false
-        vim.opt_local.signcolumn = "no"
-        vim.keymap.set("n", "q", "<cmd>bd!<cr>", { buffer = true })
-    end,
-})

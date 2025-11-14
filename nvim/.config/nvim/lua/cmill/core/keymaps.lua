@@ -60,13 +60,6 @@ set( "n", "<leader>wr", "<C-W><C-R>", { desc = "Window: rotate (single-axis only
 set( "n", "<leader>-", "<C-W>s", { desc = "Window: vsplit" })
 set( "n", "<leader>|", "<C-W>v", { desc = "Window: hsplit" })
 
--- TERM
-set( "n", "<leader>tk", "<cmd>split | resize 15 | terminal<cr>i", { desc = "Term: open in hsplit" })
-set( "n", "<leader>th", "<cmd>vsplit | terminal<cr>i", { desc = "Term: open in vsplit" })
-set( "n", "<leader>T", "<cmd>tabnew | term<cr>i", { desc = "Term: open in new tab" })
-set( "t", "<esc>", "<C-\\><C-n>", { desc = "Extend: use esc key to switch normal mode from term mode" })
-set( "t", "<C-v><esc>", "<esc>", { desc = "Extend: send esc key to shell" })
-
 -- BOOKMARKS
 set("n", "<leader>qa", function() vim.cmd("argadd %") vim.cmd("argdedup") end, { desc = "Bookmarks: add current file" })
 set("n", "<leader>qd", function() vim.cmd("argdelete %") end, { desc = "Bookmarks: remove current file from bookmark list" })

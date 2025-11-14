@@ -30,7 +30,7 @@ return {
                 local part_id = math.floor((hour + 4) / 8) + 1
                 local day_part = ({ "evening", "morning", "afternoon", "evening" })[part_id]
                 local username = vim.loop.os_get_passwd()["username"] or "USERNAME"
-                local cwd = vim.uv.cwd():gsub(vim.fn.getenv("HOME"), "~")
+                local cwd = vim.fn.system("flamingo path")
                 local version = vim.version()
 
                 local greeting = ("Good %s, %s"):format(day_part, username)
