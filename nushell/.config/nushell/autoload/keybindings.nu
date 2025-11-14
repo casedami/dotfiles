@@ -129,5 +129,12 @@ $env.config.keybindings = [
         mode: [emacs, vi_normal, vi_insert]
         event: { send: executehostcommand cmd: "dirs prev" }
     }
+    {
+        name: job_resume
+        modifier: alt
+        keycode: char_z
+        mode: [vi_normal, vi_insert]
+        event: { send: executehostcommand cmd: "job unfreeze" }
+    }
 ]
 
