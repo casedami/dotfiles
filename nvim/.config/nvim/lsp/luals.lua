@@ -8,7 +8,7 @@ return {
             diagnostics = {
                 globals = {
                     "vim",
-                    "Snacks",
+                    "Utils",
                 },
             },
             hint = {
