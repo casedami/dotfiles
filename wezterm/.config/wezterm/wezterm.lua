@@ -14,6 +14,7 @@ local cfg = {
     color_scheme_dirs = { "~/.config/wezterm/colors" },
     color_scheme = "iceclimber",
     default_prog = { "/home/cdm/.cargo/bin/nu" },
+    disable_default_key_bindings = true,
     window_background_opacity = 1.0,
     window_decorations = "NONE",
     window_close_confirmation = "NeverPrompt",

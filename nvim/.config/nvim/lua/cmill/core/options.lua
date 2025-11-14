@@ -40,7 +40,6 @@ local opts = {
         foldclose = "",
         foldsep = " ",
         fold = " ",
-        diff = "╱",
         eob = "~",
     },
     foldcolumn = "0",

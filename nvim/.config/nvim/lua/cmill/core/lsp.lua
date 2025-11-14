@@ -22,10 +22,10 @@ vim.diagnostic.config({
     },
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = tools.ui.icons.diag.gutter,
-            [vim.diagnostic.severity.WARN] = tools.ui.icons.diag.gutter,
-            [vim.diagnostic.severity.HINT] = tools.ui.icons.diag.gutter,
-            [vim.diagnostic.severity.INFO] = tools.ui.icons.diag.gutter,
+            [vim.diagnostic.severity.ERROR] = Utils.icons.diag.gutter,
+            [vim.diagnostic.severity.WARN] = Utils.icons.diag.gutter,
+            [vim.diagnostic.severity.HINT] = Utils.icons.diag.gutter,
+            [vim.diagnostic.severity.INFO] = Utils.icons.diag.gutter,
         },
         numhl = {
             [vim.diagnostic.severity.ERROR] = "ErrorMsg",
