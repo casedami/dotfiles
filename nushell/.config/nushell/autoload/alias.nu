@@ -6,17 +6,16 @@ alias vim = nvim
 alias fg = job unfreeze
 # alias tiles = cd ~/mbtileserver; ./mbtileserver --dir ~/mbtileserver/tilesets/ --port 8001 &; cd -
 
-# MARK: git
-alias ga = git add
-alias gb = git branch
-alias gc = git commit
-alias gd = git diff
-alias gD = git branch -d
-alias gm = git merge
-alias gp = git pull
-alias gP = git push
-alias gr = git rebase
-alias gx = git checkout
+# use yazi to cd
+def --env P [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
+}
 
 def str-color [c, s: string] {
     match ($c | describe) {
@@ -36,6 +35,9 @@ def str-color [c, s: string] {
     }
 }
 
+# MARK: git functions
+
+# git checkout with fzf
 def --env gxc [] {
     let branch = (
         git branch -a
@@ -51,6 +53,7 @@ def --env gxc [] {
     }
 }
 
+# git merge with fzf
 def --env gmc [] {
     let branch = (
         git branch
@@ -66,6 +69,7 @@ def --env gmc [] {
     }
 }
 
+# git branch delete with fzf
 def --env gdc [] {
     let branches = (
         git branch
@@ -83,6 +87,7 @@ def --env gdc [] {
     }
 }
 
+# pretty git log
 def --env gl [n: int = 10, --all(-a)] {
     mut flags = ""
     if $all {
@@ -124,6 +129,7 @@ def --env gl [n: int = 10, --all(-a)] {
     }
 }
 
+# pretty git status
 def --env gs [] {
     let status = (git status -s)
     let branch = (
@@ -168,15 +174,7 @@ def --env gs [] {
     }
 }
 
-def --env glb [] {
-    git log --pretty=%h»¦«%aN»¦«%s»¦«%aD
-    | lines
-    | split column "»¦«" sha1 committer desc merged_at
-    | histogram committer merger
-    | sort-by merger
-    | reverse
-}
-
+# git add chooe with fzf
 def --env gac [] {
     let files = (
         git status -s
@@ -222,45 +220,4 @@ def git-conflicts [] {
     $tmpfile
 }
 alias gq = nvim -q (git-conflicts)
-
-# MARK: dir stack
-alias dlist = dirs
-alias dadd = dirs add
-alias ddel = dirs drop
-
-def --env dto [idx: int] {
-    dirs goto $idx
-}
-
-def --env dclear [] {
-    let cwd = (dirs | where active == true | get path)
-    while (dirs | get path | uniq | length) > 1 {
-        if (pwd) not-in $cwd {
-            dirs drop
-        } else {
-            dirs next
-        }
-    }
-    # remove duplicates of cwd
-    while (dirs | length) > 1 {
-        dirs drop
-    }
-}
-
-# MARK: misc
-
-def --env P [...args] {
-	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-	yazi ...$args --cwd-file $tmp
-	let cwd = (open $tmp)
-	if $cwd != "" and $cwd != $env.PWD {
-		cd $cwd
-	}
-	rm -fp $tmp
-}
-
-def --env ":q" [] {
-    dclear
-    cd
-}
 

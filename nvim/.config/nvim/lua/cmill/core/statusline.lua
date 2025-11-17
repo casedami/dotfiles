@@ -61,6 +61,9 @@ end
 
 local git_cache = {}
 function SLSectionBuilder:git()
+    -- TODO: use the current buffer name instead of root
+    -- NOTE: store the current buf in a global and use it to run a single
+    -- flamingo command?
     local root = vim.fs.root(0, ".git")
     if root == nil then
         return self

@@ -1,7 +1,7 @@
-gh/
 nvim.bak/
 Session.vim
-fish_variables
 lazy-lock.json
 **/tmux/plugins/**
 history.*
+allowed_signers
+.gitconfig-local

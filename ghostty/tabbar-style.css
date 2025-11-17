@@ -1,0 +1,28 @@
+headerbar {
+  min-height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+tabbar tabbox {
+  margin: 0;
+  padding: 0;
+  min-height: 10px;
+  background-color: #1d1d22;
+  font-family: monospace;
+}
+
+tabbar tabbox tab {
+  margin: 0;
+  padding: 0;
+  color: #1d1d22;
+}
+
+tabbar tabbox tab:selected {
+  background-color: #2a2a31;
+  color: #abbceb;
+}
+
+tabbar tabbox tab label {
+  font-size: 13px;
+}
