@@ -1,5 +1,7 @@
 export TERM=xterm-256color
 
+export PATH="~/.local/bin:$PATH"
+
 RED='\[\e[31m\]'
 PINK='\[\e[91m\]'
 GREEN='\[\e[92m\]'
@@ -28,10 +30,6 @@ venv_info() {
 
 PS1="${CYAN}\$(venv_info)${RESET}${MAGENTA}\$(path)${RESET} ${PINK}\$(git_branch)${RESET} \$ "
 
-# Basic aliases for convenience
-alias ll='eza -la'
-alias la='eza -a'
-alias ls='eza'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='grep --color=auto'

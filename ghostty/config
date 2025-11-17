@@ -1,0 +1,12 @@
+background = 171719
+foreground = bbbac1
+
+font-family = "Lilex Nerd Font"
+font-size = 14
+command = /Users/cdm/.cargo/bin/nu
+macos-option-as-alt = true
+title = " "
+window-subtitle = false
+macos-window-shadow = false
+macos-titlebar-proxy-icon = hidden
+theme = iceclimber

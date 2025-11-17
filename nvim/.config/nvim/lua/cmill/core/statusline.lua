@@ -166,7 +166,8 @@ function SLSectionBuilder:path()
         self:add(path_cache[fname])
         return self
     end
-    formatted = vim.fn.system("flamingo path -f" .. fname)
+
+    formatted = vim.fn.system("flamingo path -f " .. fname)
     local buf_num = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
     local modified = vim.api.nvim_get_option_value("modified", { buf = buf_num })
             and icons_hl.modified
