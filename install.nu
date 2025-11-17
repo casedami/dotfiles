@@ -8,9 +8,9 @@ let cargo_tools = {
         { name: "eza" cmd: "eza" },
         { name: "just" cmd: "just" },
         { name: "ripgrep" cmd: "ripgrep" },
-        { name: "stylua" cdm: "stylua" },
+        { name: "stylua" cmd: "stylua" },
         { name: "tree-sitter" cmd: "tree-sitter-cli" },
-        { name: "bat" cmd: "--locked bat" },
+        { name: "bat" cmd: "bat" },
         { name: "yazi" cmd: "--locked yazi-fm yazi-cli" },
         { name: "zoxide" cmd: "--locked zoxide" },
         { name: "bottom" cmd: "--locked bottom" },
@@ -140,10 +140,10 @@ def main [] {
 
     let inp = (dialogue "Install tools?" $help)
     if $inp in ["y", "yes"] {
-        install $cargo_tools
-        install $pacman_tools
+        # install $cargo_tools
+        # install $pacman_tools
         install $misc_tools
-        install $github_tools
+        # install $github_tools
     }
 
     let inp = (dialogue "Stow tools?" $help)

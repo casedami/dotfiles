@@ -18,13 +18,13 @@ require("lazy").setup({
     defaults = {
         version = false,
     },
-    dev = {
-        path = "~/proj",
-        patterns = {
-            "neomodern",
-        },
-        fallback = false,
-    },
+    -- dev = {
+    --     path = "~/proj",
+    --     patterns = {
+    --         "neomodern",
+    --     },
+    --     fallback = false,
+    -- },
     checker = {
         enabled = false,
         notify = false,

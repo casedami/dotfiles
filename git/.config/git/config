@@ -1,7 +1,7 @@
 [user]
 	name = Casey Miller
 	email = cd.miller1230@gmail.com
-    signingkey = 5B4EC33D9297A658
+    signingkey = F7A36BA330056058
 
 [core]
     compression = 9
