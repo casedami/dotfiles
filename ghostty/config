@@ -2,11 +2,46 @@ background = 171719
 foreground = bbbac1
 
 font-family = "Lilex Nerd Font"
-font-size = 14
-command = /Users/cdm/.cargo/bin/nu
-macos-option-as-alt = true
+font-size = 11
+
+theme = iceclimber
+gtk-custom-css = tabbar-style.css
+mouse-hide-while-typing = true
+
 title = " "
 window-subtitle = false
+
+command = ~/.cargo/bin/nu
+shell-integration-features = ssh-terminfo,ssh-env
+
 macos-window-shadow = false
 macos-titlebar-proxy-icon = hidden
-theme = iceclimber
+macos-option-as-alt = true
+
+keybind = ctrl+s>minus=new_split:down
+keybind = ctrl+s>shift+backslash=new_split:right
+
+keybind = ctrl+s>d=close_surface
+keybind = ctrl+s>r=reload_config
+
+keybind = ctrl+s>c=new_tab
+keybind = ctrl+s>n=next_tab
+keybind = ctrl+s>p=previous_tab
+keybind = ctrl+s>l=last_tab
+keybind = ctrl+s>x=close_tab
+
+keybind = ctrl+s>1=goto_tab:1
+keybind = ctrl+s>2=goto_tab:2
+keybind = ctrl+s>3=goto_tab:3
+keybind = ctrl+s>4=goto_tab:4
+keybind = ctrl+s>5=goto_tab:5
+keybind = ctrl+s>6=goto_tab:6
+keybind = ctrl+s>7=goto_tab:7
+keybind = ctrl+s>8=goto_tab:8
+keybind = ctrl+s>9=goto_tab:9
+keybind = ctrl+s>0=goto_tab:10
+
+keybind = ctrl+s>h=goto_split:left
+keybind = ctrl+s>l=goto_split:right
+keybind = ctrl+s>k=goto_split:up
+keybind = ctrl+s>j=goto_split:down

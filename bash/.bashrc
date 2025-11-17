@@ -1,7 +1,5 @@
 export TERM=xterm-256color
 
-export PATH="~/.local/bin:$PATH"
-
 RED='\[\e[31m\]'
 PINK='\[\e[91m\]'
 GREEN='\[\e[92m\]'
@@ -45,6 +43,8 @@ function y() {
 
 bind '"\C-p": "y\n"'
 bind '"\C-o": "vim\n"'
+bind '"\C-k": previous-history'
+bind '"\C-j": next-history'
 
 # History settings
 HISTCONTROL=ignoreboth
@@ -55,9 +55,8 @@ shopt -s histappend
 # Update window size after each command
 shopt -s checkwinsize
 
-kernel=$(uname -s)
 # Linux config
-if [ "$kernel_name" == "Linux" ]; then
+if [[ "$(uname -s)" == "Linux" ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

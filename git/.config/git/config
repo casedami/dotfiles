@@ -1,7 +1,9 @@
 [user]
 	name = Casey Miller
 	email = cd.miller1230@gmail.com
-    signingkey = F7A36BA330056058
+
+[include]
+    path = ~/.config/git/.gitconfig-local
 
 [core]
     compression = 9
@@ -23,14 +25,11 @@
     showStash = true
     showUntrackedFiles = all
 
-[url "https://github.com/casedami/"]
+[url "git@github.com:casedami/"]
     insteadOf = "cdm:"
 
-[url "https://github.com/"]
+[url "git@github.com:"]
     insteadOf = "gh:"
-
-[url "https://github.com/Trident-Sensing/"]
-    insteadOf = "trident:"
 
 [diff]
 	tool = nvimdiff
@@ -44,6 +43,9 @@
 
 [diff-so-fancy]
     markEmptyLines = false
+
+[gpg]
+    format = ssh
 
 [commit]
     template = ~/.config/git/template
@@ -82,10 +84,19 @@
     sort = -taggerdate
 
 [alias]
-    ll = log --all --graph --pretty=format:'%C(yellow)%h %C(blue)%an %C(blue dim italic)%ar %C(auto)%D %C(green)%n%s%n'
     aliases = config --get-regexp alias
     amend = commit --amend --no-edit
     whoami = !git config user.name && git config user.email
+    a = add
+    b = branch
+    c = commit
+    d = diff
+    D = branch -d
+    m = merge
+    p = pull
+    P = push
+    r = rebase
+    x = checkout
 
 [color]
 	status = auto
@@ -114,9 +125,3 @@
 [color "interactive"]
     prompt = magenta
     header = yellow
-
-[credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
-
-[credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
