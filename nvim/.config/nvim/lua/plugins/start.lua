@@ -16,10 +16,9 @@ return {
             },
             items = {
                 new_section("Find", "FzfLua files"),
-                new_section("Explorer", "Yazi"),
                 new_section("Recents", "FzfLua oldfiles"),
                 new_section("Grep", "FzfLua live_grep"),
-                new_section("Session", "LoadSessionQuiet"),
+                new_section("Session", "SessionLoad"),
                 new_section("Lazy", "Lazy"),
                 new_section("Quit", "qa"),
             },

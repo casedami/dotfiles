@@ -1,7 +1,0 @@
-require("cmill.core.globals")
-require("cmill.core.options")
-require("cmill.core.keymaps")
-require("cmill.core.autocmds")
-require("cmill.core.commands")
-require("cmill.core.statusline")
-require("cmill.core.lsp")
