@@ -1,12 +1,8 @@
 local ns_marks = vim.api.nvim_create_namespace("marksigns")
 
-local function augroup(name)
-    return vim.api.nvim_create_augroup("__" .. name, { clear = true })
-end
-
 -- Show a-zA-Z marks to status column
 vim.api.nvim_create_autocmd("CursorMoved", {
-    group = augroup("marks"),
+    group = vim.g.utils.augroup("marks"),
     desc = "add marks to signcolumn",
     callback = function()
         local buf = vim.api.nvim_win_get_buf(0)

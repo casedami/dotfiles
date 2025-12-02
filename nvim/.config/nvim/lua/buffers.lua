@@ -1,10 +1,6 @@
-local function augroup(name)
-    return vim.api.nvim_create_augroup("__" .. name, { clear = true })
-end
-
 -- Highlight text on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = augroup("highlight_yank"),
+    group = vim.g.utils.augroup("highlight_yank"),
     desc = "highlight text on yank",
     callback = function()
         vim.highlight.on_yank()
@@ -13,7 +9,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Open buffer to last location
 vim.api.nvim_create_autocmd("BufReadPost", {
-    group = augroup("last_loc"),
+    group = vim.g.utils.augroup("last_loc"),
     desc = "go to last loc when opening buffer",
     callback = function(event)
         local exclude = { "gitcommit" }
@@ -35,7 +31,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Set term buf opts
 vim.api.nvim_create_autocmd("TermOpen", {
-    group = augroup("term"),
+    group = vim.g.utils.augroup("term"),
     desc = "set win opts when opening term buf",
     callback = function()
         vim.opt_local.spell = false
