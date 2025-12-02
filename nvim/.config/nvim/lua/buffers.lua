@@ -58,25 +58,35 @@ vim.api.nvim_create_user_command("Scratch", function()
 end, { desc = "Open a scratch buffer", nargs = 0 })
 
 local BufTracker = { _prev = nil }
-function BufTracker:prev(callback)
+local function notify_not_found(_)
+    vim.notify("Previous buffer not set", vim.log.levels.INFO)
+end
+
+function BufTracker:prev(on_exists, on_not_found)
     local bufnr
     if self._prev and vim.api.nvim_buf_is_valid(self._prev) then
         bufnr = self._prev
     else
-        vim.notify("Previous buffer not set", vim.log.levels.INFO)
+        local not_found_callback = on_not_found or notify_not_found
+        not_found_callback(self)
         return
     end
 
     if vim.bo.filetype ~= "netrw" then
-        self._prev = vim.api.nvim_get_current_buf()
+        self:set_prev()
     end
 
-    callback(bufnr)
+    on_exists(bufnr)
+end
+
+function BufTracker:set_prev()
+    self._prev = vim.api.nvim_get_current_buf()
 end
 
 -- stylua: ignore start
+-- one-line functions to make parsing for selfhelp generation easier
 vim.keymap.set("n", "<localleader>pe", function() BufTracker:prev(function(bufnr) vim.api.nvim_set_current_buf(bufnr) end) end, { desc = "Buffer: previous buffer in current window" })
 vim.keymap.set("n", "<localleader>ps", function() BufTracker:prev(function(bufnr) vim.cmd("sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in hsplit" })
 vim.keymap.set("n", "<localleader>pv", function() BufTracker:prev(function(bufnr) vim.cmd("vert sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in vsplit" })
-vim.keymap.set("n", "<leader>fe", function() BufTracker:prev(function(bufnr) if vim.bo.filetype == "netrw" then vim.api.nvim_set_current_buf(bufnr) else vim.cmd("Ex") end end) end, { desc = "Finder: Toggle netrw buffer" })
+vim.keymap.set("n", "<leader>fe", function() BufTracker:prev(function(bufnr) if vim.bo.filetype == "netrw" then vim.api.nvim_set_current_buf(bufnr) else vim.cmd("Ex") end end, function(tracker) tracker:set_prev() vim.cmd("Ex") end) end, { desc = "Finder: Toggle netrw buffer" })
 -- stylua: ignore end
