@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- Open buffer to last location
+-- Open buf to last location
 vim.api.nvim_create_autocmd("BufReadPost", {
     group = vim.g.utils.augroup("last_loc"),
     desc = "go to last loc when opening buffer",
@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end,
 })
 
--- Open scratch buffer
+-- Open scratch buf
 vim.api.nvim_create_user_command("Scratch", function()
     vim.cmd("bel 10new")
     local buf = vim.api.nvim_get_current_buf()
@@ -74,7 +74,6 @@ function BufTracker:prev(callback)
     callback(bufnr)
 end
 
--- Buffers
 -- stylua: ignore start
 vim.keymap.set("n", "<localleader>pe", function() BufTracker:prev(function(bufnr) vim.api.nvim_set_current_buf(bufnr) end) end, { desc = "Buffer: previous buffer in current window" })
 vim.keymap.set("n", "<localleader>ps", function() BufTracker:prev(function(bufnr) vim.cmd("sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in hsplit" })
