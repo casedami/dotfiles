@@ -60,4 +60,8 @@ function utils.hl_tbl(hl, icons)
     end, icons)
 end
 
+function utils.augroup(name)
+    return vim.api.nvim_create_augroup("__" .. name, { clear = true })
+end
+
 vim.g.utils = utils
