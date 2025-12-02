@@ -53,6 +53,12 @@ set( { "n", "v" }, "<C-j>", "<C-w>j", { desc = "Window: focus down" })
 set( { "n", "v" }, "<C-k>", "<C-w>k", { desc = "Window: focus up" })
 set( { "n", "v" }, "<C-l>", "<C-w>l", { desc = "Window: focus right" })
 
+-- TERM
+set( "n", "<leader>ts", "<cmd>split | resize 15 | terminal<cr>i", { desc = "Term: open in hsplit" })
+set( "n", "<leader>tv", "<cmd>vsplit | terminal<cr>i", { desc = "Term: open in vsplit" })
+set( "t", "<esc>", "<C-\\><C-n>", { desc = "Extend: use esc key to switch normal mode from term mode" })
+set( "t", "<C-v><esc>", "<esc>", { desc = "Extend: send esc key to shell" })
+
 -- BookmarkS
 set("n", "<leader>qa", function() vim.cmd("argadd %") vim.cmd("argdedup") end, { desc = "Bookmarks: add current file" })
 set("n", "<leader>qd", function() vim.cmd("argdelete %") end, { desc = "Bookmarks: remove current file from bookmark list" })
