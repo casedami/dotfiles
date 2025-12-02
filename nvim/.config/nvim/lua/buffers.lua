@@ -74,30 +74,9 @@ function BufTracker:prev(callback)
 end
 
 -- Buffers
-vim.keymap.set("n", "<localleader>pe", function()
-    BufTracker:prev(function(bufnr)
-        vim.api.nvim_set_current_buf(bufnr)
-    end)
-end, { desc = "Buffer: previous buffer in current window" })
-
-vim.keymap.set("n", "<localleader>ps", function()
-    BufTracker:prev(function(bufnr)
-        vim.cmd("sbuffer " .. bufnr)
-    end)
-end, { desc = "Buffer: previous buffer in hsplit" })
-
-vim.keymap.set("n", "<localleader>pv", function()
-    BufTracker:prev(function(bufnr)
-        vim.cmd("vert sbuffer " .. bufnr)
-    end)
-end, { desc = "Buffer: previous buffer in vsplit" })
-
-vim.keymap.set("n", "<leader>fe", function()
-    BufTracker:prev(function(bufnr)
-        if vim.bo.filetype == "netrw" then
-            vim.api.nvim_set_current_buf(bufnr)
-        else
-            vim.cmd("Ex")
-        end
-    end)
-end, { desc = "Finder: Toggle netrw buffer" })
+-- stylua: ignore start
+vim.keymap.set("n", "<localleader>pe", function() BufTracker:prev(function(bufnr) vim.api.nvim_set_current_buf(bufnr) end) end, { desc = "Buffer: previous buffer in current window" })
+vim.keymap.set("n", "<localleader>ps", function() BufTracker:prev(function(bufnr) vim.cmd("sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in hsplit" })
+vim.keymap.set("n", "<localleader>pv", function() BufTracker:prev(function(bufnr) vim.cmd("vert sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in vsplit" })
+vim.keymap.set("n", "<leader>fe", function() BufTracker:prev(function(bufnr) if vim.bo.filetype == "netrw" then vim.api.nvim_set_current_buf(bufnr) else vim.cmd("Ex") end end) end, { desc = "Finder: Toggle netrw buffer" })
+-- stylua: ignore end

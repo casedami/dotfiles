@@ -1,4 +1,4 @@
-*selfhelp.txt*                                                      2025-11-30
+*selfhelp.txt*                                                      2025-12-02
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
@@ -6,24 +6,25 @@
 ╭──────┬────────────┬────────────────────────────────────────╮
 │ mode │    map     │                  desc                  │
 ├──────┼────────────┼────────────────────────────────────────┤
+│ n    │ <leader>qq │ search bookmarks                       │
 │ n    │ <leader>qa │ add current file                       │
 │ n    │ <leader>qd │ remove current file from bookmark list │
 │ n    │ <leader>q1 │ goto first                             │
 │ n    │ <leader>q2 │ goto second                            │
 │ n    │ <leader>q3 │ goto third                             │
 │ n    │ <leader>q4 │ goto fourth                            │
-│ n    │ <leader>qq │ search bookmarks                       │
 ╰──────┴────────────┴────────────────────────────────────────╯
 
 ==============================================================================
 2. Buffer                                                    *selfhelp-buffer*
 
-╭──────┬────────────────┬───────────────────────────╮
-│ mode │      map       │           desc            │
-├──────┼────────────────┼───────────────────────────┤
-│ n    │ <localleader>p │ previous                  │
-│ n    │ <localleader>P │ previous buffer in hsplit │
-╰──────┴────────────────┴───────────────────────────╯
+╭──────┬─────────────────┬───────────────────────────────────╮
+│ mode │       map       │               desc                │
+├──────┼─────────────────┼───────────────────────────────────┤
+│ n    │ <localleader>pe │ previous buffer in current window │
+│ n    │ <localleader>ps │ previous buffer in hsplit         │
+│ n    │ <localleader>pv │ previous buffer in vsplit         │
+╰──────┴─────────────────┴───────────────────────────────────╯
 
 ==============================================================================
 3. Diagnostic                                            *selfhelp-diagnostic*
@@ -58,7 +59,6 @@
 ╭──────┬────────────┬────────────────────────╮
 │ mode │    map     │          desc          │
 ├──────┼────────────┼────────────────────────┤
-│ n    │ <leader>fe │ Toggle netrw buffer    │
 │ n    │ <leader>F  │ global                 │
 │ n    │ <leader>ff │ files                  │
 │ n    │ <leader>fr │ recent files           │
@@ -71,6 +71,7 @@
 │ n    │ <leader>fm │ marks                  │
 │ n    │ <leader>f: │ command history        │
 │ n    │ <leader>f/ │ search history         │
+│ n    │ <leader>fe │ Toggle netrw buffer    │
 ╰──────┴────────────┴────────────────────────╯
 
 ==============================================================================
@@ -139,7 +140,17 @@
 ╰──────┴────────────────┴──────────╯
 
 ==============================================================================
-11. Window                                                   *selfhelp-window*
+11. Term                                                       *selfhelp-term*
+
+╭──────┬────────────┬────────────────╮
+│ mode │    map     │      desc      │
+├──────┼────────────┼────────────────┤
+│ n    │ <leader>ts │ open in hsplit │
+│ n    │ <leader>tv │ open in vsplit │
+╰──────┴────────────┴────────────────╯
+
+==============================================================================
+12. Window                                                   *selfhelp-window*
 
 ╭──────┬───────┬─────────────╮
 │ mode │  map  │    desc     │
