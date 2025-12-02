@@ -13,7 +13,7 @@ set guioptions ""
 
 # zathurarc-dark
 
-set font "Commit Mono Nerd Font 10"
+set font "Lilex Nerd Font 10"
 set default-bg "#161617"
 set default-fg "#bfbbb1"
 
