@@ -63,7 +63,8 @@ function BufTracker:prev(callback)
     if self._prev and vim.api.nvim_buf_is_valid(self._prev) then
         bufnr = self._prev
     else
-        bufnr = "#"
+        vim.notify("Previous buffer not set", vim.log.levels.INFO)
+        return
     end
 
     if vim.bo.filetype ~= "netrw" then
