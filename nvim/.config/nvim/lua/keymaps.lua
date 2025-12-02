@@ -8,9 +8,6 @@ set("n", "n", "nzzzv", { desc = "Extend: center after next item in search" })
 set("n", "N", "Nzzzv", { desc = "Extend: center after prev item in search" })
 set("v", "<", "<gv", { desc = "Extend: stay in visual mode when indenting" })
 set("v", ">", ">gv", { desc = "Extend: stay in visual mode when indenting" })
-set("n", "p", "zp", { desc = "Extend: prefer zp over p for paste behavior" })
-set("n", "P", "zP", { desc = "Extend: prefer zP over P for paste behavior" })
-set("x", "p", "zy", { desc = "Extend: prefer zy over p for paste behavior" })
 set("n", "gV", "'[v']", { desc = "Extend: select last inserted/edited text" })
 set("x", ".", "<cmd>normal .<cr>", { desc = "Extend: repeat last command for each line of visual mode" })
 set("n", "/", "ms/", { desc = "Extend: mark last position before search" })
@@ -35,11 +32,6 @@ set("n", "<leader>cd-", "<cmd>lcd -<bar>pwd<cr>", { desc = "Directory: change di
 -- Movement
 set("c", "<C-k>", "<up>", { desc = "Movement: go backwards in cmd history" })
 set("c", "<C-j>", "<down>", { desc = "Movement: go forwards in cmd history" })
-
--- Buffers
-set( "n", "<localleader>p", "<C-6>", { desc = "Buffer: previous" })
-set( "n", "<localleader>P", "<C-w><C-6>", { desc = "Buffer: previous buffer in hsplit" })
-set("n", "<leader>fe", function() if vim.bo.filetype == "netrw" then vim.cmd("b#") else vim.cmd("Ex") end end, { desc = "Finder: Toggle netrw buffer" })
 
 -- Tabs
 set( "n", "<localleader>]", "<cmd>tabnext<cr>", { desc = "Tab: next" })
