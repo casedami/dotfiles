@@ -14,7 +14,7 @@ set("x", "p", "zy", { desc = "Extend: prefer zy over p for paste behavior" })
 set("n", "gV", "'[v']", { desc = "Extend: select last inserted/edited text" })
 set("x", ".", "<cmd>normal .<cr>", { desc = "Extend: repeat last command for each line of visual mode" })
 set("n", "/", "ms/", { desc = "Extend: mark last position before search" })
-set("n", "0", "^", { desc = "Extend: goto beginning of line" })
+set("n", "0", "^", { desc = "Extend: goto beginning of line but ignore whitespace" })
 set("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Extend: move line up" })
 set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Extend: move line down" })
 
