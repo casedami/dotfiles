@@ -56,3 +56,48 @@ vim.api.nvim_create_user_command("Scratch", function()
         vim.api.nvim_set_option_value(name, value, { buf = buf })
     end
 end, { desc = "Open a scratch buffer", nargs = 0 })
+
+local BufTracker = { _prev = nil }
+function BufTracker:prev(callback)
+    local bufnr
+    if self._prev and vim.api.nvim_buf_is_valid(self._prev) then
+        bufnr = self._prev
+    else
+        bufnr = "#"
+    end
+
+    if vim.bo.filetype ~= "netrw" then
+        self._prev = vim.api.nvim_get_current_buf()
+    end
+
+    callback(bufnr)
+end
+
+-- Buffers
+vim.keymap.set("n", "<localleader>pe", function()
+    BufTracker:prev(function(bufnr)
+        vim.api.nvim_set_current_buf(bufnr)
+    end)
+end, { desc = "Buffer: previous buffer in current window" })
+
+vim.keymap.set("n", "<localleader>ps", function()
+    BufTracker:prev(function(bufnr)
+        vim.cmd("sbuffer " .. bufnr)
+    end)
+end, { desc = "Buffer: previous buffer in hsplit" })
+
+vim.keymap.set("n", "<localleader>pv", function()
+    BufTracker:prev(function(bufnr)
+        vim.cmd("vert sbuffer " .. bufnr)
+    end)
+end, { desc = "Buffer: previous buffer in vsplit" })
+
+vim.keymap.set("n", "<leader>fe", function()
+    BufTracker:prev(function(bufnr)
+        if vim.bo.filetype == "netrw" then
+            vim.api.nvim_set_current_buf(bufnr)
+        else
+            vim.cmd("Ex")
+        end
+    end)
+end, { desc = "Finder: Toggle netrw buffer" })
