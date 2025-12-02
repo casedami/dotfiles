@@ -1,5 +1,6 @@
 local M = {}
 local ns = vim.api.nvim_create_namespace("gitsigns")
+local refcache = {}
 
 vim.api.nvim_set_hl(0, "GitSignsAdd", { link = "DiagnosticSignOk" })
 vim.api.nvim_set_hl(0, "GitSignsChange", { link = "DiagnosticHint" })
@@ -15,6 +16,8 @@ function M.get_reftext(bufnr, callback)
     local path = vim.api.nvim_buf_get_name(bufnr)
     if path == "" then
         return callback(nil)
+    elseif refcache[bufnr] ~= nil then
+        return callback(refcache[bufnr])
     end
 
     local head = vim.fn.fnamemodify(path, ":h")
@@ -77,15 +80,16 @@ function M.update()
     }
 
     local bufnr = vim.api.nvim_get_current_buf()
-    local buf_text = M.get_buftext(bufnr)
+    local buftext = M.get_buftext(bufnr)
     vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 
-    M.get_reftext(bufnr, function(ref_text)
-        if not ref_text then
+    M.get_reftext(bufnr, function(reftext)
+        refcache[bufnr] = reftext
+        if not reftext then
             return
         end
 
-        local diff = vim.diff(ref_text, buf_text, vimdiff_opts)
+        local diff = vim.diff(reftext, buftext, vimdiff_opts)
         M.apply_signs(bufnr, diff)
     end)
 end
