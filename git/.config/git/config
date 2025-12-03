@@ -84,8 +84,6 @@
     d = diff
     D = branch -d
     m = merge
-    p = pull
-    P = push
     r = rebase
     x = checkout
 

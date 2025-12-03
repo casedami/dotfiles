@@ -80,6 +80,10 @@ function M.update()
     }
 
     local bufnr = vim.api.nvim_get_current_buf()
+    if #vim.bo[bufnr].buftype > 0 then
+        return
+    end
+
     local buftext = M.get_buftext(bufnr)
     vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 

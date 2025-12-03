@@ -40,6 +40,16 @@ require("lazy").setup({
         backdrop = 100,
         border = "rounded",
     },
+    rtp = {
+        disabled_plugins = {
+            "gzip",
+            "rplugin",
+            "tarPlugin",
+            "tohtml",
+            "tutor",
+            "zipPlugin",
+        },
+    },
 })
 
 -- Post plugin setup
@@ -48,3 +58,4 @@ require("self.statusline")
 require("self.gitsigns")
 require("marks")
 require("buffers")
+require("self.splash")

@@ -1,5 +1,4 @@
 return {
-    { "echasnovski/mini.icons", version = "*" },
     {
         "j-hui/fidget.nvim",
         event = "BufReadPost",

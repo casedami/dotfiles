@@ -13,8 +13,6 @@ vim.g.icons = {
         delete = "_",
         change = "┃",
     },
-    ldots = "...",
-    cdots = "󰑀 ",
     file = "",
     hamburger = "",
     location = { "󰋙", "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
@@ -24,7 +22,7 @@ vim.g.icons = {
     newfile = " ",
     readonly = "󰛐 ",
     unnamed = "",
-    venv = "󰇄",
+    venv = " ",
 }
 
 vim.g.special_bufs = {

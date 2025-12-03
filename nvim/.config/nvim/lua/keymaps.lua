@@ -20,7 +20,6 @@ set("n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "Misc: open pacman" })
 set("n", "<leader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open selfhelp" })
 set("n", "|", "<cmd>normal yygccp<cr>", { desc = "Misc: scratch line" })
 set("v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected lines" })
-set("n", "<C-;>", "<C-l>", { desc = "Misc: clear cmd line" })
 set("n", "<C-'>", "<cmd>nohlsearch<cr>", { desc = "Misc: clear search highlights" })
 
 -- Directory
@@ -38,12 +37,6 @@ set( "n", "<localleader>]", "<cmd>tabnext<cr>", { desc = "Tab: next" })
 set( "n", "<localleader>[", "<cmd>tabprevious<cr>", { desc = "Tab: previous" })
 set( "n", "<leader>tc", "<cmd>tabnew %<cr>", { desc = "Tab: new" })
 set( "n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Tab: close" })
-
--- Windows
-set( { "n", "v" }, "<C-h>", "<C-w>h", { desc = "Window: focus left" })
-set( { "n", "v" }, "<C-j>", "<C-w>j", { desc = "Window: focus down" })
-set( { "n", "v" }, "<C-k>", "<C-w>k", { desc = "Window: focus up" })
-set( { "n", "v" }, "<C-l>", "<C-w>l", { desc = "Window: focus right" })
 
 -- TERM
 set( "n", "<leader>ts", "<cmd>split | resize 15 | terminal<cr>i", { desc = "Term: open in hsplit" })
