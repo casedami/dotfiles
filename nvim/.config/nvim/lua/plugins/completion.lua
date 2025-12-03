@@ -16,7 +16,7 @@ return {
                                 return cmp.accept()
                             end
                         end,
-                        "show_and_insert",
+                        "show",
                         "accept",
                     },
                     ["<C-e>"] = {
@@ -24,6 +24,9 @@ return {
                     },
                     ["<C-n>"] = { "select_next", "fallback" },
                     ["<C-p>"] = { "select_prev", "fallback" },
+                },
+                completion = {
+                    menu = { auto_show = true },
                 },
             },
             keymap = {

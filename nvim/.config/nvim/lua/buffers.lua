@@ -29,6 +29,18 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+-- Create intermediate directories (if needed) when editing a file
+--
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = vim.g.utils.augroup("mkdirp"),
+    callback = function(args)
+        local dir = vim.fn.fnamemodify(args.file, ":p:h")
+        if vim.fn.isdirectory(dir) == 0 then
+            vim.fn.mkdir(dir, "p")
+        end
+    end,
+})
+
 -- Set term buf opts
 vim.api.nvim_create_autocmd("TermOpen", {
     group = vim.g.utils.augroup("term"),
