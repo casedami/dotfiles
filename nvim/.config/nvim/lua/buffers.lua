@@ -63,9 +63,13 @@ local function notify_not_found(_)
 end
 
 function BufTracker:prev(on_exists, on_not_found)
+    -- BUG: if buffer is opened in split  and immediately closed, prev_buf
+    -- state becomes invalid
     local bufnr
     if self._prev and vim.api.nvim_buf_is_valid(self._prev) then
         bufnr = self._prev
+    elseif vim.fn.bufnr("#") >= 0 then
+        bufnr = vim.fn.bufnr("#")
     else
         local not_found_callback = on_not_found or notify_not_found
         not_found_callback(self)
@@ -85,8 +89,8 @@ end
 
 -- stylua: ignore start
 -- one-line functions to make parsing for selfhelp generation easier
-vim.keymap.set("n", "<localleader>pe", function() BufTracker:prev(function(bufnr) vim.api.nvim_set_current_buf(bufnr) end) end, { desc = "Buffer: previous buffer in current window" })
-vim.keymap.set("n", "<localleader>ps", function() BufTracker:prev(function(bufnr) vim.cmd("sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in hsplit" })
-vim.keymap.set("n", "<localleader>pv", function() BufTracker:prev(function(bufnr) vim.cmd("vert sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in vsplit" })
+vim.keymap.set("n", "<leader>pe", function() BufTracker:prev(function(bufnr) vim.api.nvim_set_current_buf(bufnr) end) end, { desc = "Buffer: previous buffer in current window" })
+vim.keymap.set("n", "<leader>ps", function() BufTracker:prev(function(bufnr) vim.cmd("sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in hsplit" })
+vim.keymap.set("n", "<leader>pv", function() BufTracker:prev(function(bufnr) vim.cmd("vert sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in vsplit" })
 vim.keymap.set("n", "<leader>fe", function() BufTracker:prev(function(bufnr) if vim.bo.filetype == "netrw" then vim.api.nvim_set_current_buf(bufnr) else vim.cmd("Ex") end end, function(tracker) tracker:set_prev() vim.cmd("Ex") end) end, { desc = "Finder: Toggle netrw buffer" })
 -- stylua: ignore end

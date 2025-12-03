@@ -1,6 +1,6 @@
 vim.api.nvim_create_user_command("SessionSave", function()
     local M = require("self.session")
-    M:try_save()
+    M:save()
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command("SessionList", function()
@@ -10,7 +10,7 @@ end, { nargs = 0 })
 
 vim.api.nvim_create_user_command("SessionLoad", function()
     local M = require("self.session")
-    M:try_source()
+    M:select()
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command("SessionDelete", function(opts)

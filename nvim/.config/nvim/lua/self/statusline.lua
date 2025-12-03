@@ -146,10 +146,10 @@ function M.path()
     }
     if cases[vim.bo.buftype] then
         return cases[vim.bo.buftype]
-    end
-
-    if cache.path[fname] ~= nil then
+    elseif cache.path[fname] ~= nil then
         return cache.path[fname]
+    elseif fname == "" then
+        return fname
     end
 
     formatted = vim.fn.system("flamingo path -f " .. fname)
@@ -157,13 +157,9 @@ function M.path()
     local modified = vim.api.nvim_get_option_value("modified", { buf = buf_num })
             and M.icons.modified
         or ""
-    local tail = vim.fn.fnamemodify(fname, ":t")
-    local icon, hl = require("mini.icons").get("file", tail)
-    icon = tail ~= "" and Utils.hl_str(hl, icon) or ""
 
     local comp = table.concat({
         formatted,
-        icon,
         modified,
     }, M.pad(1))
     cache.path[fname] = comp
