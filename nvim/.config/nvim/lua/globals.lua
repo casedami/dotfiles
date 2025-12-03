@@ -1,6 +1,7 @@
 vim.g.icons = {
     binary = "",
     branch = "",
+    cmd = "󰘳 ",
     diag = {
         gutter = "",
         error = "",

@@ -134,6 +134,15 @@ function M.fsize()
     return comp
 end
 
+---Returns the showcmd output
+function M.showcmd()
+    local out = vim.api.nvim_eval_statusline("%S", {}).str
+    if #out == 0 or out == ":" then
+        return ""
+    end
+    return vim.g.icons.cmd .. vim.api.nvim_eval_statusline("%S", {}).str
+end
+
 ---Returns the path component (via flamingo).
 ---@return string
 function M.path()
@@ -217,6 +226,7 @@ function RenderStatusLine()
 
     local right = table.concat({
         M.diagnostics(),
+        M.showcmd(),
         M.fsize(),
         M.flines(),
         M.floc(),

@@ -42,7 +42,7 @@ set( "n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Tab: close" })
 set( "n", "<leader>ts", "<cmd>split | resize 15 | terminal<cr>i", { desc = "Term: open in hsplit" })
 set( "n", "<leader>tv", "<cmd>vsplit | terminal<cr>i", { desc = "Term: open in vsplit" })
 set( "t", "<esc>", "<C-\\><C-n>", { desc = "Extend: use esc key to switch normal mode from term mode" })
-set( "t", "<C-v><esc>", "<esc>", { desc = "Extend: send esc key to shell" })
+set( "t", "<c-x><esc>", "<esc>", { desc = "Extend: send esc key to shell" })
 
 -- BookmarkS
 set("n", "<leader>qa", function() vim.cmd("argadd %") vim.cmd("argdedup") end, { desc = "Bookmarks: add current file" })

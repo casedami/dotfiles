@@ -2,7 +2,8 @@ return {
     "ibhagwan/fzf-lua",
     config = function()
         vim.opt.guicursor:remove({ "t:block-blinkon500-blinkoff500-TermCursor" })
-        require("fzf-lua").setup({
+        local fzf = require("fzf-lua")
+        fzf.setup({
             winopts = {
                 backdrop = 100,
                 height = 0.6,
@@ -15,7 +16,7 @@ return {
             },
         })
 
-        require("fzf-lua").register_ui_select()
+        fzf.register_ui_select()
 
         -- stylua: ignore start
         vim.keymap.set("n", "<leader>F", "<cmd>FzfLua global<cr>", { desc = "Finder: global", silent = true })
@@ -49,7 +50,7 @@ return {
         -- Grep for todo items
         vim.api.nvim_create_user_command("Todo", function()
             vim.cmd(
-                [[ lua require("fzf-lua").live_grep({no_esc=true, search="(TODO|BUG|FIXME|WARN|NOTE|MARK)"}) ]]
+                [[ lua fzf.live_grep({no_esc=true, search="(TODO|BUG|FIXME|WARN|NOTE|MARK)"}) ]]
             )
         end, { desc = "Grep TODOs", nargs = 0 })
     end,
