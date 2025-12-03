@@ -105,4 +105,5 @@ vim.keymap.set("n", "<leader>pe", function() BufTracker:prev(function(bufnr) vim
 vim.keymap.set("n", "<leader>ps", function() BufTracker:prev(function(bufnr) vim.cmd("sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in hsplit" })
 vim.keymap.set("n", "<leader>pv", function() BufTracker:prev(function(bufnr) vim.cmd("vert sbuffer " .. bufnr) end) end, { desc = "Buffer: previous buffer in vsplit" })
 vim.keymap.set("n", "<leader>fe", function() BufTracker:prev(function(bufnr) if vim.bo.filetype == "netrw" then vim.api.nvim_set_current_buf(bufnr) else vim.cmd("Ex") end end, function(tracker) tracker:set_prev() vim.cmd("Ex") end) end, { desc = "Finder: Toggle netrw buffer" })
+vim.keymap.set("n", "<leader>fE", function() BufTracker:prev(function(bufnr) if vim.bo.filetype == "netrw" then vim.api.nvim_set_current_buf(bufnr) else vim.cmd("e .") end end, function(tracker) tracker:set_prev() vim.cmd("e .") end) end, { desc = "Finder: Toggle netrw buffer in cwd" })
 -- stylua: ignore end
