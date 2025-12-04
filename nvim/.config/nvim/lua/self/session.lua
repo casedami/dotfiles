@@ -1,4 +1,22 @@
--- Simple wrapper around vim sessions
+--- Simple wrapper around vim sessions
+---
+--- Sessions are stored in a global directory and organized into
+--- subdirectories. The session path is constructed as follows:
+---
+--- <global-sessions-dir>/<project-dir-hash>/<session-prefix>-<session-id>
+---
+--- The Project Directory Hash is one of the following:
+---     1. The git project root (if in a git repository)
+---     2. Else, the working directory
+---
+--- The Session ID is one of the following:
+---     1. The current git branch (if in a git repository)
+---     2. Else, a provided ID
+---     3. Finally, a fallback ID
+---
+--- The Session Prefix is one of the following:
+---     1. 'br' if the Session ID corresponds to a git branch
+---     2. Else, 'lo'
 
 local M = { path = { session = nil, dir = nil } }
 vim.g.sessions_dir = vim.env.HOME .. "/.local/sessions"
