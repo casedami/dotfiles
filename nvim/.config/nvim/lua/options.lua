@@ -44,7 +44,6 @@ vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
-vim.opt.virtualedit = "all"
 
 -- UI
 vim.opt.background = "dark"
