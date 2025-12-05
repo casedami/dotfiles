@@ -54,8 +54,9 @@ require("lazy").setup({
 
 -- Post plugin setup
 require("lsp")
-require("self.statusline")
-require("self.gitsigns")
 require("marks")
 require("buffers")
+require("self.statusline")
+require("self.gitsigns")
+require("self.explore")
 require("self.splash")
