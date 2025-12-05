@@ -81,6 +81,7 @@
     a = add
     aip = add -ip
     b = branch
+    bd = branch -D
     c = commit
     ca = commit -a
     d = diff
