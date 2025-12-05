@@ -6,6 +6,19 @@ local function center_text(text)
     return string.rep(" ", padding) .. text
 end
 
+local function center_section(section)
+    local longest = 0
+    local width = vim.api.nvim_win_get_width(0)
+    for _, text in ipairs(section) do
+        longest = math.max(longest, #text)
+    end
+    local padding = math.floor((width - longest) / 2)
+    for i, text in ipairs(section) do
+        section[i] = string.rep(" ", padding) .. text
+    end
+    return section
+end
+
 M.bufopts = {
     modifiable = false,
     buftype = "nofile",
@@ -26,7 +39,7 @@ M.keymaps = {
     { key = "r", cmd = "<cmd>FzfLua oldfiles<cr>", desc = "recents" },
     { key = "g", cmd = "<cmd>FzfLua live_grep<cr>", desc = "grep" },
     { key = "e", cmd = "<cmd>Explore<cr>", desc = "explorer" },
-    { key = "s", cmd = "<cmd>SessionLoad<cr>", desc = "session" },
+    { key = "s", cmd = "<cmd>Session select<cr>", desc = "session" },
     { key = "q", cmd = "<cmd>q!<cr>", desc = "quit" },
 }
 
@@ -47,31 +60,39 @@ end
 
 function M.header()
     local version = vim.version()
-    local nvim = ("NEOVIM v.%s.%s.%s"):format(
-        version.major,
-        version.minor,
-        version.patch
-    )
+    local nvim = ("NVIM v.%s.%s.%s"):format(version.major, version.minor, version.patch)
+    local header = { center_text(nvim) }
+
+    return header
+end
+
+function M.context()
     local cwd = vim.fn.getcwd():gsub(vim.env.HOME, "~")
     local context = ("%s"):format(cwd)
+    return center_text(context)
+end
+function M.sessions()
+    local has_some = "Sessions available"
+    local has_none = "No sessions available"
 
-    local vpad = {}
-    local height = vim.api.nvim_win_get_height(0)
-    for _ = 1, math.floor(height / 4) do
-        table.insert(vpad, "")
+    local exists = require("self.session.lib").session_exists()
+    return exists and { center_text(has_some) } or { center_text(has_none) }
+end
+
+function M.center_content(content)
+    local padded = {}
+    for _, c in ipairs(content) do
+        vim.list_extend(padded, c)
+        padded[#padded + 1] = ""
     end
-
-    local header = {
-        center_text(nvim),
-        "",
-        center_text(context),
-    }
-
-    local lines = {}
-    vim.list_extend(lines, vpad)
-    vim.list_extend(lines, header)
-
-    return lines
+    local centered = {}
+    local height = vim.api.nvim_win_get_height(0)
+    local lnum_start = math.floor(height / 2) - #padded
+    for _ = 1, lnum_start do
+        table.insert(centered, "")
+    end
+    vim.list_extend(centered, padded)
+    return centered
 end
 
 function M.show()
@@ -82,8 +103,10 @@ function M.show()
     local buf = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_set_current_buf(buf)
     local header = M.header()
+    -- local sessions = M.sessions()
+    local content = M.center_content({ header })
 
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, header)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
     M:setopts(buf)
     M:setmaps()
 end

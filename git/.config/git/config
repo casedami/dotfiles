@@ -79,10 +79,11 @@
     amend = commit --amend --no-edit
     whoami = !git config user.name && git config user.email
     a = add
+    aip = add -ip
     b = branch
     c = commit
+    ca = commit -a
     d = diff
-    D = branch -d
     m = merge
     r = rebase
     x = checkout
