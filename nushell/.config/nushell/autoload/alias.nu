@@ -4,7 +4,7 @@ alias la = ls -a
 alias ll = ls -l
 alias vim = nvim
 alias fg = job unfreeze
-# alias tiles = cd ~/mbtileserver; ./mbtileserver --dir ~/mbtileserver/tilesets/ --port 8001 &; cd -
+alias dad = dirs add ~/dotfiles
 
 # use yazi to cd
 def --env P [...args] {

@@ -22,7 +22,6 @@ set("n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "Misc: open pacman" })
 set("n", "<leader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open selfhelp" })
 set("n", "|", "<cmd>normal yygccp<cr>", { desc = "Misc: scratch line" })
 set("v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected lines" })
-set("n", "<C-'>", "<cmd>nohlsearch<cr>", { desc = "Misc: clear search highlights" })
 
 -- Directory
 set("n", "<leader>cdc", "<cmd>lcd %:h<bar>pwd<cr>", { desc = "Directory: change directory to parent of current file" })

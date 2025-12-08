@@ -1,4 +1,4 @@
 return {
-    "casedami/session.nvim",
-    branch = "dev",
+    { "casedami/session.nvim" },
+    { "casedami/heron.nvim" },
 }

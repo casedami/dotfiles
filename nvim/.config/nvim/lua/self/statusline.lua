@@ -225,8 +225,8 @@ function RenderStatusLine()
     }, M.pad(1))
 
     local right = table.concat({
-        M.diagnostics(),
         M.showcmd(),
+        M.diagnostics(),
         M.fsize(),
         M.flines(),
         M.floc(),
