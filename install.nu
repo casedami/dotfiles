@@ -40,6 +40,7 @@ let pacman_tools = {
     fmt: { |tool| $tool }
     actual: [
         "fzf",
+        "neovim",
         "waybar",
         "wofi",
         "zathura",
