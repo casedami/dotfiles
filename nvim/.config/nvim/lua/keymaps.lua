@@ -24,10 +24,15 @@ set("n", "|", "<cmd>normal yygccp<cr>", { desc = "Misc: scratch line" })
 set("v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected lines" })
 
 -- Directory
-set("n", "<leader>cdc", "<cmd>lcd %:h<bar>pwd<cr>", { desc = "Directory: change directory to parent of current file" })
-set("n", "<leader>cdd", function() local root = vim.fs.root(vim.fn.expand("%"), ".git") if root then vim.cmd.lcd(root) vim.cmd.pwd() else vim.notify("No .git root found", vim.log.levels.WARN) end end, { desc = "Misc: change directory to root of current file" })
+set("n", "<leader>cd.", "<cmd>lcd %:h<bar>pwd<cr>", { desc = "Directory: change directory to parent of current file" })
+set("n", "<leader>cdr", function() local root = vim.fs.root(vim.fn.expand("%"), ".git") if root then vim.cmd.lcd(root) vim.cmd.pwd() else vim.notify("No .git root found", vim.log.levels.WARN) end end, { desc = "Misc: change directory to root of current file" })
 set("n", "<leader>cdu", "<cmd>lcd ..<bar>pwd<cr>", { desc = "Directory: change directory to parent of cwd" })
 set("n", "<leader>cd-", "<cmd>lcd -<bar>pwd<cr>", { desc = "Directory: change directory to previous cwd" })
+
+-- Buffers
+set("n", "<leader>pe", "<cmd>b#<cr>", { desc = "Buffer: previous buffer in current window" })
+set("n", "<leader>ps", "<cmd>sp | b#<cr>", { desc = "Buffer: previous buffer in hsplit" })
+set("n", "<leader>pv", "<cmd>vsp | b#<cr>", { desc = "Buffer: previous buffer in vsplit" })
 
 -- Movement
 set("c", "<C-k>", "<up>", { desc = "Movement: go backwards in cmd history" })
