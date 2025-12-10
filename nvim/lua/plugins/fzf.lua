@@ -20,7 +20,7 @@ return {
 
         -- stylua: ignore start
         vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Finder: files", silent = true })
-        vim.keymap.set("n", "<leader>fF", function() require("fzf-lua").files({cwd=vim.fn.expand("%:p:h")}) end, { desc = "Finder: files", silent = true })
+        vim.keymap.set("n", "<leader>fF", function() require("fzf-lua").files({cwd=vim.fn.expand("%:p:h")}) end, { desc = "Finder: files in current buffer's parent dir", silent = true })
         vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua oldfiles<cr>", { desc = "Finder: recent files", silent = true })
         vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Finder: open buffers", silent = true })
         vim.keymap.set("n", "<leader>F", "<cmd>FzfLua resume<cr>", { desc = "Finder: resume", silent = true })

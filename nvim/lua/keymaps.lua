@@ -25,7 +25,7 @@ set("v", "|", "<cmd>normal y`[V`]gc`]p<cr>", { desc = "Misc: scratch selected li
 
 -- Directory
 set("n", "<leader>cd.", "<cmd>lcd %:h<bar>pwd<cr>", { desc = "Directory: change directory to parent of current file" })
-set("n", "<leader>cdr", function() local root = vim.fs.root(vim.fn.expand("%"), ".git") if root then vim.cmd.lcd(root) vim.cmd.pwd() else vim.notify("No .git root found", vim.log.levels.WARN) end end, { desc = "Misc: change directory to root of current file" })
+set("n", "<leader>cdr", function() local root = vim.fs.root(vim.fn.expand("%"), ".git") if root then vim.cmd.lcd(root) vim.cmd.pwd() else vim.notify("No .git root found", vim.log.levels.WARN) end end, { desc = "Directory: change directory to root of current file" })
 set("n", "<leader>cdu", "<cmd>lcd ..<bar>pwd<cr>", { desc = "Directory: change directory to parent of cwd" })
 set("n", "<leader>cd-", "<cmd>lcd -<bar>pwd<cr>", { desc = "Directory: change directory to previous cwd" })
 
