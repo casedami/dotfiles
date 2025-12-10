@@ -1,24 +1,11 @@
 #!/usr/bin/env nu
 
-# Install Rust toolchain
-/bin/bash -c "$(curl https://sh.rustup.rs -sSf | sh)"
-$env.path ++= [ "~/.cargo/bin" ]
-
-# Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-if $nu.os-info.name == "linux" {
-    $env.path ++= [
-        "/home/linuxbrew/.linuxbrew/bin",
-    ]
-} else {
-    $env.path ++= [
-        "/opt/homebrew/bin"
-    ]
-}
-
 let cargo_tools = {
     source: "crates.io"
-    install: { |tool| cargo install $tool.cmd }
+    install: { |tool|
+        cargo install $tool.cmd | complete | ignore
+        print $"(ansi green)✓(ansi reset) Installed ($tool.name)"
+    }
     fmt: { |tool| $tool.name }
     actual: [
         { name: "eza" cmd: "eza" },
@@ -36,14 +23,17 @@ let cargo_tools = {
 
 let pacman_tools = {
     source: "homebrew"
-    install: { |tool| brew install -y $tool}
-    fmt: { |tool| $tool }
+    install: { |tool|
+        brew install $tool.name | complete | ignore
+        print $"(ansi green)✓(ansi reset) Installed ($tool.name)"
+    }
+    fmt: { |tool| $tool.name }
     actual: [
-        "fzf",
-        "neovim",
-        "waybar",
-        "wofi",
-        "zathura",
+        { name: "fzf" },
+        { name: "neovim" },
+        { name: "waybar" },
+        { name:  "wofi" },
+        { name: "zathura" },
     ]
 }
 
@@ -75,29 +65,31 @@ def dialogue [msg: string help: string] {
 def select_and_do [items: list, action: closure] {
     let help = "[<comma separated indices>/a/all/s/skip/q/quit]"
     let inp = dialogue "" $help
-    if $inp in ["a", "all"] {
-        print "Selected all..."
-        $items | each $action
-        break
-    } else if $inp in ["skip", "s"] {
-        print "\n"
-        return
-    } else if $inp in ["q", "quit"] {
-        exit 0
-    } else {
-        let idxs = ($inp | split row ',' | each {|char| $char | into int})
-        let max_idx = ($items | length) - 1
+    loop {
+        if $inp in ["a", "all"] {
+            print "Selected all..."
+            $items | each $action
+            break
+        } else if $inp in ["skip", "s"] {
+            print "\n"
+            return
+        } else if $inp in ["q", "quit"] {
+            exit 0
+        } else {
+            let idxs = ($inp | split row ',' | each {|char| $char | into int})
+            let max_idx = ($items | length) - 1
 
-        let valid_idxs = ($idxs | where $it <= $max_idx and $it >= 0)
-        if ($valid_idxs | length) != ($idxs | length) {
-            print $"Invalid indices. Please use numbers 0-($max_idx) separated by a comma."
-            continue
+            let valid_idxs = ($idxs | where $it <= $max_idx and $it >= 0)
+            if ($valid_idxs | length) != ($idxs | length) {
+                print $"Invalid indices. Please use numbers 0-($max_idx) separated by a comma."
+                continue
+            }
+
+            let selected = ($valid_idxs | each {|idx| $items | get $idx})
+            print $"Selected: ($selected | each {$in.name} | str join ', ')"
+            $selected | each $action
+            break
         }
-
-        let selected = ($valid_idxs | each {|idx| $items | get $idx})
-        print $"Selected: ($selected | each {$in.name} | str join ', ')"
-        $selected | each $action
-        break
     }
 }
 
@@ -120,9 +112,27 @@ def stow_tools [] {
 def main [] {
     let help = "[y/yes/n/no/q/quit]"
 
-    let inp = (dialogue "Install tools?" $help)
+    let inp = (dialogue "Install rust toolchain?" $help)
     if $inp in ["y", "yes"] {
+        curl curl https://sh.rustup.rs -sSf | bash | complete | ignore
+        $env.path ++= [ "~/.cargo/bin" ]
         install $cargo_tools
+    } else if $inp in ["q", "quit"] {
+        exit 0
+    }
+
+    let inp = (dialogue "Install homebrew?" $help)
+    if $inp in ["y", "yes"] {
+        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash | complete | ignore
+        if $nu.os-info.name == "linux" {
+            $env.path ++= [
+                "/home/linuxbrew/.linuxbrew/bin",
+            ]
+        } else {
+            $env.path ++= [
+                "/opt/homebrew/bin"
+            ]
+        }
         install $pacman_tools
     } else if $inp in ["q", "quit"] {
         exit 0
@@ -131,8 +141,7 @@ def main [] {
     let inp = (dialogue "Stow tools?" $help)
     if $inp in ["y", "yes"] {
         stow_tools
-    } else if $inp in ["q", "quit"] {
-        exit 0
     }
+    nu
 }
 

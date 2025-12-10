@@ -75,7 +75,7 @@ if $nu.os-info.name == "linux" {
     $env.XDG_CURRENT_DESKTOP = 'sway'
     $env.XDG_SESSION_DESKTOP = 'sway'
     $env.APPIMAGE_EXTRACT_AND_RUN = 1
-    $env.SSH_AUTH_SOCK = (keychain --quiet --eval --agents ssh id_ed25519 | parse --regex 'SSH_AUTH_SOCK=(?<sock>[^;]+)' | get sock.0 | str trim)
+    $env.SSH_AUTH_SOCK = (keychain --quiet --eval id_ed25519 | parse --regex 'SSH_AUTH_SOCK=(?<sock>[^;]+)' | get sock.0 | str trim)
 } else {
     $env.path ++= [
         "/opt/homebrew/bin"
