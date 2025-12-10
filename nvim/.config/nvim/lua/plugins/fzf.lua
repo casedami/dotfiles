@@ -19,11 +19,11 @@ return {
         fzf.register_ui_select()
 
         -- stylua: ignore start
-        vim.keymap.set("n", "<leader>F", "<cmd>FzfLua global<cr>", { desc = "Finder: global", silent = true })
         vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Finder: files", silent = true })
+        vim.keymap.set("n", "<leader>fF", function() require("fzf-lua").files({cwd=vim.fn.expand("%:p:h")}) end, { desc = "Finder: files", silent = true })
         vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua oldfiles<cr>", { desc = "Finder: recent files", silent = true })
-        vim.keymap.set("n", "<leader>f,", "<cmd>FzfLua buffers<cr>", { desc = "Finder: open buffers", silent = true })
-        vim.keymap.set("n", "<leader>fR", "<cmd>FzfLua resume<cr>", { desc = "Finder: resume", silent = true })
+        vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Finder: open buffers", silent = true })
+        vim.keymap.set("n", "<leader>F", "<cmd>FzfLua resume<cr>", { desc = "Finder: resume", silent = true })
 
         vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<cr>", { desc = "Finder: grep", silent = true })
         vim.keymap.set("n", "<leader>fG", "<cmd>FzfLua grep_cword<cr>", { desc = "Finder: grep word under cursor", silent = true })
@@ -44,14 +44,29 @@ return {
         vim.keymap.set("n", "<leader>fm", "<cmd>FzfLua marks<cr>", { desc = "Finder: marks", silent = true })
         vim.keymap.set("n", "<leader>f:", "<cmd>FzfLua command_history<cr>", { desc = "Finder: command history", silent = true })
         vim.keymap.set("n", "<leader>f/", "<cmd>FzfLua search_history<cr>", { desc = "Finder: search history", silent = true })
-        vim.keymap.set("n", "<leader>qq", "<cmd>FzfLua args<cr>", { desc = "Bookmarks: search bookmarks", silent = true })
+        vim.keymap.set("n", "<leader>qq", "<cmd>FzfLua args winopts.title='Bookmarks'<cr>", { desc = "Bookmarks: search bookmarks", silent = true })
         -- stylua: ignore end
 
         -- Grep for todo items
         vim.api.nvim_create_user_command("Todo", function()
             vim.cmd(
-                [[ lua require("fzf-lua").live_grep({no_esc=true, search="(TODO|BUG|FIXME|WARN|NOTE|MARK)"}) ]]
+                [[ lua require("fzf-lua").live_grep({no_esc=true, search="(TODO|BUG|WARN|NOTE|MARK)", winopts = {title="Todo Items"}}) ]]
             )
         end, { desc = "Grep TODOs", nargs = 0 })
+
+        local function cdc(opts)
+            local fzf_lua = require("fzf-lua")
+            opts = opts or {}
+            opts.prompt = "Directories> "
+            opts.actions = {
+                ["default"] = function(selected)
+                    vim.cmd("cd " .. selected[1])
+                end,
+            }
+            fzf_lua.fzf_exec("fd --type d -H -E .git", opts)
+        end
+
+        -- stylua: ignore
+        vim.keymap.set( "n", "<leader>cdc", cdc, { desc = "Directory: change directory (fzf)" })
     end,
 }
