@@ -6,6 +6,25 @@ alias vim = nvim
 alias fg = job unfreeze
 alias dad = dirs add ~/dotfiles
 
+def cdc --env [] {
+    let dir = (
+        fd --type d -H -E .git
+        | lines
+        | to text
+        | fzf --no-multi
+    )
+    cd $dir
+}
+
+def cdr --env [] {
+  try {
+    let root = (git rev-parse --show-toplevel | str trim)
+    cd $root
+  } catch {
+    print "Not in a git repository"
+  }
+}
+
 # use yazi to cd
 def --env P [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
