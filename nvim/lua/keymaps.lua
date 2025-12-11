@@ -22,8 +22,8 @@ set("n", "/", "ms/", { desc = "Extend: mark last position before search" })
 set("n", "0", "^", { desc = "Extend: goto beginning of line but ignore whitespace" })
 set("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Extend: move line up" })
 set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Extend: move line down" })
-set("n", "<localleader>p", "\"0p", {  desc = "Extend: forward paste from 0 register" })
-set("n", "<localleader>P", "\"0P", {  desc = "Extend: backward paste from 0 register" })
+set({"n", "v"}, "<localleader>p", "\"0p", {  desc = "Extend: forward paste from 0 register" })
+set({"n", "v"}, "<localleader>P", "\"0P", {  desc = "Extend: backward paste from 0 register" })
 
 -- Misc
 set("n", "<localleader>l", "<cmd>Lazy<cr>", { desc = "Misc: open pacman" })
