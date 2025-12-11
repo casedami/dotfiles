@@ -32,6 +32,7 @@ set("n", "<leader>cd-", "<cmd>lcd -<bar>pwd<cr>", { desc = "Directory: change di
 local function list_dirs(cwd)
     local output = vim.fn.systemlist(string.format("eza %s -A -1", cwd))
     vim.cmd("redraw")
+    table.insert(output, 1, cwd .. "\n")
     print(table.concat(output, "\n"))
 end
 set("n", "<leader>fe", function() list_dirs(vim.fn.getcwd()) end, { desc = "Directory: list current working directory" })
