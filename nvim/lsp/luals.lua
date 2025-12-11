@@ -1,7 +1,7 @@
 local blink = require("blink.cmp")
 return {
     cmd = { "lua-language-server" },
-    root_markers = { ".luarc.json", ".luarc.jsonc" },
+    root_markers = { ".git", ".luarc.json", ".luarc.jsonc" },
     filetypes = { "lua" },
     settings = {
         Lua = {
