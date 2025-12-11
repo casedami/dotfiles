@@ -1,4 +1,4 @@
-*selfhelp.txt*                                                      2025-12-10
+*selfhelp.txt*                                                      2025-12-11
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
@@ -53,6 +53,8 @@
 │ n    │ <leader>cdr │ change directory to root of current file   │
 │ n    │ <leader>cdu │ change directory to parent of cwd          │
 │ n    │ <leader>cd- │ change directory to previous cwd           │
+│ n    │ <leader>fe  │ list current working directory             │
+│ n    │ <leader>fE  │ list current buffer's directory            │
 ╰──────┴─────────────┴────────────────────────────────────────────╯
 
 ==============================================================================
@@ -116,35 +118,13 @@
 ╰──────┴────────────────┴────────────────────────╯
 
 ==============================================================================
-9. Movement                                                *selfhelp-movement*
+9. Term                                                        *selfhelp-term*
 
-╭──────┬───────┬─────────────────────────────╮
-│ mode │  map  │            desc             │
-├──────┼───────┼─────────────────────────────┤
-│ c    │ <C-k> │ go backwards in cmd history │
-│ c    │ <C-j> │ go forwards in cmd history  │
-╰──────┴───────┴─────────────────────────────╯
-
-==============================================================================
-10. Tab                                                         *selfhelp-tab*
-
-╭──────┬────────────────┬──────────╮
-│ mode │      map       │   desc   │
-├──────┼────────────────┼──────────┤
-│ n    │ <localleader>] │ next     │
-│ n    │ <localleader>[ │ previous │
-│ n    │ <leader>tc     │ new      │
-│ n    │ <leader>td     │ close    │
-╰──────┴────────────────┴──────────╯
-
-==============================================================================
-11. Term                                                       *selfhelp-term*
-
-╭──────┬────────────┬────────────────╮
-│ mode │    map     │      desc      │
-├──────┼────────────┼────────────────┤
-│ n    │ <leader>ts │ open in hsplit │
-│ n    │ <leader>tv │ open in vsplit │
-╰──────┴────────────┴────────────────╯
+╭──────┬────────┬────────────────╮
+│ mode │  map   │      desc      │
+├──────┼────────┼────────────────┤
+│ n    │ <c-t>s │ open in hsplit │
+│ n    │ <c-t>v │ open in vsplit │
+╰──────┴────────┴────────────────╯
 
 vim:tw=78:ts=8:noet:ft=help:norl:
