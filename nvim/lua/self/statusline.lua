@@ -118,7 +118,7 @@ function M.fmeta()
     local comp = table.concat({
         readonly,
         nomod,
-    }, M.pad(1))
+    }, "")
     return comp
 end
 
@@ -140,7 +140,10 @@ function M.showcmd()
     if #out == 0 or out == ":" then
         return ""
     end
-    return vim.g.icons.cmd .. vim.api.nvim_eval_statusline("%S", {}).str
+    return Utils.hl_str(
+        "Preproc",
+        vim.g.icons.cmd .. vim.api.nvim_eval_statusline("%S", {}).str
+    )
 end
 
 ---Returns the path component (via flamingo).
@@ -220,19 +223,26 @@ function RenderStatusLine()
         M.pad(1),
         M.prefix(),
         M.user(),
+        M.pad(1),
         M.venv(),
+        M.pad(1),
         M.git(),
+        M.pad(1),
         M.path(),
         M.fmeta(),
+        M.showcmd(),
     }, M.pad(1))
 
     local right = table.concat({
-        M.showcmd(),
         M.diagnostics(),
+        M.pad(1),
         M.fsize(),
+        M.pad(1),
         M.flines(),
+        M.pad(1),
         M.floc(),
-    }, M.pad(2))
+        M.pad(1),
+    }, M.pad(1))
 
     return table.concat({ left, right }, M.sep)
 end

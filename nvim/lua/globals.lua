@@ -22,6 +22,7 @@ vim.g.icons = {
     neovim = "",
     newfile = " ",
     readonly = "󰛐 ",
+    sep = "┃",
     unnamed = "",
     venv = " ",
 }
