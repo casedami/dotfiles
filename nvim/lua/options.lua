@@ -33,6 +33,7 @@ vim.opt.conceallevel = 2
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.opt.laststatus = 3
+vim.opt.fillchars = "fold: "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.pumheight = 10

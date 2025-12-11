@@ -60,7 +60,7 @@ return {
             opts.prompt = "Directories> "
             opts.actions = {
                 ["default"] = function(selected)
-                    vim.cmd("cd " .. selected[1])
+                    vim.cmd("lcd " .. selected[1])
                 end,
             }
             fzf_lua.fzf_exec("fd --type d -H -E .git", opts)

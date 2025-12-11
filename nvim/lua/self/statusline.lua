@@ -147,6 +147,7 @@ end
 ---@return string
 function M.path()
     local fname = vim.api.nvim_buf_get_name(0)
+    local bufnr = vim.api.nvim_get_current_buf()
     local formatted
     local cases = {
         terminal = "",
@@ -156,22 +157,23 @@ function M.path()
     if cases[vim.bo.buftype] then
         return cases[vim.bo.buftype]
     elseif cache.path[fname] ~= nil then
-        return cache.path[fname]
+        formatted = cache.path[fname]
     elseif fname == "" then
         return fname
+    else
+        formatted = vim.fn.system("flamingo path -f " .. fname)
+        local head = vim.fn.fnamemodify(formatted, ":h")
+        local tail = vim.fn.fnamemodify(formatted, ":t")
+        cache.path[fname] = head .. "/" .. Utils.hl_str("TODO", tail)
     end
 
-    formatted = vim.fn.system("flamingo path -f " .. fname)
-    local buf_num = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-    local modified = vim.api.nvim_get_option_value("modified", { buf = buf_num })
+    local modified = vim.api.nvim_get_option_value("modified", { buf = bufnr })
             and M.icons.modified
         or ""
-
     local comp = table.concat({
         formatted,
         modified,
     }, M.pad(1))
-    cache.path[fname] = comp
     return comp
 end
 

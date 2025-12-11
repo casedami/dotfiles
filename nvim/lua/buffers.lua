@@ -30,7 +30,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Create intermediate directories (if needed) when editing a file
---
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.g.utils.augroup("mkdirp"),
     callback = function(args)
@@ -57,7 +56,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- Open scratch buf
 vim.api.nvim_create_user_command("Scratch", function()
     vim.cmd("bel 10new")
-    local buf = vim.api.nvim_get_current_buf()
+    local bufnr = vim.api.nvim_get_current_buf()
     for name, value in pairs({
         filetype = "scratch",
         buftype = "nofile",
@@ -65,6 +64,6 @@ vim.api.nvim_create_user_command("Scratch", function()
         swapfile = false,
         modifiable = true,
     }) do
-        vim.api.nvim_set_option_value(name, value, { buf = buf })
+        vim.api.nvim_set_option_value(name, value, { buf = bufnr })
     end
 end, { desc = "Open a scratch buffer", nargs = 0 })

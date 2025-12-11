@@ -102,6 +102,7 @@ function M.show()
 
     local buf = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_set_current_buf(buf)
+    vim.api.nvim_buf_delete(1, { force = true })
     local header = M.header()
     -- local sessions = M.sessions()
     local content = M.center_content({ header })
