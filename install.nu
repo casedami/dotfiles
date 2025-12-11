@@ -105,7 +105,7 @@ def stow_tools [] {
     print $cfgs
     let cwd = pwd
     mkdir ~/.config
-    let action = {|cfg| ln -s $"($cwd)/($cfg.name)" $"~/.config/($cfg.name)"}
+    let action = {|cfg| ln -s $"($cwd)/($cfg.name)" $"($env.HOME)/.config/($cfg.name)"}
     select_and_do $cfgs $action
 }
 

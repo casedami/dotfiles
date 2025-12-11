@@ -29,6 +29,14 @@ set("n", "<leader>cdr", function() local root = vim.fs.root(vim.fn.expand("%"), 
 set("n", "<leader>cdu", "<cmd>lcd ..<bar>pwd<cr>", { desc = "Directory: change directory to parent of cwd" })
 set("n", "<leader>cd-", "<cmd>lcd -<bar>pwd<cr>", { desc = "Directory: change directory to previous cwd" })
 
+local function list_dirs(cwd)
+    local output = vim.fn.systemlist(string.format("eza %s -A -1", cwd))
+    vim.cmd("redraw")
+    print(table.concat(output, "\n"))
+end
+set("n", "<leader>fe", function() list_dirs(vim.fn.getcwd()) end, { desc = "Directory: list current working directory" })
+set("n", "<leader>fE", function() list_dirs(vim.fn.expand("%:p:h")) end, { desc = "Directory: list current buffer's directory" })
+
 -- Buffers
 set("n", "<leader>pe", "<cmd>b#<cr>", { desc = "Buffer: previous buffer in current window" })
 set("n", "<leader>ps", "<cmd>sp | b#<cr>", { desc = "Buffer: previous buffer in hsplit" })
