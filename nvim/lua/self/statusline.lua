@@ -137,7 +137,7 @@ end
 ---Returns the showcmd output
 function M.showcmd()
     local out = vim.api.nvim_eval_statusline("%S", {}).str
-    if #out == 0 or out == ":" then
+    if #out == 0 or out == ":" or out == "j" or out == "k" then
         return ""
     end
     return Utils.hl_str(
