@@ -136,5 +136,12 @@ $env.config.keybindings = [
         mode: [vi_normal, vi_insert]
         event: { send: executehostcommand cmd: "job unfreeze" }
     }
+    {
+        name: sys_monitor
+        modifier: control
+        keycode: char_m
+        mode: [emacs, vi_normal, vi_insert]
+        event: { send: executehostcommand cmd: "btm" }
+    }
 ]
 

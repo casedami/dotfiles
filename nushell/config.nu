@@ -89,5 +89,5 @@ $env.config = {
 }
 
 source ~/.zoxide.nu
-source themes/iceclimber.nu
+source themes/gyokuro.nu
 source completions/git/cmp.nu

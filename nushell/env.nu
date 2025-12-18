@@ -1,4 +1,4 @@
-source themes/iceclimber.nu
+source themes/gyokuro.nu
 
 def overlay_info [] {
     let current_overlays = (overlay list | where name != zero | where active == true | get name)
