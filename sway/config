@@ -9,12 +9,7 @@ set $power ~/.config/wofi/modi/power.nu
 set $wifi ~/.config/wofi/modi/wifi.nu
 
 # MARK: autostart
-bar {
-     swaybar_command waybar
-}
-exec swaybg -i ~/wallpapers/dark/city-2.png
-# exec swaylock
-# exec swayidle
+exec swaybg -i ~/wallpapers/dark/nature-10.jpg
 exec swaync
 
 # MARK: appearance
@@ -51,7 +46,7 @@ bindsym $mod+v floating toggle
 bindsym $mod+o exec $menu
 bindsym $mod+b exec $browser
 bindsym $mod+f fullscreen
-bindsym $mod+Shift+q exec swaylock
+bindsym $mod+Shift+q exec gtklock
 bindsym $mod+Escape exec $power
 bindsym $mod+Shift+w exec $wifi
 
@@ -91,9 +86,6 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-assign [app_id="org.wezfurlong.wezterm"] 1
-assign [app_id="^zen$"] 2
-
 # Workspace navigation
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -117,20 +109,16 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym Shift+XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 10%-
 
-# Lid switch (requires swayidle configuration)
-bindswitch --reload lid:on exec 'swaymsg "output * dpms off" && swaylock'
-bindswitch --reload lid:off exec 'swaymsg "output * dpms on"'
-
 # MARK: window rules
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 
 # MARK: idle configuration
 exec swayidle -w \
-    timeout 300 'swaylock -f' \
+    timeout 300 'gtklock -d' \
     timeout 600 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f'
+    before-sleep 'gtklock -d'
 
-exec_always ~/.config/waybar/waybar.sh
+# exec_always ~/.config/waybar/waybar.sh
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
