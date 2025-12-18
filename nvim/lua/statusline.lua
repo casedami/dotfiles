@@ -137,7 +137,13 @@ end
 ---Returns the showcmd output
 function M.showcmd()
     local out = vim.api.nvim_eval_statusline("%S", {}).str
-    if #out == 0 or out == ":" or out == "j" or out == "k" then
+    local excludes = {
+        [":"] = true,
+        ["j"] = true,
+        ["k"] = true,
+        ["zz"] = true,
+    }
+    if #out == 0 or excludes[out] then
         return ""
     end
     return Utils.hl_str(
@@ -166,7 +172,11 @@ function M.path()
     else
         formatted = vim.fn.system("flamingo path -f " .. fname)
         local head = vim.fn.fnamemodify(formatted, ":h")
-        local tail = vim.fn.fnamemodify(formatted, ":t")
+        local tail = string.format(
+            "%s %s",
+            vim.fn.fnamemodify(formatted, ":t"),
+            require("mini.icons").get("extension", vim.bo.filetype)
+        )
         cache.path[fname] = head .. "/" .. Utils.hl_str("TODO", tail)
     end
 
@@ -211,7 +221,8 @@ function M.venv()
         local comp = table.concat({
             M.icons.venv,
             Utils.hl_str("@property", name),
-        })
+            M.pad(2),
+        }, "")
         return comp
     end
     return ""
@@ -225,7 +236,6 @@ function RenderStatusLine()
         M.user(),
         M.pad(1),
         M.venv(),
-        M.pad(1),
         M.git(),
         M.pad(1),
         M.path(),

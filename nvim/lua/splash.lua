@@ -38,7 +38,6 @@ M.keymaps = {
     { key = "f", cmd = "<cmd>FzfLua files<cr>", desc = "files" },
     { key = "r", cmd = "<cmd>FzfLua oldfiles<cr>", desc = "recents" },
     { key = "g", cmd = "<cmd>FzfLua live_grep<cr>", desc = "grep" },
-    { key = "e", cmd = "<cmd>Explore<cr>", desc = "explorer" },
     { key = "s", cmd = "<cmd>Session select<cr>", desc = "session" },
     { key = "q", cmd = "<cmd>q!<cr>", desc = "quit" },
 }

@@ -1,12 +1,15 @@
 local cache = {}
 
 local function _get_contents(cwd)
+    ---@type table<string[]>
     local dirs = vim.fn.systemlist(
         string.format("cd %s; ls -a | where type == dir | get name | to text", cwd)
     )
     for i, d in ipairs(dirs) do
         dirs[i] = { d .. "/\n", "String" }
     end
+
+    ---@type table<string[]>
     local files = vim.fn.systemlist(
         string.format("cd %s; ls -a | where type == file | get name | to text", cwd)
     )

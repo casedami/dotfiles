@@ -1,0 +1,42 @@
+{
+  "plugins": {
+    "blink.cmp": {
+      "rev": "b19413d214068f316c78978b08264ed1c41830ec",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "conform.nvim": {
+      "rev": "9b8fa5e0b78168f68bee9bf886dc20f287c61e02",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "fidget.nvim": {
+      "rev": "e32b672d8fd343f9d6a76944fedb8c61d7d8111a",
+      "src": "https://github.com/j-hui/fidget.nvim"
+    },
+    "fzf-lua": {
+      "rev": "3b53b0eb26972686c5825d7c0e63b3cffd0c4f2b",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "heron.nvim": {
+      "rev": "d086b347fbb018554de7613e45376847e8db0fbd",
+      "src": "https://github.com/casedami/heron.nvim"
+    },
+    "mini.icons": {
+      "rev": "ff2e4f1d29f659cc2bad0f9256f2f6195c6b2428",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "neomodern.nvim": {
+      "rev": "e9a25f8955a2cc92f24091fc366752cd09694209",
+      "src": "https://github.com/casedami/neomodern.nvim"
+    },
+    "nvim-treesitter": {
+      "rev": "4fc09bee78e91bf4ba471cdab4bf9dfa37fde51c",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "session.nvim": {
+      "rev": "76bc1f9b4ec741b35301e4f9374a5a4cd3578c47",
+      "src": "https://github.com/casedami/session.nvim"
+    }
+  }
+}

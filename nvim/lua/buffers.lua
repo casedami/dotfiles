@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.g.utils.augroup("highlight_yank"),
     desc = "highlight text on yank",
     callback = function()
-        vim.highlight.on_yank()
+        vim.hl.on_yank()
     end,
 })
 
@@ -25,17 +25,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         local lcount = vim.api.nvim_buf_line_count(buf)
         if mark[1] > 0 and mark[1] <= lcount then
             pcall(vim.api.nvim_win_set_cursor, 0, mark)
-        end
-    end,
-})
-
--- Create intermediate directories (if needed) when editing a file
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.g.utils.augroup("mkdirp"),
-    callback = function(args)
-        local dir = vim.fn.fnamemodify(args.file, ":p:h")
-        if vim.fn.isdirectory(dir) == 0 then
-            vim.fn.mkdir(dir, "p")
         end
     end,
 })

@@ -19,7 +19,7 @@ vim.g.icons = {
     location = { "󰋙", "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
     lock = "󰍁",
     modified = "* ",
-    neovim = "",
+    neovim = " ",
     newfile = " ",
     readonly = "󰛐 ",
     sep = "┃",
@@ -64,4 +64,15 @@ function utils.augroup(name)
     return vim.api.nvim_create_augroup("__" .. name, { clear = true })
 end
 
+function utils.cd_root()
+    local root = vim.fs.root(vim.fn.expand("%"), ".git")
+    if root then
+        vim.cmd.lcd(root)
+        vim.cmd.pwd()
+    else
+        vim.notify("No .git root found", vim.log.levels.INFO)
+    end
+end
+
 vim.g.utils = utils
+vim.g.proj_dir = vim.env.HOME .. "/dev"

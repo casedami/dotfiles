@@ -5,6 +5,19 @@ return {
     filetypes = { "lua" },
     settings = {
         Lua = {
+            workspace = {
+                checkThirdParty = false,
+                library = {
+                    vim.env.VIMRUNTIME,
+                },
+            },
+            completion = {
+                callSnippet = "Replace",
+            },
+            runtime = {
+                version = "Lua 5.1",
+                path = vim.split(package.path, ";"),
+            },
             diagnostics = {
                 globals = {
                     "vim",

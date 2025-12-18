@@ -1,4 +1,4 @@
-*selfhelp.txt*                                                      2025-12-11
+*selfhelp.txt*                                                      2025-12-18
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
@@ -83,9 +83,9 @@
 ╭──────┬────────────┬────────╮
 │ mode │    map     │  desc  │
 ├──────┼────────────┼────────┤
-│ n    │ <leader>G  │ status │
-│ n    │ <leader>GL │ log    │
-│ n    │ <leader>GD │ diff   │
+│ n    │ <leader>gs │ status │
+│ n    │ <leader>gl │ log    │
+│ n    │ <leader>gd │ diff   │
 ╰──────┴────────────┴────────╯
 
 ==============================================================================
@@ -96,9 +96,6 @@
 ├──────┼────────────┼───────────────────────────────┤
 │ n    │ gd         │ definitions                   │
 │ n    │ <leader>lR │ search references             │
-│ n    │ <leader>ls │ search workspace symbols      │
-│ n    │ <leader>li │ search incoming calls         │
-│ n    │ <leader>lo │ search outgoing calls         │
 │ n    │ <leader>ld │ search workspace diagnostics  │
 │ n    │ <leader>lr │ rename symbol under cursor    │
 │ n,v  │ <leader>la │ code actions                  │
@@ -108,14 +105,13 @@
 ==============================================================================
 8. Misc                                                        *selfhelp-misc*
 
-╭──────┬────────────────┬────────────────────────╮
-│ mode │      map       │          desc          │
-├──────┼────────────────┼────────────────────────┤
-│ n    │ <localleader>l │ open pacman            │
-│ n    │ <leader>?      │ open selfhelp          │
-│ n    │ |              │ scratch line           │
-│ v    │ |              │ scratch selected lines │
-╰──────┴────────────────┴────────────────────────╯
+╭──────┬───────────┬────────────────────────╮
+│ mode │    map    │          desc          │
+├──────┼───────────┼────────────────────────┤
+│ n    │ <leader>? │ open selfhelp          │
+│ n    │ |         │ scratch line           │
+│ v    │ |         │ scratch selected lines │
+╰──────┴───────────┴────────────────────────╯
 
 ==============================================================================
 9. Term                                                        *selfhelp-term*
