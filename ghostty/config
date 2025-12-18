@@ -1,10 +1,7 @@
-background = 171719
-foreground = bbbac1
-
 font-family = "Lilex Nerd Font"
 font-size = 14
 
-theme = iceclimber
+theme = gyokuro
 gtk-custom-css = tabbar-style.css
 mouse-hide-while-typing = true
 

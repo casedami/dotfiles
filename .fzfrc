@@ -1,7 +1,7 @@
---color=fg:#555568,bg:#171719,hl:#a8a6de,gutter:#171719
---color=fg+:#629da3,bg+:#1d1d22,hl+:#a8a6de
---color=info:#abbceb,prompt:#a8a6de,pointer:#629da3
---color=marker:#8a88db,spinner:#8a88db,header:#8a88db
+--color=fg:#767777,bg:#1b1c1d,hl:#bbc7b1,gutter:#1b1c1d
+--color=fg+:#748fa6,bg+:#222324,hl+:#bbc7b1
+--color=info:#a69e6f,prompt:#bbc7b1,pointer:#748fa6
+--color=marker:#72966c,spinner:#72966c,header:#72966c
 --separator="─" --scrollbar="│" --layout="reverse" --info="right"
 --prompt="$ "
 --marker="*"
