@@ -1,4 +1,30 @@
-local M = {}
+local ns_marks = vim.api.nvim_create_namespace("marksigns")
+
+-- Show a-zA-Z marks to status column
+vim.api.nvim_create_autocmd("CursorMoved", {
+    group = vim.g.utils.augroup("marks"),
+    desc = "add marks to signcolumn",
+    callback = function()
+        local buf = vim.api.nvim_win_get_buf(0)
+        local marks = vim.fn.getmarklist(buf)
+        vim.api.nvim_buf_clear_namespace(buf, ns_marks, 0, -1)
+        vim.list_extend(marks, vim.fn.getmarklist())
+        for _, mark in ipairs(marks) do
+            if mark.pos[1] == buf and mark.mark:match("[a-zA-Z]") then
+                local lnum = mark.pos[2]
+                vim.api.nvim_buf_set_extmark(buf, ns_marks, lnum - 1, 0, {
+                    id = lnum,
+                    sign_text = mark.mark:sub(2),
+                    priority = 1,
+                    sign_hl_group = "DiagnosticInfo",
+                    cursorline_hl_group = "DiagnosticInfo",
+                })
+            end
+        end
+    end,
+})
+
+local GitSigns = {}
 local ns = vim.api.nvim_create_namespace("gitsigns")
 local refcache = {}
 
@@ -6,13 +32,13 @@ vim.api.nvim_set_hl(0, "GitSignsAdd", { link = "DiagnosticSignOk" })
 vim.api.nvim_set_hl(0, "GitSignsChange", { link = "DiagnosticHint" })
 vim.api.nvim_set_hl(0, "GitSignsDelete", { link = "DiagnosticError" })
 
-function M.get_buftext(bufnr)
+function GitSigns.get_buftext(bufnr)
     local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
     local text = table.concat(lines, "\n") .. "\n"
     return text
 end
 
-function M.get_reftext(bufnr, callback)
+function GitSigns.get_reftext(bufnr, callback)
     local path = vim.api.nvim_buf_get_name(bufnr)
     if path == "" then
         return callback(nil)
@@ -37,7 +63,7 @@ function M.get_reftext(bufnr, callback)
     )
 end
 
-function M.apply_signs(bufnr, diff)
+function GitSigns.apply_signs(bufnr, diff)
     for _, hunk in ipairs(diff) do
         ---@diagnostic disable-next-line: deprecated
         local _, count_a, start_b, count_b = unpack(hunk)
@@ -69,7 +95,7 @@ function M.apply_signs(bufnr, diff)
     end
 end
 
-function M.update()
+function GitSigns.update()
     local vimdiff_opts = {
         result_type = "indices",
         ctxlen = 0,
@@ -84,20 +110,20 @@ function M.update()
         return
     end
 
-    local buftext = M.get_buftext(bufnr)
+    local buftext = GitSigns.get_buftext(bufnr)
     vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 
-    M.get_reftext(bufnr, function(reftext)
+    GitSigns.get_reftext(bufnr, function(reftext)
         refcache[bufnr] = reftext
         if not reftext then
             return
         end
 
         local diff = vim.text.diff(reftext, buftext, vimdiff_opts)
-        M.apply_signs(bufnr, diff)
+        GitSigns.apply_signs(bufnr, diff)
     end)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
-    callback = M.update,
+    callback = GitSigns.update,
 })

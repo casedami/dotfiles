@@ -10,9 +10,11 @@ vim.pack.add({
     "https://github.com/stevearc/conform.nvim",
 })
 
--- Load globals and vim opts first
+-- Load main config first
 require("globals")
 require("options")
+require("keymaps")
+require("autocmds")
 
 -- Load everything else
 vim.g.utils.import_cfg("locplugin")
