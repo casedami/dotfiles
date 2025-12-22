@@ -10,36 +10,10 @@ vim.pack.add({
     "https://github.com/stevearc/conform.nvim",
 })
 
--- General setup
+-- Load globals and vim opts first
 require("globals")
 require("options")
-require("keymaps")
-require("lsp")
-require("marks")
-require("buffers")
-require("statusline")
-require("gitsigns")
-require("splash")
-require("list_dir")
 
--- Use fidget for vim.notify
-local banned_messages = { "No information available" }
-vim.notify = function(msg, ...)
-    for _, banned in ipairs(banned_messages) do
-        if msg == banned then
-            return
-        end
-    end
-    return require("fidget").notify(msg, ...)
-end
-require("fidget").setup({
-    notification = {
-        override_vim_notify = true,
-        window = {
-            winblend = 0,
-        },
-    },
-})
-
--- Plugin setup
-require("plugins")
+-- Load everything else
+vim.g.utils.import_cfg("locplugin")
+vim.g.utils.import_cfg("extplugin")

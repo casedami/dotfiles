@@ -39,6 +39,7 @@ vim.g.special_bufs = {
 local utils = {}
 function utils.diagnostics_available()
     local clients = vim.lsp.get_clients({ bufnr = 0 })
+    ---@type string
     local diagnostics = vim.lsp.protocol.Methods.textDocument_publishDiagnostics
 
     for _, cfg in pairs(clients) do
@@ -54,12 +55,6 @@ function utils.hl_str(hl, str)
     return string.format("%%#%s#%s%%*", hl, str)
 end
 
-function utils.hl_tbl(hl, icons)
-    return vim.tbl_map(function(i)
-        return utils.hl_str(hl, i)
-    end, icons)
-end
-
 function utils.augroup(name)
     return vim.api.nvim_create_augroup("__" .. name, { clear = true })
 end
@@ -71,6 +66,19 @@ function utils.cd_root()
         vim.cmd.pwd()
     else
         vim.notify("No .git root found", vim.log.levels.INFO)
+    end
+end
+
+function utils.import_cfg(dir)
+    local files = vim.fn.globpath(
+        string.format("%s/lua/%s", vim.fn.stdpath("config"), dir),
+        "*.lua",
+        false,
+        true
+    )
+
+    for _, f in ipairs(files) do
+        require(string.format("%s.%s", dir, vim.fn.fnamemodify(f, ":t:r")))
     end
 end
 

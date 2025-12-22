@@ -11,6 +11,9 @@ fzf.setup({
     oldfiles = {
         cwd_only = true,
     },
+    defaults = {
+        color_icons = false,
+    },
 })
 
 fzf.register_ui_select()
@@ -31,7 +34,7 @@ vim.keymap.set("n", "<leader>gd", "<cmd>FzfLua git_diff<cr>", { desc = "Git: dif
 
 vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", { desc = "LSP: definitions", silent = true })
 vim.keymap.set("n", "<leader>lR", "<cmd>FzfLua lsp_references<cr>", { desc = "LSP: search references", silent = true })
-vim.keymap.set("n", "<leader>ld", "<cmd>FzfLua diagnostics_workspace<cr>", { desc = "LSP: search workspace diagnostics", silent = true })
+vim.keymap.set("n", "<leader>dd", "<cmd>FzfLua diagnostics_workspace<cr>", { desc = "LSP: search workspace diagnostics", silent = true })
 
 vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua helptags<cr>", { desc = "Finder: help", silent = true })
 vim.keymap.set("n", "<leader>fH", "<cmd>FzfLua highlights<cr>", { desc = "Finder: highlights", silent = true })

@@ -93,7 +93,7 @@ function M.update()
             return
         end
 
-        local diff = vim.diff(reftext, buftext, vimdiff_opts)
+        local diff = vim.text.diff(reftext, buftext, vimdiff_opts)
         M.apply_signs(bufnr, diff)
     end)
 end

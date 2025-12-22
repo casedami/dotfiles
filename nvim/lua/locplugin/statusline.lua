@@ -14,24 +14,24 @@ M.icons = {
     readonly = Utils.hl_str("DiagnosticHint", Icons.readonly),
     warn = Utils.hl_str("DiagnosticWarn", Icons.diag.warning),
     venv = Utils.hl_str("@property", Icons.venv),
-    location = Utils.hl_tbl("@variable", Icons.location),
+    location = vim.tbl_map(function(x)
+        return Utils.hl_str("@variable", x)
+    end, Icons.location),
 }
 
----Returns a string of n spaces.
----Note: If n is nil, returns a string with 1 space.
+---Returns a string of n spaces where n >= 1.
 ---@param n number?
 ---@return string
 function M.pad(n)
-    n = n or 1
+    n = math.max(n or 1, 1)
     return string.rep(" ", n)
 end
 
----Returns a highlighted diagnostics component.
----Note: if no diagnostics are available, then returns an empty string.
----@return string
+---Returns the current workspace diagnostics, if any.
+---@return string?
 function M.diagnostics()
     if not Utils.diagnostics_available() then
-        return ""
+        return nil
     end
 
     local diag_count = vim.diagnostic.count()
@@ -39,102 +39,94 @@ function M.diagnostics()
     local warn_count = diag_count[2] or 0
 
     if err_count > 0 or warn_count > 0 then
-        local comp = table.concat({
+        return table.concat({
             M.icons.error,
             tostring(err_count),
             M.icons.warn,
             tostring(warn_count),
         }, " ")
-        return comp
     end
 
-    return ""
+    return nil
 end
 
----Returns the highlighted git component via flamingo, if available.
----@return string
+---Returns git info via flamingo, if available.
+---@return string?
 function M.git()
     local root = vim.fs.root(0, ".git")
     if root == nil then
-        return ""
+        return nil
     end
     if cache.git[root] ~= nil then
         return cache.git[root]
     end
     local branch = vim.fn.system("flamingo git")
     if #branch > 0 then
-        local comp = table.concat({
+        local result = table.concat({
             M.icons.branch,
             Utils.hl_str("Type", branch),
         }, " ")
-        cache.git[root] = comp
-        return comp
+        cache.git[root] = result
+        return result
     end
-    return ""
+    return nil
 end
 
 ---Returns the number of lines in the current buffer.
 ---@return string
-function M.flines()
-    local nlines = vim.fn.line("$")
-    return M.icons.fileinfo .. " " .. nlines
+function M.buflines()
+    return M.icons.fileinfo .. " " .. vim.fn.line("$")
 end
 
 ---Returns the location (percentage) of the cursor in the current buffer.
----@return string
-function M.floc()
+---@return string?
+function M.bufloc()
     if vim.g.special_bufs[vim.bo.buftype] then
-        return ""
+        return nil
     end
-    local nlines = vim.fn.line("$")
 
-    local winheight = vim.fn.winheight(0)
-
-    -- If window is taller than file, use last icon
     local idx
-    if winheight >= nlines then
+    local lcount = vim.fn.line("$")
+    if vim.fn.winheight(0) >= lcount then
+        -- If window is taller than file, use last icon
         idx = #Icons.location
     else
         local loc = vim.fn.getpos(".")[2]
-        idx = math.floor((loc - 1) / nlines * #Icons.location) + 1
+        idx = math.floor((loc - 1) / lcount * #Icons.location) + 1
     end
 
-    local comp = table.concat({
+    return table.concat({
         M.icons.location[idx],
         Utils.hl_str("@variable", "%P"),
     }, " ")
-    return comp
 end
 
 ---Returns highlighted buffer meta information: readonly | nomodifiable.
----@return string
-function M.fmeta()
-    local buf_num = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-    local readonly = vim.api.nvim_get_option_value("readonly", { buf = buf_num })
+---@return string?
+function M.bufmeta()
+    local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+    local readonly = vim.api.nvim_get_option_value("readonly", { buf = bufnr })
             and M.icons.readonly
         or ""
-    local nomod = vim.api.nvim_get_option_value("modifiable", { buf = buf_num }) and ""
+    local nomod = vim.api.nvim_get_option_value("modifiable", { buf = bufnr }) and ""
         or M.icons.nomodifiable
-    local comp = table.concat({
-        readonly,
-        nomod,
-    }, "")
-    return comp
+
+    return (#readonly > 0 or #nomod > 0) and table.concat({ readonly, nomod }, "")
+        or nil
 end
 
 ---Returns the size of the current buffer in bytes.
----@return string
-function M.fsize()
-    local fsize = tostring(vim.fn.getfsize(vim.fn.bufname()))
-    if fsize == "-1" then
-        return ""
+---@return string?
+function M.bufsize()
+    local bytecount = tostring(vim.fn.getfsize(vim.fn.bufname()))
+    if bytecount == "-1" then
+        return nil
     end
-    fsize = fsize:gsub("(%d+)%d%d%d$", "%1k")
-    local comp = M.icons.binary .. " " .. fsize
-    return comp
+    return M.icons.binary .. " " .. bytecount:gsub("(%d+)%d%d%d$", "%1k")
 end
 
----Returns the showcmd output
+---Returns the showcmd output.
+---@return string?
 function M.showcmd()
     local out = vim.api.nvim_eval_statusline("%S", {}).str
     local excludes = {
@@ -144,7 +136,7 @@ function M.showcmd()
         ["zz"] = true,
     }
     if #out == 0 or excludes[out] then
-        return ""
+        return nil
     end
     return Utils.hl_str(
         "Preproc",
@@ -155,7 +147,7 @@ end
 ---Returns the path component (via flamingo).
 ---@return string
 function M.path()
-    local fname = vim.api.nvim_buf_get_name(0)
+    local bufname = vim.api.nvim_buf_get_name(0)
     local bufnr = vim.api.nvim_get_current_buf()
     local formatted
     local cases = {
@@ -165,29 +157,28 @@ function M.path()
     }
     if cases[vim.bo.buftype] then
         return cases[vim.bo.buftype]
-    elseif cache.path[fname] ~= nil then
-        formatted = cache.path[fname]
-    elseif fname == "" then
-        return fname
+    elseif cache.path[bufname] ~= nil then
+        formatted = cache.path[bufname]
+    elseif bufname == "" then
+        return bufname
     else
-        formatted = vim.fn.system("flamingo path -f " .. fname)
+        formatted = vim.fn.system("flamingo path -f " .. bufname)
         local head = vim.fn.fnamemodify(formatted, ":h")
         local tail = string.format(
             "%s %s",
             vim.fn.fnamemodify(formatted, ":t"),
             require("mini.icons").get("extension", vim.bo.filetype)
         )
-        cache.path[fname] = head .. "/" .. Utils.hl_str("TODO", tail)
+        cache.path[bufname] = head .. "/" .. Utils.hl_str("TODO", tail)
     end
 
     local modified = vim.api.nvim_get_option_value("modified", { buf = bufnr })
             and M.icons.modified
         or ""
-    local comp = table.concat({
+    return table.concat({
         formatted,
         modified,
     }, M.pad(1))
-    return comp
 end
 
 ---Returns the Neovim prefix component.
@@ -196,7 +187,7 @@ end
 function M.prefix()
     local comp = Icons.neovim
     if vim.api.nvim_eval("len(gettabinfo())") > 1 then
-        comp = vim.fn.tabpagenr()
+        comp = tostring(vim.fn.tabpagenr())
     end
     return Utils.hl_str("@lsp.typemod.keyword.documentation", comp)
 end
@@ -204,33 +195,41 @@ end
 ---Returns the current os_user.
 ---@return string
 function M.user()
-    local comp = Utils.hl_str(
+    return Utils.hl_str(
         "@lsp.typemod.keyword.documentation",
         vim.uv.os_get_passwd()["username"]
     )
-
-    return comp
 end
 
 ---Returns the current venv, if one exists.
----@return string
+---@return string?
 function M.venv()
     local venv = os.getenv("VIRTUAL_ENV")
     if venv then
-        local name = vim.fn.fnamemodify(venv, ":t")
-        local comp = table.concat({
+        return table.concat({
             M.icons.venv,
-            Utils.hl_str("@property", name),
+            Utils.hl_str("@property", vim.fn.fnamemodify(venv, ":t")),
             M.pad(2),
         }, "")
-        return comp
     end
-    return ""
+    return nil
 end
 
 ---Global callback to build the statusline.
 function RenderStatusLine()
-    local left = table.concat({
+    local function filter_nil(...)
+        local result = {}
+        local nargs = select("#", ...)
+        for i = 1, nargs do
+            local val = select(i, ...)
+            if val ~= nil then
+                result[#result + 1] = val
+            end
+        end
+        return result
+    end
+
+    local left = filter_nil(
         M.pad(1),
         M.prefix(),
         M.user(),
@@ -239,22 +238,20 @@ function RenderStatusLine()
         M.git(),
         M.pad(1),
         M.path(),
-        M.fmeta(),
-        M.showcmd(),
-    }, M.pad(1))
-
-    local right = table.concat({
+        M.bufmeta(),
+        M.showcmd()
+    )
+    local right = filter_nil(
         M.diagnostics(),
         M.pad(1),
-        M.fsize(),
+        M.bufsize(),
         M.pad(1),
-        M.flines(),
+        M.buflines(),
         M.pad(1),
-        M.floc(),
-        M.pad(1),
-    }, M.pad(1))
-
-    return table.concat({ left, right }, M.sep)
+        M.bufloc(),
+        M.pad(1)
+    )
+    return table.concat(left, M.pad(1)) .. M.sep .. table.concat(right, M.pad(1))
 end
 
 vim.o.statusline = "%!v:lua.RenderStatusLine()"

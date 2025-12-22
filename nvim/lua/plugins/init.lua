@@ -1,5 +1,0 @@
-require("plugins.colorscheme")
-require("plugins.completion")
-require("plugins.formatter")
-require("plugins.fzf")
-require("plugins.treesitter")

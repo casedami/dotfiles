@@ -1,4 +1,4 @@
-*selfhelp.txt*                                                      2025-12-18
+*selfhelp.txt*                                                      2025-12-22
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
@@ -6,13 +6,13 @@
 ╭──────┬────────────┬────────────────────────────────────────╮
 │ mode │    map     │                  desc                  │
 ├──────┼────────────┼────────────────────────────────────────┤
-│ n    │ <leader>qq │ search bookmarks                       │
 │ n    │ <leader>qa │ add current file                       │
 │ n    │ <leader>qd │ remove current file from bookmark list │
 │ n    │ <leader>q1 │ goto first                             │
 │ n    │ <leader>q2 │ goto second                            │
 │ n    │ <leader>q3 │ goto third                             │
 │ n    │ <leader>q4 │ goto fourth                            │
+│ n    │ <leader>qq │ search bookmarks                       │
 ╰──────┴────────────┴────────────────────────────────────────╯
 
 ==============================================================================
@@ -29,18 +29,14 @@
 ==============================================================================
 3. Diagnostic                                            *selfhelp-diagnostic*
 
-╭──────┬────────────┬────────────────╮
-│ mode │    map     │      desc      │
-├──────┼────────────┼────────────────┤
-│ n    │ <leader>D  │ current line   │
-│ n    │ <leader>dd │ toggle         │
-│ n    │ ]d         │ next           │
-│ n    │ [d         │ prev           │
-│ n    │ ]e         │ next (error)   │
-│ n    │ [e         │ prev (error)   │
-│ n    │ ]w         │ next (warning) │
-│ n    │ [w         │ prev (warning) │
-╰──────┴────────────┴────────────────╯
+╭──────┬────────────┬──────────────╮
+│ mode │    map     │     desc     │
+├──────┼────────────┼──────────────┤
+│ n    │ <leader>D  │ current line │
+│ n    │ <leader>ds │ toggle       │
+│ n    │ ]d         │ next         │
+│ n    │ [d         │ prev         │
+╰──────┴────────────┴──────────────╯
 
 ==============================================================================
 4. Directory                                              *selfhelp-directory*
@@ -48,13 +44,13 @@
 ╭──────┬─────────────┬────────────────────────────────────────────╮
 │ mode │     map     │                    desc                    │
 ├──────┼─────────────┼────────────────────────────────────────────┤
-│ n    │ <leader>cdc │ change directory (fzf)                     │
 │ n    │ <leader>cd. │ change directory to parent of current file │
 │ n    │ <leader>cdr │ change directory to root of current file   │
 │ n    │ <leader>cdu │ change directory to parent of cwd          │
 │ n    │ <leader>cd- │ change directory to previous cwd           │
 │ n    │ <leader>fe  │ list current working directory             │
 │ n    │ <leader>fE  │ list current buffer's directory            │
+│ n    │ <leader>cdc │ change directory (fzf)                     │
 ╰──────┴─────────────┴────────────────────────────────────────────╯
 
 ==============================================================================
@@ -94,12 +90,12 @@
 ╭──────┬────────────┬───────────────────────────────╮
 │ mode │    map     │             desc              │
 ├──────┼────────────┼───────────────────────────────┤
-│ n    │ gd         │ definitions                   │
-│ n    │ <leader>lR │ search references             │
-│ n    │ <leader>ld │ search workspace diagnostics  │
 │ n    │ <leader>lr │ rename symbol under cursor    │
 │ n,v  │ <leader>la │ code actions                  │
 │ n    │ <leader>lh │ highlight symbol under cursor │
+│ n    │ gd         │ definitions                   │
+│ n    │ <leader>lR │ search references             │
+│ n    │ <leader>dd │ search workspace diagnostics  │
 ╰──────┴────────────┴───────────────────────────────╯
 
 ==============================================================================

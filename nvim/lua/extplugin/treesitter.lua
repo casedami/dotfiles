@@ -22,10 +22,9 @@ ts.install({
     "yaml",
 })
 
-local group = vim.g.utils.augroup("TreesitterSetup")
+local group = vim.g.utils.augroup("treesitter_setup")
 local ignore_filetypes = {
     "checkhealth",
-    "lazy",
 }
 
 vim.api.nvim_create_autocmd("FileType", {
