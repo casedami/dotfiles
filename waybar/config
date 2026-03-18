@@ -1,0 +1,58 @@
+// -*- mode: jsonc -*-
+{
+ "layer": "top",
+  "position": "top",
+  "height": 20,
+  "spacing": 12,
+  "reload_style_on_change": true,
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [],
+  "modules-right": [
+    "network",
+    "battery",
+    "clock"
+  ],
+"sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "focused": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": []
+        }
+    },
+  "clock": {
+    "format": "{:%Y-%m-%d}"
+  },
+  "battery": {
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}{capacity}%",
+    "format-full": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["󰁺", "󰁻", "󰁾", "󰂀", "󰁹"]
+  },
+  "network": {
+    "format-wifi": "󱚿 {essid}",
+    "format-ethernet": "󰈁 {ipaddr}/{cidr} ",
+    "format-disconnected": "󱛅 Disconnected"
+  }
+}
