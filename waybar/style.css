@@ -1,0 +1,27 @@
+* {
+    font-family: LilexNerdFont;
+    font-size: 13px;
+    min-height: 0;
+    padding: 0 8px;
+    background-color: transparent;
+}
+
+window#waybar {
+    background-color: #111111;
+    color: #a1a1ac;
+}
+
+#workspaces button {
+    padding: 0px 0px;
+    margin: 6px 4px;
+    border-radius: 50%;
+    color: #a1a1ac;
+}
+
+#workspaces button.focused {
+    color: #c2c2cf;
+}
+
+#workspaces button.urgent {
+    color: #9e5560;
+}
