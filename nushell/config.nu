@@ -89,9 +89,5 @@ $env.config = {
 }
 
 source ~/.zoxide.nu
-<<<<<<< Updated upstream:nushell/.config/nushell/config.nu
-source themes/iceclimber.nu
-=======
 source themes/moon.nu
->>>>>>> Stashed changes:nushell/config.nu
 source completions/git/cmp.nu
