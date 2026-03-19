@@ -1,8 +1,10 @@
 local blink = require("blink.cmp")
 return {
-	cmd = { "typescript-language-server", "--stdio" },
-	filetypes = { "typescript", "typescriptreact", "javascript" },
+	cmd = { "ty", "server" },
+	root_markers = { ".venv", "requirements.txt" },
+	filetypes = { "python" },
 	settings = {},
+	handlers = {},
 	capabilities = vim.tbl_deep_extend(
 		"force",
 		{},

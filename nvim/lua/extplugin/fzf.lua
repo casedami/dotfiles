@@ -1,19 +1,19 @@
 vim.opt.guicursor:remove({ "t:block-blinkon500-blinkoff500-TermCursor" })
 local fzf = require("fzf-lua")
 fzf.setup({
-    winopts = {
-        backdrop = 100,
-        height = 0.6,
-        width = 0.8,
-        row = 0.5,
-        col = 0.5,
-    },
-    oldfiles = {
-        cwd_only = true,
-    },
-    defaults = {
-        color_icons = false,
-    },
+	winopts = {
+		backdrop = 100,
+		height = 0.6,
+		width = 0.8,
+		row = 0.5,
+		col = 0.5,
+	},
+	oldfiles = {
+		cwd_only = true,
+	},
+	defaults = {
+		color_icons = false,
+	},
 })
 
 fzf.register_ui_select()
@@ -46,21 +46,21 @@ vim.keymap.set("n", "<leader>qq", "<cmd>FzfLua args winopts.title='Bookmarks'<cr
 
 -- Grep for todo items
 vim.api.nvim_create_user_command("Todo", function()
-    vim.cmd(
-        [[ lua require("fzf-lua").live_grep({no_esc=true, search="(TODO|BUG|WARN|NOTE|MARK)", winopts = {title="Todo Items"}}) ]]
-    )
+	vim.cmd(
+		[[ lua require("fzf-lua").live_grep({no_esc=true, search="(TODO|BUG|WARN|NOTE|MARK)", winopts = {title="Todo Items"}}) ]]
+	)
 end, { desc = "Grep TODOs", nargs = 0 })
 
 local function cdc(opts)
-    local fzf_lua = require("fzf-lua")
-    opts = opts or {}
-    opts.prompt = "Directories> "
-    opts.actions = {
-        ["default"] = function(selected)
-            vim.cmd("lcd " .. selected[1])
-        end,
-    }
-    fzf_lua.fzf_exec("fd --type d -H -E .git", opts)
+	local fzf_lua = require("fzf-lua")
+	opts = opts or {}
+	opts.prompt = "Directories> "
+	opts.actions = {
+		["default"] = function(selected)
+			vim.cmd("lcd " .. selected[1])
+		end,
+	}
+	fzf_lua.fzf_exec("fd --type d -H -E .git", opts)
 end
 
 -- stylua: ignore

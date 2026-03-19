@@ -1,3 +1,13 @@
+local function cd_root()
+	local root = vim.fs.root(vim.fn.expand("%"), ".git")
+	if root then
+		vim.cmd.lcd(root)
+	else
+		vim.notify("No .git root found", vim.log.levels.INFO)
+	end
+end
+
+
 -- stylua: ignore start
 -- Extend (ignored in selfhelp)
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Extend: center after page down" })
@@ -23,7 +33,7 @@ vim.keymap.set("ca", "packup", "lua vim.pack.update()", { desc = "Misc: shorthan
 -- Directory
 vim.keymap.set("n", "<leader>cd.", "<cmd>lcd %:h<cr>", { desc = "Directory: change directory to parent of current file" })
 vim.keymap.set("n", "<leader>cdu", "<cmd>lcd ..<cr>", { desc = "Directory: change directory to parent of cwd" })
-vim.keymap.set("n", "<leader>cdr", vim.g.utils.cd_root, { desc = "Directory: change directory to root of current file" })
+vim.keymap.set("n", "<leader>cdr", cd_root, { desc = "Directory: change directory to root of current file" })
 vim.keymap.set("n", "<leader>cd-", "<cmd>lcd -<cr>", { desc = "Directory: change directory to previous cwd" })
 
 -- Buffers

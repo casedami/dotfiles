@@ -1,50 +1,44 @@
--- Highlight text on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.g.utils.augroup("highlight_yank"),
+	group = vim.api.nvim_create_augroup("casedami/highlight_on_yank", { clear = true }),
 	desc = "highlight text on yank",
 	callback = function()
 		vim.hl.on_yank()
 	end,
 })
 
--- Open buf to last location
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = vim.g.utils.augroup("last_loc"),
-	desc = "go to last loc when opening buffer",
-	callback = function(event)
-		local exclude = { "gitcommit" }
-		local buf = event.buf
-		if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
-			return
-		end
-		vim.b[buf].lazyvim_last_loc = true
-		local mark = vim.api.nvim_buf_get_mark(buf, '"')
-		local lcount = vim.api.nvim_buf_line_count(buf)
-		if mark[1] > 0 and mark[1] <= lcount then
-			pcall(vim.api.nvim_win_set_cursor, 0, mark)
+	group = vim.api.nvim_create_augroup("casedami/last_loc", { clear = true }),
+	desc = "move cursor to last loc when opening buffer",
+	callback = function(args)
+		local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+		local line_count = vim.api.nvim_buf_line_count(args.buf)
+		if mark[1] > 0 and mark[1] <= line_count then
+			vim.cmd('normal! g`"zz')
 		end
 	end,
 })
 
--- Set term buf opts
-vim.api.nvim_create_autocmd("TermOpen", {
-	group = vim.g.utils.augroup("term"),
-	desc = "set win opts when opening term buf",
-	callback = function()
-		vim.opt_local.spell = false
-		vim.opt_local.number = false
-		vim.opt_local.relativenumber = false
-		vim.opt_local.signcolumn = "no"
-		vim.keymap.set("n", "q", "<cmd>bd!<cr>", { buffer = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("casedami/close_with_q", { clear = true }),
+	desc = "Close with <q>",
+	pattern = {
+		"git",
+		"help",
+		"man",
+		"qf",
+		"scratch",
+	},
+	callback = function(args)
+		if args.match ~= "help" or not vim.bo[args.buf].modifiable then
+			vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
+		end
 	end,
 })
 
 local ns_marks = vim.api.nvim_create_namespace("marksigns")
-
--- Show a-zA-Z marks to status column
 vim.api.nvim_create_autocmd("CursorMoved", {
-	group = vim.g.utils.augroup("marks"),
-	desc = "add marks to signcolumn",
+	group = vim.api.nvim_create_augroup("casedami/marks", { clear = true }),
+	desc = "show a-zA-Z marks in signcolumn",
 	callback = function()
 		local buf = vim.api.nvim_win_get_buf(0)
 		local marks = vim.fn.getmarklist(buf)
@@ -65,9 +59,10 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 	end,
 })
 
+local group_toggle_relnum = vim.api.nvim_create_augroup("casedami/toggle_relnum", {})
 vim.api.nvim_create_autocmd({ "WinEnter" }, {
-	group = vim.g.utils.augroup("toggle_line_numbers_on"),
-	desc = "Toggle relative line numbers on",
+	group = group_toggle_relnum,
+	desc = "toggle relative line numbers on for focused buf",
 	callback = function()
 		if vim.wo.nu then
 			vim.wo.relativenumber = true
@@ -77,8 +72,8 @@ vim.api.nvim_create_autocmd({ "WinEnter" }, {
 	end,
 })
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
-	group = vim.g.utils.augroup("toggle_line_numbers_off"),
-	desc = "Toggle relative line numbers off",
+	group = group_toggle_relnum,
+	desc = "toggle relative line numbers off for unfocused buf(s)",
 	callback = function()
 		if vim.wo.nu then
 			vim.wo.relativenumber = false
