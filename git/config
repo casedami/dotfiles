@@ -1,24 +1,50 @@
-[user]
-	name = Casey Miller
-	email = cd.miller1230@gmail.com
+[alias]
+    aliases = config --get-regexp alias
+    amend = commit --amend --no-edit
+    whoami = !git config user.name && git config user.email
+    a = add
+    aip = add -ip
+    b = branch
+    c = commit --verbose
+    d = diff
+    m = merge
+    r = rebase
+    x = checkout
+
+[commit]
+    template = ~/.config/git/template
+    gpgSign = true
+
+[core]
+    editor = nvim
+    excludesfile = ~/.config/git/ignore
+    pager = delta
+
+[delta]
+    syntax-theme = base16-256
+    side-by-side = true
+    navigate = true
+
+[gpg]
+    format = ssh
 
 [include]
     path = ~/.config/git/.gitconfig-local
 
-[core]
-    compression = 9
-    preloadindex = true
-	editor = nvim
-	excludesfile = ~/.config/git/ignore
-    pager = diff-so-fancy | less --tabs=2 -SRF
-
-[advice]
-    addEmptyPathspec = false
-    pushNonFastForward = false
-    statusHints = false
-
 [init]
   defaultBranch = main
+
+[interactive]
+    diffFilter = delta --color-only
+
+[push]
+    autoSetupRemote = true
+    default = current
+    followTags = true
+
+[pull]
+    default = current
+    rebase = true
 
 [status]
     branch = true
@@ -31,87 +57,6 @@
 [url "git@github.com:"]
     insteadOf = "gh:"
 
-[diff]
-	tool = nvimdiff
-    context = 3
-    renames = copies
-    interHunkContext = 10
-
-[pager]
-    branch = false
-    tag = false
-
-[diff-so-fancy]
-    markEmptyLines = false
-
-[gpg]
-    format = ssh
-
-[commit]
-    template = ~/.config/git/template
-    gpgSign = true
-
-[push]
-    autoSetupRemote = true
-    default = current
-    followTags = true
-
-[pull]
-    default = current
-    rebase = false
-
-[rebase]
-    autoStash = true
-    missingCommitsCheck = true
-
-[log]
-    abbrevCommit = true
-    graphColors = blue,yellow,cyan,magenta,green,red
-
-[branch]
-    sort = -committerdate
-
-[tag]
-    sort = -taggerdate
-
-[alias]
-    aliases = config --get-regexp alias
-    amend = commit --amend --no-edit
-    whoami = !git config user.name && git config user.email
-    a = add
-    aip = add -ip
-    b = branch
-    c = commit
-    ca = commit -a
-    d = diff
-    m = merge
-    r = rebase
-    x = checkout
-
-[color]
-	status = auto
-
-[color "diff"]
-    meta = yellow bold
-    frag = magenta
-    context = white dim
-    whitespace = yellow reverse
-    old = red bold
-    new = green bold
-
-[color "decorate"]
-    HEAD = red
-    branch = magenta
-    tag = yellow
-    remoteBranch = cyan
-
-[color "branch"]
-    current = magenta
-    local = blue
-    remote = cyan
-    upstream = green
-    plain = blue
-
-[color "interactive"]
-    prompt = magenta
-    header = yellow
+[user]
+	name = Casey Miller
+	email = cd.miller1230@gmail.com

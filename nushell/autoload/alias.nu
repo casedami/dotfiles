@@ -4,6 +4,7 @@ alias la = ls -a
 alias ll = ls -l
 alias vim = nvim
 alias fg = job unfreeze
+alias dad = dirs add ~/dotfiles
 # alias tiles = cd ~/mbtileserver; ./mbtileserver --dir ~/mbtileserver/tilesets/ --port 8001 &; cd -
 
 # use yazi to cd
