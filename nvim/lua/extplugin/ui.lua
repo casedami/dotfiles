@@ -1,8 +1,9 @@
 require("fidget").setup({
-    notification = {
-        override_vim_notify = true,
-        window = {
-            winblend = 0,
-        },
-    },
+	notification = {
+		override_vim_notify = true,
+		window = {
+			winblend = 0,
+		},
+	},
 })
+require("gitsigns").setup({})
