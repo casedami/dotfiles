@@ -33,6 +33,7 @@ require("options")
 require("keymaps")
 require("autocmds")
 require("lsp")
+require("ls")
 
 -- load plugins
 local function import_cfg(dir)
@@ -42,7 +43,6 @@ local function import_cfg(dir)
 		require(string.format("%s.%s", dir, vim.fn.fnamemodify(f, ":t:r")))
 	end
 end
-import_cfg("locplugin")
-import_cfg("extplugin")
+import_cfg("plugin")
 
 require("typst-preview").setup({ invert_colors = "auto" })

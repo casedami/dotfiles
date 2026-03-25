@@ -4,14 +4,7 @@ vim.g.icons = {
 	diag = {
 		gutter = "",
 		error = " ",
-		hint = "",
-		info = "",
-		warning = " ",
-	},
-	diff = {
-		add = "┃",
-		delete = "_",
-		change = "┃",
+		other = " ",
 	},
 	location = { "▔", "🮂", "🮃", "🮑", "🮒", "▃", "▂", "▁" },
 	lock = "󰍁",
@@ -54,12 +47,9 @@ vim.opt.undolevels = 1000
 -- ui
 vim.opt.background = "dark"
 vim.opt.conceallevel = 2
-vim.opt.laststatus = 3
 vim.opt.cursorlineopt = "both"
-vim.opt.fillchars = "fold: "
 vim.wo.number = true
 vim.opt.pumheight = 10
-vim.opt.showcmd = false
 vim.opt.showtabline = 0
 vim.opt.signcolumn = "yes:1"
 vim.opt.statuscolumn = "%s%l  "

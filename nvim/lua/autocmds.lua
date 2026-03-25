@@ -1,3 +1,26 @@
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = vim.api.nvim_create_augroup("casedami/splash", { clear = true }),
+	desc = "add keymaps to start screen",
+	callback = function()
+		if vim.fn.argc() ~= 0 then
+			return
+		end
+		local keymaps = {
+			{ key = "f", cmd = "<cmd>FzfLua files<cr>" },
+			{ key = "r", cmd = "<cmd>FzfLua oldfiles<cr>" },
+			{ key = "g", cmd = "<cmd>FzfLua live_grep<cr>" },
+			{ key = "s", cmd = "<cmd>Session select<cr>" },
+			{ key = "qq", cmd = "<cmd>q!<cr>" },
+		}
+
+		vim.api.nvim_set_option_value("modifiable", false, { buf = 1 })
+		for _, m in ipairs(keymaps) do
+			vim.keymap.set("n", m.key, m.cmd, { buffer = true, nowait = true })
+		end
+	end,
+	once = true,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("casedami/highlight_on_yank", { clear = true }),
 	desc = "highlight text on yank",
@@ -20,7 +43,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("casedami/close_with_q", { clear = true }),
-	desc = "Close with <q>",
+	desc = "close with <q>",
 	pattern = {
 		"git",
 		"help",
@@ -29,9 +52,24 @@ vim.api.nvim_create_autocmd("FileType", {
 		"scratch",
 	},
 	callback = function(args)
-		if args.match ~= "help" or not vim.bo[args.buf].modifiable then
-			vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
-		end
+		vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
+	end,
+})
+
+vim.api.nvim_create_autocmd("CmdwinEnter", {
+	group = vim.api.nvim_create_augroup("casedami/persist_cmd_win", { clear = true }),
+	desc = "keep command window open after running command",
+	callback = function(args)
+		vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
+		vim.keymap.set("n", "<C-CR>", "<CR>q:", { buffer = args.buf })
+	end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("casedami/term_close_with_q", { clear = true }),
+	desc = "close with <q>",
+	callback = function(args)
+		vim.keymap.set("n", "q", "<cmd>bd!<cr>", { buffer = args.buf })
 	end,
 })
 

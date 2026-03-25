@@ -84,7 +84,6 @@ require("lualine").setup({
 				end,
 				color = { gui = "italic" },
 			},
-			{ "%S", color = "Todo" },
 		},
 		lualine_x = {},
 		lualine_y = {
@@ -92,9 +91,9 @@ require("lualine").setup({
 				"diagnostics",
 				symbols = {
 					error = vim.g.icons.diag.error,
-					warn = vim.g.icons.diag.warning,
-					info = vim.g.icons.diag.warning,
-					hint = vim.g.icons.diag.warning,
+					warn = vim.g.icons.diag.other,
+					info = vim.g.icons.diag.other,
+					hint = vim.g.icons.diag.other,
 				},
 			},
 		},
