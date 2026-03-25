@@ -1,164 +1,107 @@
-*selfhelp.txt*                                                      2025-12-02
+*selfhelp.txt*                                                      2026-03-25
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
 
-╭──────┬────────────┬────────────────────────────────────────╮
-│ mode │    map     │                  desc                  │
-├──────┼────────────┼────────────────────────────────────────┤
-│ n    │ <leader>qq │ search bookmarks                       │
-│ n    │ <leader>qa │ add current file                       │
-│ n    │ <leader>qd │ remove current file from bookmark list │
-│ n    │ <leader>q1 │ goto first                             │
-│ n    │ <leader>q2 │ goto second                            │
-│ n    │ <leader>q3 │ goto third                             │
-│ n    │ <leader>q4 │ goto fourth                            │
-╰──────┴────────────┴────────────────────────────────────────╯
+╭──────┬───────────┬────────────────────────╮
+│ mode │    map    │          desc          │
+├──────┼───────────┼────────────────────────┤
+│ n    │ <C-%d>    │ goto bookmark %d=[1-6] │
+│ n    │ <leader>b │ search bookmarks       │
+╰──────┴───────────┴────────────────────────╯
 
 ==============================================================================
 2. Buffer                                                    *selfhelp-buffer*
 
-╭──────┬─────────────────┬───────────────────────────────────╮
-│ mode │       map       │               desc                │
-├──────┼─────────────────┼───────────────────────────────────┤
-│ n    │ <localleader>pe │ previous buffer in current window │
-│ n    │ <localleader>ps │ previous buffer in hsplit         │
-│ n    │ <localleader>pv │ previous buffer in vsplit         │
-╰──────┴─────────────────┴───────────────────────────────────╯
+╭──────┬────────────┬───────────────────────────────────╮
+│ mode │    map     │               desc                │
+├──────┼────────────┼───────────────────────────────────┤
+│ n    │ <leader>pe │ previous buffer in current window │
+│ n    │ <leader>ps │ previous buffer in hsplit         │
+│ n    │ <leader>pv │ previous buffer in vsplit         │
+╰──────┴────────────┴───────────────────────────────────╯
 
 ==============================================================================
 3. Diagnostic                                            *selfhelp-diagnostic*
 
-╭──────┬────────────┬────────────────╮
-│ mode │    map     │      desc      │
-├──────┼────────────┼────────────────┤
-│ n    │ <leader>D  │ current line   │
-│ n    │ <leader>dd │ toggle         │
-│ n    │ ]d         │ next           │
-│ n    │ [d         │ prev           │
-│ n    │ ]e         │ next (error)   │
-│ n    │ [e         │ prev (error)   │
-│ n    │ ]w         │ next (warning) │
-│ n    │ [w         │ prev (warning) │
-╰──────┴────────────┴────────────────╯
+╭──────┬────────────────┬──────────────╮
+│ mode │      map       │     desc     │
+├──────┼────────────────┼──────────────┤
+│ n    │ <localleader>d │ current line │
+│ n    │ <localleader>t │ toggle       │
+│ n    │ ]d             │ next         │
+│ n    │ [d             │ prev         │
+╰──────┴────────────────┴──────────────╯
 
 ==============================================================================
 4. Directory                                              *selfhelp-directory*
 
-╭──────┬─────────────┬────────────────────────────────────────────╮
-│ mode │     map     │                    desc                    │
-├──────┼─────────────┼────────────────────────────────────────────┤
-│ n    │ <leader>cdc │ change directory to parent of current file │
-│ n    │ <leader>cdu │ change directory to parent of cwd          │
-│ n    │ <leader>cd- │ change directory to previous cwd           │
-╰──────┴─────────────┴────────────────────────────────────────────╯
+╭──────┬────────────┬────────────────────────────────────────────╮
+│ mode │    map     │                    desc                    │
+├──────┼────────────┼────────────────────────────────────────────┤
+│ n    │ <leader>d. │ change directory to parent of current file │
+│ n    │ <leader>du │ change directory to parent of cwd          │
+│ n    │ <leader>dr │ change directory to root of current file   │
+│ n    │ <leader>d- │ change directory to previous cwd           │
+│ n    │ <leader>e  │ list current working directory             │
+│ n    │ <leader>E  │ list current buffer's directory            │
+│ n    │ <leader>dc │ change directory (fzf)                     │
+╰──────┴────────────┴────────────────────────────────────────────╯
 
 ==============================================================================
 5. Finder                                                    *selfhelp-finder*
 
-╭──────┬────────────┬────────────────────────╮
-│ mode │    map     │          desc          │
-├──────┼────────────┼────────────────────────┤
-│ n    │ <leader>F  │ global                 │
-│ n    │ <leader>ff │ files                  │
-│ n    │ <leader>fr │ recent files           │
-│ n    │ <leader>f, │ open buffers           │
-│ n    │ <leader>fR │ resume                 │
-│ n    │ <leader>fg │ grep                   │
-│ n    │ <leader>fG │ grep word under cursor │
-│ n    │ <leader>fh │ help                   │
-│ n    │ <leader>fH │ highlights             │
-│ n    │ <leader>fm │ marks                  │
-│ n    │ <leader>f: │ command history        │
-│ n    │ <leader>f/ │ search history         │
-│ n    │ <leader>fe │ Toggle netrw buffer    │
-╰──────┴────────────┴────────────────────────╯
+╭──────┬───────────┬──────────────╮
+│ mode │    map    │     desc     │
+├──────┼───────────┼──────────────┤
+│ n    │ <leader>F │ resume       │
+│ n    │ <leader>f │ files        │
+│ n    │ <leader>r │ recent files │
+│ n    │ <leader>o │ open buffers │
+│ n    │ <leader>g │ grep         │
+│ n    │ <leader>h │ help         │
+│ n    │ <leader>H │ highlights   │
+╰──────┴───────────┴──────────────╯
 
 ==============================================================================
 6. Git                                                          *selfhelp-git*
 
-╭──────┬────────────┬────────╮
-│ mode │    map     │  desc  │
-├──────┼────────────┼────────┤
-│ n    │ <leader>G  │ status │
-│ n    │ <leader>GL │ log    │
-│ n    │ <leader>GD │ diff   │
-╰──────┴────────────┴────────╯
+╭──────┬───────────┬────────╮
+│ mode │    map    │  desc  │
+├──────┼───────────┼────────┤
+│ n    │ <leader>G │ status │
+╰──────┴───────────┴────────╯
 
 ==============================================================================
 7. LSP                                                          *selfhelp-lsp*
 
-╭──────┬────────────┬───────────────────────────────╮
-│ mode │    map     │             desc              │
-├──────┼────────────┼───────────────────────────────┤
-│ n    │ gd         │ definitions                   │
-│ n    │ <leader>lR │ search references             │
-│ n    │ <leader>ls │ search workspace symbols      │
-│ n    │ <leader>li │ search incoming calls         │
-│ n    │ <leader>lo │ search outgoing calls         │
-│ n    │ <leader>ld │ search workspace diagnostics  │
-│ n    │ <leader>lr │ rename symbol under cursor    │
-│ n,v  │ <leader>la │ code actions                  │
-│ n    │ <leader>lh │ highlight symbol under cursor │
-╰──────┴────────────┴───────────────────────────────╯
+╭──────┬────────────────┬──────────────────────────────╮
+│ mode │      map       │             desc             │
+├──────┼────────────────┼──────────────────────────────┤
+│ n    │ <localleader>r │ rename symbol under cursor   │
+│ n,v  │ <localleader>a │ code actions                 │
+│ n    │ <localleader>D │ search workspace diagnostics │
+│ n    │ gd             │ definitions                  │
+│ n    │ grr            │ search references            │
+╰──────┴────────────────┴──────────────────────────────╯
 
 ==============================================================================
 8. Misc                                                        *selfhelp-misc*
 
-╭──────┬────────────────┬──────────────────────────────────────────╮
-│ mode │      map       │                   desc                   │
-├──────┼────────────────┼──────────────────────────────────────────┤
-│ n    │ <localleader>l │ open pacman                              │
-│ n    │ <leader>?      │ open selfhelp                            │
-│ n    │ |              │ scratch line                             │
-│ v    │ |              │ scratch selected lines                   │
-│ n    │ <C-;>          │ clear cmd line                           │
-│ n    │ <C-'>          │ clear search highlights                  │
-│ n    │ <leader>cdd    │ change directory to root of current file │
-╰──────┴────────────────┴──────────────────────────────────────────╯
+╭──────┬───────────┬───────────────╮
+│ mode │    map    │     desc      │
+├──────┼───────────┼───────────────┤
+│ n    │ <leader>? │ open selfhelp │
+╰──────┴───────────┴───────────────╯
 
 ==============================================================================
-9. Movement                                                *selfhelp-movement*
+9. Term                                                        *selfhelp-term*
 
-╭──────┬───────┬─────────────────────────────╮
-│ mode │  map  │            desc             │
-├──────┼───────┼─────────────────────────────┤
-│ c    │ <C-k> │ go backwards in cmd history │
-│ c    │ <C-j> │ go forwards in cmd history  │
-╰──────┴───────┴─────────────────────────────╯
-
-==============================================================================
-10. Tab                                                         *selfhelp-tab*
-
-╭──────┬────────────────┬──────────╮
-│ mode │      map       │   desc   │
-├──────┼────────────────┼──────────┤
-│ n    │ <localleader>] │ next     │
-│ n    │ <localleader>[ │ previous │
-│ n    │ <leader>tc     │ new      │
-│ n    │ <leader>td     │ close    │
-╰──────┴────────────────┴──────────╯
-
-==============================================================================
-11. Term                                                       *selfhelp-term*
-
-╭──────┬────────────┬────────────────╮
-│ mode │    map     │      desc      │
-├──────┼────────────┼────────────────┤
-│ n    │ <leader>ts │ open in hsplit │
-│ n    │ <leader>tv │ open in vsplit │
-╰──────┴────────────┴────────────────╯
-
-==============================================================================
-12. Window                                                   *selfhelp-window*
-
-╭──────┬───────┬─────────────╮
-│ mode │  map  │    desc     │
-├──────┼───────┼─────────────┤
-│ n,v  │ <C-h> │ focus left  │
-│ n,v  │ <C-j> │ focus down  │
-│ n,v  │ <C-k> │ focus up    │
-│ n,v  │ <C-l> │ focus right │
-╰──────┴───────┴─────────────╯
+╭──────┬────────┬────────────────╮
+│ mode │  map   │      desc      │
+├──────┼────────┼────────────────┤
+│ n    │ <c-t>s │ open in hsplit │
+│ n    │ <c-t>v │ open in vsplit │
+╰──────┴────────┴────────────────╯
 
 vim:tw=78:ts=8:noet:ft=help:norl:

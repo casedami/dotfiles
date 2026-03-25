@@ -31,7 +31,7 @@ local function get_dir_contents(dir)
 	return result
 end
 
-local function list_dir(cwd)
+local function ls(cwd)
 	local result = {}
 	if cache[cwd] ~= nil then
 		result = cache[cwd]
@@ -46,8 +46,8 @@ local function list_dir(cwd)
 end
 
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>fe", function() list_dir(vim.fn.getcwd()) end, { desc = "Directory: list current working directory" })
-vim.keymap.set("n", "<leader>fE", function() list_dir(vim.fn.expand("%:p:h")) end, { desc = "Directory: list current buffer's directory" })
+vim.keymap.set("n", "<leader>e", function() ls(vim.fn.getcwd()) end, { desc = "Directory: list current working directory" })
+vim.keymap.set("n", "<leader>E", function() ls(vim.fn.expand("%:p:h")) end, { desc = "Directory: list current buffer's directory" })
 
 vim.api.nvim_create_autocmd({"ShellCmdPost", "BufWritePost"}, {
 	group = vim.api.nvim_create_augroup("casedami/invalidate_list_dir_cache", { clear = true }),
