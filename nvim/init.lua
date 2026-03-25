@@ -44,5 +44,3 @@ local function import_cfg(dir)
 	end
 end
 import_cfg("plugin")
-
-require("typst-preview").setup({ invert_colors = "auto" })
