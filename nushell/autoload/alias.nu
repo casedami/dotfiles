@@ -5,7 +5,6 @@ alias ll = ls -l
 alias vim = nvim
 alias fg = job unfreeze
 alias dad = dirs add ~/dotfiles
-# alias tiles = cd ~/mbtileserver; ./mbtileserver --dir ~/mbtileserver/tilesets/ --port 8001 &; cd -
 
 # use yazi to cd
 def --env P [...args] {
@@ -16,6 +15,17 @@ def --env P [...args] {
 		cd $cwd
 	}
 	rm -fp $tmp
+}
+
+def --env cdc [] {
+  let dir = (
+    ls **/**
+    | where type == dir
+    | get name
+    | str join (char nl)
+    | fzf --no-multi
+  )
+  cd $dir
 }
 
 def str-color [c, s: string] {

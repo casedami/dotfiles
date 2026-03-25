@@ -18,12 +18,12 @@
 [core]
     editor = nvim
     excludesfile = ~/.config/git/ignore
-    pager = delta
 
-[delta]
-    syntax-theme = base16-256
-    side-by-side = true
-    navigate = true
+[diff]
+    external = difft
+
+[pager]
+    diff = less -R
 
 [gpg]
     format = ssh
@@ -32,10 +32,7 @@
     path = ~/.config/git/.gitconfig-local
 
 [init]
-  defaultBranch = main
-
-[interactive]
-    diffFilter = delta --color-only
+    defaultBranch = main
 
 [push]
     autoSetupRemote = true
