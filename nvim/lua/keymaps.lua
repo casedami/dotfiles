@@ -49,8 +49,8 @@ vim.api.nvim_create_user_command("Drop", function()
   vim.cmd("argdelete %")
 end, { nargs = 0 })
 
-for i=1,6 do
-    vim.keymap.set("n", string.format("<C-%d>", i), function() vim.cmd(string.format("silent! %dargument", i)) end, { desc = "Bookmarks: goto bookmark %d=[1-6]" })
+for i=1,7 do
+    vim.keymap.set("n", string.format("<C-%d>", i), function() vim.cmd(string.format("silent! %dargument", i)) end, { desc = "Bookmarks: goto bookmark %d=[1-7]" })
 end
 
 vim.api.nvim_create_user_command("Scratch", function()
