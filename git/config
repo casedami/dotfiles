@@ -3,13 +3,21 @@
     amend = commit --amend --no-edit
     whoami = !git config user.name && git config user.email
     a = add
-    aip = add -ip
     b = branch
     c = commit --verbose
     d = diff
+    dt = difftool -d
     m = merge
     r = rebase
     x = checkout
+    wa = worktree add
+    wr = worktree remove
+    wl = worktree list
+    s = !nu --config ~/dotfiles/nushell/config.nu -c git-status-pretty
+    l = "!f() { nu --config ~/dotfiles/nushell/config.nu -c \"git-log-pretty $*\"; }; f"
+    xc = !nu --config ~/dotfiles/nushell/config.nu -c git-checkout-fzf
+    ac = !nu --config ~/dotfiles/nushell/config.nu -c git-add-fzf
+    q = !nu --config ~/dotfiles/nushell/config.nu -c git-conflicts
 
 [commit]
     template = ~/.config/git/template
@@ -21,9 +29,10 @@
 
 [diff]
     external = difft
+    tool = nvim_difftool
 
-[pager]
-    diff = less -R
+[difftool "nvim_difftool"]
+    cmd = nvim -c "\"packadd nvim.difftool\"" -c "\"DiffTool $LOCAL $REMOTE\""
 
 [gpg]
     format = ssh
