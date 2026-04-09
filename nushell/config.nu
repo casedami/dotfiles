@@ -2,57 +2,35 @@ use std/dirs
 
 $env.config = {
     show_banner: false
-    ls: { use_ls_colors: true }
-    rm: { always_trash: false }
-
+    ls: {use_ls_colors: true}
+    rm: {always_trash: false}
     table: {
         mode: rounded
         index_mode: always
         show_empty: false
-        padding: { left: 1, right: 1 }
-        trim: {
-            methodology: truncating
-            wrapping_try_keep_words: true
-            truncating_suffix: "..."
-        }
+        padding: {left: 1, right: 1}
+        trim: {methodology: truncating, wrapping_try_keep_words: true, truncating_suffix: "..."}
         header_on_separator: false
     }
-
     error_style: "fancy"
-
-    display_errors: {
-        exit_code: false
-        termination_signal: false
-    }
-
+    display_errors: {exit_code: false, termination_signal: false}
     datetime_format: {}
-
     history: {
         max_size: 5000
         sync_on_enter: true
         file_format: "sqlite"
         isolation: true
     }
-
     completions: {
         case_sensitive: false
         quick: true
         partial: true
         algorithm: "fuzzy"
         sort: "smart"
-        external: {
-            enable: true
-            max_results: 100
-            completer: null
-        }
+        external: {enable: true, max_results: 100, completer: null}
         use_ls_colors: true
     }
-
-    cursor_shape: {
-        vi_insert: line
-        vi_normal: block
-    }
-
+    cursor_shape: {vi_insert: line, vi_normal: block}
     footer_mode: 20
     float_precision: 2
     buffer_editor: nvim
@@ -70,7 +48,6 @@ $env.config = {
     }
     render_right_prompt_on_last_line: false
     recursion_limit: 50
-
     plugin_gc: {
         default: {
             enabled: true
@@ -78,16 +55,19 @@ $env.config = {
         }
         plugins: {}
     }
-
     hooks: {
-        pre_prompt: [{ null }] # run before the prompt is shown
-        pre_execution: [{ null }] # run before the repl input is run
+        pre_prompt: [
+            { null }
+        ]
+        pre_execution: [
+            { null }
+        ]
         env_change: {}
         display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
-        command_not_found: { null } # return an error message when a command is not found
+        command_not_found: { null }
     }
 }
 
 source ~/.zoxide.nu
-source themes/moon.nu
-source completions/git/cmp.nu
+source themes/hojicha.nu
+source gitcmd.nu # source here instead of autoload/ to expose to git aliases

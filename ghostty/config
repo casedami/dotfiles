@@ -1,7 +1,7 @@
 font-family = "Lilex Nerd Font"
 font-size = 14
 
-theme = moon
+theme = hojicha
 gtk-custom-css = tabbar-style.css
 mouse-hide-while-typing = true
 
@@ -45,3 +45,4 @@ keybind = ctrl+a>k=goto_split:up
 keybind = ctrl+a>j=goto_split:down
 keybind = shift+enter=text:\x1b\r
 keybind = ctrl+enter=unbind
+keybind = ctrl+a>t=prompt_tab_title
