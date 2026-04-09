@@ -55,4 +55,4 @@ local function cdc(opts)
 end
 
 -- stylua: ignore
-vim.keymap.set( "n", "<leader>dc", cdc, { desc = "Directory: change directory (fzf)" })
+vim.keymap.set( "n", "<leader>cc", cdc, { desc = "Directory: change directory (fzf)" })

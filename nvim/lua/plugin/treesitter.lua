@@ -20,7 +20,7 @@ local ft_parsers = {
 	vimdoc = "vimdoc",
 	yaml = "yaml",
 }
-ts.install(vim.iter(vim.tbl_values(ft_parsers)):flatten():totable()):wait(90000) -- force synchronous 1min 30sec wait
+ts.install(vim.iter(vim.tbl_values(ft_parsers)):flatten():totable())
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("casedami/treesitter", { clear = true }),

@@ -14,21 +14,12 @@ local function hl_content(cwd, dirs, files)
 end
 
 local function get_dir_contents(dir)
-	local result = {
+	return {
 		---@type table<string[]>
-		dirs = {},
+		dirs = vim.fn.systemlist(string.format("cd %s; ls -d */ .*/ 2>/dev/null", dir)),
 		---@type table<string[]>
-		files = {},
+		files = vim.fn.systemlist(string.format("cd %s; ls -pA | grep -v /", dir)),
 	}
-
-	local dirs = vim.fn.systemlist(string.format("cd %s; ls -a | where type == dir | get name | to text", dir))
-	result.dirs = vim.tbl_map(function(s)
-		return s .. "/"
-	end, dirs)
-
-	---@type table<string[]>
-	result.files = vim.fn.systemlist(string.format("cd %s; ls -a | where type == file | get name | to text", dir))
-	return result
 end
 
 local function ls(cwd)

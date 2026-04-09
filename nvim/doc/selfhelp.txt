@@ -1,4 +1,4 @@
-*selfhelp.txt*                                                      2026-03-26
+*selfhelp.txt*                                                      2026-04-09
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
@@ -16,9 +16,9 @@
 ╭──────┬────────────┬───────────────────────────────────╮
 │ mode │    map     │               desc                │
 ├──────┼────────────┼───────────────────────────────────┤
-│ n    │ <leader>pe │ previous buffer in current window │
-│ n    │ <leader>ps │ previous buffer in hsplit         │
-│ n    │ <leader>pv │ previous buffer in vsplit         │
+│ n    │ <leader>le │ previous buffer in current window │
+│ n    │ <leader>ls │ previous buffer in hsplit         │
+│ n    │ <leader>lv │ previous buffer in vsplit         │
 ╰──────┴────────────┴───────────────────────────────────╯
 
 ==============================================================================
@@ -27,8 +27,8 @@
 ╭──────┬────────────────┬──────────────────────────────╮
 │ mode │      map       │             desc             │
 ├──────┼────────────────┼──────────────────────────────┤
-│ n    │ <localleader>d │ current line                 │
-│ n    │ <localleader>t │ toggle                       │
+│ n    │ grd            │ current line                 │
+│ n    │ grT            │ toggle                       │
 │ n    │ ]d             │ next                         │
 │ n    │ [d             │ prev                         │
 │ n    │ <localleader>D │ search workspace diagnostics │
@@ -40,13 +40,13 @@
 ╭──────┬────────────┬────────────────────────────────────────────╮
 │ mode │    map     │                    desc                    │
 ├──────┼────────────┼────────────────────────────────────────────┤
-│ n    │ <leader>d. │ change directory to parent of current file │
-│ n    │ <leader>du │ change directory to parent of cwd          │
-│ n    │ <leader>dr │ change directory to root of current file   │
-│ n    │ <leader>d- │ change directory to previous cwd           │
+│ n    │ <leader>cd │ change directory to parent of current file │
+│ n    │ <leader>cu │ change directory to parent of cwd          │
+│ n    │ <leader>cr │ change directory to root of current file   │
+│ n    │ <leader>c- │ change directory to previous cwd           │
 │ n    │ <leader>e  │ list current working directory             │
 │ n    │ <leader>E  │ list current buffer's directory            │
-│ n    │ <leader>dc │ change directory (fzf)                     │
+│ n    │ <leader>cc │ change directory (fzf)                     │
 ╰──────┴────────────┴────────────────────────────────────────────╯
 
 ==============================================================================
@@ -76,14 +76,12 @@
 ==============================================================================
 7. LSP                                                          *selfhelp-lsp*
 
-╭──────┬────────────────┬────────────────────────────╮
-│ mode │      map       │            desc            │
-├──────┼────────────────┼────────────────────────────┤
-│ n    │ <localleader>r │ rename symbol under cursor │
-│ n,v  │ <localleader>a │ code actions               │
-│ n    │ gd             │ definitions                │
-│ n    │ grr            │ search references          │
-╰──────┴────────────────┴────────────────────────────╯
+╭──────┬─────┬───────────────────╮
+│ mode │ map │       desc        │
+├──────┼─────┼───────────────────┤
+│ n    │ gd  │ definitions       │
+│ n    │ grr │ search references │
+╰──────┴─────┴───────────────────╯
 
 ==============================================================================
 8. Misc                                                        *selfhelp-misc*

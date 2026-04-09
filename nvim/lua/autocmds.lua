@@ -1,3 +1,9 @@
+vim.filetype.add({
+	pattern = {
+		[".*/git/config"] = "gitconfig",
+	},
+})
+
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = vim.api.nvim_create_augroup("casedami/splash", { clear = true }),
 	desc = "add keymaps to start screen",
@@ -74,7 +80,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 local ns_marks = vim.api.nvim_create_namespace("marksigns")
-vim.api.nvim_create_autocmd("CursorMoved", {
+vim.api.nvim_create_autocmd({ "MarkSet", "CursorMoved" }, {
 	group = vim.api.nvim_create_augroup("casedami/marks", { clear = true }),
 	desc = "show a-zA-Z marks in signcolumn",
 	callback = function()
@@ -98,7 +104,7 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 })
 
 local group_toggle_relnum = vim.api.nvim_create_augroup("casedami/toggle_relnum", {})
-vim.api.nvim_create_autocmd({ "WinEnter" }, {
+vim.api.nvim_create_autocmd({ "WinEnter", "BufReadPost" }, {
 	group = group_toggle_relnum,
 	desc = "toggle relative line numbers on for focused buf",
 	callback = function()

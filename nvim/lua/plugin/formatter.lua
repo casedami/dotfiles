@@ -7,6 +7,7 @@ require("conform").setup({
 		cpp = { "clang-format" },
 		rust = { "rustfmt" },
 		typst = { lsp_format = "fallback" },
+		nu = { "nufmt" },
 		["_"] = { "trim_whitespace" },
 	},
 	format_on_save = {

@@ -41,9 +41,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- lsp
     -- stylua: ignore start
-    vim.keymap.set("n", "<localleader>r", vim.lsp.buf.rename, { buffer = bufnr, desc = "LSP: rename symbol under cursor" })
-    vim.keymap.set({ "n", "v" }, "<localleader>a", vim.lsp.buf.code_action, { buffer = bufnr, desc = "LSP: code actions" })
-    vim.keymap.set("n", "<localleader>w", function()
+    vim.keymap.set("n", "grc", function()
         vim.lsp.buf.document_highlight()
         vim.api.nvim_create_autocmd("CursorMoved", {
             group = vim.api.nvim_create_augroup("casedami/clear_ref_his", { clear = true }),
@@ -62,8 +60,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local toggle_diagnostics = function()
         vim.diagnostic.enable(not vim.diagnostic.is_enabled())
     end
-    vim.keymap.set("n", "<localleader>d", vim.diagnostic.open_float, { buffer = bufnr, desc = "Diagnostic: current line" })
-    vim.keymap.set("n", "<localleader>t", toggle_diagnostics, { buffer = bufnr, desc = "Diagnostic: toggle" })
+    vim.keymap.set("n", "grd", vim.diagnostic.open_float, { buffer = bufnr, desc = "Diagnostic: current line" })
+    vim.keymap.set("n", "grT", toggle_diagnostics, { buffer = bufnr, desc = "Diagnostic: toggle" })
     local djump = function(count)
         return function()
             vim.diagnostic.jump({

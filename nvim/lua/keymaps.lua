@@ -20,21 +20,25 @@ vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Extend: mo
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Extend: move line down" })
 vim.keymap.set("n", "zp", "vipzf", { desc = "Extend: fold inside paragraph" })
 vim.keymap.set("n", "zP", "vapzf", { desc = "Extend: fold around paragraph" })
+vim.keymap.set("n", "<left>", "h", { desc = "Extend: basic navigation" })
+vim.keymap.set("n", "<down>", "j", { desc = "Extend: basic navigation" })
+vim.keymap.set("n", "<up>", "k", { desc = "Extend: basic navigation" })
+vim.keymap.set("n", "<right>", "l", { desc = "Extend: basic navigation" })
 
 -- misc
 vim.keymap.set("n", "<leader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open selfhelp" })
-vim.keymap.set("ca", "packup", "lua vim.pack.update()", { desc = "Misc: shorthand for updating plugins" })
+vim.keymap.set("ca", "pud", "lua vim.pack.update()", { desc = "Misc: shorthand for updating plugins" })
 
 -- directory
-vim.keymap.set("n", "<leader>d.", "<cmd>lcd %:h<cr>", { desc = "Directory: change directory to parent of current file" })
-vim.keymap.set("n", "<leader>du", "<cmd>lcd ..<cr>", { desc = "Directory: change directory to parent of cwd" })
-vim.keymap.set("n", "<leader>dr", cd_root, { desc = "Directory: change directory to root of current file" })
-vim.keymap.set("n", "<leader>d-", "<cmd>lcd -<cr>", { desc = "Directory: change directory to previous cwd" })
+vim.keymap.set("n", "<leader>cd", "<cmd>lcd %:h<cr>", { desc = "Directory: change directory to parent of current file" })
+vim.keymap.set("n", "<leader>cu", "<cmd>lcd ..<cr>", { desc = "Directory: change directory to parent of cwd" })
+vim.keymap.set("n", "<leader>cr", cd_root, { desc = "Directory: change directory to root of current file" })
+vim.keymap.set("n", "<leader>c-", "<cmd>lcd -<cr>", { desc = "Directory: change directory to previous cwd" })
 
 -- buffers
-vim.keymap.set("n", "<leader>pe", "<cmd>b#<cr>", { desc = "Buffer: previous buffer in current window" })
-vim.keymap.set("n", "<leader>ps", "<cmd>sp | b#<cr>", { desc = "Buffer: previous buffer in hsplit" })
-vim.keymap.set("n", "<leader>pv", "<cmd>vsp | b#<cr>", { desc = "Buffer: previous buffer in vsplit" })
+vim.keymap.set("n", "<leader>le", "<cmd>b#<cr>", { desc = "Buffer: previous buffer in current window" })
+vim.keymap.set("n", "<leader>ls", "<cmd>sp | b#<cr>", { desc = "Buffer: previous buffer in hsplit" })
+vim.keymap.set("n", "<leader>lv", "<cmd>vsp | b#<cr>", { desc = "Buffer: previous buffer in vsplit" })
 
 -- term
 vim.keymap.set("n", "<c-t>s", "<cmd>bel20new | term<cr>i", { desc = "Term: open in hsplit" })
@@ -49,8 +53,8 @@ vim.api.nvim_create_user_command("Drop", function()
   vim.cmd("argdelete %")
 end, { nargs = 0 })
 
-for i=1,7 do
-    vim.keymap.set("n", string.format("<C-%d>", i), function() vim.cmd(string.format("silent! %dargument", i)) end, { desc = "Bookmarks: goto bookmark %d=[1-7]" })
+for i=1,5 do
+    vim.keymap.set("n", string.format("<C-%d>", i), function() vim.cmd(string.format("silent! %dargument", i)) end, { desc = "Bookmarks: goto bookmark %d=[1-5]" })
 end
 
 vim.api.nvim_create_user_command("Scratch", function()
