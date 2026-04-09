@@ -1,28 +1,29 @@
 vim.pack.add({
-	"https://github.com/j-hui/fidget.nvim",
-	"https://github.com/casedami/session.nvim",
-	"https://github.com/casedami/heron.nvim",
-	"https://github.com/casedami/neomodern.nvim",
-	"https://github.com/lewis6991/gitsigns.nvim",
-	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
-	"https://github.com/ibhagwan/fzf-lua",
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-	"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
-	"https://github.com/stevearc/conform.nvim",
-	"https://github.com/chomosuke/typst-preview.nvim",
-	"https://github.com/nvim-lualine/lualine.nvim",
+	{ src = "gh:/saghen/blink.cmp", version = vim.version.range("1.*") },
+	"gh:/stevearc/conform.nvim",
+	"gh:/j-hui/fidget.nvim",
+	"gh:/ibhagwan/fzf-lua",
+	"gh:/lewis6991/gitsigns.nvim",
+	"gh:/casedami/neomodern.nvim",
+	{ src = "gh:/nvim-treesitter/nvim-treesitter", version = "main" },
+	"gh:/nvim-treesitter/nvim-treesitter-textobjects",
+	"gh:/casedami/session.nvim",
+	"gh:/chomosuke/typst-preview.nvim",
 })
 
 -- load colorscheme first
 require("neomodern").setup({
-	theme = "moon",
+	theme = "hojicha",
 	gutter = {
 		cursorline = true,
 	},
 	overrides = {
 		default = {
-			constant = "#889ab8",
-			line = "#19191e",
+			constant = "#9e6057",
+			comment = "#4f4c4c",
+		},
+		hlgroups = {
+			EndOfBuffer = { link = "Operator" },
 		},
 	},
 })
@@ -34,6 +35,7 @@ require("keymaps")
 require("autocmds")
 require("lsp")
 require("ls")
+require("statusline")
 
 -- load plugins
 local function import_cfg(dir)
@@ -44,3 +46,7 @@ local function import_cfg(dir)
 	end
 end
 import_cfg("plugin")
+require("vim._core.ui2").enable({})
+
+-- load opt-in plugins
+vim.cmd("packadd nvim.undotree")
