@@ -4,7 +4,7 @@ local function hl_content(cwd, dirs, files)
 	local result = {}
 	result[1] = { cwd .. "\n\n", "Function" }
 	for _, d in ipairs(dirs) do
-		result[#result + 1] = { d .. "\n", "String" }
+		result[#result + 1] = { d .. "\n", "Directory" }
 	end
 
 	for _, f in ipairs(files) do
