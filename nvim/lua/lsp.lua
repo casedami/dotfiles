@@ -1,4 +1,5 @@
 vim.lsp.enable({
+	"nu",
 	"ty",
 	"clangd",
 	"luals",
