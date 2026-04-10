@@ -37,18 +37,18 @@ $env.config.keybindings = [
         event: {send: executehostcommand, cmd: "Fexplore"}
     }
     {
+        name: open_sys_diagnostics
+        modifier: control
+        keycode: char_t
+        mode: [vi_normal]
+        event: {send: executehostcommand, cmd: "btm"}
+    }
+    {
         name: go_home
         modifier: control
         keycode: char_h
         mode: [vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "cd ~"}
-    }
-    {
-        name: git_status
-        modifier: control
-        keycode: char_g
-        mode: [vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "git status"}
     }
     {
         name: open_command_editor
