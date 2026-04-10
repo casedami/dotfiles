@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# install homebrew
-curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | sh
-
 set -euo pipefail
 
 info() {
@@ -44,9 +41,8 @@ install_rust_tools() {
         "just"
         "ripgrep"
         "stylua"
-        "tree-sitter-cli"
-        "bat"
         "macchina"
+        "--locked bat"
         "--locked yazi-fm yazi-cli"
         "--locked zoxide"
         "--locked bottom"
