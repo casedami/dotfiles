@@ -5,3 +5,4 @@ lazy-lock.json
 history.*
 allowed_signers
 .gitconfig-local
+nvim-pack-lock.json
