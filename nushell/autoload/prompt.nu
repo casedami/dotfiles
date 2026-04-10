@@ -56,10 +56,27 @@ def _git [] {
             let staged = $status_lines | where {|line| ($line | str substring 0..0) =~ "[MADRC]"} | length
             let untracked = $status_lines | where {|line| ($line | str starts-with "??")} | length
 
-            mut indicators = $"(ansi $theme.string)"
-            if $unstaged > 0 { $indicators += "*" }
-            if $staged > 0 { $indicators += "+" }
-            if $untracked > 0 { $indicators += "?" }
+            let ahead_behind = do { git rev-list --count --left-right @{upstream}...HEAD } | complete
+            mut indicators = ""
+            let color_ahead_behind = $"(ansi $theme.number)"
+            if $ahead_behind.exit_code == 0 {
+                let counts = $ahead_behind.stdout | str trim | split row "\t"
+                if ($counts | length) == 2 {
+                    let behind = $counts.0 | into int
+                    let ahead = $counts.1 | into int
+                    if $behind > 0 { $indicators += $" ($color_ahead_behind)↓($behind)" }
+                    if $ahead > 0 { $indicators += $" ($color_ahead_behind)↑($ahead)" }
+                }
+            }
+
+            let color_status = $"(ansi $theme.string)"
+            if $unstaged > 0 { $indicators += $" ($color_status)*" }
+            if $staged > 0 { $indicators += $" ($color_status)+" }
+            if $untracked > 0 { $indicators += $" ($color_status)?" }
+
+            if ($indicators | is-not-empty) {
+                $indicators = $indicators | str replace --all " " $"(ansi $theme.operator):"
+            }
 
             $" (ansi i)(ansi $theme.alt)($branch)($indicators)(ansi reset)"
         } else {
