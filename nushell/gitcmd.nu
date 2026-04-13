@@ -31,7 +31,7 @@ def --env git-checkout-fzf [] {
     }
 }
 
-def --env git-log-pretty [n: int = 10, --all(-a)] {
+def --env git-log-tbl [n: int = 10, --all(-a)] {
     mut flags = ""
     if $all {
         $flags = "-a"
@@ -72,7 +72,7 @@ def --env git-log-pretty [n: int = 10, --all(-a)] {
     }
 }
 
-def --env git-status-pretty [] {
+def --env git-status-tbl [] {
     let status = (git status -s)
     let branch = (
         $status
@@ -164,4 +164,24 @@ def git-conflicts [] {
     } else {
         nvim -q $tmpfile
     }
+}
+
+let abbrevs = {
+    ga: 'git add'
+    gb: 'git branch'
+    gc: 'git commit -v'
+    gca: 'git commit --amend'
+    gd: 'git diff'
+    gdt: 'git difftool -d'
+    gm: 'git merge'
+    gr: 'git rebase'
+    gx: 'git switch'
+    gwa: 'git worktree add'
+    gwr: 'git worktree remove'
+    gwl: 'git worktree list'
+    gs: 'git-status-tbl'
+    gl: 'git-log-tbl'
+    gxc: 'git-checkout-fzf'
+    gac: 'git-add-fzf'
+    gq: 'git-conflicts'
 }

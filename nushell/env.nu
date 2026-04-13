@@ -2,6 +2,11 @@ $env.NU_LIB_DIRS = [
     ($nu.data-dir | path join 'completions')
 ]
 
+const NU_PLUGIN_DIRS = [
+    ($nu.current-exe | path dirname)
+    ...$NU_PLUGIN_DIRS
+]
+
 $env.path ++= [
     "~/.local/bin"
     "~/.cargo/bin"

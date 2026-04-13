@@ -78,4 +78,24 @@ $env.config.keybindings = [
         mode: [vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "job unfreeze"}
     }
+    {
+        name: abbr_menu
+        modifier: none
+        keycode: enter
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+            {send: menu, name: abbr_menu}
+            {send: enter}
+        ]
+    }
+    {
+        name: abbr_menu
+        modifier: none
+        keycode: space
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+            {send: menu, name: abbr_menu}
+            {edit: insertchar, value: ' '}
+        ]
+    }
 ]
