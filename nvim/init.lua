@@ -4,7 +4,7 @@ vim.pack.add({
 	"gh:/j-hui/fidget.nvim",
 	"gh:/ibhagwan/fzf-lua",
 	"gh:/lewis6991/gitsigns.nvim",
-	"gh:/casedami/neomodern.nvim",
+	{ src = "file:///home/cdm/dev/neomodern.nvim" },
 	{ src = "gh:/nvim-treesitter/nvim-treesitter", version = "main" },
 	"gh:/nvim-treesitter/nvim-treesitter-textobjects",
 	"gh:/casedami/session.nvim",
@@ -16,15 +16,6 @@ require("neomodern").setup({
 	theme = "hojicha",
 	gutter = {
 		cursorline = true,
-	},
-	overrides = {
-		default = {
-			constant = "#9e6057",
-			comment = "#4f4c4c",
-		},
-		hlgroups = {
-			EndOfBuffer = { link = "Operator" },
-		},
 	},
 })
 require("neomodern").load()
