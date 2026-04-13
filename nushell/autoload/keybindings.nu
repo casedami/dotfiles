@@ -1,4 +1,4 @@
-$env.config.keybindings = [
+$env.config.keybindings ++= [
     {
         name: completion_menu
         modifier: none
@@ -18,6 +18,13 @@ $env.config.keybindings = [
         keycode: tab
         mode: vi_insert
         event: {send: historyhintcomplete}
+    }
+    {
+        name: complete_history_word_partial
+        modifier: control
+        keycode: char_f
+        mode: vi_insert
+        event: {send: historyhintwordcomplete}
     }
     {
         name: search_history
@@ -42,13 +49,6 @@ $env.config.keybindings = [
         keycode: char_t
         mode: [vi_normal]
         event: {send: executehostcommand, cmd: "btm"}
-    }
-    {
-        name: go_home
-        modifier: control
-        keycode: char_h
-        mode: [vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "cd ~"}
     }
     {
         name: open_command_editor
