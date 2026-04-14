@@ -1,12 +1,10 @@
 -- globals
-vim.g.proj_dir = vim.env.HOME .. "/dev"
 vim.g.icons = {
 	diag = {
 		gutter = "",
 		error = " ",
 		other = " ",
 	},
-	location = { "▔", "🮂", "🮃", "🮑", "🮒", "▃", "▂", "▁" },
 	lock = "󰍁",
 	modified = "*",
 	neovim = " ",
@@ -14,8 +12,6 @@ vim.g.icons = {
 	readonly = "󰛐 ",
 	unnamed = "",
 }
-
--- leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 

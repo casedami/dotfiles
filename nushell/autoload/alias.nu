@@ -1,7 +1,6 @@
 alias cat = bat
 alias la = ls -a
 alias ll = ls -l
-alias vim = nvim
 alias fg = job unfreeze
 alias dad = dirs add ~/dotfiles
 

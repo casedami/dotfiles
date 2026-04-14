@@ -5,6 +5,9 @@ show_hidden = true
 tab_size = 2
 
 [opener]
+open = [
+  { run = "$EDITOR %s", block = true, for = "unix" },
+]
 edit = [
   { run = "$EDITOR %s", block = true, for = "unix" },
 ]

@@ -39,7 +39,7 @@ $env.config.keybindings ++= [
     {
         name: file_manager
         modifier: control
-        keycode: char_e
+        keycode: char_y
         mode: [vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "Fexplore"}
     }
@@ -55,7 +55,7 @@ $env.config.keybindings ++= [
         modifier: control
         keycode: char_o
         mode: [emacs, vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "vim"}
+        event: {send: executehostcommand, cmd: "nvim"}
     }
     {
         name: dirs_cycle_next

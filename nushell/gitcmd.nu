@@ -96,7 +96,7 @@ def --env git-status-tbl [] {
         else { "" }
     )
 
-    print $"(ansi light_red)($local)(ansi reset)($sep)(ansi red)($remote)(ansi reset)"
+    print $"(ansi light_yellow)($local)(ansi reset)($sep)(ansi yellow)($remote)(ansi reset)"
 
     $status
     | lines
@@ -172,6 +172,7 @@ let abbrevs = {
     gc: 'git commit -v'
     gca: 'git commit --amend'
     gd: 'git diff'
+    gS: 'git show'
     gdt: 'git difftool -d'
     gm: 'git merge'
     gr: 'git rebase'
