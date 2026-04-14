@@ -27,7 +27,7 @@ let theme = {
     diag_green: "#67896D"
 }
 
-$env.config.color_config = {
+$env.config = ($env.config | upsert color_config {
     separator: $theme.comment
     leading_trailing_space_bg: {attr: n}
     header: $theme.keyword
@@ -84,13 +84,13 @@ $env.config.color_config = {
     shape_table: {fg: $theme.property, attr: b}
     show_variable: $theme.fg
     shape_vardec1: {fg: $theme.fg, attr: u}
-}
+})
 
-$env.config.highlight_resolved_externals = true
-$env.config.explore = {
+$env.config = ($env.config | upsert highlight_resolved_externals true)
+$env.config = ($env.config | upsert explore {
     status_bar_background: {fg: $theme.fg, bg: $theme.line}
     command_bar_text: {fg: $theme.fg}
     highlight: {fg: $theme.type, bg: $theme.visual}
     status: {error: $theme.diag_red, warn: $theme.diag_yellow, info: $theme.diag_blue}
     selected_cell: {bg: $theme.line, fg: $theme.type}
-}
+})

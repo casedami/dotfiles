@@ -1,3 +1,5 @@
+source ../themes/hojicha.nu
+
 def _overlay_info [] {
     let current_overlays = (
         overlay list

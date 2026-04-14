@@ -1,7 +1,7 @@
 use std/dirs
-source completions/git/cmp.nu
+source autoload/gitcmd.nu
 source themes/hojicha.nu
-source gitcmd.nu # source here instead of autoload/ to expose to git aliases
+source completions/git/cmp.nu
 
 $env.config = {
     show_banner: false
