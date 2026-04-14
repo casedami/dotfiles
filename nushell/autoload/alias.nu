@@ -25,3 +25,12 @@ def --env cdc [] {
   )
     cd $dir
 }
+
+def --env cdr [] {
+    try {
+        let root = git rev-parse --show-toplevel | str trim
+        cd $root
+    } catch {
+        print "Unable to locate project root"
+    }
+}

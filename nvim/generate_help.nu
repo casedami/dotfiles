@@ -1,9 +1,8 @@
 #!/usr/bin/env nu
-
 use std repeat
 
 let text_width = 78
-let SEARCH_DIR = ($env.HOME | path join ".config/nvim/lua")
+let SEARCH_DIR = $env.HOME | path join ".config/nvim/lua"
 
 # Expecting keymap declaration in the following format:
 # set MODE MAP desc=DESC
@@ -15,14 +14,14 @@ let SEARCH_DIR = ($env.HOME | path join ".config/nvim/lua")
 #
 #  NOTE:
 #  requires keymaps to be formatted as a single line
-
 let mode = '[^"{]+(?P<mode>"\w"|{[^}]+})' # ex: "n" or { "n", "v" }
 let map = '[^"]+"(?P<map>[^"]+)"' # ex: "<leader>a"
 let tag_and_desc = '.+desc\s?=\s?"(?P<tag>\S+): (?P<desc>[^"]+)"' # ex: desc = "TAG: desc"
 let tag_ignored = "Extend"
 
-def parse-keymaps [files: list] {
-    $files | each { |f|
+def parse-keymaps [files: list<any>] {
+    $files
+    | each { |f|
         open $f
         | lines
         | where $it =~ "set.*desc"
@@ -72,9 +71,9 @@ def format-header [idx: int, h: string] {
     let header = align-lr $left $right
 
     [
-        ("=" | repeat $text_width | str join),
-        $header,
-        "\n",
+        ("=" | repeat $text_width | str join)
+        $header
+        "\n"
     ]
     | str join "\n"
 }
@@ -103,6 +102,6 @@ let formatted_groups = (
 let meta = format-meta
 let footer = format-footer
 
-[ $meta, $formatted_groups, $footer ] | str join "\n" | save -f doc/selfhelp.txt
+[$meta, $formatted_groups, $footer] | str join "\n" | save -f doc/selfhelp.txt
 cd doc
 nvim -c "helptags ." -c "q"
