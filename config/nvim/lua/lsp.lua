@@ -35,29 +35,29 @@ vim.diagnostic.config({
 	},
 })
 
+local hl_cursor_sym_until_move = function(bufnr)
+	vim.lsp.buf.document_highlight()
+	vim.api.nvim_create_autocmd("CursorMoved", {
+		group = vim.api.nvim_create_augroup("casedami/clear_ref_his", { clear = true }),
+		desc = "Clear All the References",
+		buffer = bufnr,
+		callback = function()
+			vim.lsp.buf.clear_references()
+		end,
+		once = true,
+	})
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("casedami/lsp_attach", {}),
 	callback = function(ev)
+    -- stylua: ignore start
 		local bufnr = ev.buf
 
     -- lsp
-    -- stylua: ignore start
-    vim.keymap.set("n", "grc", function()
-        vim.lsp.buf.document_highlight()
-        vim.api.nvim_create_autocmd("CursorMoved", {
-            group = vim.api.nvim_create_augroup("casedami/clear_ref_his", { clear = true }),
-            desc = "Clear All the References",
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.clear_references()
-            end,
-            once = true,
-        })
-    end, { buffer = bufnr, desc = "LSP: highlight symbol under cursor" })
-		-- stylua: ignore end
+    vim.keymap.set("n", "grc", function() hl_cursor_sym_until_move(bufnr) end, { buffer = bufnr, desc = "LSP: highlight symbol under cursor" })
 
     -- diagnostics
-    -- stylua: ignore start
     local toggle_diagnostics = function()
         vim.diagnostic.enable(not vim.diagnostic.is_enabled())
     end

@@ -2,7 +2,7 @@
 use std repeat
 
 let text_width = 78
-let SEARCH_DIR = $env.HOME | path join ".config/nvim/lua"
+let SEARCH_DIR = $env.XDG_CONFIG_HOME | path join nvim lua
 
 # Expecting keymap declaration in the following format:
 # set MODE MAP desc=DESC
@@ -13,7 +13,7 @@ let SEARCH_DIR = $env.HOME | path join ".config/nvim/lua"
 #   DESC(str) := description of the keymap. can be inside the opts table or as a comment
 #
 #  NOTE:
-#  requires keymaps to be formatted as a single line
+#  requires keymaps to be a single line
 let mode = '[^"{]+(?P<mode>"\w"|{[^}]+})' # ex: "n" or { "n", "v" }
 let map = '[^"]+"(?P<map>[^"]+)"' # ex: "<leader>a"
 let tag_and_desc = '.+desc\s?=\s?"(?P<tag>\S+): (?P<desc>[^"]+)"' # ex: desc = "TAG: desc"
@@ -56,16 +56,16 @@ def align-lr [left: string, right: string] {
     $"($left)($right)"
 }
 
-def format-meta [] {
+def fmt-meta [] {
     let meta = align-lr "*selfhelp.txt*" (date now | format date "%Y-%m-%d")
     $meta + "\n"
 }
 
-def format-footer [] {
-    $"vim:tw=($text_width):ts=8:noet:ft=help:norl:"
+def fmt-footer [] {
+    $", vim:tw=($text_width):ts=8:noet:ft=help:norl:"
 }
 
-def format-header [idx: int, h: string] {
+def fmt-header [idx: int, h: string] {
     let left = $"($idx + 1). ($h)"
     let right = $"*selfhelp-($h | str downcase)*"
     let header = align-lr $left $right
@@ -78,7 +78,7 @@ def format-header [idx: int, h: string] {
     | str join "\n"
 }
 
-def format-content [c] {
+def fmt-content [c] {
     $c
     | reject tag
     | table --index false
@@ -86,7 +86,7 @@ def format-content [c] {
     | ansi strip
 }
 
-let formatted_groups = (
+let groups = (
     glob $"($SEARCH_DIR)/**/*.lua"
     | parse-keymaps $in
     | transpose group items
@@ -94,14 +94,14 @@ let formatted_groups = (
     | enumerate
     | each { |row|
         let maps = $row.item
-        $"(format-header $row.index $maps.group)(format-content $maps.items)"
+        $"(fmt-header $row.index $maps.group)(fmt-content $maps.items)"
     }
     | str join "\n"
 )
 
-let meta = format-meta
-let footer = format-footer
+let meta = fmt-meta
+let footer = fmt-footer
 
-[$meta, $formatted_groups, $footer] | str join "\n" | save -f doc/selfhelp.txt
+[$meta, $groups, $footer] | str join "\n" | save -f doc/selfhelp.txt
 cd doc
 nvim -c "helptags ." -c "q"
