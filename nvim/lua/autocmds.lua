@@ -1,9 +1,3 @@
-vim.filetype.add({
-	pattern = {
-		[".*/git/config"] = "gitconfig",
-	},
-})
-
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = vim.api.nvim_create_augroup("casedami/splash", { clear = true }),
 	desc = "add keymaps to start screen",
