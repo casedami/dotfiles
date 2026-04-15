@@ -15,6 +15,7 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Extend: move to top of screen after 
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Extend: move to top of screen after prev item in search" })
 vim.keymap.set("v", "<", "<gv", { desc = "Extend: stay in visual mode when indenting" })
 vim.keymap.set("v", ">", ">gv", { desc = "Extend: stay in visual mode when indenting" })
+vim.keymap.set("n", "gV", "`[v`]", { desc = "Extend: select last inserted/edited text" })
 vim.keymap.set("n", "/", "ms/", { desc = "Extend: mark last position before search" })
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { silent = true, desc = "Extend: move line up" })
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { silent = true, desc = "Extend: move line down" })

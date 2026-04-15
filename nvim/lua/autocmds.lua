@@ -47,6 +47,14 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = vim.api.nvim_create_augroup("casedami/clear_jumps", { clear = true }),
+	desc = "clear jumps when entering vim",
+	callback = function()
+		vim.cmd("clearjumps")
+	end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("casedami/close_with_q", { clear = true }),
 	desc = "close with <q>",
