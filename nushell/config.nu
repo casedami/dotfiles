@@ -1,7 +1,31 @@
 use std/dirs
-source autoload/gitcmd.nu
 source themes/hojicha.nu
 source completions/git/cmp.nu
+
+let abbrevs = {
+    ga: 'git add'
+    gac: 'git-add-fzf'
+    gb: 'git branch'
+    gc: 'git commit -v'
+    gd: 'git diff'
+    gdt: 'git difftool -d'
+    gl: 'git-log-tbl'
+    gm: 'git merge'
+    gq: 'git-conflicts'
+    gr: 'git rebase'
+    gR: 'git restore'
+    gs: 'git-status-tbl'
+    gS: 'git show'
+    gwa: 'git worktree add'
+    gwr: 'git worktree remove'
+    gwl: 'git worktree list'
+    gx: 'git switch'
+    gxc: 'git-checkout-fzf'
+    la: 'ls -a'
+    ll: 'ls -l'
+    fg: 'job unfreeze'
+    dad: 'dirs add ~/dotfiles'
+}
 
 $env.config = {
     show_banner: false

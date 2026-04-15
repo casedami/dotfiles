@@ -1,8 +1,4 @@
 alias cat = bat
-alias la = ls -a
-alias ll = ls -l
-alias fg = job unfreeze
-alias dad = dirs add ~/dotfiles
 
 # use yazi to cd
 def --env Fexplore [...args] {
