@@ -29,6 +29,5 @@ $env.LS_COLORS = (vivid generate ansi)
 $env.__zoxide_hooked = true
 $env.RUST_BACKTRACE = 1
 $env.HOMEBREW_NO_ENV_HINTS = 1
-$env.DRIFT_TIMEOUT = 120
 
 zoxide init nushell | save -f ~/.zoxide.nu
