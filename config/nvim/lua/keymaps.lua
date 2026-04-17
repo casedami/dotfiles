@@ -37,9 +37,9 @@ vim.keymap.set("n", "<leader>cr", cd_root, { desc = "Directory: change directory
 vim.keymap.set("n", "<leader>c-", "<cmd>lcd -<cr>", { desc = "Directory: change directory to previous cwd" })
 
 -- buffers
-vim.keymap.set("n", "<leader>le", "<cmd>b#<cr>", { desc = "Buffer: previous buffer in current window" })
-vim.keymap.set("n", "<leader>ls", "<cmd>sp | b#<cr>", { desc = "Buffer: previous buffer in hsplit" })
-vim.keymap.set("n", "<leader>lv", "<cmd>vsp | b#<cr>", { desc = "Buffer: previous buffer in vsplit" })
+vim.keymap.set("n", "<leader>bp", "<cmd>b#<cr>", { desc = "Buffer: previous buffer in current window" })
+vim.keymap.set("n", "<leader>bs", "<cmd>sp | b#<cr>", { desc = "Buffer: previous buffer in hsplit" })
+vim.keymap.set("n", "<leader>bv", "<cmd>vsp | b#<cr>", { desc = "Buffer: previous buffer in vsplit" })
 
 -- term
 vim.keymap.set("n", "<c-t>s", "<cmd>bel20new | term<cr>i", { desc = "Term: open in hsplit" })

@@ -62,7 +62,7 @@ $env.config = ($env.config | upsert color_config {
     shape_filepath: $theme.type
     shape_flag: {fg: $theme.alt, attr: b}
     shape_float: $theme.number
-    shape_garbage: {fg: $theme.fg, bg: "#D87878", attr: b}
+    shape_garbage: {fg: $theme.diag_red, attr: bi}
     shape_globpattern: {fg: $theme.type, attr: b}
     shape_int: $theme.number
     shape_internalcall: $theme.func

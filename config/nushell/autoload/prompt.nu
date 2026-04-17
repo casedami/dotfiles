@@ -88,7 +88,7 @@ def _git [] {
 }
 
 def _left_prompt [] {
-    $" (_jobs)(_overlay_info)(_path)(_git)"
+    $"(_jobs)(_path)(_git)"
 }
 
 def _right_prompt [] {

@@ -12,7 +12,7 @@ local function hl_str(hl, str)
 end
 
 local branch = function()
-	return hl_str("Type", vim.b.gitsigns_head or "")
+	return hl_str("WinSeparator", vim.b.gitsigns_head or "")
 end
 
 local loc = function()
@@ -68,7 +68,7 @@ local showcmd = function()
 	if #out == 0 or excludes[out] then
 		return ""
 	end
-	return hl_str("Preproc", out)
+	return hl_str("Type", out)
 end
 
 local tabs = function()

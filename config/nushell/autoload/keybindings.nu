@@ -22,7 +22,7 @@ $env.config.keybindings ++= [
     {
         name: complete_history_word_partial
         modifier: control
-        keycode: char_f
+        keycode: char_w
         mode: vi_insert
         event: {send: historyhintwordcomplete}
     }
@@ -77,6 +77,20 @@ $env.config.keybindings ++= [
         keycode: char_z
         mode: [vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "job unfreeze"}
+    }
+    {
+        name: goto_home
+        modifier: control
+        keycode: char_h
+        mode: [vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "cd"}
+    }
+    {
+        name: goto_config
+        modifier: control
+        keycode: char_d
+        mode: [vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "cd ~/dotfiles"}
     }
     {
         name: abbr_menu

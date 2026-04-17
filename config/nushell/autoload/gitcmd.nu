@@ -96,7 +96,7 @@ def --env git-status-tbl [] {
         else { "" }
     )
 
-    print $"(ansi light_yellow)($local)(ansi reset)($sep)(ansi yellow)($remote)(ansi reset)"
+    print $"(ansi light_cyan)($local)(ansi reset)($sep)(ansi cyan)($remote)(ansi reset)"
 
     $status
     | lines

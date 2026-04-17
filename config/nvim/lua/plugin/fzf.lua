@@ -14,6 +14,11 @@ fzf.setup({
 	defaults = {
 		color_icons = false,
 	},
+	git = {
+		status = {
+			previewer = "bat",
+		},
+	},
 })
 
 fzf.register_ui_select()

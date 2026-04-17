@@ -34,7 +34,6 @@ vim.opt.textwidth = 79
 -- general
 vim.opt.clipboard = "unnamedplus"
 vim.opt.confirm = true
-vim.opt.spelllang = { "en_us" }
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.undolevels = 1000

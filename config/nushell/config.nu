@@ -25,6 +25,9 @@ let abbrevs = {
     ll: 'ls -l'
     fg: 'job unfreeze'
     dad: 'dirs add ~/dotfiles'
+    ou: 'overlay use'
+    oh: 'overlay hide'
+    ol: 'overlay list'
 }
 
 $env.config = {
