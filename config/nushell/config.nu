@@ -24,6 +24,8 @@ let abbrevs = {
     la: 'ls -a'
     ll: 'ls -l'
     fg: 'job unfreeze'
+    da: 'dirs add'
+    dd: 'dirs drop'
     dad: 'dirs add ~/dotfiles'
     ou: 'overlay use'
     oh: 'overlay hide'

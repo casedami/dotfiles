@@ -1,4 +1,5 @@
 export TERM=xterm-256color
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 alias ..='cd ..'
 alias ...='cd ../..'

@@ -7,6 +7,7 @@ vim.pack.add({
 	{ src = "file://" .. vim.env.HOME .. "/dev/neomodern.nvim" },
 	{ src = "gh:/nvim-treesitter/nvim-treesitter", version = "main" },
 	"gh:/nvim-treesitter/nvim-treesitter-textobjects",
+	"gh:/nvim-treesitter/nvim-treesitter-context",
 	"gh:/casedami/session.nvim",
 	"gh:/chomosuke/typst-preview.nvim",
 })

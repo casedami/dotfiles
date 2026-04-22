@@ -51,6 +51,13 @@ $env.config.keybindings ++= [
         event: {send: executehostcommand, cmd: "btm"}
     }
     {
+        name: open_reedline_editor
+        modifier: control
+        keycode: char_f
+        mode: [vi_normal]
+        event: {send: openeditor}
+    }
+    {
         name: open_command_editor
         modifier: control
         keycode: char_o

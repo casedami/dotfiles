@@ -128,3 +128,58 @@ vim.api.nvim_create_autocmd({ "WinLeave" }, {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = vim.api.nvim_create_augroup("casedami/autopairs", { clear = true }),
+	desc = "simple autopairs",
+	callback = function(args)
+		local pairs = {
+			{ "(", ")" },
+			{ "[", "]" },
+			{ "{", "}" },
+			{ '"', '"' },
+			{ "'", "'" },
+			{ "<", ">" },
+		}
+
+		for _, pair in ipairs(pairs) do
+			local open, close = pair[1], pair[2]
+			if open == close then
+				vim.keymap.set("i", open, function()
+					local col = vim.fn.col(".")
+					local line = vim.fn.getline(".")
+					if line:sub(col, col) == close then
+						return "<Right>"
+					else
+						return open .. close .. "<Left>"
+					end
+				end, { buffer = args.buf, expr = true })
+			else
+				vim.keymap.set("i", open, open .. close .. "<Left>", { buffer = args.buf })
+				vim.keymap.set("i", close, function()
+					local col = vim.fn.col(".")
+					local line = vim.fn.getline(".")
+					if line:sub(col, col) == close then
+						return "<Right>"
+					else
+						return close
+					end
+				end, { buffer = args.buf, expr = true })
+			end
+		end
+
+		vim.keymap.set("i", "<BS>", function()
+			local col = vim.fn.col(".")
+			local line = vim.fn.getline(".")
+			local prev_char = line:sub(col - 1, col - 1)
+			local next_char = line:sub(col, col)
+
+			for _, pair in ipairs(pairs) do
+				if prev_char == pair[1] and next_char == pair[2] then
+					return "<BS><Del>"
+				end
+			end
+			return "<BS>"
+		end, { buffer = args.buf, expr = true })
+	end,
+})

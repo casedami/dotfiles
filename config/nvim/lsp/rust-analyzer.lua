@@ -1,6 +1,6 @@
 local blink = require("blink.cmp")
 return {
-	cmd = { "rust-analyzer" },
+	cmd = { "rustup", "run", "stable", "rust-analyzer" },
 	root_markers = { "Cargo.lock" },
 	filetypes = { "rust" },
 	settings = {

@@ -7,6 +7,6 @@ def create-symlinks [src_type: string, dest: string] {
 }
 
 def main [] {
-    create-symlinks dir $env.XDG_CONFIG_HOME
+    create-symlinks dir ($env.XDG_CONFIG_HOME? | default ($env.HOME | path join .config))
     create-symlinks file $env.HOME
 }

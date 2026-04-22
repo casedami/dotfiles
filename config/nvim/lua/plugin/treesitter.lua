@@ -71,3 +71,11 @@ vim.keymap.set({ "n", "x", "o" }, "[C", function() move.goto_previous_end("@clas
 vim.keymap.set("n", "zm", function() fold_ts_obj("function") end)
 vim.keymap.set("n", "zc", function() fold_ts_obj("class") end)
 -- stylua: ignore end
+
+require("treesitter-context").setup({})
+vim.cmd("hi TreesitterContext gui=italic")
+vim.cmd("hi TreesitterContextLineNumber guifg=#5a6458 gui=italic")
+vim.cmd("hi TreesitterContextLineNumberBottom gui=undercurl guisp=#5a6458")
+vim.keymap.set("n", "gC", function()
+	require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true })

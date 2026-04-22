@@ -36,7 +36,7 @@ vim.keymap.set("n", "<leader>H", "<cmd>FzfLua highlights<cr>", { desc = "Finder:
 
 vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", { desc = "LSP: definitions", silent = true })
 vim.keymap.set("n", "grr", "<cmd>FzfLua lsp_references<cr>", { desc = "LSP: search references", silent = true })
-vim.keymap.set("n", "<localleader>D", "<cmd>FzfLua diagnostics_workspace<cr>", { desc = "Diagnostic: search workspace diagnostics", silent = true })
+vim.keymap.set("n", "grD", "<cmd>FzfLua diagnostics_workspace<cr>", { desc = "Diagnostic: search workspace diagnostics", silent = true })
 
 -- stylua: ignore end
 
