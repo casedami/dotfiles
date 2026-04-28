@@ -8,7 +8,6 @@ vim.pack.add({
 	{ src = "gh:/nvim-treesitter/nvim-treesitter", version = "main" },
 	"gh:/nvim-treesitter/nvim-treesitter-textobjects",
 	"gh:/nvim-treesitter/nvim-treesitter-context",
-	"gh:/casedami/session.nvim",
 	"gh:/chomosuke/typst-preview.nvim",
 })
 
@@ -28,6 +27,7 @@ require("autocmds")
 require("lsp")
 require("ls")
 require("statusline")
+require("session")
 
 -- load plugins
 local function import_cfg(dir)

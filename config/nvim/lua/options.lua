@@ -14,6 +14,7 @@ vim.g.icons = {
 }
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.g.sessions_dir = vim.fs.joinpath(vim.env.HOME, ".local", "share", "nvim", "sessions")
 
 -- netrw
 vim.g.netrw_banner = 0

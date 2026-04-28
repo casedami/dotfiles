@@ -58,6 +58,8 @@ for i=1,5 do
     vim.keymap.set("n", string.format("<C-%d>", i), function() vim.cmd(string.format("silent! %dargument", i)) end, { desc = "Bookmarks: goto bookmark %d=[1-5]" })
 end
 
+-- stylua: ignore end
+
 vim.api.nvim_create_user_command("Scratch", function()
 	vim.cmd("bel 10new")
 	local buf = vim.api.nvim_get_current_buf()

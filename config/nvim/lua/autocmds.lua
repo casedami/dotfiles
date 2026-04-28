@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			{ key = "f", cmd = "<cmd>FzfLua files<cr>" },
 			{ key = "r", cmd = "<cmd>FzfLua oldfiles<cr>" },
 			{ key = "g", cmd = "<cmd>FzfLua live_grep<cr>" },
-			{ key = "s", cmd = "<cmd>Session select<cr>" },
+			{ key = "s", cmd = "<cmd>Load<cr>" },
 			{ key = "qq", cmd = "<cmd>q!<cr>" },
 		}
 
