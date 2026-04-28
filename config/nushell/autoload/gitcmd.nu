@@ -16,6 +16,7 @@ def _str-color [c, s: string] {
     }
 }
 
+# checkout a git branch using fzf
 def --env git-checkout-fzf [] {
     let branch = (
         git branch -a
@@ -31,6 +32,7 @@ def --env git-checkout-fzf [] {
     }
 }
 
+# display the git log in a nushell table
 def --env git-log-tbl [n: int = 10, --all(-a)] {
     mut flags = ""
     if $all {
@@ -62,16 +64,17 @@ def --env git-log-tbl [n: int = 10, --all(-a)] {
             if ($tag | is-not-empty) or ($scope | is-not-empty) { ": " }
             else { "" }
         )
-        $"(ansi light_red)($tag)(ansi light_cyan)($scope)(ansi reset)($sep)(ansi yellow)($subject)"
+        $"(ansi light_cyan)($tag)(ansi light_magenta)($scope)(ansi reset)($sep)(ansi green)($subject)"
     }
     | update commit { |row|
-        $"(ansi light_magenta) ($row.commit)"
+        $"(ansi light_red) ($row.commit)"
     }
     | update name { |row|
         $"(ansi cyan) ($row.name)"
     }
 }
 
+# display the git status in a nushell table
 def --env git-status-tbl [] {
     let status = (git status -s)
     let branch = (
@@ -116,6 +119,7 @@ def --env git-status-tbl [] {
     }
 }
 
+# stage files to git using fzf
 def --env git-add-fzf [] {
     let files = (
         git status -s
@@ -139,6 +143,7 @@ def --env git-add-fzf [] {
     }
 }
 
+# open neovim with the quickfix list populated with any git conflicts
 def git-conflicts [] {
     let tmpfile = (mktemp -t git-conflicts.XXXXXX.qf)
     ^git ls-files -u

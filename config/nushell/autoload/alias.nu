@@ -11,6 +11,7 @@ def --env Fexplore [...args] {
     rm -fp $tmp
 }
 
+# cd to a subdirectory using fzf
 def --env cdc [] {
     let dir = (
     ls **/**
@@ -22,6 +23,7 @@ def --env cdc [] {
     cd $dir
 }
 
+# cd to the git project root
 def --env cdr [] {
     try {
         let root = git rev-parse --show-toplevel | str trim
