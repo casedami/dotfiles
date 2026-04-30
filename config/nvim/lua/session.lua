@@ -18,7 +18,7 @@ vim.api.nvim_create_user_command("Save", function()
 		return
 	end
 	vim.cmd("mksession! " .. get_session_path(root))
-end, { desc = "Save a session file in ~/.local/sessions/<root-hash>.vim", nargs = 0 })
+end, { desc = string.format("Save a session file in %s/<root-hash>.vim", vim.g.sessions_dir), nargs = 0 })
 
 vim.api.nvim_create_user_command("Load", function()
 	local root = get_root()

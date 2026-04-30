@@ -138,8 +138,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			{ "[", "]" },
 			{ "{", "}" },
 			{ '"', '"' },
-			{ "'", "'" },
-			{ "<", ">" },
 		}
 
 		for _, pair in ipairs(pairs) do
