@@ -40,7 +40,6 @@ $env.config.table = {
 
 $env.config.display_errors = {termination_signal: false}
 $env.config.history = {max_size: 5000, file_format: "sqlite", isolation: true}
-# $env.config.completions = {algorithm: "fuzzy"}
 $env.config.cursor_shape = {vi_insert: line, vi_normal: block}
 $env.config.footer_mode = 20
 $env.config.buffer_editor = "nvim"
@@ -67,6 +66,85 @@ $env.config.menus ++= [
                 }
             }
         }
+    }
+]
+
+$env.config.keybindings ++= [
+    {
+        name: complete_history_word_partial
+        modifier: control
+        keycode: char_w
+        mode: vi_insert
+        event: {send: historyhintwordcomplete}
+    }
+    {
+        name: file_manager
+        modifier: control
+        keycode: char_y
+        mode: [vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "Fexplore"}
+    }
+    {
+        name: open_sys_diagnostics
+        modifier: control
+        keycode: char_d
+        mode: [vi_normal]
+        event: {send: executehostcommand, cmd: "btm"}
+    }
+    {
+        name: open_reedline_editor
+        modifier: control
+        keycode: char_f
+        mode: [vi_normal]
+        event: {send: openeditor}
+    }
+    {
+        name: open_editor
+        modifier: control
+        keycode: char_o
+        mode: [emacs, vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "nvim"}
+    }
+    {
+        name: dirs_cycle_next
+        modifier: control
+        keycode: char_k
+        mode: [vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "dirs next"}
+    }
+    {
+        name: dirs_cycle_prev
+        modifier: control
+        keycode: char_j
+        mode: [vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "dirs prev"}
+    }
+    {
+        name: job_resume
+        modifier: alt
+        keycode: char_z
+        mode: [vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "job unfreeze"}
+    }
+    {
+        name: abbr_menu
+        modifier: none
+        keycode: enter
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+            {send: menu, name: abbr_menu}
+            {send: enter}
+        ]
+    }
+    {
+        name: abbr_menu
+        modifier: none
+        keycode: space
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+            {send: menu, name: abbr_menu}
+            {edit: insertchar, value: ' '}
+        ]
     }
 ]
 
