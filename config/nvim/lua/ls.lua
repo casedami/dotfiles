@@ -40,7 +40,7 @@ end
 vim.keymap.set("n", "<leader>e", function() ls(vim.fn.getcwd()) end, { desc = "Directory: list current working directory" })
 vim.keymap.set("n", "<leader>E", function() ls(vim.fn.expand("%:p:h")) end, { desc = "Directory: list current buffer's directory" })
 
-vim.api.nvim_create_autocmd({"ShellCmdPost", "BufWritePost"}, {
+vim.api.nvim_create_autocmd({"ShellCmdPost"}, {
 	group = vim.api.nvim_create_augroup("casedami/invalidate_list_dir_cache", { clear = true }),
   desc = "Invalidate cache after a shell cmd",
   callback= function()

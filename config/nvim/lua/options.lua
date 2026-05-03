@@ -31,6 +31,8 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.textwidth = 79
+vim.opt.formatoptions = "tcqjan2"
+vim.opt.formatlistpat = "^\\s*[-*+]\\s\\+"
 
 -- general
 vim.opt.clipboard = "unnamedplus"

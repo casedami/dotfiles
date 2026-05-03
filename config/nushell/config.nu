@@ -1,5 +1,4 @@
 use std/dirs
-source themes/hojicha.nu
 source completions/git/cmp.nu
 
 let abbrevs = {
