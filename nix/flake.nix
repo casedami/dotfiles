@@ -13,7 +13,7 @@
     {
       nixosConfigurations = {
         ts-laptop09 = lib.nixosSystem {
-          system = "x86_64-linx";
+          system = "x86_64-linux";
           modules = [
             ./configuration.nix
           ];

@@ -8,7 +8,7 @@ mouse-hide-while-typing = true
 title = " "
 window-subtitle = false
 
-command = ~/.cargo/bin/nu
+command = nu
 shell-integration-features = ssh-terminfo,ssh-env
 
 macos-window-shadow = false

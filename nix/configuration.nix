@@ -4,9 +4,6 @@
   pkgs,
   ...
 }:
-let
-  unstable = import <nixpkgs-unstable> { config.allowUnfree = true; };
-in
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -15,7 +12,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "ts-laptop09";
-
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
 
@@ -45,11 +41,11 @@ in
     ];
     packages = with pkgs; [
       tree
-      unstable.neovim
-      unstable.nushell
-      unstable.cargo
-      unstable.uv
-      unstable.python3
+      neovim
+      nushell
+      cargo
+      uv
+      python3
       nil
       nixfmt
       ghostty
@@ -61,7 +57,7 @@ in
       zoxide
       fzf
       ripgrep
-      unstable.vivid
+      vivid
       claude-code
     ];
   };
