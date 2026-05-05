@@ -67,7 +67,9 @@
     waybar.enable = true;
     firefox.enable = true;
   };
-  fonts.packages = with pkgs; [ nerd-fonts.lilex ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.lilex
+  ];
 
   # packages
   environment.systemPackages = with pkgs; [
@@ -92,6 +94,7 @@
       # cli
       bat
       bottom
+      difftastic
       gcc
       gh
       fzf
@@ -112,6 +115,7 @@
       nushell
       python3
       stylua
+      typst
       uv
       # apps
       claude-code
