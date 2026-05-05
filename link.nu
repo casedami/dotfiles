@@ -1,8 +1,11 @@
 #!/usr/bin/env nu
 def create-symlinks [src_type: string, dest: string] {
-    ls (pwd | path join "config") -af
-    | where type == $src_type
-    | each {|target| ln -s $target.name $"($dest)/($target.name | path basename)"}
+    let to_link = ls (pwd | path join "config") -af | where type == $src_type
+
+    cd $dest
+
+    $to_link
+    | each {|target| rm ($target.name | path basename); ln -s $target.name ./}
     | ignore
 }
 
