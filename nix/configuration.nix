@@ -11,14 +11,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   nixpkgs.config.allowUnfree = true;
 
+  time.timeZone = "America/Denver";
   networking.hostName = "ts-laptop09";
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
 
-  time.timeZone = "America/Denver";
-
   services.xserver.enable = true;
-
+  services.fwupd.enable = true;
   services.keyd = {
     enable = true;
     keyboards.default = {
@@ -55,6 +54,7 @@
       zathura
       spotify
       bat
+      bottom
       gh
       gcc
       tree-sitter
@@ -65,10 +65,18 @@
       claude-code
       hyprpaper
       hypridle
+      hyprlauncher
+      hyprtoolkit
+      hyprpolkitagent
+      mako
     ];
   };
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+  services.hypridle.enable = true;
   programs.hyprlock.enable = true;
   programs.waybar.enable = true;
   programs.firefox.enable = true;
@@ -78,6 +86,9 @@
     vim
     wget
     git
+    nautilus
+    brightnessctl
+    playerctl
   ];
 
   system.stateVersion = "25.11";
