@@ -5,7 +5,7 @@
     "reload_style_on_change": false, 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "network", "bluetooth", "cpu", "battery", "clock", "tray"],
+    "modules-right": ["network", "bluetooth", "pulseaudio", "cpu", "battery", "clock", "tray"],
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -49,19 +49,21 @@
         "format-on": "󰂯",
         "format-off": "󰂲",
         "format-disabled": "󰂲",
-        "format-connected": "󰂱{device_alias}",
+        "format-connected": "󰂱",
+        "format-connected-alt": "󰂱{device_alias}",
         "format-connected-battery": "󰂱{device_alias}",
         "tooltip-format": "{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
         "tooltip-format-enumerate-connected-battery": "󰥆{device_alias} {device_battery_percentage}%",
-        "on-click": "hyprctl dispatch exec 'ghostty -e bluetui'"
+        "on-click-right": "hyprctl dispatch exec 'ghostty -e bluetui'"
     },
     "network": {
-        "format-wifi": "{essid} ",
+        "format-wifi": "",
+        "format-alt": "{essid} ",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ",
-        "on-click": "hyprctl dispatch exec 'ghostty -e impala-nm'"
+        "format-disconnected": "󰖪",
+        "on-click-right": "hyprctl dispatch exec 'ghostty -e impala-nm'"
     },
      "pulseaudio": {
         "format": "{icon}",
