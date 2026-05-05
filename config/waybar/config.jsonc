@@ -63,7 +63,7 @@
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "󰖪",
-        "on-click-right": "hyprctl dispatch exec 'ghostty -e impala-nm'"
+        "on-click-right": "hyprctl dispatch exec 'ghostty -e ~/.cargo/bin/impala-nm'"
     },
      "pulseaudio": {
         "format": "{icon}",
