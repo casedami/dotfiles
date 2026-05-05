@@ -1,14 +1,12 @@
 vim.lsp.enable({
 	"nu",
 	"ty",
-  "nil",
+	"nil",
 	"clangd",
 	"luals",
 	"ruff",
 	"rust-analyzer",
 	"tinymist",
-	"yamlls",
-	"typescript-ls",
 })
 
 vim.diagnostic.config({

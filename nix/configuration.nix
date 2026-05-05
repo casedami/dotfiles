@@ -7,90 +7,69 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
+  # nix
+  nixpkgs.config.allowUnfree = true;
   nix = {
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  nixpkgs.config.allowUnfree = true;
+  # boot
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
+  # system
   time.timeZone = "America/Denver";
-  networking.hostName = "ts-laptop09";
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = false;
+  system.stateVersion = "25.11";
+
+  # networking & hardware
+  networking = {
+    hostName = "ts-laptop09";
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;
+    };
+  };
   hardware.bluetooth.enable = true;
-  services.xserver.enable = true;
-  services.fwupd.enable = true;
-  services.keyd = {
-    enable = true;
-    keyboards.default = {
-      ids = [ "*" ];
-      settings.main = {
-        capslock = "esc";
+
+  # services
+  services = {
+    xserver.enable = true;
+    fwupd.enable = true;
+    libinput.enable = true;
+    hypridle.enable = true;
+    keyd = {
+      enable = true;
+      keyboards.default = {
+        ids = [ "*" ];
+        settings.main.capslock = "esc";
       };
     };
   };
-  programs.ssh.startAgent = true;
 
-  services.libinput.enable = true;
-
-  users.users.cdm = {
-    isNormalUser = true;
-    home = "/home/cdm";
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    packages = with pkgs; [
-      tree
-      neovim
-      nushell
-      macchina
-      stylua
-      cargo
-      uv
-      python3
-      nil
-      nixfmt
-      ghostty
-      yazi
-      slack
-      zathura
-      spotify
-      bat
-      bottom
-      gh
-      gcc
-      tree-sitter
-      zoxide
-      fzf
-      ripgrep
-      vivid
-      claude-code
-      hyprpaper
-      hypridle
-      hyprlauncher
-      hyprtoolkit
-      hyprpolkitagent
-      mako
-    ];
+  # desktop
+  programs = {
+    ssh.startAgent = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+    hyprlock.enable = true;
+    waybar.enable = true;
+    firefox.enable = true;
   };
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
-  services.hypridle.enable = true;
-  programs.hyprlock.enable = true;
-  programs.waybar.enable = true;
-  programs.firefox.enable = true;
   fonts.packages = with pkgs; [ nerd-fonts.lilex ];
 
+  # packages
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -101,11 +80,51 @@
     bluetui
   ];
 
-  system.stateVersion = "25.11";
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
+  # user
+  users.users.cdm = {
+    isNormalUser = true;
+    home = "/home/cdm";
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    packages = with pkgs; [
+      # cli
+      bat
+      bottom
+      gcc
+      gh
+      fzf
+      macchina
+      ripgrep
+      tree
+      tree-sitter
+      vivid
+      yazi
+      zathura
+      zoxide
+      # dev
+      cargo
+      lua-language-server
+      neovim
+      nil
+      nixfmt
+      nushell
+      python3
+      stylua
+      uv
+      # apps
+      claude-code
+      ghostty
+      slack
+      spotify
+      # hypr ecosystem
+      hypridle
+      hyprlauncher
+      hyprpaper
+      hyprpolkitagent
+      hyprtoolkit
+      mako
+    ];
+  };
 }
