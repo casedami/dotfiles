@@ -43,15 +43,27 @@
 }
 
 #pulseaudio {
-  padding: 2px 4px;
+  padding: 2px 0px;
+  padding-right: 18px;
 }
 
 #network {
-  padding: 2px 18px;
+  padding: 2px 0px;
+  padding-right: 20px;
+}
+
+#bluetooth {
+  padding: 2px 0px;
+  padding-right: 14px;
+}
+
+#cpu {
+  padding: 2px 0px;
+  padding-right: 14px;
 }
 
 #network.disconnected {
-  background-color: #f53c3c;
+  color: #f53c3c;
 }
 
 #battery {

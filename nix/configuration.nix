@@ -7,6 +7,14 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   nixpkgs.config.allowUnfree = true;
@@ -15,7 +23,7 @@
   networking.hostName = "ts-laptop09";
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
-
+  hardware.bluetooth.enable = true;
   services.xserver.enable = true;
   services.fwupd.enable = true;
   services.keyd = {
@@ -89,6 +97,7 @@
     nautilus
     brightnessctl
     playerctl
+    bluetui
   ];
 
   system.stateVersion = "25.11";
