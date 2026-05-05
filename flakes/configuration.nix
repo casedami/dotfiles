@@ -19,8 +19,6 @@
 
   services.xserver.enable = true;
 
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
   services.keyd = {
     enable = true;
     keyboards.default = {
@@ -35,6 +33,7 @@
 
   users.users.cdm = {
     isNormalUser = true;
+    home = "/home/cdm";
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -43,6 +42,8 @@
       tree
       neovim
       nushell
+      macchina
+      stylua
       cargo
       uv
       python3
@@ -50,6 +51,9 @@
       nixfmt
       ghostty
       yazi
+      slack
+      zathura
+      spotify
       bat
       gh
       gcc
@@ -59,13 +63,16 @@
       ripgrep
       vivid
       claude-code
+      hyprpaper
+      hypridle
     ];
   };
 
+  programs.hyprland.enable = true;
+  programs.hyprlock.enable = true;
+  programs.waybar.enable = true;
   programs.firefox.enable = true;
-  fonts.packages = with pkgs; [
-    nerd-fonts.lilex
-  ];
+  fonts.packages = with pkgs; [ nerd-fonts.lilex ];
 
   environment.systemPackages = with pkgs; [
     vim

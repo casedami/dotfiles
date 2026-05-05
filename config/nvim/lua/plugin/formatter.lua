@@ -9,7 +9,7 @@ require("conform").setup({
 		typst = { lsp_format = "fallback" },
     nix = { "nixfmt" },
 		nu = { "nufmt" },
-		["_"] = { "trim_whitespace" },
+		--["_"] = { "trim_whitespace" },
 	},
 	format_on_save = {
 		lsp_fallback = false,
@@ -20,9 +20,4 @@ require("conform").setup({
 	},
 	log_level = vim.log.levels.ERROR,
 	notify_on_error = true,
-	formatters = {
-		shfmt = {
-			args = { "-i", "2" },
-		},
-	},
 })
