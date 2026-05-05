@@ -35,12 +35,7 @@
       };
     };
   };
-  security = {
-    pam.services.kwallet = {
-      name = "kwallet";
-      enableKwallet = true;
-    };
-  };
+  programs.ssh.startAgent = true;
 
   services.libinput.enable = true;
 
