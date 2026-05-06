@@ -12,15 +12,6 @@ $env.path ++= [
     "~/.cargo/bin"
 ]
 
-if $nu.os-info.name == "linux" {
-    $env.path ++= ["/home/linuxbrew/.linuxbrew/bin"]
-    $env.PYTHONPATH = "/usr/lib/python3/dist-packages"
-    $env.XDG_SESSION_TYPE = 'wayland'
-    $env.APPIMAGE_EXTRACT_AND_RUN = 1
-} else {
-    $env.path ++= ["/opt/homebrew/bin"]
-}
-
 $env.EDITOR = "nvim"
 $env.MANPAGER = "nvim +Man!"
 $env.PAGER = "bat --plain --paging=always"

@@ -2,7 +2,7 @@ require("blink.cmp").setup({
 	cmdline = {
 		keymap = {
 			preset = "none",
-			["<Tab>"] = {
+			["<C-e>"] = {
 				function(cmp)
 					if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then
 						return cmp.accept()
@@ -11,7 +11,7 @@ require("blink.cmp").setup({
 				"show",
 				"accept",
 			},
-			["<C-e>"] = {
+			["<C-q>"] = {
 				"cancel",
 			},
 			["<C-n>"] = { "select_next", "fallback" },
@@ -23,15 +23,15 @@ require("blink.cmp").setup({
 	},
 	keymap = {
 		preset = "none",
-		["<Tab>"] = {
+		["<C-e>"] = {
 			"snippet_forward",
 			"accept",
 			"fallback",
 		},
-		["<S-Tab>"] = {
+		["<S-C-e>"] = {
 			"snippet_backward",
 		},
-		["<C-e>"] = {
+		["<C-q>"] = {
 			"cancel",
 		},
 		["<C-n>"] = { "select_next", "fallback" },

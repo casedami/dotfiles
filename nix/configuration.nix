@@ -39,7 +39,10 @@
       wifi.powersave = false;
     };
   };
-  hardware.bluetooth.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    keyboard.qmk.enable = true;
+  };
 
   # services
   services = {
@@ -47,6 +50,14 @@
     fwupd.enable = true;
     libinput.enable = true;
     hypridle.enable = true;
+    udev = {
+      enable = true;
+      packages = with pkgs; [
+        qmk
+        qmk-udev-rules
+        vial
+      ];
+    };
     keyd = {
       enable = true;
       keyboards.default = {
@@ -58,7 +69,13 @@
 
   # desktop
   programs = {
-    ssh.startAgent = true;
+    ssh = {
+      startAgent = true;
+      extraConfig = ''
+        Host *
+          AddKeysToAgent yes
+      '';
+    };
     hyprland = {
       enable = true;
       withUWSM = true;
@@ -73,13 +90,16 @@
 
   # packages
   environment.systemPackages = with pkgs; [
-    vim
-    wget
+    bluetui
+    brightnessctl
     git
     nautilus
-    brightnessctl
     playerctl
-    bluetui
+    qmk
+    qmk-udev-rules
+    vial
+    vim
+    wget
   ];
 
   # user
@@ -89,6 +109,8 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "input"
+      "plugdev"
     ];
     packages = with pkgs; [
       # cli
@@ -96,8 +118,8 @@
       bottom
       difftastic
       gcc
-      gh
       fzf
+      gh
       macchina
       ripgrep
       tree
@@ -125,6 +147,7 @@
       # hypr ecosystem
       hypridle
       hyprlauncher
+      hyprshot
       hyprpaper
       hyprpolkitagent
       hyprtoolkit

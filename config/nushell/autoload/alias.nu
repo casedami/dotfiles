@@ -1,4 +1,22 @@
 alias cat = bat
+alias nix-clean = sudo nix-collect-garbage -d
+
+# rebuid nix-os
+def nix-build [] {
+    cd ~/dotfiles/nix
+    sudo nixos-rebuild switch --flake .
+}
+
+# update nix packages
+def nix-up [] {
+    cd ~/dotfiles/nix
+    sudo nix flake update
+}
+
+# setup flake for python development
+def --env pyinit [] {
+    cp ~/dev/flake.nix .
+}
 
 # use yazi to cd
 def --env Fexplore [...args] {

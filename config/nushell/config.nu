@@ -29,7 +29,6 @@ let abbrevs = {
     ou: 'overlay use'
     oh: 'overlay hide'
     ol: 'overlay list'
-    nr: 'cd ~/dotfiles/nix; sudo nixos-rebuild switch --flake .'
 }
 
 $env.config.show_banner = false
