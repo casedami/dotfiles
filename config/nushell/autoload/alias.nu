@@ -18,6 +18,11 @@ def --env pyinit [] {
     cp ~/dev/flake.nix .
 }
 
+# run a nix-shell with nushell on startup
+def --wrapped nix [...args: string] {
+    ^nix ...$args --command nu
+}
+
 # use yazi to cd
 def --env Fexplore [...args] {
     let tmp = (mktemp -t "yazi-cwd.XXXXXX")

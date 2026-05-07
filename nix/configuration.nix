@@ -135,7 +135,6 @@
       nil
       nixfmt
       nushell
-      python3
       stylua
       typst
       uv

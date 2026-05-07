@@ -87,8 +87,17 @@ def _git [] {
     }
 }
 
+def _nix [] {
+    let shell = $env | get -o IN_NIX_SHELL
+    if ($shell | is-not-empty) {
+        $"(ansi $theme.type)\((ansi $theme.property)nix(ansi $theme.type)\)(ansi reset) "
+    } else {
+        ""
+    }
+}
+
 def _left_prompt [] {
-    $"(_jobs)(_path)(_git)"
+    $"(_jobs)(_nix)(_path)(_git)"
 }
 
 def _right_prompt [] {

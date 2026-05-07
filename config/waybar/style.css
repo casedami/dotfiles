@@ -42,6 +42,10 @@
   color: #eb4d4b;
 }
 
+#mpris {
+  padding-left: 8px;
+}
+
 #pulseaudio {
   padding: 2px 0px;
   padding-right: 18px;
