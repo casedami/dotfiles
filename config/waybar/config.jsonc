@@ -1,11 +1,10 @@
-
 {
-     "position": "top",
+    "position": "top",
     "height": 5,
     "reload_style_on_change": false, 
     "modules-left": ["hyprland/workspaces", "mpris"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["network", "bluetooth", "pulseaudio", "cpu", "battery", "clock", "tray"],
+    "modules-right": ["network", "bluetooth", "pulseaudio", "cpu", "power-profiles-daemon", "battery", "clock"],
     "mpris": {
         "format": "{player_icon} {dynamic}",
         "format-paused": "⏸ <i>{dynamic}</i>",
@@ -22,18 +21,14 @@
         },
         "ignored-players": ["firefox"]
     },
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
     "hyprland/window" : {
-        "max-length": 45
-    },
-    "tray": {
-        "spacing": 10
+        "max-length": 45,
+        "separate-outputs": true
     },
     "clock": {
         "format": "{:%a %H:%M }",
-        "format-alt": "{:%A %Y-%m-%d %H:%M}"
+        "format-alt": "{:%A %Y-%m-%d %H:%M}",
+        "tooltip": false
       
     },
     "battery": {
@@ -44,6 +39,7 @@
         "format-time": "{H}:{M:02}",
         "format-charging": " {capacity}% ({time})",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂂", "󰁹"],
+        "tooltip": false,
         "states": {
             "warning": 30,
             "critical": 15
@@ -61,35 +57,52 @@
     },
     "bluetooth": {
         "format": "{}",
-        "format-on": "󰂯",
-        "format-off": "󰂲",
-        "format-disabled": "󰂲",
-        "format-connected": "󰂱 {device_alias}",
-        "format-connected-battery": "󰂱 {device_alias} ({device_battery_percentage}%)",
+        "format-on": "󰂯 ",
+        "format-off": "󰂲 ",
+        "format-disabled": "󰂲 ",
+        "format-connected": "󰂰 ",
+        "format-connected-battery": "󰂰 ({device_battery_percentage}%)",
+        "tooltip-format-connected": "{device_alias}",
         "on-click-right": "hyprctl dispatch exec 'ghostty -e bluetui'"
     },
     "network": {
-        "format-wifi": "  {essid}",
-        "format-alt": "",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "󰖪",
+        "format-wifi": "󰖩  {essid}",
+        "format-alt": "󰖩 ",
+        "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "󰖪 ",
+        "tooltip": false,
         "on-click-right": "hyprctl dispatch exec 'ghostty -e ~/.cargo/bin/impala-nm'"
     },
      "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon}",
-        "format-muted": "<span size='12pt'>󰝟</span>",
+        "format-muted": " ",
         "scroll-step": 2,
+        "tooltip": false,
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "headphone": "󰋋 ",
+            "hands-free": "󰋋 ",
+            "headset": "󰋋 ",
             "default": [
-                "<span size='12pt'>󰕿</span>",
-                "<span size='12pt'>󰖀</span>",
-                "<span size='12pt'>󰕾</span>"
+                " ",
+                " ",
+                " "
             ]
         }
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}",
+        "format-icons": {
+            "performance": " ",
+            "balanced": "󰗑 ",
+            "power-saver": " "
+        }
+    },
+    "tray" : {
+        "icon-size": 13,
+        "spacing": 12,
+        "cursor": true
     }
 }

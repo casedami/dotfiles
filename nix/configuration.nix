@@ -50,6 +50,7 @@
     fwupd.enable = true;
     libinput.enable = true;
     hypridle.enable = true;
+    power-profiles-daemon.enable = true;
     udev = {
       enable = true;
       packages = with pkgs; [

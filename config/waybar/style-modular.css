@@ -1,0 +1,83 @@
+@import "./colors.css";
+
+* {
+  margin: 1 8px;
+  padding: 0 8px;
+  border-radius: 8px;
+}
+
+#waybar {
+  background-color: transparent;
+  color: @c-bright-white;
+}
+
+#waybar.empty .modules-center{
+  opacity:0;
+}
+
+#tooltip {
+    border-radius: 8px;
+    background: @c-tooltip-bg;
+}
+
+#workspaces {
+  background-color: @c-black;
+  margin: 1 2px;
+  padding: 0 0;
+}
+
+#workspaces button * {
+  margin: 1 2px;
+  padding: 0 0;
+}
+
+#workspaces button.hover {
+  background: @c-module-bg-hover;
+  box-shadow: inset 0 -3px @c-fg;
+}
+
+#workspaces button:not(.active) {
+  color: @c-bright-white;
+}
+
+#workspaces button.urgent {
+  color: @c-bright-red;
+}
+
+#tray,
+#power-profiles-daemon,
+#window:not(.empty),
+#mpris,
+#clock,
+#cpu,
+#pulseaudio,
+#battery,
+#network,
+#bluetooth {
+  background-color: @c-black;
+}
+
+#network {
+  border-radius: 8px 0 0 8px;
+  margin-right: 0;
+  padding-right: 2px;
+}
+
+#bluetooth {
+  border-radius: 0 8px 8px 0;
+  margin-left: 0;
+  padding-left: 6px;
+}
+
+#network.disconnected {
+  color: @c-bright-red;
+}
+
+#battery.critical:not(.charging) {
+  color: @c-bright-red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

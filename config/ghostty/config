@@ -5,7 +5,6 @@ theme = hojicha
 gtk-custom-css = tabbar-style.css
 mouse-hide-while-typing = true
 
-title = " "
 window-subtitle = false
 
 command = nu
@@ -22,7 +21,7 @@ keybind = ctrl+a>shift+backslash=new_split:right
 keybind = ctrl+a>d=close_surface
 keybind = ctrl+a>r=reload_config
 
-keybind = ctrl+a>t=new_tab
+keybind = ctrl+a>e=new_tab
 keybind = ctrl+a>n=next_tab
 keybind = ctrl+a>p=previous_tab
 keybind = ctrl+a>c=close_tab

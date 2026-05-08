@@ -126,6 +126,13 @@ $env.config.keybindings ++= [
         event: {send: executehostcommand, cmd: "job unfreeze"}
     }
     {
+        name: file_search
+        modifier: control
+        keycode: char_s
+        mode: [vi_normal, vi_insert]
+        event: {send: executehostcommand, cmd: "fzf"}
+    }
+    {
         name: abbr_menu
         modifier: none
         keycode: enter
