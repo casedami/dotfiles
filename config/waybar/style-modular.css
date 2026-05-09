@@ -22,13 +22,14 @@ window#waybar.empty #window {
 #battery,
 #network,
 #bluetooth,
+#mpris,
+#pulseaudio,
 #custom-powermenu {
   background-color: @c-black;
   padding-left: 8px;
   padding-right: 8px;
 }
 
-#mpris,
 #battery,
 #cpu,
 #network {
@@ -37,7 +38,6 @@ window#waybar.empty #window {
   padding-right: 2px;
 }
 
-#pulseaudio,
 #custom-powermenu,
 #power-profiles-daemon,
 #bluetooth {
