@@ -1,47 +1,6 @@
-@import "./colors.css";
-
-* {
-  margin: 1 8px;
-  padding: 0 4px;
-  border-radius: 8px;
-}
-
 #waybar {
   background-color: @c-module-bg;
   color: @c-fg;
+  border-radius: 0;
 }
 
-#workspaces button * {
-  margin: 1 2px;
-  padding: 0 0;
-}
-
-#workspaces button.hover {
-  background: @c-module-bg-hover;
-  box-shadow: inset 0 -3px @c-fg;
-}
-
-#workspaces button:not(.active) {
-  color: @c-bright-white;
-}
-
-#workspaces button.urgent {
-  color: @c-brignt-red;
-}
-
-#network.disconnected {
-  color: @c-brignt-red;
-}
-
-#battery.critical:not(.charging) {
-  color: @c-brignt-red;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#tray {
-  background-color: @c-bright-cyan;
-}

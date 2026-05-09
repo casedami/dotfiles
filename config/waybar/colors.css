@@ -1,6 +1,3 @@
-@define-color c-module-bg       rgba(0, 0, 0, 1.0);
-@define-color c-module-bg-hover rgba(0, 0, 0, 0.9);
-@define-color c-tooltip-bg      #1f1e1c;
 @define-color c-fg              #dddddd;
 
 @define-color c-black           #191919;
@@ -13,7 +10,7 @@
 @define-color c-white           #616167;
 @define-color c-bright-black    #2a2927;
 @define-color c-bright-red      #ab836c;
-@define-color c-bright-green    #777d77;
+@define-color c-bright-green    #717d6e;
 @define-color c-bright-yellow   #b5b3a5;
 @define-color c-bright-blue     #858599;
 @define-color c-bright-magenta  #817882;

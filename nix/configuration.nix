@@ -151,6 +151,7 @@
       hyprpaper
       hyprpolkitagent
       hyprtoolkit
+      rofi
       mako
     ];
   };

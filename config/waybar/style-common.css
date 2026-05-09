@@ -1,0 +1,57 @@
+.modules-right > widget > * {
+    margin: 4 10 4 0;
+}
+
+.modules-right > widget:last-child > * {
+    margin-right: 0;
+}
+
+.modules-left > widget > * {
+    margin: 4 0 4 10;
+}
+
+.modules-left > widget:first-child > * {
+    margin-left: 0;
+}
+
+.active {
+  border: 2px solid @c-bright-green;
+}
+
+.hover {
+  background: @c-bright-black;
+  box-shadow: inset 0 -3px @c-fg;
+}
+
+.disconnected,
+.urgent {
+  color: @c-bright-red;
+}
+
+.empty.module {
+  opacity: 0;
+}
+
+#window {
+  font-style: italic;
+}
+
+* {
+  border-radius: 6px;
+}
+
+#workspaces button {
+  padding: 1 0;
+}
+
+#workspaces button:not(.active) {
+  color: @c-bright-white;
+}
+
+#battery.critical:not(.charging) {
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

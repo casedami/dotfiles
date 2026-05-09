@@ -1,0 +1,131 @@
+* {
+    bg:          #171614ff;
+    bg-alt:      #1f1e1cff;
+    fg:          #aea09fff;
+    fg-dim:      #616167ff;
+    accent:      #777d77ff;
+    urgent:      #ab836cff;
+    selected-fg: #ddddddff;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    background-color: @bg;
+    border:           2px solid;
+    border-color:     @accent;
+    border-radius:    8px;
+    width:            480px;
+    padding:          8px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:          6px;
+    children:         [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @bg;
+    border-radius:    6px;
+    padding:          6px 10px;
+    spacing:          8px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    text-color: @accent;
+}
+
+entry {
+    text-color:   @selected-fg;
+    cursor:       text;
+    placeholder:  "search...";
+    placeholder-color: @fg-dim;
+}
+
+listview {
+    background-color: transparent;
+    lines:            8;
+    columns:          1;
+    spacing:          2px;
+    scrollbar:        false;
+    fixed-height:     false;
+    border:           1px 0 0;
+    border-color:     @accent;
+}
+
+element {
+    background-color: transparent;
+    border-radius:    6px;
+    padding:          6px 10px;
+    spacing:          8px;
+    orientation:      horizontal;
+    children:         [ element-icon, element-text ];
+}
+
+element normal normal {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+element normal urgent {
+    background-color: transparent;
+    text-color:       @urgent;
+}
+
+element normal active {
+    background-color: transparent;
+    text-color:       @accent;
+}
+
+element selected normal {
+    background-color: @bg-alt;
+    text-color:       @selected-fg;
+}
+
+element selected urgent {
+    background-color: @bg-alt;
+    text-color:       @urgent;
+}
+
+element selected active {
+    background-color: @bg-alt;
+    text-color:       @accent;
+}
+
+element alternate normal {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+element alternate urgent {
+    background-color: transparent;
+    text-color:       @urgent;
+}
+
+element alternate active {
+    background-color: transparent;
+    text-color:       @accent;
+}
+
+element-icon {
+    size:             18px;
+    vertical-align:   0.5;
+}
+
+element-text {
+    vertical-align: 0.5;
+    highlight:      bold #777d77ff;
+}
+
+message {
+    background-color: @bg-alt;
+    border-radius:    6px;
+    padding:          6px 10px;
+}
+
+textbox {
+    text-color: @fg-dim;
+}

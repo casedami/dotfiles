@@ -2,9 +2,9 @@
     "position": "top",
     "height": 5,
     "reload_style_on_change": false, 
-    "modules-left": ["hyprland/workspaces", "mpris"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["network", "bluetooth", "pulseaudio", "cpu", "power-profiles-daemon", "battery", "clock"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["mpris", "network", "bluetooth", "pulseaudio", "cpu", "power-profiles-daemon", "battery"],
     "mpris": {
         "format": "{player_icon} {dynamic}",
         "format-paused": "⏸ <i>{dynamic}</i>",
@@ -34,7 +34,6 @@
     "battery": {
         "interval": 20,
         "full-at": 100,
-        "format-full": "",
         "format": "{icon} {capacity}%",
         "format-time": "{H}:{M:02}",
         "format-charging": " {capacity}% ({time})",
@@ -57,11 +56,11 @@
     },
     "bluetooth": {
         "format": "{}",
-        "format-on": "󰂯 ",
+        "format-on": " ",
         "format-off": "󰂲 ",
         "format-disabled": "󰂲 ",
-        "format-connected": "󰂰 ",
-        "format-connected-battery": "󰂰 ({device_battery_percentage}%)",
+        "format-connected": " ",
+        "format-connected-battery": " ({device_battery_percentage}%)",
         "tooltip-format-connected": "{device_alias}",
         "on-click-right": "hyprctl dispatch exec 'ghostty -e bluetui'"
     },
@@ -96,7 +95,7 @@
         "tooltip-format": "Power profile: {profile}",
         "format-icons": {
             "performance": " ",
-            "balanced": "󰗑 ",
+            "balanced": " ",
             "power-saver": " "
         }
     },

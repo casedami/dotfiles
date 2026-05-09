@@ -10,5 +10,7 @@
 	text-shadow: none;
 }
 
-@import "./style-simple.css";
-/* @import "./style-modular.css"; */
+@import "./colors.css";
+@import "./style-common.css";
+/* @import "./style-simple.css"; */
+@import "./style-modular.css";

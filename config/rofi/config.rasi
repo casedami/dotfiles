@@ -1,0 +1,16 @@
+configuration {
+    font: "Lilex Nerd Font 12";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    display-drun: "";
+    display-run: "";
+    display-window: "";
+    drun-display-format: "{name}";
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+    kb-row-down: "Control+n,Down";
+    kb-row-up: "Control+p,Up";
+}
+
+@import "theme.rasi"
