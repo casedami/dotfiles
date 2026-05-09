@@ -4,7 +4,7 @@
     "reload_style_on_change": false, 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["mpris", "network", "bluetooth", "pulseaudio", "cpu", "power-profiles-daemon", "battery"],
+    "modules-right": ["mpris", "network", "bluetooth", "pulseaudio", "cpu", "power-profiles-daemon", "battery", "custom/powermenu"],
     "mpris": {
         "format": "{player_icon} {dynamic}",
         "format-paused": "⏸ <i>{dynamic}</i>",
@@ -98,6 +98,11 @@
             "balanced": " ",
             "power-saver": " "
         }
+    },
+    "custom/powermenu": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exec /home/cdm/.config/waybar/scripts/powermenu.sh"
     },
     "tray" : {
         "icon-size": 13,
