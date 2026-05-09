@@ -4,22 +4,18 @@
     "reload_style_on_change": false, 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["mpris", "network", "bluetooth", "pulseaudio", "cpu", "power-profiles-daemon", "battery", "custom/powermenu"],
+    "modules-right": ["mpris", "pulseaudio", "network", "bluetooth", "cpu", "power-profiles-daemon", "battery", "custom/powermenu"],
     "mpris": {
         "format": "{player_icon} {dynamic}",
-        "format-paused": "⏸ <i>{dynamic}</i>",
+        "format-paused": " <i>{dynamic}</i>",
         "dynamic-order": ["title", "artist"],
         "dynamic-len": 45,
         "player-icons": {
-            "default": " ",
+            "default": "󰥠 ",
             "spotify": " ",
             "firefox": "󰈹 ",
             "chromium": ""
-        },
-        "status-icons": {
-            "paused": " "
-        },
-        "ignored-players": ["firefox"]
+        }
     },
     "hyprland/window" : {
         "max-length": 45,

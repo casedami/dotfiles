@@ -28,6 +28,7 @@ window#waybar.empty #window {
   padding-right: 8px;
 }
 
+#mpris,
 #battery,
 #cpu,
 #network {
@@ -36,6 +37,7 @@ window#waybar.empty #window {
   padding-right: 2px;
 }
 
+#pulseaudio,
 #custom-powermenu,
 #power-profiles-daemon,
 #bluetooth {
