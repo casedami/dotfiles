@@ -106,7 +106,6 @@
   # user
   users.users.cdm = {
     isNormalUser = true;
-    hashedPassword = "$6$RAgjP7adpCx6sk3S$9TQM2YxLj1wkUesVxyBRcXjjvj8wwTkLKeIa44evY0ynk2LNojCcJRWrGGJkErV4sa.HNcDHXoUERGjYje6u7/";
     home = "/home/cdm";
     extraGroups = [
       "wheel"
