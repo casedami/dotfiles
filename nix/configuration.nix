@@ -146,7 +146,6 @@
       spotify
       # hypr ecosystem
       hypridle
-      hyprlauncher
       hyprshot
       hyprpaper
       hyprpolkitagent
