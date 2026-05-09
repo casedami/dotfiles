@@ -121,6 +121,7 @@
       gcc
       fzf
       gh
+      gowall
       macchina
       ripgrep
       tree
