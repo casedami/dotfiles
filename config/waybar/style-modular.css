@@ -7,7 +7,7 @@
   color: @c-bright-white;
 }
 
-window#waybar.empty #mpris {
+window#waybar.empty #window, #mpris {
   opacity: 0;
 }
 
