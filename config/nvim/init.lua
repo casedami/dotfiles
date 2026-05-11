@@ -4,7 +4,7 @@ vim.pack.add({
 	"gh:/j-hui/fidget.nvim",
 	"gh:/ibhagwan/fzf-lua",
 	"gh:/lewis6991/gitsigns.nvim",
-	{ src = "file://" .. vim.env.HOME .. "/dev/neomodern.nvim" },
+	{ src = "file://" .. vim.env.HOME .. "/dev/neomodern.nvim", version = "improve-base16-palette" },
 	{ src = "gh:/nvim-treesitter/nvim-treesitter", version = "main" },
 	"gh:/nvim-treesitter/nvim-treesitter-textobjects",
 	"gh:/nvim-treesitter/nvim-treesitter-context",
