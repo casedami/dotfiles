@@ -16,6 +16,7 @@
 
 .active {
   border: 2px solid @c-bright-green;
+  background: @c-bright-black;
 }
 
 .hover {
