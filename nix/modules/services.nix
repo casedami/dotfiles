@@ -1,0 +1,25 @@
+{ config, lib, pkgs, ... }:
+{
+  services = {
+    xserver.enable = true;
+    fwupd.enable = true;
+    libinput.enable = true;
+    hypridle.enable = true;
+    power-profiles-daemon.enable = true;
+    udev = {
+      enable = true;
+      packages = with pkgs; [
+        qmk
+        qmk-udev-rules
+        vial
+      ];
+    };
+    keyd = {
+      enable = true;
+      keyboards.default = {
+        ids = [ "*" ];
+        settings.main.capslock = "esc";
+      };
+    };
+  };
+}
