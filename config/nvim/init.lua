@@ -1,3 +1,20 @@
+vim.g.icons = {
+	diag = {
+		gutter = "",
+		error = " ",
+		other = " ",
+	},
+	lock = "󰍁",
+	modified = "*",
+	neovim = " ",
+	newfile = " ",
+	readonly = "󰛐 ",
+	unnamed = "",
+}
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 vim.pack.add({
 	{ src = "gh:/saghen/blink.cmp", version = vim.version.range("1.*") },
 	"gh:/stevearc/conform.nvim",
@@ -21,23 +38,20 @@ require("neomodern").setup({
 require("neomodern").load()
 
 -- load main config
-require("options")
-require("keymaps")
-require("autocmds")
-require("lsp")
-require("ls")
-require("statusline")
-require("session")
+require("cdm.statusline")
+require("cdm.ls")
+require("cdm.session")
+require("cdm.lsp")
 
 -- load plugins
 local function import_cfg(dir)
-	local files = vim.fn.globpath(string.format("%s/lua/%s", vim.fn.stdpath("config"), dir), "*.lua", false, true)
+	local files = vim.fn.globpath(string.format("%s/lua/cdm/%s", vim.fn.stdpath("config"), dir), "*.lua", false, true)
 
 	for _, f in ipairs(files) do
-		require(string.format("%s.%s", dir, vim.fn.fnamemodify(f, ":t:r")))
+		require(string.format("cdm.%s.%s", dir, vim.fn.fnamemodify(f, ":t:r")))
 	end
 end
-import_cfg("plugin")
+import_cfg("plugins")
 require("vim._core.ui2").enable({})
 
 -- load opt-in plugins

@@ -1,3 +1,5 @@
+vim.g.sessions_dir = vim.fs.joinpath(vim.env.HOME, ".local", "share", "nvim", "sessions")
+
 local function get_root()
 	local root = vim.fs.root(vim.fn.expand("%"), ".git")
 	if root == nil then
