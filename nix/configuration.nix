@@ -124,6 +124,7 @@
       gowall
       macchina
       ripgrep
+      rustup
       tree
       tree-sitter
       vivid
@@ -146,6 +147,8 @@
       slack
       spotify
       # hypr ecosystem
+      wl-screenrec
+      slurp
       hypridle
       hyprshot
       hyprpaper

@@ -20,8 +20,6 @@ let abbrevs = {
     gwl: 'git worktree list'
     gx: 'git switch'
     gxc: 'git-checkout-fzf'
-    la: 'ls -a'
-    ll: 'ls -l'
     fg: 'job unfreeze'
     da: 'dirs add'
     dd: 'dirs drop'

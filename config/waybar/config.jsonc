@@ -100,9 +100,7 @@
         "tooltip": false,
         "on-click": "hyprctl dispatch exec /home/cdm/.config/waybar/scripts/powermenu.sh"
     },
-    "tray" : {
-        "icon-size": 13,
-        "spacing": 12,
-        "cursor": true
+    "tray": {
+        "spacing": 10
     }
 }
