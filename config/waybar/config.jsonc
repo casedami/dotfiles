@@ -22,7 +22,7 @@
         "separate-outputs": true
     },
     "clock": {
-        "format": "{:%a %H:%M }",
+        "format": "{:%a %H:%M}",
         "format-alt": "{:%A %Y-%m-%d %H:%M}",
         "tooltip": false
       
