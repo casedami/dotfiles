@@ -2,6 +2,8 @@ use std/dirs
 source completions/git/cmp.nu
 
 let abbrevs = {
+    f: 'fzf'
+    ptop: 'ps | sort-by cpu -r | first 15'
     ga: 'git add'
     gac: 'git-add-fzf'
     gb: 'git branch'
@@ -82,13 +84,6 @@ $env.config.keybindings ++= [
         event: {send: executehostcommand, cmd: "Fexplore"}
     }
     {
-        name: open_sys_diagnostics
-        modifier: control
-        keycode: char_d
-        mode: [vi_normal]
-        event: {send: executehostcommand, cmd: "btm"}
-    }
-    {
         name: open_reedline_editor
         modifier: control
         keycode: char_f
@@ -106,29 +101,15 @@ $env.config.keybindings ++= [
         name: dirs_cycle_next
         modifier: control
         keycode: char_k
-        mode: [vi_normal, vi_insert]
+        mode: [vi_normal]
         event: {send: executehostcommand, cmd: "dirs next"}
     }
     {
         name: dirs_cycle_prev
         modifier: control
         keycode: char_j
-        mode: [vi_normal, vi_insert]
+        mode: [vi_normal]
         event: {send: executehostcommand, cmd: "dirs prev"}
-    }
-    {
-        name: job_resume
-        modifier: alt
-        keycode: char_z
-        mode: [vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "job unfreeze"}
-    }
-    {
-        name: file_search
-        modifier: control
-        keycode: char_s
-        mode: [vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "fzf"}
     }
     {
         name: abbr_menu
