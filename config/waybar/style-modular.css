@@ -24,6 +24,7 @@ window#waybar.empty #mpris {
 #pulseaudio,
 #workspaces,
 #battery,
+#temperature,
 #network,
 #bluetooth,
 #mpris,
@@ -34,8 +35,8 @@ window#waybar.empty #mpris {
   padding-right: 8px;
 }
 
+#temperature,
 #battery,
-#cpu,
 #network {
   border-radius: 8px 0 0 8px;
   margin-right: 0;
@@ -46,6 +47,14 @@ window#waybar.empty #mpris {
 #power-profiles-daemon,
 #bluetooth {
   border-radius: 0 8px 8px 0;
+  margin-left: 0;
+  padding-left: 6px;
+}
+
+#cpu {
+  border-radius: 0;
+  margin-right: 0;
+  padding-right: 6px;
   margin-left: 0;
   padding-left: 6px;
 }

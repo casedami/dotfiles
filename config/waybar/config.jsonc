@@ -4,7 +4,7 @@
     "reload_style_on_change": false, 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["mpris", "pulseaudio", "network", "bluetooth", "cpu", "power-profiles-daemon", "battery", "custom/powermenu"],
+    "modules-right": ["mpris", "pulseaudio", "network", "bluetooth","temperature", "cpu", "power-profiles-daemon", "battery", "custom/powermenu"],
     "mpris": {
         "format": "{player_icon} {dynamic}",
         "format-paused": " <i>{dynamic}</i>",
@@ -85,6 +85,13 @@
                 " "
             ]
         }
+    },
+    "temperature": {
+        "interval": 10,
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip": false
     },
     "power-profiles-daemon": {
         "format": "{icon}",
