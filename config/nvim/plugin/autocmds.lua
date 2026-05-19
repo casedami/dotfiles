@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			{ key = "r", cmd = "<cmd>FzfLua oldfiles<cr>" },
 			{ key = "g", cmd = "<cmd>FzfLua live_grep<cr>" },
 			{ key = "s", cmd = "<cmd>Load<cr>" },
-			{ key = "qq", cmd = "<cmd>q!<cr>" },
 		}
 
 		vim.api.nvim_set_option_value("modifiable", false, { buf = 1 })
@@ -49,21 +48,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-	group = vim.api.nvim_create_augroup("casedami/close_with_q", { clear = true }),
-	desc = "close with <q>",
-	pattern = {
-		"git",
-		"help",
-		"man",
-		"qf",
-		"scratch",
-	},
-	callback = function(args)
-		vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
-	end,
-})
-
 vim.api.nvim_create_autocmd("CmdwinEnter", {
 	group = vim.api.nvim_create_augroup("casedami/persist_cmd_win", { clear = true }),
 	desc = "keep command window open after running command",
@@ -82,7 +66,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 local ns_marks = vim.api.nvim_create_namespace("marksigns")
-vim.api.nvim_create_autocmd({ "MarkSet", "CursorMoved" }, {
+vim.api.nvim_create_autocmd({ "MarkSet" }, {
 	group = vim.api.nvim_create_augroup("casedami/marks", { clear = true }),
 	desc = "show a-zA-Z marks in signcolumn",
 	callback = function()

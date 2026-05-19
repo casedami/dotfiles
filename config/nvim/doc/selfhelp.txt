@@ -1,4 +1,4 @@
-*selfhelp.txt*                                                      2026-04-15
+*selfhelp.txt*                                                      2026-05-19
 
 ==============================================================================
 1. Bookmarks                                              *selfhelp-bookmarks*
@@ -6,8 +6,8 @@
 ╭──────┬───────────┬────────────────────────╮
 │ mode │    map    │          desc          │
 ├──────┼───────────┼────────────────────────┤
-│ n    │ <C-%d>    │ goto bookmark %d=[1-5] │
 │ n    │ <leader>b │ search bookmarks       │
+│ n    │ <C-%d>    │ goto bookmark %d=[1-5] │
 ╰──────┴───────────┴────────────────────────╯
 
 ==============================================================================
@@ -16,23 +16,23 @@
 ╭──────┬────────────┬───────────────────────────────────╮
 │ mode │    map     │               desc                │
 ├──────┼────────────┼───────────────────────────────────┤
-│ n    │ <leader>le │ previous buffer in current window │
-│ n    │ <leader>ls │ previous buffer in hsplit         │
-│ n    │ <leader>lv │ previous buffer in vsplit         │
+│ n    │ <leader>bp │ previous buffer in current window │
+│ n    │ <leader>bs │ previous buffer in hsplit         │
+│ n    │ <leader>bv │ previous buffer in vsplit         │
 ╰──────┴────────────┴───────────────────────────────────╯
 
 ==============================================================================
 3. Diagnostic                                            *selfhelp-diagnostic*
 
-╭──────┬────────────────┬──────────────────────────────╮
-│ mode │      map       │             desc             │
-├──────┼────────────────┼──────────────────────────────┤
-│ n    │ grd            │ current line                 │
-│ n    │ grT            │ toggle                       │
-│ n    │ ]d             │ next                         │
-│ n    │ [d             │ prev                         │
-│ n    │ <localleader>D │ search workspace diagnostics │
-╰──────┴────────────────┴──────────────────────────────╯
+╭──────┬─────┬──────────────────────────────╮
+│ mode │ map │             desc             │
+├──────┼─────┼──────────────────────────────┤
+│ n    │ grD │ search workspace diagnostics │
+│ n    │ grd │ current line                 │
+│ n    │ grT │ toggle                       │
+│ n    │ ]d  │ next                         │
+│ n    │ [d  │ prev                         │
+╰──────┴─────┴──────────────────────────────╯
 
 ==============================================================================
 4. Directory                                              *selfhelp-directory*
@@ -40,38 +40,46 @@
 ╭──────┬────────────┬────────────────────────────────────────────╮
 │ mode │    map     │                    desc                    │
 ├──────┼────────────┼────────────────────────────────────────────┤
+│ n    │ <leader>e  │ list current working directory             │
+│ n    │ <leader>E  │ list current buffer's directory            │
+│ n    │ <leader>cc │ change directory (fzf)                     │
 │ n    │ <leader>cd │ change directory to parent of current file │
 │ n    │ <leader>cu │ change directory to parent of cwd          │
 │ n    │ <leader>cr │ change directory to root of current file   │
 │ n    │ <leader>c- │ change directory to previous cwd           │
-│ n    │ <leader>e  │ list current working directory             │
-│ n    │ <leader>E  │ list current buffer's directory            │
-│ n    │ <leader>cc │ change directory (fzf)                     │
 ╰──────┴────────────┴────────────────────────────────────────────╯
 
 ==============================================================================
 5. Finder                                                    *selfhelp-finder*
 
-╭──────┬───────────┬──────────────╮
-│ mode │    map    │     desc     │
-├──────┼───────────┼──────────────┤
-│ n    │ <leader>F │ resume       │
-│ n    │ <leader>f │ files        │
-│ n    │ <leader>r │ recent files │
-│ n    │ <leader>o │ open buffers │
-│ n    │ <leader>g │ grep         │
-│ n    │ <leader>h │ help         │
-│ n    │ <leader>H │ highlights   │
-╰──────┴───────────┴──────────────╯
+╭──────┬────────────┬──────────────╮
+│ mode │    map     │     desc     │
+├──────┼────────────┼──────────────┤
+│ n    │ <leader>F  │ resume       │
+│ n    │ <leader>f  │ files        │
+│ n    │ <leader>r  │ recent files │
+│ n    │ <leader>o  │ open buffers │
+│ n    │ <leader>gr │ grep         │
+│ n    │ <leader>h  │ help         │
+│ n    │ <leader>H  │ highlights   │
+╰──────┴────────────┴──────────────╯
 
 ==============================================================================
 6. Git                                                          *selfhelp-git*
 
-╭──────┬───────────┬────────╮
-│ mode │    map    │  desc  │
-├──────┼───────────┼────────┤
-│ n    │ <leader>G │ status │
-╰──────┴───────────┴────────╯
+╭──────┬─────────────────┬────────────────────╮
+│ mode │       map       │        desc        │
+├──────┼─────────────────┼────────────────────┤
+│ n    │ <leader>gs      │ status             │
+│ n    │ <leader>gc      │ buffer commits     │
+│ n    │ ]h              │ goto next hunk     │
+│ n    │ [h              │ goto previous hunk │
+│ n    │ <localleader>hr │ reset hunk         │
+│ n    │ <localleader>hd │ diff hunk          │
+│ n    │ <localleader>hs │ stage hunk         │
+│ v    │ <localleader>hs │ stage hunk         │
+│ v    │ <localleader>hr │ reset hunk         │
+╰──────┴─────────────────┴────────────────────╯
 
 ==============================================================================
 7. LSP                                                          *selfhelp-lsp*
@@ -79,9 +87,9 @@
 ╭──────┬─────┬───────────────────────────────╮
 │ mode │ map │             desc              │
 ├──────┼─────┼───────────────────────────────┤
-│ n    │ grc │ highlight symbol under cursor │
 │ n    │ gd  │ definitions                   │
 │ n    │ grr │ search references             │
+│ n    │ grc │ highlight symbol under cursor │
 ╰──────┴─────┴───────────────────────────────╯
 
 ==============================================================================

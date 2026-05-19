@@ -2,7 +2,7 @@
 use std repeat
 
 let text_width = 78
-let SEARCH_DIR = $env.XDG_CONFIG_HOME | path join nvim lua
+let SEARCH_DIR = $env.XDG_CONFIG_HOME | path join nvim
 
 # Expecting keymap declaration in the following format:
 # set MODE MAP desc=DESC

@@ -58,7 +58,3 @@ window#waybar.empty #mpris {
   margin-left: 0;
   padding-left: 6px;
 }
-
-#custom-powermenu:hover {
-  color: @c-bright-red;
-}

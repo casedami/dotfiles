@@ -101,14 +101,14 @@ $env.config.keybindings ++= [
         name: dirs_cycle_next
         modifier: control
         keycode: char_k
-        mode: [vi_normal]
+        mode: [emacs, vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "dirs next"}
     }
     {
         name: dirs_cycle_prev
         modifier: control
         keycode: char_j
-        mode: [vi_normal]
+        mode: [emacs, vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "dirs prev"}
     }
     {

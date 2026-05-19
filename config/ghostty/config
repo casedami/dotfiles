@@ -39,4 +39,8 @@ keybind = ctrl+a>k=goto_split:up
 keybind = ctrl+a>j=goto_split:down
 keybind = shift+enter=text:\x1b\r
 keybind = ctrl+enter=unbind
+keybind = ctrl+shift+p=unbind
 keybind = ctrl+a>r=prompt_tab_title
+
+keybind = ctrl+up=scroll_page_up
+keybind = ctrl+down=scroll_page_down

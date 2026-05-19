@@ -32,7 +32,7 @@
         "full-at": 100,
         "format": "{icon} {capacity}%",
         "format-time": "{H}:{M:02}",
-        "format-charging": " {capacity}% ({time})",
+        "format-charging": " {capacity}%",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂂", "󰁹"],
         "tooltip": false,
         "states": {
@@ -56,9 +56,9 @@
         "format-off": "󰂲 ",
         "format-disabled": "󰂲 ",
         "format-connected": " ",
-        "format-connected-battery": " ({device_battery_percentage}%)",
+        "format-connected-battery": " ",
         "tooltip-format-connected": "{device_alias}",
-        "on-click-right": "hyprctl dispatch exec 'ghostty -e bluetui'"
+        "on-click-right": "ghostty -e /run/current-system/sw/bin/bluetui"
     },
     "network": {
         "format-wifi": "󰖩  {essid}",
@@ -67,7 +67,7 @@
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": "󰖪 ",
         "tooltip": false,
-        "on-click-right": "hyprctl dispatch exec 'ghostty -e ~/.cargo/bin/impala-nm'"
+        "on-click-right": "ghostty -e /home/cdm/.cargo/bin/impala-nm"
     },
      "pulseaudio": {
         "format": "{icon} {volume}%",
