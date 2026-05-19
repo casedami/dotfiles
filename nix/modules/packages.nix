@@ -1,10 +1,18 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     bluetui
     brightnessctl
     git
+    usbutils
     nautilus
+    openssl.dev
+    pkg-config
     playerctl
     qmk
     qmk-udev-rules

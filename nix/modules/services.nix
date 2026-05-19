@@ -1,10 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   services = {
     xserver.enable = true;
     fwupd.enable = true;
     libinput.enable = true;
     hypridle.enable = true;
+    playerctld.enable = true;
     power-profiles-daemon.enable = true;
     udev = {
       enable = true;

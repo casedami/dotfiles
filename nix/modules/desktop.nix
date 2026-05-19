@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs = {
     ssh = {
@@ -15,6 +20,7 @@
     hyprlock.enable = true;
     waybar.enable = true;
     firefox.enable = true;
+    nix-ld.enable = true;
   };
   fonts.packages = with pkgs; [
     nerd-fonts.lilex
