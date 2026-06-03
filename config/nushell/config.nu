@@ -1,36 +1,6 @@
 use std/dirs
 source completions/git/cmp.nu
 
-let abbrevs = {
-    f: 'fzf'
-    ptop: 'ps | sort-by cpu -r | first 15'
-    ga: 'git add'
-    gac: 'git-add-fzf'
-    gb: 'git branch'
-    gc: 'git commit -v'
-    gd: 'git diff'
-    gdt: 'git difftool -d'
-    gl: 'git-log-tbl'
-    gm: 'git merge'
-    gq: 'git-conflicts'
-    gr: 'git rebase'
-    gR: 'git restore'
-    gs: 'git-status-tbl'
-    gS: 'git show'
-    gwa: 'git worktree add'
-    gwr: 'git worktree remove'
-    gwl: 'git worktree list'
-    gx: 'git switch'
-    gxc: 'git-checkout-fzf'
-    fg: 'job unfreeze'
-    da: 'dirs add'
-    dd: 'dirs drop'
-    dad: 'dirs add ~/dotfiles'
-    ou: 'overlay use'
-    oh: 'overlay hide'
-    ol: 'overlay list'
-}
-
 $env.config.show_banner = false
 $env.config.table = {
     show_empty: false
@@ -43,30 +13,35 @@ $env.config.cursor_shape = {vi_insert: line, vi_normal: block}
 $env.config.footer_mode = 20
 $env.config.buffer_editor = "nvim"
 $env.config.edit_mode = "vi"
-$env.config.menus ++= [
-    {
-        name: abbr_menu
-        only_buffer_difference: false
-        marker: none
-        type: {
-            layout: columnar
-            columns: 1
-            col_width: 20
-            col_padding: 2
-        }
-        style: {text: green, selected_text: green_reverse, description_text: yellow}
-        source: {|buffer, position|
-            let match = $abbrevs | columns | where $it == $buffer
-            if ($match | is-empty) {
-                {value: $buffer}
-            } else {
-                {
-                    value: ($abbrevs | get $match.0)
-                }
-            }
-        }
-    }
-]
+$env.config.abbreviations = {
+    f: fzf
+    ptop: 'ps | sort-by cpu -r | first 15'
+    ga: 'git add'
+    gac: git-add-fzf
+    gb: 'git branch'
+    gc: 'git commit -v'
+    gd: 'git diff'
+    gdt: 'git difftool -d'
+    gl: git-log-tbl
+    gm: 'git merge'
+    gq: git-conflicts
+    gr: 'git rebase'
+    gR: 'git restore'
+    gs: git-status-tbl
+    gS: 'git show'
+    gwa: 'git worktree add'
+    gwr: 'git worktree remove'
+    gwl: 'git worktree list'
+    gx: 'git switch'
+    gxc: git-checkout-fzf
+    fg: 'job unfreeze'
+    da: 'dirs add'
+    dd: 'dirs drop'
+    dad: 'dirs add ~/dotfiles'
+    ou: 'overlay use'
+    oh: 'overlay hide'
+    ol: 'overlay list'
+}
 
 $env.config.keybindings ++= [
     {
@@ -87,7 +62,7 @@ $env.config.keybindings ++= [
         name: open_reedline_editor
         modifier: control
         keycode: char_f
-        mode: [vi_normal]
+        mode: [vi_normal, vi_insert]
         event: {send: openeditor}
     }
     {
@@ -110,26 +85,6 @@ $env.config.keybindings ++= [
         keycode: char_j
         mode: [emacs, vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "dirs prev"}
-    }
-    {
-        name: abbr_menu
-        modifier: none
-        keycode: enter
-        mode: [emacs, vi_normal, vi_insert]
-        event: [
-            {send: menu, name: abbr_menu}
-            {send: enter}
-        ]
-    }
-    {
-        name: abbr_menu
-        modifier: none
-        keycode: space
-        mode: [emacs, vi_normal, vi_insert]
-        event: [
-            {send: menu, name: abbr_menu}
-            {edit: insertchar, value: ' '}
-        ]
     }
 ]
 

@@ -6,7 +6,6 @@ gtk-custom-css = tabbar-style.css
 mouse-hide-while-typing = true
 
 window-subtitle = false
-
 command = nu
 shell-integration-features = ssh-terminfo,ssh-env
 
@@ -26,13 +25,6 @@ keybind = ctrl+a>n=next_tab
 keybind = ctrl+a>p=previous_tab
 keybind = ctrl+a>c=close_tab
 
-keybind = ctrl+a>1=goto_tab:1
-keybind = ctrl+a>2=goto_tab:2
-keybind = ctrl+a>3=goto_tab:3
-keybind = ctrl+a>4=goto_tab:4
-keybind = ctrl+a>5=goto_tab:5
-keybind = ctrl+a>6=goto_tab:6
-
 keybind = ctrl+a>h=goto_split:left
 keybind = ctrl+a>l=goto_split:right
 keybind = ctrl+a>k=goto_split:up
@@ -41,6 +33,3 @@ keybind = shift+enter=text:\x1b\r
 keybind = ctrl+enter=unbind
 keybind = ctrl+shift+p=unbind
 keybind = ctrl+a>r=prompt_tab_title
-
-keybind = ctrl+up=scroll_page_up
-keybind = ctrl+down=scroll_page_down

@@ -26,6 +26,7 @@ vim.opt.undolevels = 1000
 vim.opt.background = "dark"
 vim.opt.conceallevel = 2
 vim.opt.cursorlineopt = "both"
+vim.opt.cursorline = true
 vim.opt.laststatus = 3
 vim.wo.number = true
 vim.opt.pumheight = 10

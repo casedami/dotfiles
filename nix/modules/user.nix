@@ -20,6 +20,7 @@
       bottom
       difftastic
       gcc
+      fd
       fzf
       gh
       gowall

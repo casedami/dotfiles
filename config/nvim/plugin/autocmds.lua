@@ -89,27 +89,48 @@ vim.api.nvim_create_autocmd({ "MarkSet" }, {
 	end,
 })
 
+vim.api.nvim_set_hl(0, "CursorLineNC", {
+	sp = vim.fn.synIDattr(vim.fn.hlID("Visual"), "bg#"),
+	underdashed = true,
+})
 local group_toggle_relnum = vim.api.nvim_create_augroup("casedami/toggle_relnum", {})
+local group_toggle_cursorline = vim.api.nvim_create_augroup("casedami/toggle_cursorline", {})
+
 vim.api.nvim_create_autocmd({ "WinEnter", "BufReadPost" }, {
 	group = group_toggle_relnum,
 	desc = "toggle relative line numbers on for focused buf",
 	callback = function()
 		if vim.wo.nu then
 			vim.wo.relativenumber = true
-			vim.wo.cursorline = true
 			vim.wo.cursorcolumn = true
 		end
 	end,
 })
+
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
 	group = group_toggle_relnum,
 	desc = "toggle relative line numbers off for unfocused buf(s)",
 	callback = function()
 		if vim.wo.nu then
 			vim.wo.relativenumber = false
-			vim.wo.cursorline = false
 			vim.wo.cursorcolumn = false
 		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "WinEnter", "BufReadPost" }, {
+	group = group_toggle_cursorline,
+	desc = "highlight cursorline on for focused buf",
+	callback = function()
+		vim.cmd("setlocal winhighlight=CursorLineNC:CursorLine")
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "WinLeave" }, {
+	group = group_toggle_cursorline,
+	desc = "dim cursorline for unfocused buf(s)",
+	callback = function()
+		vim.cmd("setlocal winhighlight=CursorLine:CursorLineNC")
 	end,
 })
 
