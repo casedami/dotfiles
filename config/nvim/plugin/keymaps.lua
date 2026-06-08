@@ -1,12 +1,3 @@
-local function cd_root()
-	local root = vim.fs.root(vim.fn.expand("%"), ".git")
-	if root then
-		vim.cmd.lcd(root)
-	else
-		vim.notify("No .git root found", vim.log.levels.INFO)
-	end
-end
-
 -- stylua: ignore start
 -- extend (ignored in selfhelp)
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Extend: center after page down" })
@@ -19,8 +10,10 @@ vim.keymap.set("n", "gV", "`[v`]", { desc = "Extend: select last inserted/edited
 vim.keymap.set("n", "/", "ms/", { desc = "Extend: mark last position before search" })
 vim.keymap.set({"n", "v"}, "<C-p>", "\"0p", { silent = true, desc = "Extend: paste from 0 register" })
 vim.keymap.set({"n", "v"}, "<C-S-p>", "\"0P", { silent = true, desc = "Extend: paste from 0 register" })
-vim.keymap.set("v", "<C-j>", ":m '>+1<cr>gv=gv", { silent = true, desc = "Extend: move line up" })
-vim.keymap.set("v", "<C-k>", ":m '<-2<cr>gv=gv", { silent = true, desc = "Extend: move line down" })
+vim.keymap.set("n", "<C-up>", "V:m '>+1<cr>gv=gv<esc>", { silent = true, desc = "Extend: move line up" })
+vim.keymap.set("n", "<C-down>", "V:m '<-2<cr>gv=gv<esc>", { silent = true, desc = "Extend: move line down" })
+vim.keymap.set("v", "<C-up>", ":m '>+1<cr>gv=gv", { silent = true, desc = "Extend: move line up" })
+vim.keymap.set("v", "<C-down>", ":m '<-2<cr>gv=gv", { silent = true, desc = "Extend: move line down" })
 vim.keymap.set({"n", "v"}, "<C-s>", "<cmd>w<cr>", { silent = true, desc = "Extend: save file" })
 vim.keymap.set({"n", "v"}, "<C-q>", "<cmd>q<cr>", { silent = true, desc = "Extend: quit" })
 vim.keymap.set("n", "zp", "vipzf", { desc = "Extend: fold inside paragraph" })
@@ -31,6 +24,15 @@ vim.keymap.set("n", "<leader>?", "<cmd>h selfhelp.txt<cr>", { desc = "Misc: open
 vim.keymap.set("ca", "pud", "lua vim.pack.update()", { desc = "Misc: shorthand for updating plugins" })
 
 -- directory
+local function cd_root()
+	local root = vim.fs.root(vim.fn.expand("%"), ".git")
+	if root then
+		vim.cmd.lcd(root)
+	else
+		vim.notify("No .git root found", vim.log.levels.INFO)
+	end
+end
+
 vim.keymap.set("n", "<leader>cd", "<cmd>lcd %:h<cr>", { desc = "Directory: change directory to parent of current file" })
 vim.keymap.set("n", "<leader>cu", "<cmd>lcd ..<cr>", { desc = "Directory: change directory to parent of cwd" })
 vim.keymap.set("n", "<leader>cr", cd_root, { desc = "Directory: change directory to root of current file" })
@@ -59,17 +61,3 @@ for i=1,5 do
 end
 
 -- stylua: ignore end
-
-vim.api.nvim_create_user_command("Scratch", function()
-	vim.cmd("bel 10new")
-	local buf = vim.api.nvim_get_current_buf()
-	for name, value in pairs({
-		filetype = "scratch",
-		buftype = "nofile",
-		bufhidden = "wipe",
-		swapfile = false,
-		modifiable = true,
-	}) do
-		vim.api.nvim_set_option_value(name, value, { buf = buf })
-	end
-end, { desc = "Open a scratch buffer", nargs = 0 })

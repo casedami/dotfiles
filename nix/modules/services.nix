@@ -12,6 +12,7 @@
     hypridle.enable = true;
     playerctld.enable = true;
     power-profiles-daemon.enable = true;
+    tailscale.enable = true;
     udev = {
       enable = true;
       packages = with pkgs; [
