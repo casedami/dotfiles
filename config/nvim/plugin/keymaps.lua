@@ -14,8 +14,6 @@ vim.keymap.set("n", "<C-up>", "V:m '>+1<cr>gv=gv<esc>", { silent = true, desc = 
 vim.keymap.set("n", "<C-down>", "V:m '<-2<cr>gv=gv<esc>", { silent = true, desc = "Extend: move line down" })
 vim.keymap.set("v", "<C-up>", ":m '>+1<cr>gv=gv", { silent = true, desc = "Extend: move line up" })
 vim.keymap.set("v", "<C-down>", ":m '<-2<cr>gv=gv", { silent = true, desc = "Extend: move line down" })
-vim.keymap.set({"n", "v"}, "<C-s>", "<cmd>w<cr>", { silent = true, desc = "Extend: save file" })
-vim.keymap.set({"n", "v"}, "<C-q>", "<cmd>q<cr>", { silent = true, desc = "Extend: quit" })
 vim.keymap.set("n", "zp", "vipzf", { desc = "Extend: fold inside paragraph" })
 vim.keymap.set("n", "zP", "vapzf", { desc = "Extend: fold around paragraph" })
 
