@@ -4,6 +4,7 @@ source completions/git/cmp.nu
 $env.config.show_banner = false
 $env.config.table = {
     show_empty: false
+    missing_value_symbol: ""
     trim: {methodology: truncating, truncating_suffix: "..."}
 }
 
@@ -14,7 +15,6 @@ $env.config.footer_mode = 20
 $env.config.buffer_editor = "nvim"
 $env.config.edit_mode = "vi"
 $env.config.abbreviations = {
-    f: fzf
     ptop: 'ps | sort-by cpu -r | first 15'
     ga: 'git add'
     gac: git-add-fzf
@@ -25,8 +25,8 @@ $env.config.abbreviations = {
     gl: git-log-tbl
     gm: 'git merge'
     gq: git-conflicts
-    gr: 'git rebase'
-    gR: 'git restore'
+    gi: 'git rebase -i HEAD~'
+    gr: 'git restore'
     gs: git-status-tbl
     gS: 'git show'
     gwa: 'git worktree add'
@@ -56,7 +56,7 @@ $env.config.keybindings ++= [
         modifier: control
         keycode: char_y
         mode: [vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "Fexplore"}
+        event: {send: executehostcommand, cmd: Fexplore}
     }
     {
         name: open_reedline_editor
@@ -70,22 +70,20 @@ $env.config.keybindings ++= [
         modifier: control
         keycode: char_o
         mode: [emacs, vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "nvim"}
+        event: {send: executehostcommand, cmd: nvim}
     }
     {
         name: dirs_cycle_next
         modifier: control
-        keycode: char_k
+        keycode: char_d
         mode: [emacs, vi_normal, vi_insert]
         event: {send: executehostcommand, cmd: "dirs next"}
     }
-    {
-        name: dirs_cycle_prev
-        modifier: control
-        keycode: char_j
-        mode: [emacs, vi_normal, vi_insert]
-        event: {send: executehostcommand, cmd: "dirs prev"}
-    }
 ]
+$env.config.plugins.todu.jira.email = "casey.miller@tridentsensing.com"
+$env.config.plugins.todu.jira.token_file = "/home/cdm/.jira_token"
+$env.config.plugins.todu = {
+    github: {token_file: ~/.gh-todu-token}
+}
 
 source ~/.zoxide.nu
