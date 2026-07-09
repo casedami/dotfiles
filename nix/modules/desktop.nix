@@ -24,5 +24,6 @@
   };
   fonts.packages = with pkgs; [
     nerd-fonts.lilex
+    corefonts
   ];
 }

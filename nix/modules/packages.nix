@@ -6,8 +6,10 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    binutils
     bluetui
     brightnessctl
+    gcc
     git
     usbutils
     nautilus
