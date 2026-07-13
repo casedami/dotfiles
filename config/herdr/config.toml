@@ -1,0 +1,14 @@
+[terminal]
+default_shell = "nu"
+
+[theme]
+name = "terminal"
+
+[ui.toast]
+delivery = "terminal"
+
+[keys]
+next_workspace = ["prefix+w"]
+previous_workspace = ["prefix+W"]
+next_agent = ["prefix+a"]
+previous_agent = ["prefix+A"]
