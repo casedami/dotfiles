@@ -4,3 +4,5 @@ allowed_signers
 .gitconfig-local
 nvim-pack-lock.json
 vfs.toml
+*.log
+session.json

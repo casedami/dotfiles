@@ -18,3 +18,6 @@ bind '"\C-o": "nvim\n"'
 
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/cdm/.opencode/bin:$PATH

@@ -80,10 +80,9 @@ $env.config.keybindings ++= [
         event: {send: executehostcommand, cmd: "dirs next"}
     }
 ]
-$env.config.plugins.todu.jira.email = "casey.miller@tridentsensing.com"
-$env.config.plugins.todu.jira.token_file = "/home/cdm/.jira_token"
 $env.config.plugins.todu = {
     github: {token_file: ~/.gh-todu-token}
+  jira: { email: "casey.miller@tridentsensing.com" token_file: "~/.jira_token"}
 }
 
 source ~/.zoxide.nu
