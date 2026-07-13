@@ -45,6 +45,7 @@
       uv
       # apps
       claude-code
+      opencode
       ghostty
       slack
       spotify

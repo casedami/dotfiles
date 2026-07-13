@@ -26,4 +26,5 @@
     nerd-fonts.lilex
     corefonts
   ];
+
 }
