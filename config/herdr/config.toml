@@ -5,7 +5,7 @@ default_shell = "nu"
 name = "terminal"
 
 [ui.toast]
-delivery = "terminal"
+delivery = "herdr"
 
 [keys]
 next_workspace = ["prefix+w"]
