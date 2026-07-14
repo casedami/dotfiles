@@ -49,6 +49,7 @@
       ghostty
       slack
       spotify
+      vial
       # hypr ecosystem
       wl-screenrec
       slurp

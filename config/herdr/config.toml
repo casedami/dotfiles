@@ -1,3 +1,4 @@
+onboarding = false
 [terminal]
 default_shell = "nu"
 
@@ -12,3 +13,7 @@ next_workspace = ["prefix+w"]
 previous_workspace = ["prefix+W"]
 next_agent = ["prefix+a"]
 previous_agent = ["prefix+A"]
+focus_pane_up = ["prefix+up"]
+focus_pane_down = ["prefix+down"]
+focus_pane_left = ["prefix+left"]
+focus_pane_right = ["prefix+right"]
