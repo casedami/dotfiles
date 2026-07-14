@@ -52,11 +52,8 @@
       # hypr ecosystem
       wl-screenrec
       slurp
-      hypridle
       hyprshot
       hyprpaper
-      hyprpolkitagent
-      hyprtoolkit
       rofi
       mako
     ];
