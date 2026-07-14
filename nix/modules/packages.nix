@@ -17,7 +17,10 @@
     openssl.dev
     pkg-config
     playerctl
+    qmk
+    qmk-udev-rules
     unzip
+    vial
     vim
     wget
   ];
